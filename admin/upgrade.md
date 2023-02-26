@@ -1,0 +1,107 @@
+---
+layout: '~/layouts/Markdown.astro'
+title: "Forgejo upgrade guide"
+---
+
+This guide helps Forgejo admins perform upgrades safely and provides guidance to troubleshoot problems. It covers upgrades from Gitea back to version 1.2.0.
+
+### Backup
+
+To be safe, make sure to perform a full backup before upgrading. It is a requirement when upgrading to a new stable release (going from v1.18 to v1.19 for instance) but is also a good precaution when installing a patch release (going from v1.18.3-1 to v1.18.3-2 for instance).
+
+The reliable way to perform a backup is with a synchronized point-in-time snapshot of all the storage used by Forgejo.
+
+For instance, if everything (SQLite database + repositories etc.) is on a single QCOW2 disk attached to a virtual machine, a [qemu snapshot](https://wiki.qemu.org/Features/Snapshots) guarantees the backup is consistent and can be done while the Forgejo server is running.
+
+However, if Forgejo uses a S3 storage for attachments with a PostgresQL database, stores Git repositories on a remote file system and queues in a Redis server, the only way to ensure a consistent state is to shutdown Forgejo during the backup.
+
+In the simplest case where everything is on a single file system and if the instance is not busy (no mirrors, no users), the backup can be done with:
+  * `forgejo dump` to collect everything into one zip file
+  * `psql/mysql/sqlite dump`. Although the zip file created by `forgejo dump` contains a copy of the database it has serious long standing open bugs that may introduce problems when re-injecting the SQL dump in a new database.
+
+### Verify Forgejo works
+
+It is **critical** to verify that Forgejo works very carefully. Restoring the backup done before the upgrade is easy and does not loose any information. But if a problem is discovered days or weeks after the upgrade, it will not be an option and fixing it on a live Forgejo instance will be much more challenging.
+
+* Run `forgejo doctor --all --log-file /tmp/doctor.log` and make sure it does not report any problem.
+* Manually verify via the web interface. Making a checklist of a typical use case is a good way to not miss anything.
+* If there is a problem of any kind, increase the log level and take a look at the logs. If you cannot figure out what the problem is, ask for help [in the Forgejo chatroom](https://matrix.to/#/#forgejo-chat:matrix.org) before trying to fix it.
+
+### Preparing the Forgejo upgrade
+
+* Manually analyze (reading the patches to the sources of the template directory) and update the customized CSS / content.
+* Do not use `forgejo help` to figure out the location of `CustomPath`, look at the configuration tab of the `Site administration` panel when logged in as an admin.
+* `forgejo manager flush-queues`. If it timesout, run it again with a more generous `--timeout` argument. It is important because the queues contain serialized data that is not guaranteed to be backward compatible between versions.
+* Go to the `Site administration` panel and pause all queues
+
+Note: Forgejo requires [docker >= 20.10.6](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0) otherwise mysterious problems will happen (mysterious in the sense that the problem will about something unrelated to the Docker version").
+
+### Performing the upgrade
+
+* If the upgrade is from a Gitea version [lower than 1.6](https://github.com/go-gitea/gitea/blob/e82db15cfa0d1cd85ee493128960a481eb44271c/models/migrations/migrations.go#L63) and greater or equal to 1.2.0, proceed as follows:
+  * Upgrade to 1.2.3 and manually verify it runs
+  * Upgrade to 1.4.3 and manually verify it runs
+  * Upgrade to 1.5.3 and manually verify it runs
+  * Upgrade to 1.6.4 and manually verify it runs
+* If the upgrade is from a Gitea version greater or equal to 1.6.4 that is not mentioned to be problematic below, upgrade directly to the latest stable Forgejo version, there is no need to upgrade to intermediate versions.
+* Verify Forgejo works
+
+### Troubleshooting
+
+* Increase the log level with `forgejo manager logging add console -n traceconsole -l TRACE -e '((modules/git)|(services/mirror))'`
+* If the upgrade from version x.y to version x.y+2 fails and there is a need to narrow down the problem, try upgrading to the latest minor version of each major version and verify it works. It will show which major version causes the issue and help debug the problem. For instance, if upgrading from Forgejo 1.18.2-0 to Forgejo 1.19.0-0 does not work:
+  * Upgrade from Forgejo 1.18.2 to Forgejo 1.18.5 (the last minor version of the 1.18 major version) and verify Forgejo works.
+  * Upgrade to Forgejo 1.19.0-0 (the last minor version of the 1.19 major version) and verify Forgejo works.
+
+#### Unexpected database version
+
+The database version is stored in the database and can be retrieved with **select * from version**. If the version found in the database does not match what is in the following table, it probably means the instance was installed from the development tree instead of a package and **the database may be in a state that has not been tested for upgrades**.
+
+| Forgejo version | Date | Database |
+| ----------------| ---- | -------- |
+|[1.18.5-0](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/RELEASE-NOTES.md#1-18-5-0) | February 2023 | v231 |
+
+| Gitea version | Date | Database |
+| --------------| ---- | -------- |
+|[1.17.4](https://github.com/go-gitea/gitea/releases/tag/v1.17.4) | December 2022 | v224 |
+|[1.16.9](https://github.com/go-gitea/gitea/releases/tag/v1.16.9) | July 2022 | v211 |
+|[1.15.11](https://github.com/go-gitea/gitea/releases/tag/v1.15.11) | January 2022| v189 |
+|[1.14.7](https://github.com/go-gitea/gitea/releases/tag/v1.14.7) | September 2021| v178 |
+|[1.13.7](https://github.com/go-gitea/gitea/releases/tag/v1.13.7) | April 2021| v156 *Note that [the comment in the source](https://github.com/go-gitea/gitea/blob/63f6e6c0bd6a5314b76b7598dee77ceee1dde81a/models/migrations/migrations.go#L257) incorrectly mention it should be v155.*  |
+|[1.12.6](https://github.com/go-gitea/gitea/releases/tag/v1.12.6) | November 2020| v141 *Note that [the comment in the source](https://github.com/go-gitea/gitea/blob/63f6e6c0bd6a5314b76b7598dee77ceee1dde81a/models/migrations/migrations.go#L224) incorrectly mention it should be v140.* |
+|[1.11.8](https://github.com/go-gitea/gitea/releases/tag/v1.11.8) | June 2020| v118 *Note that [the comment in the source](https://github.com/go-gitea/gitea/blob/63f6e6c0bd6a5314b76b7598dee77ceee1dde81a/models/migrations/migrations.go#L175) incorrectly mention it should be v117.* |
+|[1.10.6](https://github.com/go-gitea/gitea/releases/tag/v1.10.6) | March 2020| v103 *Note that [the comment in the source](https://github.com/go-gitea/gitea/blob/63f6e6c0bd6a5314b76b7598dee77ceee1dde81a/models/migrations/migrations.go#L142) incorrectly mention it should be v102.* |
+|[1.9.6](https://github.com/go-gitea/gitea/releases/tag/v1.9.6) | November 2019| v89 *Note that [the comment in the source](https://github.com/go-gitea/gitea/blob/63f6e6c0bd6a5314b76b7598dee77ceee1dde81a/models/migrations/migrations.go#L111) incorrectly mention it should be v88.* |
+
+#### When upgrading from a specific version...
+
+* Any version before [Gitea 1.17](https://github.com/go-gitea/gitea/releases/tag/v1.17.4)
+  * preserve a custom gitconfig: [episode 1](https://gna.org/blog/1-17-breaking-episode-1/), [episode 2](https://gna.org/blog/1-17-breaking-episode-2/)
+* [Gitea 1.13.0](https://blog.gitea.io/2020/12/gitea-1.13.0-is-released/)
+  * The Webhook shared secret inside the webhook payload has been deprecated and will be removed in 1.14.0: https://github.com/go-gitea/gitea/issues/11755 please use the secret header that uses an hmac signature to validate the webhook payload.
+  * Git hooks now default to `off`! ([#13058](https://github.com/go-gitea/gitea/pull/13058))
+    In your config, you can check the security section for `DISABLE_GIT_HOOKS`. To enable them again, you must set the setting to `false`.
+
+### Only when upgrading to a specific version
+
+* [1.15.2](https://blog.gitea.io/2021/09/gitea-1.15.2-is-released/)
+  * Unfortunately following the release of 1.15.1 it has become apparent that there is an issue with upgrading from 1.15.0 to 1.15.1 due to problem with a table constraint that was unexpectedly automatically dropped. Users who upgraded straight from 1.14.x to 1.15.1 are not affected and users who upgraded from 1.15.0 to 1.15.1 can fix the problem using `gitea doctor recreate-table issue_index` or upgrade to 1.15.2.
+
+* Between [1.13.0](https://blog.gitea.io/2020/12/gitea-1.13.0-is-released/) [1.13.3](https://blog.gitea.io/2021/03/gitea-1.13.3-is-released/)
+  * Password hashing algorithm default has changed back to pbkdf2 from argon2. ([#14673](https://github.com/go-gitea/gitea/pull/14673))
+
+### Unexplained upgrade failures & workarounds
+
+* All versions
+  * Symptom: [blank / 500 page after login when running SQLite](https://github.com/go-gitea/gitea/issues/18650)
+  * Workaround: upgrade to [Forgejo 1.18.0-1 or greater](https://codeberg.org/forgejo/forgejo/commit/443675d18072d2a345bc4644d3f52dee42f58b44) and run `gitea doctor --all --fix`
+
+### Versions with known issues
+
+Gogs from before September 2015 migrated to Forgejo v1.18 may have a [dangling `pull_repo` table](https://forum.gna.org/t/73) and the corresponding pull requests will be removed by `gitea doctor --fix --all`.
+
+[From the 1.11.3 release notes](https://blog.gitea.io/2020/03/gitea-1.11.3-and-1.10.6-released/):
+
+* v1.10.0, v1.10.1, v1.10.2, v1.10.3, v1.10.4, v1.11.0, and v1.11.1 **do not use** any of these versions, as a bug in the upgrade process will delete attachments from the releases on your repositories.
+* v1.11.2 (now replaced by 1.11.3) was mistakenly compiled with Go 1.14, which Gitea is not currently fully tested with and it’s known to cause [a few issues](https://github.com/go-gitea/gitea/issues/10661).
+* v1.10.5 (replaced by 1.10.6 if you need to keep using the 1.10 branch) was incorrectly tagged, and was in fact a snapshot of our development branch (1.12-dev). It was also compiled with Go 1.14.
