@@ -7,20 +7,20 @@ title: 'Email setup'
 
 {{< toc >}}
 
-Gitea has mailer functionality for sending transactional emails (such as registration confirmation). It can be configured to either use Sendmail (or compatible MTAs like Postfix and msmtp) or directly use SMTP server.
+Forgejo has mailer functionality for sending transactional emails (such as registration confirmation). It can be configured to either use Sendmail (or compatible MTAs like Postfix and msmtp) or directly use SMTP server.
 
 ## Using Sendmail
 
 Use `sendmail` command as mailer.
 
-Note: For use in the official Gitea Docker image, please configure with the SMTP version (see the following section).
+Note: For use in the official Forgejo container image, please configure with the SMTP version (see the following section).
 
 Note: For Internet-facing sites consult documentation of your MTA for instructions to send emails over TLS. Also set up SPF, DMARC, and DKIM DNS records to make emails sent be accepted as legitimate by various email providers.
 
 ```ini
 [mailer]
 ENABLED       = true
-FROM          = gitea@mydomain.com
+FROM          = forgejo@example.com
 MAILER_TYPE   = sendmail
 SENDMAIL_PATH = /usr/sbin/sendmail
 SENDMAIL_ARGS = "--" ; most "sendmail" programs take options, "--" will prevent an email address being interpreted as an option.
@@ -33,20 +33,20 @@ Directly use SMTP server as relay. This option is useful if you don't want to se
 ```ini
 [mailer]
 ENABLED        = true
-FROM           = gitea@mydomain.com
+FROM           = fogejo@example.com
 MAILER_TYPE    = smtp
-SMTP_ADDR      = mail.mydomain.com
+SMTP_ADDR      = mail.example.com
 SMTP_PORT      = 587
 IS_TLS_ENABLED = true
-USER           = gitea@mydomain.com
+USER           = fogejo@example.com
 PASSWD         = `password`
 ```
 
-Restart Gitea for the configuration changes to take effect.
+Restart Forgejo for the configuration changes to take effect.
 
-To send a test email to validate the settings, go to Gitea > Site Administration > Configuration > SMTP Mailer Configuration.
+To send a test email to validate the settings, go to Forgejo > Site Administration > Configuration > SMTP Mailer Configuration.
 
-For the full list of options check the [Config Cheat Sheet]({{< relref "doc/advanced/config-cheat-sheet.en-us.md" >}})
+For the full list of options check the Config Cheat Sheet.
 
 Please note: authentication is only supported when the SMTP server communication is encrypted with TLS or `HOST=localhost`. TLS encryption can be through:
 
