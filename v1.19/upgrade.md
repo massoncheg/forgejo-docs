@@ -1,6 +1,6 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: "Forgejo upgrade guide"
+title: "Upgrade guide"
 ---
 
 This guide helps Forgejo admins perform upgrades safely and provides guidance to troubleshoot problems. It covers upgrades from Gitea back to version 1.2.0.

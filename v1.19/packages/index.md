@@ -13,21 +13,21 @@ The following package managers are currently supported:
 
 | Name | Language | Package client |
 | ---- | -------- | -------------- |
-| [Cargo]({{< relref "doc/packages/cargo.en-us.md" >}}) | Rust | `cargo` |
-| [Chef]({{< relref "doc/packages/chef.en-us.md" >}}) | - | `knife` |
-| [Composer]({{< relref "doc/packages/composer.en-us.md" >}}) | PHP | `composer` |
-| [Conan]({{< relref "doc/packages/conan.en-us.md" >}}) | C++ | `conan` |
-| [Conda]({{< relref "doc/packages/conda.en-us.md" >}}) | - | `conda` |
-| [Container]({{< relref "doc/packages/container.en-us.md" >}}) | - | any OCI compliant client |
-| [Generic]({{< relref "doc/packages/generic.en-us.md" >}}) | - | any HTTP client |
-| [Helm]({{< relref "doc/packages/helm.en-us.md" >}}) | - | any HTTP client, `cm-push` |
-| [Maven]({{< relref "doc/packages/maven.en-us.md" >}}) | Java | `mvn`, `gradle` |
-| [npm]({{< relref "doc/packages/npm.en-us.md" >}}) | JavaScript | `npm`, `yarn`, `pnpm` |
-| [NuGet]({{< relref "doc/packages/nuget.en-us.md" >}}) | .NET | `nuget` |
-| [Pub]({{< relref "doc/packages/pub.en-us.md" >}}) | Dart | `dart`, `flutter` |
-| [PyPI]({{< relref "doc/packages/pypi.en-us.md" >}}) | Python | `pip`, `twine` |
-| [RubyGems]({{< relref "doc/packages/rubygems.en-us.md" >}}) | Ruby | `gem`, `Bundler` |
-| [Vagrant]({{< relref "doc/packages/vagrant.en-us.md" >}}) | - | `vagrant` |
+| [Cargo](cargo) | Rust | `cargo` |
+| [Chef](chef) | - | `knife` |
+| [Composer](composer) | PHP | `composer` |
+| [Conan](conan) | C++ | `conan` |
+| [Conda](conda) | - | `conda` |
+| [Container](container) | - | any OCI compliant client |
+| [Generic](generic) | - | any HTTP client |
+| [Helm](helm) | - | any HTTP client, `cm-push` |
+| [Maven](maven) | Java | `mvn`, `gradle` |
+| [npm](npm) | JavaScript | `npm`, `yarn`, `pnpm` |
+| [NuGet](nuget) | .NET | `nuget` |
+| [Pub](pub) | Dart | `dart`, `flutter` |
+| [PyPI](pypi) | Python | `pip`, `twine` |
+| [RubyGems](rubygems) | Ruby | `gem`, `Bundler` |
+| [Vagrant](vagrant) | - | `vagrant` |
 
 **The following paragraphs only apply if Packages are not globally disabled!**
 
