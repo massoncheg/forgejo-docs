@@ -12,3 +12,4 @@ title: 'Forgejo v1.19 administrator guide'
 * [Logging Configuration](logging-documentation)
 * [Packages](packages)
 * [Upgrade guide](upgrade)
+* [License](license)
