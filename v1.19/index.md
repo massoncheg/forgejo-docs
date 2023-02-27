@@ -15,4 +15,5 @@ title: 'Forgejo v1.19 administrator guide'
 * [Logging Configuration](logging-documentation)
 * [Packages](packages)
 * [API Usage](api-usage)
+* [API Reference](https://codeberg.org/api/swagger)
 * [License](license)
