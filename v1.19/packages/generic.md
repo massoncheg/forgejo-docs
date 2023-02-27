@@ -5,10 +5,6 @@ title: 'Generic Packages Repository'
 
 Publish generic files, like release binaries or other output, for your user or organization.
 
-**Table of Contents**
-
-{{< toc >}}
-
 ## Authenticate to the package registry
 
 To authenticate to the Package Registry, you need to provide [custom HTTP headers or use HTTP Basic authentication]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}).

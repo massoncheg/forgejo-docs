@@ -3,10 +3,6 @@ layout: '~/layouts/Markdown.astro'
 title: 'Package Registry'
 ---
 
-**Table of Contents**
-
-{{< toc >}}
-
 ## Supported package managers
 
 The following package managers are currently supported:

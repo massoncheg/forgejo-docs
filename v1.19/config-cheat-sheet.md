@@ -21,8 +21,6 @@ Values containing `#` or `;` must be quoted using `` ` `` or `"""`.
 
 **Note:** A full restart is required for Forgejo configuration changes to take effect.
 
-{{< toc >}}
-
 ## Default Configuration (non-`app.ini` configuration)
 
 These values are environment-dependent but form the basis of a lot of values. They will be

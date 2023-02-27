@@ -5,10 +5,6 @@ title: 'RubyGems Packages Repository'
 
 Publish [RubyGems](https://guides.rubygems.org/) packages for your user or organization.
 
-**Table of Contents**
-
-{{< toc >}}
-
 ## Requirements
 
 To work with the RubyGems package registry, you need to use the [gem](https://guides.rubygems.org/command-reference/) command line tool to consume and publish packages.

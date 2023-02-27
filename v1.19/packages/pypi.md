@@ -5,10 +5,6 @@ title: 'PyPI Packages Repository'
 
 Publish [PyPI](https://pypi.org/) packages for your user or organization.
 
-**Table of Contents**
-
-{{< toc >}}
-
 ## Requirements
 
 To work with the PyPI package registry, you need to use the tools [pip](https://pypi.org/project/pip/) to consume and [twine](https://pypi.org/project/twine/) to publish packages.

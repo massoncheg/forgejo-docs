@@ -5,10 +5,6 @@ title: 'Pub Packages Repository'
 
 Publish [Pub](https://dart.dev/guides/packages) packages for your user or organization.
 
-**Table of Contents**
-
-{{< toc >}}
-
 ## Requirements
 
 To work with the Pub package registry, you need to use the tools [dart](https://dart.dev/tools/dart-tool) and/or [flutter](https://docs.flutter.dev/reference/flutter-cli).

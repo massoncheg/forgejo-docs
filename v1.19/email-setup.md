@@ -3,10 +3,6 @@ layout: '~/layouts/Markdown.astro'
 title: 'Email setup'
 ---
 
-**Table of Contents**
-
-{{< toc >}}
-
 Forgejo has mailer functionality for sending transactional emails (such as registration confirmation). It can be configured to either use Sendmail (or compatible MTAs like Postfix and msmtp) or directly use SMTP server.
 
 ## Using Sendmail

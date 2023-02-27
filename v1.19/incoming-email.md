@@ -5,10 +5,6 @@ title: 'Incoming Email'
 
 Forgejo supports the execution of several actions through incoming mails. This page describes how to set this up.
 
-**Table of Contents**
-
-{{< toc >}}
-
 ## Requirements
 
 Handling incoming email messages requires an IMAP-enabled email account.

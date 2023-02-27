@@ -5,10 +5,6 @@ title: 'Helm Chart Registry'
 
 Publish [Helm](https://helm.sh/) charts for your user or organization.
 
-**Table of Contents**
-
-{{< toc >}}
-
 ## Requirements
 
 To work with the Helm Chart registry use a simple HTTP client like `curl` or the [`helm cm-push`](https://github.com/chartmuseum/helm-push/) plugin.

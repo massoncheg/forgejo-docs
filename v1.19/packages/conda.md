@@ -5,10 +5,6 @@ title: 'Conda Packages Repository'
 
 Publish [Conda](https://docs.conda.io/en/latest/) packages for your user or organization.
 
-**Table of Contents**
-
-{{< toc >}}
-
 ## Requirements
 
 To work with the Conda package registry, you need to use [conda](https://docs.conda.io/projects/conda/en/stable/user-guide/install/index.html).

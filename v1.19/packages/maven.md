@@ -5,10 +5,6 @@ title: 'Maven Packages Repository'
 
 Publish [Maven](https://maven.apache.org) packages for your user or organization.
 
-**Table of Contents**
-
-{{< toc >}}
-
 ## Requirements
 
 To work with the Maven package registry, you can use [Maven](https://maven.apache.org/install.html) or [Gradle](https://gradle.org/install/).

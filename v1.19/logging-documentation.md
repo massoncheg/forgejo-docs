@@ -11,10 +11,6 @@ The logging configuration of Forgejo mainly consists of 3 types of components:
 
 As mentioned below, there is a fully functional log output by default, so it is not necessary to define one.
 
-**Table of Contents**
-
-{{< toc >}}
-
 ## The `[log]` section
 
 Configuration of logging facilities in Forgejo happen in the `[log]` section and it's subsections.
