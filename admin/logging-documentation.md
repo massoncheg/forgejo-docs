@@ -3,7 +3,7 @@ layout: '~/layouts/Markdown.astro'
 title: 'Logging Configuration'
 ---
 
-The logging configuration of Gitea mainly consists of 3 types of components:
+The logging configuration of Forgejo mainly consists of 3 types of components:
 
 - The `[log]` section for general configuration
 - `[log.<sublogger>]` sections for the configuration of different log outputs
@@ -21,11 +21,11 @@ To collect logs for help and issue report, see [Support Options]({{< relref "doc
 
 ## The `[log]` section
 
-Configuration of logging facilities in Gitea happen in the `[log]` section and it's subsections.
+Configuration of logging facilities in Forgejo happen in the `[log]` section and it's subsections.
 
 In the top level `[log]` section the following configurations can be placed:
 
-- `ROOT_PATH`: (Default: **%(GITEA_WORK_DIR)/log**): Base path for log files
+- `ROOT_PATH`: (Default: **%(FORGEJO_WORK_DIR)/log**): Base path for log files
 - `MODE`: (Default: **console**) List of log outputs to use for the Default logger.
 - `ROUTER`: (Default: **console**): List of log outputs to use for the Router logger.
 - `ACCESS`: List of log outputs to use for the Access logger.
@@ -53,14 +53,14 @@ The content and the format of the log messages to be saved can be configured in 
 
 Log outputs are also called subloggers.
 
-Gitea provides 4 possible log outputs:
+Forgejo provides 4 possible log outputs:
 
 - `console` - Log to `os.Stdout` or `os.Stderr`
 - `file` - Log to a file
 - `conn` - Log to a socket (network or unix)
 - `smtp` - Log via email
 
-By default, Gitea has a `console` output configured, which is used by the loggers as seen in the section "The log section" above.
+By default, Forgejo has a `console` output configured, which is used by the loggers as seen in the section "The log section" above.
 
 ### Common configuration
 
@@ -118,7 +118,7 @@ Possible values are:
 ### Console mode
 
 In this mode the logger will forward log messages to the stdout and
-stderr streams attached to the Gitea process.
+stderr streams attached to the Forgejo process.
 
 For loggers in console mode, `COLORIZE` will default to `true` if not
 on windows, or the windows terminal can be set into ANSI mode or is a
@@ -177,11 +177,11 @@ Settings:
 - `USER`: User email address to send from.
 - `PASSWD`: Password for the smtp server.
 - `RECEIVERS`: Email addresses to send to.
-- `SUBJECT`: **Diagnostic message from Gitea**. The content of the email's subject field.
+- `SUBJECT`: **Diagnostic message from Forgejo**. The content of the email's subject field.
 
 ## Log Groups
 
-The fundamental thing to be aware of in Gitea is that there are several
+The fundamental thing to be aware of in Forgejo is that there are several
 log groups:
 
 - The "Default" logger
@@ -254,7 +254,7 @@ which will not be inherited from the `[log]` or relevant
 - `EXPRESSION` will default to `""`
 - `PREFIX` will default to `""`
 
-NB: You can redirect the router logger to send its events to the Gitea
+NB: You can redirect the router logger to send its events to the Forgejo
 log using the value: `ROUTER = ,`
 
 ### The "Access" logger
@@ -262,7 +262,7 @@ log using the value: `ROUTER = ,`
 The Access logger is a new logger for version 1.9. It provides a NCSA
 Common Log compliant log format. It's highly configurable but caution
 should be taken when changing its template. The main benefit of this
-logger is that Gitea can now log accesses in a standard log format so
+logger is that Forgejo can now log accesses in a standard log format so
 standard tools may be used.
 
 You can enable this logger using `ENABLE_ACCESS_LOG`. Its outputs are
@@ -285,7 +285,7 @@ the value of the `ACCESS_LOG_TEMPLATE`.
 Please note, the access logger will log at `INFO` level, setting the
 `LEVEL` of this logger to `WARN` or above will result in no access logs.
 
-NB: You can redirect the access logger to send its events to the Gitea
+NB: You can redirect the access logger to send its events to the Forgejo
 log using the value: `ACCESS = ,`
 
 #### The ACCESS_LOG_TEMPLATE
@@ -313,7 +313,7 @@ log events. It is enabled by default but can be switched off by setting
 `ENABLE_XORM_LOG` to `false` in the `[log]` section. Its outputs are
 configured by setting the `XORM` value in the `[log]` section of the
 configuration. `XORM` defaults to `,` if unset, meaning it is redirected
-to the main Gitea log.
+to the main Forgejo log.
 
 XORM will log SQL events by default. This can be changed by setting
 the `LOG_SQL` value to `false` in the `[database]` section.
@@ -330,7 +330,7 @@ which will not be inherited from the `[log]` or relevant
 
 ## Debugging problems
 
-When submitting logs in Gitea issues it is often helpful to submit
+When submitting logs in Forgejo issues it is often helpful to submit
 merged logs obtained by either by redirecting the console log to a file or
 copying and pasting it. To that end it is recommended to set your logging to:
 
@@ -372,7 +372,7 @@ The empty configuration is equivalent to:
 
 ```ini
 [log]
-ROOT_PATH = %(GITEA_WORK_DIR)/log
+ROOT_PATH = %(FORGEJO_WORK_DIR)/log
 MODE = console
 LEVEL = Info
 STACKTRACE_LEVEL = None
@@ -394,21 +394,21 @@ This is equivalent to sending all logs to the console, with default go log being
 ## Releasing-and-Reopening, Pausing and Resuming logging
 
 If you are running on Unix you may wish to release-and-reopen logs in order to use `logrotate` or other tools.
-It is possible force Gitea to release and reopen it's logging files and connections by sending `SIGUSR1` to the
-running process, or running `gitea manager logging release-and-reopen`.
+It is possible force Forgejo to release and reopen it's logging files and connections by sending `SIGUSR1` to the
+running process, or running `forgejo manager logging release-and-reopen`.
 
 Alternatively, you may wish to pause and resume logging - this can be accomplished through the use of the
-`gitea manager logging pause` and `gitea manager logging resume` commands. Please note that whilst logging
+`forgejo manager logging pause` and `forgejo manager logging resume` commands. Please note that whilst logging
 is paused log events below INFO level will not be stored and only a limited number of events will be stored.
-Logging may block, albeit temporarily, slowing Gitea considerably whilst paused - therefore it is
+Logging may block, albeit temporarily, slowing Forgejo considerably whilst paused - therefore it is
 recommended that pausing only done for a very short period of time.
 
-## Adding and removing logging whilst Gitea is running
+## Adding and removing logging whilst Forgejo is running
 
-It is possible to add and remove logging whilst Gitea is running using the `gitea manager logging add` and `remove` subcommands.
+It is possible to add and remove logging whilst Forgejo is running using the `forgejo manager logging add` and `remove` subcommands.
 This functionality can only adjust running log systems and cannot be used to start the access or router loggers if they
 were not already initialized. If you wish to start these systems you are advised to adjust the app.ini and (gracefully) restart
-the Gitea service.
+the Forgejo service.
 
 The main intention of these commands is to easily add a temporary logger to investigate problems on running systems where a restart
 may cause the issue to disappear.
@@ -499,12 +499,12 @@ You should then add `newOneLogService` to `NewServices()` in
 
 ## Using `logrotate` instead of built-in log rotation
 
-Gitea includes built-in log rotation, which should be enough for most deployments. However, if you instead want to use the `logrotate` utility:
+Forgejo includes built-in log rotation, which should be enough for most deployments. However, if you instead want to use the `logrotate` utility:
 
 - Disable built-in log rotation by setting `LOG_ROTATE` to `false` in your `app.ini`.
 - Install `logrotate`.
-- Configure `logrotate` to match your deployment requirements, see `man 8 logrotate` for configuration syntax details. In the `postrotate/endscript` block send Gitea a `USR1` signal via `kill -USR1` or `kill -10` to the `gitea` process itself, or run `gitea manager logging release-and-reopen` (with the appropriate environment). Ensure that your configurations apply to all files emitted by Gitea loggers as described in the above sections.
+- Configure `logrotate` to match your deployment requirements, see `man 8 logrotate` for configuration syntax details. In the `postrotate/endscript` block send Forgejo a `USR1` signal via `kill -USR1` or `kill -10` to the `forgejo` process itself, or run `forgejo manager logging release-and-reopen` (with the appropriate environment). Ensure that your configurations apply to all files emitted by Forgejo loggers as described in the above sections.
 - Always do `logrotate /etc/logrotate.conf --debug` to test your configurations.
-- If you are using docker and are running from outside of the container you can use `docker exec -u $OS_USER $CONTAINER_NAME sh -c 'gitea manager logging release-and-reopen'` or `docker exec $CONTAINER_NAME sh -c '/bin/s6-svc -1 /etc/s6/gitea/'` or send `USR1` directly to the Gitea process itself.
+- If you are using docker and are running from outside of the container you can use `docker exec -u $OS_USER $CONTAINER_NAME sh -c 'forgejo manager logging release-and-reopen'` or `docker exec $CONTAINER_NAME sh -c '/bin/s6-svc -1 /etc/s6/gitea/'` or send `USR1` directly to the Forgejo process itself.
 
 The next `logrotate` jobs will include your configurations, so no restart is needed. You can also immediately reload `logrotate` with `logrotate /etc/logrotate.conf --force`.
