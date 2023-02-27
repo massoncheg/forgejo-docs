@@ -3,7 +3,7 @@ layout: '~/layouts/Markdown.astro'
 title: 'Incoming Email'
 ---
 
-Gitea supports the execution of several actions through incoming mails. This page describes how to set this up.
+Forgejo supports the execution of several actions through incoming mails. This page describes how to set this up.
 
 **Table of Contents**
 
@@ -13,10 +13,10 @@ Gitea supports the execution of several actions through incoming mails. This pag
 
 Handling incoming email messages requires an IMAP-enabled email account.
 The recommended strategy is to use [email sub-addressing](https://en.wikipedia.org/wiki/Email_address#Sub-addressing) but a catch-all mailbox does work too.
-The receiving email address contains a user/action specific token which tells Gitea which action should be performed.
+The receiving email address contains a user/action specific token which tells Forgejo which action should be performed.
 This token is expected in the `To` and `Delivered-To` header fields.
 
-Gitea tries to detect automatic responses to skip and the email server should be configured to reduce the incoming noise too (spam, newsletter).
+Forgejo tries to detect automatic responses to skip and the email server should be configured to reduce the incoming noise too (spam, newsletter).
 
 ## Configuration
 
