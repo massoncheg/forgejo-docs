@@ -15,10 +15,6 @@ As mentioned below, there is a fully functional log output by default, so it is 
 
 {{< toc >}}
 
-## Collecting Logs for Help
-
-To collect logs for help and issue report, see [Support Options]({{< relref "doc/help/seek-help.en-us.md" >}}).
-
 ## The `[log]` section
 
 Configuration of logging facilities in Forgejo happen in the `[log]` section and it's subsections.
