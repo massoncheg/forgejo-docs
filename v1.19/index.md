@@ -9,7 +9,9 @@ title: 'Forgejo v1.19 administrator guide'
 * [Configuration Cheat Sheet](config-cheat-sheet)
 * [Upgrade guide](upgrade)
 * [Command Line](command-line)
-* [Authentication](authentication)
+* Authentication
+  * [LDAP, PAM, FreeIPA, Reverse Proxy](authentication)
+  * [OAuth2, Scoped Tokens, Client Types](oauth2-provider)
 * [Email setup](email-setup)
 * [Incoming Email](incoming-email)
 * [Logging Configuration](logging-documentation)
