@@ -194,48 +194,6 @@ Debian including Ubuntu and Mint, consult your distribution's documentation.
 [^2]: **This is a required field for PAM**.  Be aware: In the above example, the
 user will log into the Forgejo web interface as `gituser` and not `gituser@mail.com`
 
-## SMTP (Simple Mail Transfer Protocol)
-
-This option allows Forgejo to log in to an SMTP host as a Forgejo user. To
-configure this, set the fields below:
-
-- Authentication Name **(required)**
-
-  - A name to assign to the new method of authorization.
-
-- SMTP Authentication Type **(required)**
-
-  - Type of authentication to use to connect to SMTP host, PLAIN or LOGIN.
-
-- Host **(required)**
-
-  - The address where the SMTP host can be reached.
-  - Example: `smtp.mydomain.com`
-
-- Port **(required)**
-
-  - The port to use when connecting to the server.
-  - Example: `587`
-
-- Allowed Domains
-
-  - Restrict what domains can log in if using a public SMTP host or SMTP host
-    with multiple domains.
-  - Example: `forgejo.org,mydomain.com,mydomain2.com`
-
-- Force SMTPS
-
-  - SMTPS will be used by default for connections to port 465, if you wish to use SMTPS
-  for other ports. Set this value.
-  - Otherwise if the server provides the `STARTTLS` extension this will be used.
-
-- Skip TLS Verify
-
-  - Disable TLS verify on authentication.
-
-- This Authentication Source is Activated
-  - Enable or disable this authentication source.
-
 ## FreeIPA
 
 - In order to log in to Forgejo using FreeIPA credentials, a bind account needs to
