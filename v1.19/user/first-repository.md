@@ -1,30 +1,24 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: Your First Repository
+license: 'CC-BY-SA-4.0'
 ---
 
-Almost everything on Codeberg happens in a repository. Think of a repository as a home for your project, where all of its source code can be organized using Git, as well as where you can track issues and read and write wikis.
+Almost everything on Forgejo happens in a repository. Think of a repository as a home for your project, where all of its source code can be organized using Git, as well as where you can track issues and read and write wikis.
 
-This article will guide you through creating your first repository on Codeberg, connecting your local development environment and making your first commit.
+This article will guide you through creating your first repository on Forgejo, connecting your local development environment and making your first commit.
 
 ## Creating a Repository
-> A note to more advanced users: It's currently not possible to use Push-to-Create to push a fresh repository onto Codeberg.
 
-To create a new repository, you need be logged in to your account on Codeberg.org.
+To create a new repository, you need be logged in to your account.
 
 When you're logged in, you can use one of the two buttons shown in the two following screenshots to create a new repository:
 
-<picture>
-  <source srcset="/assets/images/getting-started/first-repository/create-repo.webp" type="image/webp">
-  <img src="/assets/images/getting-started/first-repository/create-repo.png" alt="Creating a Repository">
-</picture>
+![](../../../../images/v1.19/user/first-repository/create-repo.png)
 
 This will lead you to this page below.
 
-<picture>
-  <source srcset="/assets/images/getting-started/first-repository/create-repo-2.webp" type="image/webp">
-  <img src="/assets/images/getting-started/first-repository/create-repo-2.png" alt="New Repository Form">
-</picture>
+![](../../../../images/v1.19/user/first-repository/create-repo-2.png)
 
 Here's an explanation of the form's fields:
 
@@ -36,7 +30,7 @@ Here's an explanation of the form's fields:
 - **Issue Labels** If you want to initialize your project's issue tracker with a set of labels that you can use to categorize issues, you can choose one here. You don't have to choose this right away though, as you can choose and modify issue labels at a later time as well.
 - **.gitignore** A [.gitignore](https://git-scm.com/docs/gitignore) file defines which files Git should not keep track of. This is useful, for example to prevent configuration files or binaries to be tracked in version control. You can choose to add a pre-defined file matching the programming language you use now, or add one manually later.
 - **License** Here, you can choose from a list of FSF/OSI approved licenses. A `LICENSE` file will then be added to the repository. For some help on choosing the correct license, have a look at our [licensing article](/getting-started/licensing).
-- **README** is the first file one should read when accessing a repository. It's also the first file displayed when accessing a repository, a bit like the "homepage" of your repository. On Codeberg, this is interpreted as a [Markdown](/markdown) file.
+- **README** is the first file one should read when accessing a repository. It's also the first file displayed when accessing a repository, a bit like the "homepage" of your repository. On Forgejo, this is interpreted as a [Markdown](/markdown) file.
 - **Initialize repository** In order to add the `LICENSE`, `README` and `.gitignore` files mentioned above to your new repository, make sure you tick this box.
 - **Default branch** Using this field, you can choose how to name the default branch of your Git repository. We recommend you use the predefined default.
 
@@ -45,10 +39,7 @@ After filling out the fields, click the green "Create Repository" button on the 
 
 You should now see a screen similar to the one below. If you haven't chosen to generate `LICENSE`, `README` and `.gitignore` the screen might show instructions instead, which will vanish after [your first commit](#making-your-first-commit).
 
-<picture>
-  <source srcset="/assets/images/getting-started/first-repository/create-repo-3.webp" type="image/webp">
-  <img src="/assets/images/getting-started/first-repository/create-repo-3.png" alt="Repository Main View">
-</picture>
+![](../../../../images/v1.19/user/first-repository/create-repo-3.png)
 
 Here's what the most important buttons here do:
 
@@ -60,23 +51,23 @@ Here's what the most important buttons here do:
   For more information on this, have a look at [The Basics of Issue Tracking](/getting-started/issue-tracking-basics)
   - **Pull Requests** is where other users can ask you to "pull" in code, from a fork into your program
   - **Releases** is a space where you can upload finished versions of your program, e.g. binaries
-  - **Wiki** is a basic wiki feature built into Gitea, the software Codeberg is based on
+  - **Wiki** is a basic wiki feature built into Forgejo
   - **Activity** calculates statistics about your repository
 - **Your repository's Git URLs (4)** - use these to let Git know where to find your repository. Don't worry if you don't understand this now - we will look at this in the following section.
 
 
-## Connect a local repository to Codeberg
+## Connect a local repository to Forgejo
 After creating a new repository, as laid out in the previous section, you can now move on to connect the repository with your local development copy.
 
-In this guide, we'll focus on connecting to Codeberg via HTTP using Git on the command line, but note that there are multiple other ways to connect to Codeberg, as laid out in more detail in the articles:
+In this guide, we'll focus on connecting to Forgejo via HTTP using Git on the command line, but note that there are multiple other ways to connect to Forgejo, as laid out in more detail in the articles:
 
 - [Clone & Commit via CLI](/git/clone-commit-via-cli/) and
 - [Clone & Commit via Web](/git/clone-commit-via-web)
 
-> Although we use HTTP in this Getting Started guide, it is a good idea to [setup SSH-based authentication](/security/ssh-key) once you feel confident to do so
+> Although we use HTTP in this Getting Started guide, it is a good idea to setup SSH-based authentication once you feel confident to do so
 
 ### Option A: Clone the newly created, empty repository
-If you want to start a fresh project (so if you don't already have source code that you want to upload to Codeberg), the quickest way to get started is to clone your newly created repository like this:
+If you want to start a fresh project (so if you don't already have source code that you want to upload to Forgejo), the quickest way to get started is to clone your newly created repository like this:
 
 #### 1. Navigate to your local workspace (optional)
 If you're just getting started, it's a good idea to keep your projects neatly sorted in a dedicated directory, like in this example:
@@ -90,10 +81,7 @@ knut@iceberg:~/repositories$
 #### 2. Clone the repository
 To clone your newly created repository, execute `git clone` with the URL that is shown in your repository:
 
-<picture>
-  <source srcset="/assets/images/getting-started/first-repository/repo-url.webp" type="image/webp">
-  <img src="/assets/images/getting-started/first-repository/repo-url.png" alt="Repository Clone URL">
-</picture>
+![](../../../../images/v1.19/user/first-repository/repo-url.png)
 
 ```bash
 knut@iceberg:~/repositories$ git clone https://codeberg.org/knut/foobar
@@ -116,7 +104,7 @@ LICENSE  README.md
 
 
 ### Option B: Connect an existing local source tree
-If you already have written source code that you now would like to upload to Codeberg, follow these steps:
+If you already have written source code that you now would like to upload to Forgejo, follow these steps:
 
 #### 1. Initialize a Git Repository
 Unless you already have a Git Repository initialized in your local source tree,
@@ -127,10 +115,10 @@ knut@iceberg:~/my-project$ git init
 Initialized empty Git repository in /home/knut/my-project/.git/
 ```
 
-#### 2. Add Codeberg as the repository's origin
-Now, you need to tell Git where to push your changes. You would do that by specifying Codeberg as a remote.
+#### 2. Add Forgejo as the repository's origin
+Now, you need to tell Git where to push your changes. You would do that by specifying Forgejo as a remote.
 
-> In this example, we'll specify Codeberg as the `origin` remote. You can name your remote any other way, especially if you already have an `origin`, but `origin` is the recommended name for the main remote repository.
+> In this example, we'll specify Forgejo as the `origin` remote. You can name your remote any other way, especially if you already have an `origin`, but `origin` is the recommended name for the main remote repository.
 
 ```bash
 knut@iceberg:~/my-project$ git remote add origin https://codeberg.org/knut/foobar
@@ -192,8 +180,8 @@ By committing your changes, you create a new step in the version history of your
 To commit your changes, run `git commit` and specify a commit message; this will later help you (and others) to identify that commit when looking back at your version history.
 
 ```bash
-knut@iceberg:~/repositories/foobar$ git commit -m "My first commit on Codeberg"
-[main 1e12979] My first commit on Codeberg
+knut@iceberg:~/repositories/foobar$ git commit -m "My first commit on Forgejo"
+[main 1e12979] My first commit on Forgejo
  1 file changed, 1 insertion(+)
 ```
 
@@ -205,7 +193,7 @@ commit 1e1297929c8c74d9a439fa71c1f0ffe1dbf3d5ad (HEAD -> main)
 Author: Knut <knut@noreply.codeberg-test.org>
 Date:   Sat Sep 26 14:01:00 2020 +0200
 
-    My first commit on Codeberg
+    My first commit on Forgejo
 
 commit c75b50920e3aa7a7ab3484e898fb3ad77132722a (origin/main, origin/HEAD)
 Author: Knut <knut@noreply.codeberg-test.org>
@@ -214,8 +202,8 @@ Date:   Sat Sep 26 12:29:57 2020 +0200
     Initial commit
 ```
 
-#### 4. Push your changes to Codeberg
-If you're happy with the changes you made, the next step is to present them to the world by pushing them to Codeberg:
+#### 4. Push your changes to Forgejo
+If you're happy with the changes you made, the next step is to present them to the world by pushing them to Forgejo:
 
 ```bash
 knut@iceberg:~/repositories/foobar$ git push -u origin main
@@ -242,11 +230,6 @@ When connecting via HTTPS, Git will ask you for your username and password, whic
 
 After refreshing the repository page, you should now see something similar to this:
 
-<picture>
-  <source srcset="/assets/images/getting-started/first-repository/hello-world.webp" type="image/webp">
-  <img src="/assets/images/getting-started/first-repository/hello-world.png" alt="Hello World from first commit">
-</picture>
+![](../../../../images/v1.19/user/first-repository/hello-world.png)
 
-Congratulations - you've just made your first source code contribution on Codeberg!
-
-Now, you should [learn more about issue tracking](/getting-started/issue-tracking-basics).
+Congratulations - you've just made your first source code contribution on Forgejo!
