@@ -1,18 +1,12 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: 'Forgejo v1.19 administrator guide'
+title: 'Forgejo v1.19 documentation'
 ---
 
 * [What is Forgejo?](https://forgejo.org/)
 * [Installation](https://forgejo.org/download/)
 * [FAQ](https://forgejo.org/faq/)
-* [Configuration Cheat Sheet](config-cheat-sheet)
-* [Upgrade guide](upgrade)
-* [Command Line](command-line)
-* [Authentication](authentication)
-* [Email setup](email-setup)
-* [Incoming Email](incoming-email)
-* [Logging Configuration](logging-documentation)
-* [Packages](packages)
-* [API Usage](api-usage)
+* [Administrator guide](admin)
+* [User guide](user)
+* [Developer guide](developer)
 * [License](license)

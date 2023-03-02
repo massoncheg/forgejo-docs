@@ -194,48 +194,6 @@ Debian including Ubuntu and Mint, consult your distribution's documentation.
 [^2]: **This is a required field for PAM**.  Be aware: In the above example, the
 user will log into the Forgejo web interface as `gituser` and not `gituser@mail.com`
 
-## SMTP (Simple Mail Transfer Protocol)
-
-This option allows Forgejo to log in to an SMTP host as a Forgejo user. To
-configure this, set the fields below:
-
-- Authentication Name **(required)**
-
-  - A name to assign to the new method of authorization.
-
-- SMTP Authentication Type **(required)**
-
-  - Type of authentication to use to connect to SMTP host, PLAIN or LOGIN.
-
-- Host **(required)**
-
-  - The address where the SMTP host can be reached.
-  - Example: `smtp.mydomain.com`
-
-- Port **(required)**
-
-  - The port to use when connecting to the server.
-  - Example: `587`
-
-- Allowed Domains
-
-  - Restrict what domains can log in if using a public SMTP host or SMTP host
-    with multiple domains.
-  - Example: `forgejo.org,mydomain.com,mydomain2.com`
-
-- Force SMTPS
-
-  - SMTPS will be used by default for connections to port 465, if you wish to use SMTPS
-  for other ports. Set this value.
-  - Otherwise if the server provides the `STARTTLS` extension this will be used.
-
-- Skip TLS Verify
-
-  - Disable TLS verify on authentication.
-
-- This Authentication Source is Activated
-  - Enable or disable this authentication source.
-
 ## FreeIPA
 
 - In order to log in to Forgejo using FreeIPA credentials, a bind account needs to
@@ -274,22 +232,3 @@ configure this, set the fields below:
 
 - Log in to Forgejo as an Administrator and click on "Authentication" under Admin Panel.
   Then click `Add New Source` and fill in the details, changing all where appropriate.
-
-## Reverse Proxy
-
-Forgejo supports Reverse Proxy Header authentication, it will read headers as a trusted login user name or user email address. This hasn't been enabled by default, you can enable it with
-
-```ini
-[service]
-ENABLE_REVERSE_PROXY_AUTHENTICATION = true
-```
-
-The default login user name is in the `X-WEBAUTH-USER` header, you can change it via changing `REVERSE_PROXY_AUTHENTICATION_USER` in app.ini. If the user doesn't exist, you can enable automatic registration with `ENABLE_REVERSE_PROXY_AUTO_REGISTRATION=true`.
-
-The default login user email is `X-WEBAUTH-EMAIL`, you can change it via changing `REVERSE_PROXY_AUTHENTICATION_EMAIL` in app.ini, this could also be disabled with `ENABLE_REVERSE_PROXY_EMAIL`
-
-If set `ENABLE_REVERSE_PROXY_FULL_NAME=true`, a user full name expected in `X-WEBAUTH-FULLNAME` will be assigned to the user when auto creating the user. You can also change the header name with `REVERSE_PROXY_AUTHENTICATION_FULL_NAME`.
-
-You can also limit the reverse proxy's IP address range with `REVERSE_PROXY_TRUSTED_PROXIES` which default value is `127.0.0.0/8,::1/128`. By `REVERSE_PROXY_LIMIT`, you can limit trusted proxies level.
-
-Notice: Reverse Proxy Auth doesn't support the API. You still need an access token or basic auth to make API requests.
