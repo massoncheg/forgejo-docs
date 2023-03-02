@@ -9,7 +9,7 @@ The copyright holders are listed in the git history.
 
 ---
 
-Some content is copied from https://github.com/go-gitea/gitea, published under the [MIT](https://github.com/go-gitea/gitea/blob/main/LICENSE) license.
+Some content is copied from https://github.com/go-gitea/gitea, published under the [Apache 2.0](https://github.com/go-gitea/gitea/blob/ffce336f1802b2f2298fc8fd27e815086702c812/docs/LICENSE) license.
 
 ---
 
