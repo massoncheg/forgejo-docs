@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Conda Packages Repository'
+license: 'Apache-2.0'
 ---
 
 Publish [Conda](https://docs.conda.io/en/latest/) packages for your user or organization.
@@ -21,9 +22,9 @@ default_channels:
   - https://forgejo.example.com/api/packages/{owner}/conda
 ```
 
-| Placeholder  | Description |
-| ------------ | ----------- |
-| `owner`      | The owner of the package. |
+| Placeholder | Description               |
+| ----------- | ------------------------- |
+| `owner`     | The owner of the package. |
 
 See the [official documentation](https://conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html) for explanations of the individual settings.
 
@@ -37,11 +38,11 @@ To publish a package, perform a HTTP PUT operation with the package content in t
 PUT https://forgejo.example.com/api/packages/{owner}/conda/{channel}/{filename}
 ```
 
-| Placeholder  | Description |
-| ------------ | ----------- |
-| `owner`      | The owner of the package. |
-| `channel`    | The [channel](https://conda.io/projects/conda/en/latest/user-guide/concepts/channels.html) of the package. (optional) |
-| `filename`   | The name of the file. |
+| Placeholder | Description                                                                                                           |
+| ----------- | --------------------------------------------------------------------------------------------------------------------- |
+| `owner`     | The owner of the package.                                                                                             |
+| `channel`   | The [channel](https://conda.io/projects/conda/en/latest/user-guide/concepts/channels.html) of the package. (optional) |
+| `filename`  | The name of the file.                                                                                                 |
 
 Example request using HTTP Basic authentication:
 
@@ -63,8 +64,8 @@ conda install {package_name}={package_version}
 conda install -c {channel} {package_name}
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
-| `package_name`    | The package name. |
-| `package_version` | The package version. |
+| Parameter         | Description                            |
+| ----------------- | -------------------------------------- |
+| `package_name`    | The package name.                      |
+| `package_version` | The package version.                   |
 | `channel`         | The channel of the package. (optional) |

@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Cargo Packages Repository'
+license: 'Apache-2.0'
 ---
 
 Publish [Cargo](https://doc.rust-lang.org/stable/cargo/) packages for your user or organization.
@@ -44,8 +45,8 @@ index = "https://forgejo.example.com/{owner}/_cargo-index.git"
 git-fetch-with-cli = true
 ```
 
-| Parameter | Description |
-| --------- | ----------- |
+| Parameter | Description               |
+| --------- | ------------------------- |
 | `owner`   | The owner of the package. |
 
 If the registry is private or you want to publish new packages, you have to configure your credentials.
@@ -56,8 +57,8 @@ Add the credentials section to the credentials file located in the current users
 token = "Bearer {token}"
 ```
 
-| Parameter | Description |
-| --------- | ----------- |
+| Parameter | Description                                                                                     |
+| --------- | ----------------------------------------------------------------------------------------------- |
 | `token`   | Your [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}) |
 
 ## Publish a package
@@ -78,8 +79,8 @@ To install a package from the package registry, execute the following command:
 cargo add {package_name}
 ```
 
-| Parameter      | Description |
-| -------------- | ----------- |
+| Parameter      | Description       |
+| -------------- | ----------------- |
 | `package_name` | The package name. |
 
 ## Supported commands

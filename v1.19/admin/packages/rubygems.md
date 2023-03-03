@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'RubyGems Packages Repository'
+license: 'Apache-2.0'
 ---
 
 Publish [RubyGems](https://guides.rubygems.org/) packages for your user or organization.
@@ -18,10 +19,10 @@ To register the package registry edit the `~/.gem/credentials` file and add:
 https://forgejo.example.com/api/packages/{owner}/rubygems: Bearer {token}
 ```
 
-| Parameter     | Description |
-| ------------- | ----------- |
-| `owner`       | The owner of the package. |
-| `token`       | Your [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}). |
+| Parameter | Description                                                                                      |
+| --------- | ------------------------------------------------------------------------------------------------ |
+| `owner`   | The owner of the package.                                                                        |
+| `token`   | Your [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}). |
 
 For example:
 
@@ -38,9 +39,9 @@ Publish a package by running the following command:
 gem push --host {host} {package_file}
 ```
 
-| Parameter      | Description |
-| -------------- | ----------- |
-| `host`         | URL to the package registry. |
+| Parameter      | Description                      |
+| -------------- | -------------------------------- |
+| `host`         | URL to the package registry.     |
 | `package_file` | Path to the package `.gem` file. |
 
 For example:
@@ -65,10 +66,10 @@ source "https://forgejo.example.com/api/packages/{owner}/rubygems" do
 end
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
-| `owner`           | The owner of the package. |
-| `package_name`    | The package name. |
+| Parameter      | Description               |
+| -------------- | ------------------------- |
+| `owner`        | The owner of the package. |
+| `package_name` | The package name.         |
 
 For example:
 
@@ -92,10 +93,10 @@ Execute the following command:
 gem install --host https://forgejo.example.com/api/packages/{owner}/rubygems {package_name}
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
-| `owner`           | The owner of the package. |
-| `package_name`    | The package name. |
+| Parameter      | Description               |
+| -------------- | ------------------------- |
+| `owner`        | The owner of the package. |
+| `package_name` | The package name.         |
 
 For example:
 

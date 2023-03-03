@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'npm Packages Repository'
+license: 'Apache-2.0'
 ---
 
 Publish [npm](https://www.npmjs.com/) packages for your user or organization.
@@ -22,11 +23,11 @@ npm config set {scope}:registry https://forgejo.example.com/api/packages/{owner}
 npm config set -- '//forgejo.example.com/api/packages/{owner}/npm/:_authToken' "{token}"
 ```
 
-| Parameter    | Description |
-| ------------ | ----------- |
-| `scope`      | The scope of the packages. |
-| `owner`      | The owner of the package. |
-| `token`      | Your [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}). |
+| Parameter | Description                                                                                      |
+| --------- | ------------------------------------------------------------------------------------------------ |
+| `scope`   | The scope of the packages.                                                                       |
+| `owner`   | The owner of the package.                                                                        |
+| `token`   | Your [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}). |
 
 For example:
 
@@ -60,9 +61,9 @@ Delete a package by running the following command:
 npm unpublish {package_name}[@{package_version}]
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
-| `package_name`    | The package name. |
+| Parameter         | Description          |
+| ----------------- | -------------------- |
+| `package_name`    | The package name.    |
 | `package_version` | The package version. |
 
 For example:
@@ -80,8 +81,8 @@ To install a package from the package registry, execute the following command:
 npm install {package_name}
 ```
 
-| Parameter      | Description |
-| -------------- | ----------- |
+| Parameter      | Description       |
+| -------------- | ----------------- |
 | `package_name` | The package name. |
 
 For example:
@@ -98,11 +99,11 @@ The registry supports [version tags](https://docs.npmjs.com/adding-dist-tags-to-
 npm dist-tag add {package_name}@{version} {tag}
 ```
 
-| Parameter      | Description |
-| -------------- | ----------- |
-| `package_name` | The package name. |
+| Parameter      | Description                 |
+| -------------- | --------------------------- |
+| `package_name` | The package name.           |
 | `version`      | The version of the package. |
-| `tag`          | The tag name. |
+| `tag`          | The tag name.               |
 
 For example:
 

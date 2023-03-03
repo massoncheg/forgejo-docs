@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Maven Packages Repository'
+license: 'Apache-2.0'
 ---
 
 Publish [Maven](https://maven.apache.org) packages for your user or organization.
@@ -53,10 +54,10 @@ Afterwards add the following sections to your project `pom.xml` file:
 </distributionManagement>
 ```
 
-| Parameter      | Description |
-| -------------- | ----------- |
+| Parameter      | Description                                                                                      |
+| -------------- | ------------------------------------------------------------------------------------------------ |
 | `access_token` | Your [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}). |
-| `owner`        | The owner of the package. |
+| `owner`        | The owner of the package.                                                                        |
 
 ## Publish a package
 
@@ -72,9 +73,9 @@ If you want to publish a prebuild package to the registry, you can use [`mvn dep
 mvn deploy:deploy-file -Durl=https://forgejo.example.com/api/packages/{owner}/maven -DrepositoryId=forgejo -Dfile=/path/to/package.jar
 ```
 
-| Parameter      | Description |
-| -------------- | ----------- |
-| `owner`        | The owner of the package. |
+| Parameter | Description               |
+| --------- | ------------------------- |
+| `owner`   | The owner of the package. |
 
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
 

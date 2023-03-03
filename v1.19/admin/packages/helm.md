@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Helm Chart Registry'
+license: 'Apache-2.0'
 ---
 
 Publish [Helm](https://helm.sh/) charts for your user or organization.
@@ -24,13 +25,13 @@ helm repo add  --username {username} --password {password} {repo} https://forgej
 helm cm-push ./{chart_file}.tgz {repo}
 ```
 
-| Parameter    | Description |
-| ------------ | ----------- |
-| `username`   | Your Forgejo username. |
+| Parameter    | Description                                                                                                                                                                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `username`   | Your Forgejo username.                                                                                                                                                         |
 | `password`   | Your Forgejo password. If you are using 2FA or OAuth use a [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}) instead of the password. |
-| `repo`       | The name for the repository. |
-| `chart_file` | The Helm Chart archive. |
-| `owner`      | The owner of the package. |
+| `repo`       | The name for the repository.                                                                                                                                                   |
+| `chart_file` | The Helm Chart archive.                                                                                                                                                        |
+| `owner`      | The owner of the package.                                                                                                                                                      |
 
 ## Install a package
 
@@ -42,11 +43,11 @@ helm repo update
 helm install {name} {repo}/{chart}
 ```
 
-| Parameter  | Description |
-| ---------- | ----------- |
-| `username` | Your Forgejo username. |
+| Parameter  | Description                                       |
+| ---------- | ------------------------------------------------- |
+| `username` | Your Forgejo username.                            |
 | `password` | Your Forgejo password or a personal access token. |
-| `repo`     | The name for the repository. |
-| `owner`    | The owner of the package. |
-| `name`     | The local name. |
-| `chart`    | The name Helm Chart. |
+| `repo`     | The name for the repository.                      |
+| `owner`    | The owner of the package.                         |
+| `name`     | The local name.                                   |
+| `chart`    | The name Helm Chart.                              |
