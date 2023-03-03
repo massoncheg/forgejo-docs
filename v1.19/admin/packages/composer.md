@@ -2,6 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Composer Packages Repository'
 license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/packages/composer.en-us.md'
 ---
 
 Publish [Composer](https://getcomposer.org/) packages for your user or organization.

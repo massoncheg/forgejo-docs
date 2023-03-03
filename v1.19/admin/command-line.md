@@ -2,6 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Command Line'
 license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/usage/command-line.en-us.md'
 ---
 
 ## Usage

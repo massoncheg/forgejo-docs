@@ -2,6 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Chef Packages Repository'
 license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/packages/chef.en-us.md'
 ---
 
 Publish [Chef](https://chef.io/) cookbooks for your user or organization.

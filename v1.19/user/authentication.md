@@ -1,6 +1,8 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Authentication'
+license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/features/authentication.en-us.md'
 ---
 
 ## LDAP (Lightweight Directory Access Protocol)

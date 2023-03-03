@@ -1,7 +1,8 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Upgrade guide'
-license: 'Apache-2.0'
+license: 'CC-BY-SA-4.0'
+origin_url: 'https://forgejo.gna.org/Hostea/admin-guide/src/branch/master/README.md'
 ---
 
 This guide helps Forgejo admins perform upgrades safely and provides guidance to troubleshoot problems. It covers upgrades from Gitea back to version 1.2.0.

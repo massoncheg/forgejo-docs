@@ -2,6 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Generic Packages Repository'
 license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/packages/generic.en-us.md'
 ---
 
 Publish generic files, like release binaries or other output, for your user or organization.

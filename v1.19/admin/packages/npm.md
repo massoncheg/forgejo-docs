@@ -2,6 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'npm Packages Repository'
 license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/packages/npm.en-us.md'
 ---
 
 Publish [npm](https://www.npmjs.com/) packages for your user or organization.

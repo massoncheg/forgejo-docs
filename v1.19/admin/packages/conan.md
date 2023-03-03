@@ -2,6 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Conan Packages Repository'
 license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/packages/conan.en-us.md'
 ---
 
 Publish [Conan](https://conan.io/) packages for your user or organization.

@@ -2,6 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Logging Configuration'
 license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/advanced/logging-documentation.en-us.md'
 ---
 
 The logging configuration of Forgejo mainly consists of 3 types of components:

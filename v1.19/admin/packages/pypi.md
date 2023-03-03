@@ -2,6 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'PyPI Packages Repository'
 license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/packages/pypi.en-us.md'
 ---
 
 Publish [PyPI](https://pypi.org/) packages for your user or organization.

@@ -2,6 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Conda Packages Repository'
 license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/packages/conda.en-us.md'
 ---
 
 Publish [Conda](https://docs.conda.io/en/latest/) packages for your user or organization.

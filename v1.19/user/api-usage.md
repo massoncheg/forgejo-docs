@@ -1,6 +1,8 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'API Usage'
+license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/developers/api-usage.en-us.md'
 ---
 
 ## Enabling/configuring API access
