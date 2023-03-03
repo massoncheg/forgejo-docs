@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Command Line'
+license: 'Apache-2.0'
 ---
 
 ## Usage
@@ -168,11 +169,11 @@ Admin operations:
         - `--allowed-domains`: Leave empty to allow all domains. Separate multiple domains with a comma (',').
         - `--skip-local-2fa`: Skip 2FA to log on.
         - `--active`: This Authentication Source is Activated.
-        Remarks:
-        `--force-smtps`, `--skip-verify`, `--disable-helo`, `--skip-loca-2fs` and `--active` options can be used in form:
+          Remarks:
+          `--force-smtps`, `--skip-verify`, `--disable-helo`, `--skip-loca-2fs` and `--active` options can be used in form:
         - `--option`, `--option=true` to enable
         - `--option=false` to disable
-        If those options are not specified value would not be changed in `update-smtp` or would use default `false` value in `add-smtp`
+          If those options are not specified value would not be changed in `update-smtp` or would use default `false` value in `add-smtp`
       - Examples:
         - `forgejo admin auth add-smtp --name ldap --host smtp.mydomain.org --port 587 --skip-verify --active`
     - `update-smtp`:

@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Generic Packages Repository'
+license: 'Apache-2.0'
 ---
 
 Publish generic files, like release binaries or other output, for your user or organization.
@@ -18,12 +19,12 @@ You cannot publish a file with the same name twice to a package. You must delete
 PUT https://forgejo.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{file_name}
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
-| `owner`           | The owner of the package. |
+| Parameter         | Description                                                                                                                                                                |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `owner`           | The owner of the package.                                                                                                                                                  |
 | `package_name`    | The package name. It can contain only lowercase letters (`a-z`), uppercase letter (`A-Z`), numbers (`0-9`), dots (`.`), hyphens (`-`), pluses (`+`), or underscores (`_`). |
-| `package_version` | The package version, a non-empty string without trailing or leading whitespaces. |
-| `file_name`       | The filename. It can contain only lowercase letters (`a-z`), uppercase letter (`A-Z`), numbers (`0-9`), dots (`.`), hyphens (`-`), pluses (`+`), or underscores (`_`). |
+| `package_version` | The package version, a non-empty string without trailing or leading whitespaces.                                                                                           |
+| `file_name`       | The filename. It can contain only lowercase letters (`a-z`), uppercase letter (`A-Z`), numbers (`0-9`), dots (`.`), hyphens (`-`), pluses (`+`), or underscores (`_`).     |
 
 Example request using HTTP Basic authentication:
 
@@ -37,11 +38,11 @@ If you are using 2FA or OAuth use a [personal access token]({{< relref "doc/deve
 
 The server reponds with the following HTTP Status codes.
 
-| HTTP Status Code  | Meaning |
-| ----------------- | ------- |
-| `201 Created`     | The package has been published. |
+| HTTP Status Code  | Meaning                                                       |
+| ----------------- | ------------------------------------------------------------- |
+| `201 Created`     | The package has been published.                               |
 | `400 Bad Request` | The package name and/or version and/or file name are invalid. |
-| `409 Conflict`    | A file with the same name exist already in the package. |
+| `409 Conflict`    | A file with the same name exist already in the package.       |
 
 ## Download a package
 
@@ -51,12 +52,12 @@ To download a generic package perform a HTTP GET operation.
 GET https://forgejo.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{file_name}
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
+| Parameter         | Description               |
+| ----------------- | ------------------------- |
 | `owner`           | The owner of the package. |
-| `package_name`    | The package name. |
-| `package_version` | The package version. |
-| `file_name`       | The filename. |
+| `package_name`    | The package name.         |
+| `package_version` | The package version.      |
+| `file_name`       | The filename.             |
 
 The file content is served in the response body. The response content type is `application/octet-stream`.
 
@@ -69,10 +70,10 @@ curl --user your_username:your_token_or_password \
 
 The server reponds with the following HTTP Status codes.
 
-| HTTP Status Code  | Meaning |
-| ----------------- | ------- |
-| `200 OK`          | Success |
-| `404 Not Found`   | The package or file was not found. |
+| HTTP Status Code | Meaning                            |
+| ---------------- | ---------------------------------- |
+| `200 OK`         | Success                            |
+| `404 Not Found`  | The package or file was not found. |
 
 ## Delete a package
 
@@ -82,11 +83,11 @@ To delete a generic package perform a HTTP DELETE operation. This will delete al
 DELETE https://forgejo.example.com/api/packages/{owner}/generic/{package_name}/{package_version}
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
+| Parameter         | Description               |
+| ----------------- | ------------------------- |
 | `owner`           | The owner of the package. |
-| `package_name`    | The package name. |
-| `package_version` | The package version. |
+| `package_name`    | The package name.         |
+| `package_version` | The package version.      |
 
 Example request using HTTP Basic authentication:
 
@@ -97,10 +98,10 @@ curl --user your_username:your_token_or_password -X DELETE \
 
 The server reponds with the following HTTP Status codes.
 
-| HTTP Status Code  | Meaning |
-| ----------------- | ------- |
-| `204 No Content`  | Success |
-| `404 Not Found`   | The package was not found. |
+| HTTP Status Code | Meaning                    |
+| ---------------- | -------------------------- |
+| `204 No Content` | Success                    |
+| `404 Not Found`  | The package was not found. |
 
 ## Delete a package file
 
@@ -110,12 +111,12 @@ To delete a file of a generic package perform a HTTP DELETE operation. This will
 DELETE https://forgejo.example.com/api/packages/{owner}/generic/{package_name}/{package_version}/{filename}
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
+| Parameter         | Description               |
+| ----------------- | ------------------------- |
 | `owner`           | The owner of the package. |
-| `package_name`    | The package name. |
-| `package_version` | The package version. |
-| `filename`        | The filename. |
+| `package_name`    | The package name.         |
+| `package_version` | The package version.      |
+| `filename`        | The filename.             |
 
 Example request using HTTP Basic authentication:
 
@@ -126,7 +127,7 @@ curl --user your_username:your_token_or_password -X DELETE \
 
 The server reponds with the following HTTP Status codes.
 
-| HTTP Status Code  | Meaning |
-| ----------------- | ------- |
-| `204 No Content`  | Success |
-| `404 Not Found`   | The package or file was not found. |
+| HTTP Status Code | Meaning                            |
+| ---------------- | ---------------------------------- |
+| `204 No Content` | Success                            |
+| `404 Not Found`  | The package or file was not found. |

@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'PyPI Packages Repository'
+license: 'Apache-2.0'
 ---
 
 Publish [PyPI](https://pypi.org/) packages for your user or organization.
@@ -23,11 +24,11 @@ username = {username}
 password = {password}
 ```
 
-| Placeholder  | Description |
-| ------------ | ----------- |
-| `owner`      | The owner of the package. |
-| `username`   | Your Forgejo username. |
-| `password`   | Your Forgejo password. If you are using 2FA or OAuth use a [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}) instead of the password. |
+| Placeholder | Description                                                                                                                                                                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `owner`     | The owner of the package.                                                                                                                                                      |
+| `username`  | Your Forgejo username.                                                                                                                                                         |
+| `password`  | Your Forgejo password. If you are using 2FA or OAuth use a [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}) instead of the password. |
 
 ## Publish a package
 
@@ -49,12 +50,12 @@ To install a PyPI package from the package registry, execute the following comma
 pip install --index-url https://{username}:{password}@forgejo.example.com/api/packages/{owner}/pypi/simple --no-deps {package_name}
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
-| `username`        | Your Forgejo username. |
-| `password`        | Your Forgejo password or a personal access token. |
-| `owner`           | The owner of the package. |
-| `package_name`    | The package name. |
+| Parameter      | Description                                       |
+| -------------- | ------------------------------------------------- |
+| `username`     | Your Forgejo username.                            |
+| `password`     | Your Forgejo password or a personal access token. |
+| `owner`        | The owner of the package.                         |
+| `package_name` | The package name.                                 |
 
 For example:
 

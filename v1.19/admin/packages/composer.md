@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Composer Packages Repository'
+license: 'Apache-2.0'
 ---
 
 Publish [Composer](https://getcomposer.org/) packages for your user or organization.
@@ -19,9 +20,9 @@ You cannot publish a package if a package of the same name and version already e
 PUT https://forgejo.example.com/api/packages/{owner}/composer
 ```
 
-| Parameter  | Description |
-| ---------- | ----------- |
-| `owner`    | The owner of the package. |
+| Parameter | Description               |
+| --------- | ------------------------- |
+| `owner`   | The owner of the package. |
 
 If the `composer.json` file does not contain a `version` property, you must provide it as a query parameter:
 
@@ -49,9 +50,9 @@ If you are using 2FA or OAuth use a [personal access token]({{< relref "doc/deve
 
 The server responds with the following HTTP Status codes.
 
-| HTTP Status Code  | Meaning |
-| ----------------- | ------- |
-| `201 Created`     | The package has been published. |
+| HTTP Status Code  | Meaning                                                                                                |
+| ----------------- | ------------------------------------------------------------------------------------------------------ |
+| `201 Created`     | The package has been published.                                                                        |
 | `400 Bad Request` | The package name and/or version are invalid or a package with the same name and version already exist. |
 
 ## Configuring the package registry
@@ -60,10 +61,11 @@ To register the package registry you need to add it to the Composer `config.json
 
 ```json
 {
-  "repositories": [{
+  "repositories": [
+    {
       "type": "composer",
       "url": "https://forgejo.example.com/api/packages/{owner}/composer"
-   }
+    }
   ]
 }
 ```
@@ -81,10 +83,10 @@ To access the package registry using credentials, you must specify them in the `
 }
 ```
 
-| Parameter  | Description |
-| ---------- | ----------- |
-| `owner`    | The owner of the package. |
-| `username` | Your Forgejo username. |
+| Parameter  | Description                                       |
+| ---------- | ------------------------------------------------- |
+| `owner`    | The owner of the package.                         |
+| `username` | Your Forgejo username.                            |
 | `password` | Your Forgejo password or a personal access token. |
 
 ## Install a package
@@ -101,7 +103,7 @@ Optional you can specify the package version:
 composer require {package_name}:{package_version}
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
-| `package_name`    | The package name. |
+| Parameter         | Description          |
+| ----------------- | -------------------- |
+| `package_name`    | The package name.    |
 | `package_version` | The package version. |

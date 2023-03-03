@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Conan Packages Repository'
+license: 'Apache-2.0'
 ---
 
 Publish [Conan](https://conan.io/) packages for your user or organization.
@@ -18,12 +19,12 @@ conan remote add {remote} https://forgejo.example.com/api/packages/{owner}/conan
 conan user --remote {remote} --password {password} {username}
 ```
 
-| Parameter  | Description |
-| -----------| ----------- |
-| `remote`   | The remote name. |
-| `username` | Your Forgejo username. |
+| Parameter  | Description                                                                                                                                                                    |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `remote`   | The remote name.                                                                                                                                                               |
+| `username` | Your Forgejo username.                                                                                                                                                         |
 | `password` | Your Forgejo password. If you are using 2FA or OAuth use a [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}) instead of the password. |
-| `owner`    | The owner of the package. |
+| `owner`    | The owner of the package.                                                                                                                                                      |
 
 For example:
 
@@ -40,9 +41,9 @@ Publish a Conan package by running the following command:
 conan upload --remote={remote} {recipe}
 ```
 
-| Parameter | Description |
-| ----------| ----------- |
-| `remote`  | The remote name. |
+| Parameter | Description           |
+| --------- | --------------------- |
+| `remote`  | The remote name.      |
 | `recipe`  | The recipe to upload. |
 
 For example:
@@ -61,9 +62,9 @@ To install a Conan package from the package registry, execute the following comm
 conan install --remote={remote} {recipe}
 ```
 
-| Parameter | Description |
-| ----------| ----------- |
-| `remote`  | The remote name. |
+| Parameter | Description             |
+| --------- | ----------------------- |
+| `remote`  | The remote name.        |
 | `recipe`  | The recipe to download. |
 
 For example:

@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Pub Packages Repository'
+license: 'Apache-2.0'
 ---
 
 Publish [Pub](https://dart.dev/guides/packages) packages for your user or organization.
@@ -19,9 +20,9 @@ To register the package registry and provide credentials, execute:
 dart pub token add https://forgejo.example.com/api/packages/{owner}/pub
 ```
 
-| Placeholder  | Description |
-| ------------ | ----------- |
-| `owner`      | The owner of the package. |
+| Placeholder | Description               |
+| ----------- | ------------------------- |
+| `owner`     | The owner of the package. |
 
 You need to provide your [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}).
 
@@ -33,9 +34,9 @@ To publish a package, edit the `pubspec.yaml` and add the following line:
 publish_to: https://forgejo.example.com/api/packages/{owner}/pub
 ```
 
-| Placeholder  | Description |
-| ------------ | ----------- |
-| `owner`      | The owner of the package. |
+| Placeholder | Description               |
+| ----------- | ------------------------- |
+| `owner`     | The owner of the package. |
 
 Now you can publish the package by running the following command:
 
@@ -53,10 +54,10 @@ To install a Pub package from the package registry, execute the following comman
 dart pub add {package_name} --hosted-url=https://forgejo.example.com/api/packages/{owner}/pub/
 ```
 
-| Parameter         | Description |
-| ----------------- | ----------- |
-| `owner`           | The owner of the package. |
-| `package_name`    | The package name. |
+| Parameter      | Description               |
+| -------------- | ------------------------- |
+| `owner`        | The owner of the package. |
+| `package_name` | The package name.         |
 
 For example:
 

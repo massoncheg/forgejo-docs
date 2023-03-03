@@ -1,6 +1,7 @@
 ---
 layout: '~/layouts/Markdown.astro'
 title: 'Logging Configuration'
+license: 'Apache-2.0'
 ---
 
 The logging configuration of Forgejo mainly consists of 3 types of components:
