@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Helm Chart Registry'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/packages/helm.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/packages/helm.en-us.md'
 ---
 
 Publish [Helm](https://helm.sh/) charts for your user or organization.

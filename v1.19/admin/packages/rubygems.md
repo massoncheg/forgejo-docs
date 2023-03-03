@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'RubyGems Packages Repository'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/packages/rubygems.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/packages/rubygems.en-us.md'
 ---
 
 Publish [RubyGems](https://guides.rubygems.org/) packages for your user or organization.
