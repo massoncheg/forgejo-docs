@@ -31,12 +31,12 @@ Directly use SMTP server as relay. This option is useful if you don't want to se
 ```ini
 [mailer]
 ENABLED        = true
-FROM           = fogejo@example.com
+FROM           = forgejo@example.com
 MAILER_TYPE    = smtp
 SMTP_ADDR      = mail.example.com
 SMTP_PORT      = 587
 IS_TLS_ENABLED = true
-USER           = fogejo@example.com
+USER           = forgejo@example.com
 PASSWD         = `password`
 ```
 
