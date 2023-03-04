@@ -8,6 +8,7 @@ involved in running it on their machines.
 
 - [Your First Repository](first-repository)
 - [Branch and tag protection](protection)
+- [Projects / Kanban boards](project)
 - [Webhooks](webhooks)
 - Authentication
   - [LDAP, PAM, FreeIPA](authentication)
