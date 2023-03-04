@@ -7,6 +7,7 @@ These documents are targeted to people who are using Forgejo but are not
 involved in running it on their machines.
 
 - [Your First Repository](first-repository)
+- [Webhooks](webhooks)
 - Authentication
   - [LDAP, PAM, FreeIPA](authentication)
   - [OAuth2, Scoped Tokens, Client Types](oauth2-provider)
