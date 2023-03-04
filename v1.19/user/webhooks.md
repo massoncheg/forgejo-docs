@@ -1,24 +1,15 @@
 ---
-date: "2016-12-01T16:00:00+02:00"
-title: "Webhooks"
-slug: "webhooks"
-weight: 10
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "features"
-    name: "Webhooks"
-    weight: 30
-    identifier: "webhooks"
+layout: '~/layouts/Markdown.astro'
+title: 'Webhooks'
+license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/features/webhooks.en-us.md'
 ---
 
-# Webhooks
-
-Gitea supports webhooks for repository events. This can be configured in the settings
+Forgejo supports webhooks for repository events. This can be configured in the settings
 page `/:username/:reponame/settings/hooks` by a repository admin. Webhooks can also be configured on a per-organization and whole system basis.
 All event pushes are POST requests. The methods currently supported are:
 
+- Forgejo (can also be a GET request)
 - Gitea (can also be a GET request)
 - Gogs
 - Slack
@@ -32,12 +23,12 @@ All event pushes are POST requests. The methods currently supported are:
 
 ### Event information
 
-**WARNING**: The `secret` field in the payload is deprecated as of Gitea 1.13.0 and will be removed in 1.14.0: https://github.com/go-gitea/gitea/issues/11755
-
-The following is an example of event information that will be sent by Gitea to
+The following is an example of event information that will be sent by Forgejo to
 a Payload URL:
 
 ```
+X-Forgejo-Delivery: f6266f16-1bf3-46a5-9ea4-602e06ead473
+X-Forgejo-Event: push
 X-GitHub-Delivery: f6266f16-1bf3-46a5-9ea4-602e06ead473
 X-GitHub-Event: push
 X-Gogs-Delivery: f6266f16-1bf3-46a5-9ea4-602e06ead473
@@ -52,21 +43,21 @@ X-Gitea-Event: push
   "ref": "refs/heads/develop",
   "before": "28e1879d029cb852e4844d9c718537df08844e03",
   "after": "bffeb74224043ba2feb48d137756c8a9331c449a",
-  "compare_url": "http://localhost:3000/gitea/webhooks/compare/28e1879d029cb852e4844d9c718537df08844e03...bffeb74224043ba2feb48d137756c8a9331c449a",
+  "compare_url": "http://localhost:3000/forgejo/webhooks/compare/28e1879d029cb852e4844d9c718537df08844e03...bffeb74224043ba2feb48d137756c8a9331c449a",
   "commits": [
     {
       "id": "bffeb74224043ba2feb48d137756c8a9331c449a",
       "message": "Webhooks Yay!",
-      "url": "http://localhost:3000/gitea/webhooks/commit/bffeb74224043ba2feb48d137756c8a9331c449a",
+      "url": "http://localhost:3000/forgejo/webhooks/commit/bffeb74224043ba2feb48d137756c8a9331c449a",
       "author": {
-        "name": "Gitea",
-        "email": "someone@gitea.io",
-        "username": "gitea"
+        "name": "Forgejo",
+        "email": "someone@forgejo.org",
+        "username": "forgejo"
       },
       "committer": {
-        "name": "Gitea",
-        "email": "someone@gitea.io",
-        "username": "gitea"
+        "name": "Forgejo",
+        "email": "someone@forgejo.org",
+        "username": "forgejo"
       },
       "timestamp": "2017-03-13T13:52:11-04:00"
     }
@@ -75,20 +66,20 @@ X-Gitea-Event: push
     "id": 140,
     "owner": {
       "id": 1,
-      "login": "gitea",
-      "full_name": "Gitea",
-      "email": "someone@gitea.io",
+      "login": "forgejo",
+      "full_name": "Forgejo",
+      "email": "someone@forgejo.org",
       "avatar_url": "https://localhost:3000/avatars/1",
-      "username": "gitea"
+      "username": "forgejo"
     },
     "name": "webhooks",
-    "full_name": "gitea/webhooks",
+    "full_name": "forgejo/webhooks",
     "description": "",
     "private": false,
     "fork": false,
-    "html_url": "http://localhost:3000/gitea/webhooks",
-    "ssh_url": "ssh://gitea@localhost:2222/gitea/webhooks.git",
-    "clone_url": "http://localhost:3000/gitea/webhooks.git",
+    "html_url": "http://localhost:3000/forgejo/webhooks",
+    "ssh_url": "ssh://forgejo@localhost:2222/forgejo/webhooks.git",
+    "clone_url": "http://localhost:3000/forgejo/webhooks.git",
     "website": "",
     "stars_count": 0,
     "forks_count": 1,
@@ -100,19 +91,19 @@ X-Gitea-Event: push
   },
   "pusher": {
     "id": 1,
-    "login": "gitea",
-    "full_name": "Gitea",
-    "email": "someone@gitea.io",
+    "login": "forgejo",
+    "full_name": "Forgejo",
+    "email": "someone@forgejo.org",
     "avatar_url": "https://localhost:3000/avatars/1",
-    "username": "gitea"
+    "username": "forgejo"
   },
   "sender": {
     "id": 1,
-    "login": "gitea",
-    "full_name": "Gitea",
-    "email": "someone@gitea.io",
+    "login": "forgejo",
+    "full_name": "Forgejo",
+    "email": "someone@forgejo.org",
     "avatar_url": "https://localhost:3000/avatars/1",
-    "username": "gitea"
+    "username": "forgejo"
   }
 }
 ```
@@ -120,7 +111,7 @@ X-Gitea-Event: push
 ### Example
 
 This is an example of how to use webhooks to run a php script upon push requests to the repository.
-In your repository Settings, under Webhooks, Setup a Gitea webhook as follows:
+In your repository Settings, under Webhooks, Setup a Forgejo webhook as follows:
 
 - Target URL: http://mydomain.com/webhook.php
 - HTTP Method: POST
@@ -159,7 +150,7 @@ if (empty($payload)) {
 }
 
 // get header signature
-$header_signature = isset($_SERVER['HTTP_X_GITEA_SIGNATURE']) ? $_SERVER['HTTP_X_GITEA_SIGNATURE'] : '';
+$header_signature = isset($_SERVER['HTTP_X_FORGEJO_SIGNATURE']) ? $_SERVER['HTTP_X_FORGEJO_SIGNATURE'] : '';
 
 if (empty($header_signature)) {
     error_log('FAILED - header signature missing');
@@ -191,4 +182,4 @@ There is a Test Delivery button in the webhook settings that allows to test the 
 
 ### Authorization header
 
-**With 1.19**, Gitea hooks can be configured to send an [authorization header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) to the webhook target.
+Forgejo hooks can be configured to send an [authorization header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) to the webhook target.
