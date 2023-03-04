@@ -182,4 +182,8 @@ There is a Test Delivery button in the webhook settings that allows to test the 
 
 ### Authorization header
 
-Forgejo hooks can be configured to send an [authorization header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) to the webhook target.
+Forgejo webhooks can be configured to send an [authorization header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) to the target.
+
+![screenshot of the webhook definition webpage](../../../../images/v1.19/user/webhooks/authorization-header.png)
+
+The authentication string is stored encrypted in the database.
