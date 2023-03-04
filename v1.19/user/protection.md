@@ -1,25 +1,30 @@
 ---
-date: "2021-05-14T00:00:00-00:00"
-title: "Protected tags"
-slug: "protected-tags"
-weight: 45
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "advanced"
-    name: "Protected tags"
-    weight: 45
-    identifier: "protected-tags"
+layout: '~/layouts/Markdown.astro'
+title: 'Branch and tag protection'
+license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/advanced/protected-tags.en-us.md'
 ---
+
+# Protected branches
+
+Protected branches enforce restrictions such as force pushing or
+merging unless a given number of approval are obtained on a pull
+request.
+
+To protect a branch, you need to go to the repository’s **Settings** >
+**Branch** page and add a new rule.
+
+![Add a new rule](../../../../images/v1.19/user/protection/branch-protect.png)
+
+The name of the branch can be a glob where / is the separator and **
+spans accross separators. For instance `main`, `release/**` or `precious*`.
+
+If two rules apply to the same branch, the one that has no glob takes
+precedence.
 
 # Protected tags
 
 Protected tags allow control over who has permission to create or update Git tags. Each rule allows you to match either an individual tag name, or use an appropriate pattern to control multiple tags at once.
-
-**Table of Contents**
-
-{{< toc >}}
 
 ## Setting up protected tags
 
@@ -41,8 +46,8 @@ Examples:
 | Glob  | `v*`                     | `v`, `v-1`, `version2`                  |
 | Glob  | `v[0-9]`                 | `v0`, `v1` up to `v9`                   |
 | Glob  | `*-release`              | `2.1-release`, `final-release`          |
-| Glob  | `gitea`                  | only `gitea`                            |
-| Glob  | `*gitea*`                | `gitea`, `2.1-gitea`, `1_gitea-release` |
+| Glob  | `forgejo`                | only `forgejo`                          |
+| Glob  | `*forgejo*`              | `forgejo`, `2.1-forgejo`, `1_forgejo-r` |
 | Glob  | `{v,rel}-*`              | `v-`, `v-1`, `v-final`, `rel-`, `rel-x` |
 | Glob  | `*`                      | matches all possible tag names          |
 | Regex | `/\Av/`                  | `v`, `v-1`, `version2`                  |
@@ -50,8 +55,8 @@ Examples:
 | Regex | `/\Av\d+\.\d+\.\d+\z/`   | `v1.0.17`, `v2.1.0`                     |
 | Regex | `/\Av\d+(\.\d+){0,2}\z/` | `v1`, `v2.1`, `v1.2.34`                 |
 | Regex | `/-release\z/`           | `2.1-release`, `final-release`          |
-| Regex | `/gitea/`                | `gitea`, `2.1-gitea`, `1_gitea-release` |
-| Regex | `/\Agitea\z/`            | only `gitea`                            |
-| Regex | `/^gitea$/`              | only `gitea`                            |
+| Regex | `/forgejo/`              | `forgejo`, `2.1-forgejo`, `1_forgejo-r` |
+| Regex | `/\Aforgejo\z/`          | only `forgejo`                          |
+| Regex | `/^forgejo$/`            | only `forgejo`                          |
 | Regex | `/\A(v\|rel)-/`          | `v-`, `v-1`, `v-final`, `rel-`, `rel-x` |
 | Regex | `/.+/`                   | matches all possible tag names          |
