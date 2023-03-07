@@ -21,93 +21,92 @@ The table below gives an overview of what collaborators are allowed to do when g
 <table class="table">
  <thead>
   <tr>
-   <th> Task </th>
-   <th> Read </th>
-   <th> Write</th>
-   <th> Admin </th>
-   <th> Owner </th>
+   <th scope="col"> Task </th>
+   <th scope="col"> Read </th>
+   <th scope="col"> Write</th>
+   <th scope="col"> Admin </th>
+   <th scope="col"> Owner </th>
  </thead>
  <tbody>
   <tr>
-   <td> View, clone and pull repository </td>
+   <td scope="row"> View, clone and pull repository </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
-   <td> Contribute pull requests </td>
+   <td scope="row"> Contribute pull requests </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
-   <td> Push to/update contributed pull requests </td>
+   <td scope="row"> Push to/update contributed pull requests </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
-   <td> Push directly to repository </td>
+   <td scope="row"> Push directly to repository </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
-   <td> Merge pull requests </td>
+   <td scope="row"> Merge pull requests </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
-   <td> Moderate/delete issues and comments </td>
+   <td scope="row"> Moderate/delete issues and comments </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
-   <td> Force-push/rewrite history (if enabled) </td>
+   <td scope="row"> Force-push/rewrite history (if enabled) </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
-   <td> Add/remove collaborators to repository </td>
+   <td scope="row"> Add/remove collaborators to repository </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
-   <td> Configure branch settings (protect/unprotect, enable force-push) </td>
-   <td> <span style="color: red"></span> </td>
-   <td> <span style="color: red"></span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  <tr>
-   <td> Configure repository settings (enable wiki, issues, PRs, releases, update profile) </td>
+   <td scope="row"> Configure branch settings (protect/unprotect, enable force-push) </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: green">✅</span> </td>
    <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
-   <td> Configure repository settings in the danger zone (transfer ownership, delete wiki data / repository, archive repository) </td>
+   <td scope="row"> Configure repository settings (enable wiki, issues, PRs, releases, update profile) </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+  </tr>
+  <tr>
+   <td scope="row"> Configure repository settings in the danger zone (transfer ownership, delete wiki data / repository, archive repository) </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: red"></span> </td>
    <td> <span style="color: green">✅</span> </td>
-  </tr>
   </tr>
  </tbody>
 </table>
-
 
 ## Teams
 
