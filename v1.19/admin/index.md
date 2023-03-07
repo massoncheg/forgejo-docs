@@ -5,7 +5,7 @@ title: 'Forgejo v1.19 administrator guide'
 
 These documents are targeted to people who run Forgejo on their machines.
 
-- [Seek help](seek-help)
+- [Getting Support](seek-help)
 - [Configuration Cheat Sheet](config-cheat-sheet)
 - [Upgrade guide](upgrade)
 - [Command Line](command-line)
