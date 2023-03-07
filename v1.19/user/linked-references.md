@@ -1,23 +1,9 @@
 ---
-date: "2019-11-21T17:00:00-03:00"
-title: "Usage: Automatically Linked References"
-slug: "automatically-linked-references"
-weight: 15
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Automatically Linked References"
-    weight: 15
-    identifier: "automatically-linked-references"
+layout: '~/layouts/Markdown.astro'
+title: 'Automatically Linked References in Issues, Pull Requests and Commit Messages'
+license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/usage/linked-references.en-us.md'
 ---
-
-# Automatically Linked References in Issues, Pull Requests and Commit Messages
-
-**Table of Contents**
-
-{{< toc >}}
 
 When an issue, pull request or comment is posted, the text description is parsed
 in search for references. These references will be shown as links in the Issue View
@@ -82,9 +68,9 @@ using the form `owner/repository#1234`:
 
 > This seems related to [mike/compiler#1234](#)
 
-Alternatively, the `!1234` notation can be used as well. Even when in Gitea
+Alternatively, the `!1234` notation can be used as well. Even when in Forgejo
 a pull request is a form of issue, the `#1234` form will always link to
-an issue; if the linked entry happens to be a pull request instead, Gitea
+an issue; if the linked entry happens to be a pull request instead, Forgejo
 will redirect as appropriate. With the `!1234` notation, a pull request
 link will be created, which will be redirected to an issue if required.
 However, this distinction could be important if an external tracker is
@@ -93,7 +79,7 @@ used, where links to issues and pull requests are not interchangeable.
 ## Actionable References in Pull Requests and Commit Messages
 
 Sometimes a commit or pull request may fix or bring back a problem documented
-in a particular issue. Gitea supports closing and reopening the referenced
+in a particular issue. Forgejo supports closing and reopening the referenced
 issues by preceding the reference with a particular _keyword_. Common keywords
 include "closes", "fixes", "reopens", etc. This list can be
 [customized]({{< ref "/doc/advanced/config-cheat-sheet.en-us.md" >}}) by the
@@ -155,14 +141,14 @@ This would result in 1 hour added to issue #123 and 1 and half hours added to is
 
 ## External Trackers
 
-Gitea supports the use of external issue trackers, and references to issues
+Forgejo supports the use of external issue trackers, and references to issues
 hosted externally can be created in pull requests. However, if the external
 tracker uses numbers to identify issues, they will be indistinguishable from
-the pull requests hosted in Gitea. To address this, Gitea allows the use of
+the pull requests hosted in Forgejo. To address this, Forgejo allows the use of
 the `!` marker to identify pull requests. For example:
 
 > This is issue [#1234](#), and links to the external tracker.
-> This is pull request [!1234](#), and links to a pull request in Gitea.
+> This is pull request [!1234](#), and links to a pull request in Forgejo.
 
 The `!` and `#` can be used interchangeably for issues and pull request _except_
 for this case, where a distinction is required. If the repository uses external
