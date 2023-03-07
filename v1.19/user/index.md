@@ -6,16 +6,33 @@ title: 'Forgejo v1.19 user guide'
 These documents are targeted to people who are using Forgejo but are not
 involved in running it on their machines.
 
-- [Your First Repository](first-repository)
-- [The Basics of Issue Tracking](issue-tracking-basics)
-- [Integrated Wiki](wiki)
-- [Email Settings](email-settings)
-- [Branch and tag protection](protection)
-- [Projects / Kanban boards](project)
-- [Labels](labels)
-- [Webhooks](webhooks)
-- Authentication
-  - [LDAP, PAM, FreeIPA](authentication)
-  - [OAuth2, Scoped Tokens, Client Types](oauth2-provider)
-- [API Usage](api-usage)
-- [API Reference](https://codeberg.org/api/swagger)
+- Getting started
+  - [Your First Repository](first-repository)
+  - [The Basics of Issue Tracking](issue-tracking-basics)
+  - [Integrated Wiki](wiki)
+  - [Email Settings](email-settings)
+- Collaborating with Others
+  - [Projects / Kanban boards](project)
+  - [Pull requests and Git flow](https://docs.codeberg.org/collaborating/pull-requests-and-git-flow/)
+  - [Invite Collaborators](https://docs.codeberg.org/collaborating/invite-collaborators/)
+  - [Create and Manage an Organization](https://docs.codeberg.org/collaborating/create-organization/)
+  - [Repository Permissions](https://docs.codeberg.org/collaborating/repo-permissions/)
+  - [Resolve Conflicts](https://docs.codeberg.org/collaborating/resolve-conflicts/)
+  - [Citable Code](https://docs.codeberg.org/collaborating/citable-code/)
+  - [Labels](labels)
+- Working with Git Repositories
+  - [Clone & Commit via Web](https://docs.codeberg.org/git/clone-commit-via-web/)
+  - [Tags and Releases](https://docs.codeberg.org/git/using-tags/)
+  - [Branch and tag protection](protection)
+- Advanced Usage
+  - [Generating an Access Token](https://docs.codeberg.org/advanced/access-token/)
+  - [Webhooks](webhooks)
+  - Authentication
+    - [LDAP, PAM, FreeIPA](authentication)
+    - [OAuth2, Scoped Tokens, Client Types](oauth2-provider)
+  - [API Usage](api-usage)
+  - [API Reference](https://codeberg.org/api/swagger)
+  - [Migrating Repositories](https://docs.codeberg.org/advanced/migrating-repos/)
+- See also
+  - [Codeberg guide on Git](https://docs.codeberg.org/git/)
+  - [Codeberg guide on Markdown](https://docs.codeberg.org/markdown/)
