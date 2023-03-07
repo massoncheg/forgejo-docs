@@ -1,21 +1,18 @@
 ---
-eleventyNavigation:
-  key: IssueTrackingBasics
-  title: The Basics of Issue Tracking
-  parent: GettingStarted
-  order: 40
+layout: '~/layouts/Markdown.astro'
+title: 'The Basics of Issue Tracking'
+license: 'CC-BY-SA-4.0'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/ceec82002bbdc62cf27974e84df51369a4bfe0f9/content/getting-started/issue-tracking-basics.md'
 ---
 
-Issues are an important mean of communication on Codeberg.
+Issues are an important mean of communication on Forgejo.
 Besides their original purpose - reporting bugs to a project's maintainer -
 they can be used to suggest enhancements, ask for new features, discuss a project's
 direction, ask questions and much more.
 
 ### The Issue Tracker
-<picture>
-  <source srcset="/assets/images/getting-started/issue-tracking-basics/issues-list.webp" type="image/webp">
-  <img src="/assets/images/getting-started/issue-tracking-basics/issues-list.png" alt="Issues List">
-</picture>
+
+![Issues list](../../../../images/v1.19/user/issue-tracking-basics/issues-list.png)
 
 You can access the issue tracker of a project by clicking its "Issues" tab **(1)**.
 
