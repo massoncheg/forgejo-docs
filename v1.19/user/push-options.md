@@ -1,24 +1,11 @@
 ---
-date: "2020-07-06T16:00:00+02:00"
-title: "Usage: Push Options"
-slug: "push-options"
-weight: 15
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Push Options"
-    weight: 15
-    identifier: "push-options"
+layout: '~/layouts/Markdown.astro'
+title: 'Push Options'
+license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/usage/push-options.en-us.md'
 ---
 
-# Push Options
-
-In Gitea `1.13`, support for some [push options](https://git-scm.com/docs/git-push#Documentation/git-push.txt--oltoptiongt)
-were added.
-
-## Supported Options
+There is support for some [push options](https://git-scm.com/docs/git-push#Documentation/git-push.txt--oltoptiongt).
 
 - `repo.private` (true|false) - Change the repository's visibility.
 
