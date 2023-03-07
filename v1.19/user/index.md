@@ -36,6 +36,7 @@ involved in running it on their machines.
   - [API Reference](https://codeberg.org/api/swagger)
   - [Migrating Repositories](https://docs.codeberg.org/advanced/migrating-repos/)
   - [Push Options](push-options)
+  - [Agit setup](agit-support)
 - See also
   - [Codeberg guide on Git](https://docs.codeberg.org/git/)
   - [Codeberg guide on Markdown](https://docs.codeberg.org/markdown/)

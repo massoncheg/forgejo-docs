@@ -1,23 +1,13 @@
 ---
-date: "	2022-09-01T20:50:42+0000"
-title: "Usage: Agit Setup"
-slug: "agit-setup"
-weight: 12
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Agit Setup"
-    weight: 12
-    identifier: "agit-setup"
+layout: '~/layouts/Markdown.astro'
+title: 'Agit Setup'
+license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/usage/agit-support.en-us.md'
 ---
 
-# Agit Setup
+Limited support for [agit](https://git-repo.info/en/2020/03/agit-flow-and-git-repo/).
 
-In Gitea `1.13`, support for [agit](https://git-repo.info/en/2020/03/agit-flow-and-git-repo/) was added.
-
-## Creating PRs with Agit
+## Creating PRs
 
 Agit allows to create PRs while pushing code to the remote repo. \
 This can be done by pushing to the branch followed by a specific refspec (a location identifier known to git). \
