@@ -14,7 +14,7 @@ The user in these examples is `knut`, the polar bear and its repository is `foob
 To enable the wiki for a repository, visit the `Settings` page and activate `Enable Repository Wiki` in the `Advanced Section`. It will default to the built-in wiki which is described here, but you can add an URI to an external site the "Wiki" tab should link to.
 
 > **Warning**   
-> Be aware that the wiki, once enabled, is accessible for *everyone* who has `read` access to your repository - on public repositories even unauthenticated guests can access the wiki.   
+> Be aware that the wiki, once enabled, is accessible for *everyone* who has `read` access to your repository - on public repositories even anonymous guests can access the wiki.   
 > The wiki is *not* a suitable place for storing private information or secrets (like passwords).
 
 To edit the wiki `write` permission to the repository is required.

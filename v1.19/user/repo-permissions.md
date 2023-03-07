@@ -118,7 +118,7 @@ Each unit is configured to have one of these 3 permission levels:
 - Read: Members can view the unit, and do standard actions for that unit (See the Read column under [Collaborators](#collaborators)).
 - Write: Members can view the unit, and execute write actions that unit (See the Write column under [Collaborators](#collaborators)).
 
-When a team is configured to have administrator access, when this is specified, you cannot change units. The team will have admin permissions (See the Admin column under [Collaborators](#collaborators)).
+When a team is configured to have administrator access, you cannot change units.
 
 Currently, there are six units that can be configured:
 
