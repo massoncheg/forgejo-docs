@@ -8,6 +8,7 @@ involved in running it on their machines.
 
 - [Your First Repository](first-repository)
 - [The Basics of Issue Tracking](issue-tracking-basics)
+- [Integrated Wiki](wiki)
 - [Branch and tag protection](protection)
 - [Projects / Kanban boards](project)
 - [Labels](labels)

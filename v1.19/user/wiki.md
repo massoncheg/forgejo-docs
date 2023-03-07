@@ -1,9 +1,8 @@
 ---
-eleventyNavigation:
-  key: Wiki
-  title: Integrated Wiki
-  parent: GettingStarted
-  order: 60
+layout: '~/layouts/Markdown.astro'
+title: 'Integrated Wiki'
+license: 'CC-BY-SA-4.0'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/ceec82002bbdc62cf27974e84df51369a4bfe0f9/content/getting-started/wiki.md'
 ---
 
 A [wiki](https://en.wikipedia.org/wiki/Wiki) is a collaborative space on the web. It is a common practice to use wikis to collect knowledge and share information.   
@@ -24,19 +23,17 @@ To edit the wiki `write` permission to the repository is required.
 The wiki is essentially a separate Git repo in your repository with a predefined name in the form of `<your-repository-name>.wiki.git`.
 
 It consists of [Markdown](https://en.wikipedia.org/wiki/Markdown) files (file extension `.md`) and additional assets like images.   
-No further stylesheets are needed. The Markdown files are automatically rendered according to the selected Codeberg theme.
+No further stylesheets are needed. The Markdown files are automatically rendered according to the selected Forgejo theme.
 
 ## Adding content via web 
 After you have enabled the wiki you are prompted to create the initial page `Home.md`.
 
 The web UI in your browser is currently limited to adding, updating, and deleting pages; you can't manage assets like images this way.
-<picture>
-   <source srcset="/assets/images/getting-started/wiki/wiki_pageview.png" type="image/png">
-   <img src="/assets/images/getting-started/wiki/wiki_pageview.png" alt="Wiki home page with edit buttons">
-</picture>
+
+![Wiki home page with edit buttons](../../../../images/v1.19/user/wiki/wiki_pageview.png)
 
 ## Adding content via a local Git client
-You can work with the wiki repo as you would with any other Git repo on Codeberg; see our docs about managing a Git repo [via CLI](https://docs.codeberg.org/git/clone-commit-via-cli).
+You can work with the wiki repo as you would with any other Git repo on Forgejo.
 
 ```shell
 git clone git@codeberg.org:knut/foobar.wiki.git
