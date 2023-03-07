@@ -26,6 +26,7 @@ involved in running it on their machines.
   - [Tags and Releases](https://docs.codeberg.org/git/using-tags/)
   - [Branch and tag protection](protection)
 - Advanced Usage
+  - [Issue and Pull Request Templates](issue-pull-request-templates)
   - [Generating an Access Token](https://docs.codeberg.org/advanced/access-token/)
   - [Webhooks](webhooks)
   - Authentication

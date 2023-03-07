@@ -1,26 +1,12 @@
 ---
-date: "2018-05-10T16:00:00+02:00"
-title: "Usage: Issue and Pull Request templates"
-slug: "issue-pull-request-templates"
-weight: 15
-toc: false
-draft: false
-menu:
-  sidebar:
-    parent: "usage"
-    name: "Issue and Pull Request templates"
-    weight: 15
-    identifier: "issue-pull-request-templates"
+layout: '~/layouts/Markdown.astro'
+title: 'Issue and Pull Request Templates'
+license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/usage/issue-pull-request-templates.en-us.md'
 ---
 
-# Issue and Pull Request Templates
-
-**Table of Contents**
-
-{{< toc >}}
-
 Some projects have a standard list of questions that users need to answer
-when creating an issue or pull request. Gitea supports adding templates to the
+when creating an issue or pull request. Forgejo supports adding templates to the
 main branch of the repository so that they can autopopulate the form when users are
 creating issues and pull requests. This will cut down on the initial back and forth
 of getting some clarifying details.
@@ -201,7 +187,7 @@ Attributes:
 | description | A description of the text area to provide context or guidance, which is displayed in the form.                                                                                | Optional | String | Empty String | -                         |
 | placeholder | A semi-opaque placeholder that renders in the text area when empty.                                                                                                           | Optional | String | Empty String | -                         |
 | value       | Text that is pre-filled in the text area.                                                                                                                                     | Optional | String | -            | -                         |
-| render      | If a value is provided, submitted text will be formatted into a codeblock. When this key is provided, the text area will not expand for file attachments or Markdown editing. | Optional | String | -            | Languages known to Gitea. |
+| render      | If a value is provided, submitted text will be formatted into a codeblock. When this key is provided, the text area will not expand for file attachments or Markdown editing. | Optional | String | -            | Languages known to Forgejo. |
 
 Validations:
 
