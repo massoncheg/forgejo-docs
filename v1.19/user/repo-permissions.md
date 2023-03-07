@@ -1,14 +1,15 @@
 ---
-eleventyNavigation:
-  key: RepositoryPermissions
-  title: Repository Permissions
-  parent: Collaborating
-  order: 50
+layout: '~/layouts/Markdown.astro'
+title: 'Repository Permissions'
+license: 'CC-BY-SA-4.0'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/ceec82002bbdc62cf27974e84df51369a4bfe0f9/content/collaborating/repo-permissions.md'
 ---
 
-When you invite collaborators to join your repository (see [Invite Collaborators](/collaborating/invite-collaborators)) or when you create teams for your organization (see [Create and Manage an Organization](/collaborating/create-organization)), you have to decide what each collaborator/team is allowed to do.
+<!-- See also  https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/usage/permissions.en-us.md -->
 
-Since Gitea v1.16, you can assign teams different levels of permission for each unit (e.g. issues, PR's, wiki).
+When you invite collaborators to join your repository or when you create teams for your organization, you have to decide what each collaborator/team is allowed to do.
+
+You can assign teams different levels of permission for each unit (e.g. issues, PR's, wiki).
 
 ## Collaborators
 
@@ -29,79 +30,79 @@ The table below gives an overview of what collaborators are allowed to do when g
  <tbody>
   <tr>
    <td> View, clone and pull repository </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
    <td> Contribute pull requests </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
    <td> Push to/update contributed pull requests </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
    <td> Push directly to repository </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
    <td> Merge pull requests </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
    <td> Moderate/delete issues and comments </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
    <td> Force-push/rewrite history (if enabled) </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
    <td> Add/remove collaborators to repository </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
    <td> Configure branch settings (protect/unprotect, enable force-push) </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
   <tr>
-   <td> Configure repository settings (enable wiki, issues, PRs, update profile) </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> Configure repository settings (enable wiki, issues, PRs, releases, update profile) </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: green">✅</span> </td>
+   <td> <span style="color: green">✅</span> </td>
   </tr>
   <tr>
    <td> Configure repository settings in the danger zone (transfer ownership, delete wiki data / repository, archive repository) </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: red">{% fas_icon "times" %}</span> </td>
-   <td> <span style="color: green">{% fas_icon "check" %}</span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: red"></span> </td>
+   <td> <span style="color: green">✅</span> </td>
   </tr>
   </tr>
  </tbody>

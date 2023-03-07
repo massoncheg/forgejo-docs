@@ -16,7 +16,7 @@ involved in running it on their machines.
   - [Pull requests and Git flow](https://docs.codeberg.org/collaborating/pull-requests-and-git-flow/)
   - [Invite Collaborators](https://docs.codeberg.org/collaborating/invite-collaborators/)
   - [Create and Manage an Organization](https://docs.codeberg.org/collaborating/create-organization/)
-  - [Repository Permissions](https://docs.codeberg.org/collaborating/repo-permissions/)
+  - [Repository Permissions](repo-permissions)
   - [Resolve Conflicts](https://docs.codeberg.org/collaborating/resolve-conflicts/)
   - [Citable Code](https://docs.codeberg.org/collaborating/citable-code/)
   - [Labels](labels)
