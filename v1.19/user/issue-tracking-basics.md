@@ -35,6 +35,7 @@ the issue. Their profile picture, with a link to their profile, can be seen in t
 list.
 
 ### Life of an Issue
+
 Once an issue in the Issue Tracker has been created, it will usually pass through a
 process of review, discussion and closure, which can be more or less strictly defined,
 based on the project you're contributing to.
@@ -46,7 +47,7 @@ Then, depending on what type of issue it is, there might be additional questions
 or a discussion and, if applicable, the implementation of a solution (or the rejection of
 the issue).
 
-Finally, the issue is closed, thus vanishing from the list of open issues.
+Finally, the issue is closed and moved from the list of open issues to the closed one.
 Issues might have dependencies on other issues or pull requests preventing them from being closed.
 
 Occasionally, issues may become "stale". That's when there hasn't been any progress for
@@ -58,7 +59,9 @@ something to them).
 > consider forking it, if you want to assume responsibility for it (or, rather, your fork).
 
 ### Things to consider
+
 #### Security bugs
+
 If the bug you have found has security implications, **do not create
 an issue right away!** Instead try contacting the project's maintainers privately.
 Many projects have a dedicated e-mail address for reporting security bugs. If the
@@ -66,10 +69,11 @@ project in question doesn't, consider writing an email directly to the project's
 maintainer or ask for the address in the issue tracker.
 
 > **⚠** What's important is that you **don't publicly expose security bugs before they are
-> fixed *and* the fixes are deployed**, because **otherwise, you might put the users of that
+> fixed _and_ the fixes are deployed**, because **otherwise, you might put the users of that
 > project at severe risk**.
 
 #### Existing issues
+
 Before creating a new issue, please make sure that there isn't already an existing
 issue about, i.e., the bug you want to report or the feature you want to request.
 
@@ -80,6 +84,7 @@ You should also make sure that the issue has not already been solved by having a
 at the closed issues **(3)** as well.
 
 #### Try to be precise and helpful
+
 Project maintainers love precise information about why, i.e., a bug is happening.
 
 Some projects may even have templates that specifically ask for information like
@@ -90,6 +95,7 @@ to quickly resolve your issue. And if you want it resolved even quicker,
 consider writing a Pull Request solving the issue (if possible).
 
 #### Be (reasonably) patient
+
 Please remember that many project maintainers work on their free software projects
 in their free time. Some maintainers may answer you within minutes, others within days.
 Don't be discouraged if there isn't an immediate answer.
