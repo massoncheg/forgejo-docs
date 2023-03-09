@@ -240,7 +240,7 @@ The PostgreSQL driver used by Forgejo supports two-way TLS. In two-way TLS, both
 
 ### MySQL
 
-While the MySQL driver used by Forgejo also supports two-way TLS, Forgejo currently supports only one-way TLS. See issue #10828 for details.
+While the MySQL driver used by Forgejo also supports two-way TLS, Forgejo currently supports only one-way TLS. See the "Add TLS File Path Options for MySQL Database Connection](https://github.com/go-gitea/gitea/issues/10828)" issue for details.
 
 In one-way TLS, the database client verifies the certificate sent from server during the connection handshake, and the server assumes that the connected client is legitimate, since client certificate verification doesn't take place.
 
