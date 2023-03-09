@@ -27,6 +27,7 @@ involved in running it on their machines.
   - [Branch and tag protection](protection)
 - Advanced Usage
   - [Issue and Pull Request Templates](issue-pull-request-templates)
+  - [Merge Message templates](merge-message-templates)
   - [Generating an Access Token](https://docs.codeberg.org/advanced/access-token/)
   - [Webhooks](webhooks)
   - Authentication
