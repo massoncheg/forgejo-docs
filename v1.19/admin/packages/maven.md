@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Maven Packages Repository'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/packages/maven.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/92d3e2a6f899347cfa47221d5b25cdcaf2cce486/docs/content/doc/packages/maven.en-us.md'
 ---
 
 Publish [Maven](https://maven.apache.org) packages for your user or organization.
@@ -10,7 +10,7 @@ Publish [Maven](https://maven.apache.org) packages for your user or organization
 ## Requirements
 
 To work with the Maven package registry, you can use [Maven](https://maven.apache.org/install.html) or [Gradle](https://gradle.org/install/).
-The following examples use `Maven`.
+The following examples use `Maven` and `Gradle Groovy`.
 
 ## Configuring the package registry
 
@@ -55,10 +55,44 @@ Afterwards add the following sections to your project `pom.xml` file:
 </distributionManagement>
 ```
 
-| Parameter      | Description                                                                                      |
-| -------------- | ------------------------------------------------------------------------------------------------ |
+| Parameter      | Description |
+| -------------- | ----------- |
 | `access_token` | Your [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}). |
-| `owner`        | The owner of the package.                                                                        |
+| `owner`        | The owner of the package. |
+
+### Gradle variant
+
+When you plan to add some packages from Forgejo instance in your project, you should add it in repositories section:
+
+```groovy
+repositories {
+    // other repositories
+    maven { url "https://forgejo.example.com/api/packages/{owner}/maven" }
+}
+```
+
+In Groovy gradle you may include next script in your publishing part:
+
+```groovy
+publishing {
+    // other settings of publication
+    repositories {
+        maven {
+            name = "Forgejo"
+            url = uri("https://forgejo.example.com/api/packages/{owner}/maven")
+
+            credentials(HttpHeaderCredentials) {
+                name = "Authorization"
+                value = "token {access_token}"
+            }
+
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
+        }
+    }
+}
+```
 
 ## Publish a package
 
@@ -68,15 +102,21 @@ To publish a package simply run:
 mvn deploy
 ```
 
+Or call `gradle` with task `publishAllPublicationsToForgejoRepository` in case you are using gradle:
+
+```groovy
+./gradlew publishAllPublicationsToForgejoRepository
+```
+
 If you want to publish a prebuild package to the registry, you can use [`mvn deploy:deploy-file`](https://maven.apache.org/plugins/maven-deploy-plugin/deploy-file-mojo.html):
 
 ```shell
 mvn deploy:deploy-file -Durl=https://forgejo.example.com/api/packages/{owner}/maven -DrepositoryId=forgejo -Dfile=/path/to/package.jar
 ```
 
-| Parameter | Description               |
-| --------- | ------------------------- |
-| `owner`   | The owner of the package. |
+| Parameter      | Description |
+| -------------- | ----------- |
+| `owner`        | The owner of the package. |
 
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
 
@@ -90,6 +130,12 @@ To install a Maven package from the package registry, add a new dependency to yo
   <artifactId>test_project</artifactId>
   <version>1.0.0</version>
 </dependency>
+```
+
+And analog in gradle groovy:
+
+```groovy
+implementation "com.test.package:test_project:1.0.0"
 ```
 
 Afterwards run:
