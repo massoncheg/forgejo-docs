@@ -7,23 +7,6 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be0044
 
 Forgejo has mailer functionality for sending transactional emails (such as registration confirmation). It can be configured to either use Sendmail (or compatible MTAs like Postfix and msmtp) or directly use SMTP server.
 
-## Using Sendmail
-
-Use `sendmail` command as mailer.
-
-Note: For use in the official Forgejo container image, please configure with the SMTP version (see the following section).
-
-Note: For Internet-facing sites consult documentation of your MTA for instructions to send emails over TLS. Also set up SPF, DMARC, and DKIM DNS records to make emails sent be accepted as legitimate by various email providers.
-
-```ini
-[mailer]
-ENABLED       = true
-FROM          = forgejo@example.com
-MAILER_TYPE   = sendmail
-SENDMAIL_PATH = /usr/sbin/sendmail
-SENDMAIL_ARGS = "--" ; most "sendmail" programs take options, "--" will prevent an email address being interpreted as an option.
-```
-
 ## Using SMTP
 
 Directly use SMTP server as relay. This option is useful if you don't want to set up MTA on your instance but you have an account at email provider.
@@ -54,3 +37,18 @@ Please note: authentication is only supported when the SMTP server communication
   This is due to protections imposed by the Go internal libraries against STRIPTLS attacks.
 
 Note that Implicit TLS is recommended by [RFC8314](https://tools.ietf.org/html/rfc8314#section-3) since 2018.
+
+## Using Sendmail
+
+Use `sendmail` command as mailer.
+
+Note: For Internet-facing sites consult documentation of your MTA for instructions to send emails over TLS. Also set up SPF, DMARC, and DKIM DNS records to make emails sent be accepted as legitimate by various email providers.
+
+```ini
+[mailer]
+ENABLED       = true
+FROM          = forgejo@example.com
+MAILER_TYPE   = sendmail
+SENDMAIL_PATH = /usr/sbin/sendmail
+SENDMAIL_ARGS = "--" ; most "sendmail" programs take options, "--" will prevent an email address being interpreted as an option.
+```
