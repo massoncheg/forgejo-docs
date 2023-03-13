@@ -41,3 +41,5 @@ involved in running it on their machines.
 - See also
   - [Codeberg guide on Git](https://docs.codeberg.org/git/)
   - [Codeberg guide on Markdown](https://docs.codeberg.org/markdown/)
+  - [Codeberg guide on Integrating with Matrix](https://docs.codeberg.org/integrations/matrix/)
+  - [Codeberg guide on Integrating with Read the Docs](https://docs.codeberg.org/integrations/read-the-docs/)
