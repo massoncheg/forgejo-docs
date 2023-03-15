@@ -16,5 +16,5 @@ There is support for some [push options](https://git-scm.com/docs/git-push#Docum
 Example of changing a repository's visibility to public:
 
 ```shell
-git push -o repo.private=false -u origin master
+git push -o repo.private=false -u origin main
 ```

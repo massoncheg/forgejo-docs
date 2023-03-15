@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Labels'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/5d621fe9a7f27b5168db22dc38423b71037bcae0/docs/content/doc/usage/labels.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/a8e13e64da7f9dc6176365e6b9295981af5d81ea/docs/content/doc/usage/labels.en-us.md'
 ---
 
 You can use labels to classify issues and pull requests and to improve your overview over them.
@@ -21,15 +21,17 @@ When you create a repository, you can ensure certain labels exist by using the `
 
 ![list of labels](../../../../images/v1.19/user/labels/label-apply.png)
 
+When you create a repository, you can ensure certain labels exist by using the `Issue Labels` option. This option lists a number of available label sets that are configured globally on your instance. Its contained labels will all be created as well while creating the repository.
+
 ## Scoped Labels
 
-A scoped label is a label that contains `/` in its name (not at either end of the name). For example labels `kind/bug` and `kind/enhancement` both have scope `kind`. Such labels will display the scope with slightly darker color.
+Scoped labels are used to ensure at most a single label with the same scope is assigned to an issue or pull request. For example, if labels `kind/bug` and `kind/enhancement` have the Exclusive option set, an issue can only be classified as a bug or an enhancement.
 
 ![list of labels](../../../../images/v1.19/user/labels/label-list.png)
 
-The scope of a label is determined based on the **last** `/`, so for example the scope of label `scope/subscope/item` is `scope/subscope`.
+A scoped label must contain `/` in its name (not at either end of the name). The scope of a label is determined based on the **last** `/`, so for example the scope of label `scope/subscope/item` is `scope/subscope`.
 
-Scoped labels can be marked as exclusive. This ensures at most a single label with the same scope is assigned to an issue or pull request. For example, if `kind/bug` and `kind/enhancement` are marked exclusive, an issue can only be classified as a bug or an enhancement.
+A scoped label must contain `/` in its name (not at either end of the name). The scope of a label is determined based on the **last** `/`, so for example the scope of label `scope/subscope/item` is `scope/subscope`.
 
 ## Filtering by Label
 
