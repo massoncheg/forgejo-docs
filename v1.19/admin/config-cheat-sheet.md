@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Configuration Cheat Sheet'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/advanced/config-cheat-sheet.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/69c9ab387f2db4eab29749480ca21206de75e77a/docs/content/doc/advanced/config-cheat-sheet.en-us.md'
 ---
 
 This is a cheat sheet for the Forgejo configuration file. It contains most of the settings
@@ -34,7 +34,7 @@ reported as part of the default configuration when running `forgejo --help` or o
   - The environment variable `$FORGEJO_WORK_DIR`
   - A built-in value set at build time (see building from source)
   - Otherwise it defaults to the directory of the _`AppPath`_
-  - If any of the above are relative paths then they are made absolute against the
+  - If any of the above are relative paths then they are made absolute against
     the directory of the _`AppPath`_
 - _`CustomPath`_: This is the base directory for custom templates and other options.
   It is determined by using the first set thing in the following hierarchy:
@@ -862,7 +862,13 @@ Default templates for project boards:
   - `Identity`: the SignedUserName or `"-"` if not logged in.
   - `Start`: the start time of the request.
   - `ResponseWriter`: the responseWriter from the request.
+  - `RequestID`: the value matching REQUEST_ID_HEADERS（default: `-`, if not matched）.
   - You must be very careful to ensure that this template does not throw errors or panics as this template runs outside of the panic/recovery script.
+- `REQUEST_ID_HEADERS`: **\<empty\>**: You can configure multiple values that are splited by comma here. It will match in the order of configuration, and the first match will be finally printed in the access log.
+  - e.g.
+  - In the Request Header:        X-Request-ID: **test-id-123**
+  - Configuration in app.ini:     REQUEST_ID_HEADERS = X-Request-ID
+  - Print in log:                 127.0.0.1:58384 - - [14/Feb/2023:16:33:51 +0800]  "**test-id-123**" ...
 
 ### Log subsections (`log.name`, `log.name.*`)
 
@@ -1069,6 +1075,11 @@ Default templates for project boards:
 - `DISABLE_CORE_PROTECT_NTFS`: **false** Set to true to forcibly set `core.protectNTFS` to false.
 - `DISABLE_PARTIAL_CLONE`: **false** Disable the usage of using partial clones for git.
 
+## Git - Reflog settings (`git.reflog`)
+
+- `ENABLED`: **true** Set to true to enable Git to write changes to reflogs in each repo.
+- `EXPIRATION`: **90** Reflog entry lifetime, in days. Entries are removed opportunistically by Git.
+
 ## Git - Timeout settings (`git.timeout`)
 
 - `DEFAULT`: **360**: Git operations default timeout seconds.
@@ -1225,6 +1236,7 @@ WARNING: Changing the settings below can break federation.
 - `LIMIT_SIZE_PUB`: **-1**: Maximum size of a Pub upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`)
 - `LIMIT_SIZE_PYPI`: **-1**: Maximum size of a PyPI upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`)
 - `LIMIT_SIZE_RUBYGEMS`: **-1**: Maximum size of a RubyGems upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`)
+- `LIMIT_SIZE_SWIFT`: **-1**: Maximum size of a Swift upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`)
 - `LIMIT_SIZE_VAGRANT`: **-1**: Maximum size of a Vagrant upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`)
 
 ## Mirror (`mirror`)
