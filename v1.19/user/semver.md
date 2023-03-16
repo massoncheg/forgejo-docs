@@ -19,7 +19,7 @@ Since Forgejo has all of the above, changes to all of those components should be
 
 ## Getting the Forgejo semantic version
 
-As of Forgejo v1.19, there are two version numbering scheme:
+As of Forgejo v1.19, there are two version numbering schemes:
 
 * [Following the Gitea version](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/CONTRIBUTING/RELEASE.md#release-numbering) which is not a semantic version
   * Used to name release files
