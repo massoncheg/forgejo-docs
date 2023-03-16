@@ -5,9 +5,10 @@ license: 'CC-BY-SA-4.0'
 ---
 
 [SemVer](https://semver.org/spec/v2.0.0.html) allows users to understand the scope of a software update at first glance, based on the following :
-- the patch number is incremented when something is fixed ;
-- the minor number is incremented when something is added ;
-- the major number is incremented when something is moved or removed.
+
+- Patch is increased for backwards-compatible bugfixes.
+- Minor is increased for backwards-compatible new features.
+- Major is increased for breaking changes.
 
 *something* could be :
 - a command, an option or an argument, for a CLI ;
