@@ -33,6 +33,7 @@ involved in running it on their machines.
   - Authentication
     - [LDAP, PAM, FreeIPA](authentication)
     - [OAuth2, Scoped Tokens, Client Types](oauth2-provider)
+  - [Semantic version](semver)
   - [API Usage](api-usage)
   - [API Reference](https://codeberg.org/api/swagger)
   - [Migrating Repositories](https://docs.codeberg.org/advanced/migrating-repos/)
