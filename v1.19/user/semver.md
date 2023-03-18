@@ -33,7 +33,7 @@ For instance, the semantic version for https://code.forgejo.org can be obtained 
 
 ```shell
 $ curl https://code.forgejo.org/api/forgejo/v1/version
-{"number":"3.0.0+0-gitea-1.19.0"}
+{"version":"3.0.0+0-gitea-1.19.0"}
 ```
 
 ## Understanding the Forgejo semantic version
