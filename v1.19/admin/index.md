@@ -14,4 +14,3 @@ These documents are targeted to people who run Forgejo on their machines.
 - [Email setup](email-setup)
 - [Incoming Email](incoming-email)
 - [Logging Configuration](logging-documentation)
-- [Packages](packages)

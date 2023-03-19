@@ -40,6 +40,7 @@ involved in running it on their machines.
   - [Push Options](push-options)
   - [Push to create](push-to-create)
   - [Agit setup](agit-support)
+  - [Packages](packages)
 - See also
   - [Codeberg guide on Git](https://docs.codeberg.org/git/)
   - [Codeberg guide on Markdown](https://docs.codeberg.org/markdown/)
