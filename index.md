@@ -1,6 +1,6 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: 'Forgejo v1.19 documentation'
+title: 'Forgejo v1.20 documentation'
 ---
 
 * [What is Forgejo?](https://forgejo.org/)

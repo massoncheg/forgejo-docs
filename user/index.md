@@ -1,6 +1,6 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: 'Forgejo v1.19 user guide'
+title: 'Forgejo user guide'
 ---
 
 These documents are targeted to people who are using Forgejo but are not

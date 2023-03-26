@@ -1,6 +1,6 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: 'Forgejo v1.19 administrator guide'
+title: 'Forgejo administrator guide'
 ---
 
 These documents are targeted to people who run Forgejo on their machines.
