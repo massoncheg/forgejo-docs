@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Integrated Wiki'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/ceec82002bbdc62cf27974e84df51369a4bfe0f9/content/getting-started/wiki.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/95574213ea1b57f207f60a12557ffbfc349ee274/content/getting-started/wiki.md'
 ---
 
 A [wiki](https://en.wikipedia.org/wiki/Wiki) is a collaborative space on the web. It is a common practice to use wikis to collect knowledge and share information.  

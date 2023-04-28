@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'The Basics of Issue Tracking'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/ceec82002bbdc62cf27974e84df51369a4bfe0f9/content/getting-started/issue-tracking-basics.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/95574213ea1b57f207f60a12557ffbfc349ee274/content/getting-started/issue-tracking-basics.md'
 ---
 
 Issues are an important mean of communication on Forgejo.
