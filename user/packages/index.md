@@ -23,6 +23,7 @@ The following package managers are currently supported:
 | [Pub](pub)             | Dart       | `dart`, `flutter`          |
 | [PyPI](pypi)           | Python     | `pip`, `twine`             |
 | [RubyGems](rubygems)   | Ruby       | `gem`, `Bundler`           |
+| [Swift](swift)         | Swift      | `swift`                    |
 | [Vagrant](vagrant)     | -          | `vagrant`                  |
 
 **The following paragraphs only apply if Packages are not globally disabled!**
