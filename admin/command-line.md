@@ -536,3 +536,28 @@ Restore-repo restore repository data from disk dir:
   - `--owner_name <owner>`: Restore destination owner name
   - `--repo_name <repo>`: Restore destination repository name
   - `--units <units>`: Which items will be restored, one or more units should be separated as comma. wiki, issues, labels, releases, release_assets, milestones, pull_requests, comments are allowed. Empty means all units.
+
+### actions generate-runner-token
+
+Generate a new token for a runner to use to register with the server
+
+- Options:
+  - `--scope {owner}[/{repo}]`, `-s {owner}[/{repo}]`: To limit the scope of the runner, no scope means the runner can be used for all repos, but you can also limit it to a specific repo or owner
+
+To register a global runner:
+
+```
+forgejo actions generate-runner-token
+```
+
+To register a runner for a specific organization, in this case `org`:
+
+```
+forgejo actions generate-runner-token -s org
+```
+
+To register a runner for a specific repo, in this case `username/test-repo`:
+
+```
+forgejo actions generate-runner-token -s username/test-repo
+```
