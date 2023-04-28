@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Database Preparation'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/installation/database-preparation.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/e8433b7fe6dd1dfa5ecf0633568cc3e34caeb0f9/docs/content/doc/installation/database-preparation.en-us.md'
 ---
 
 You need a database to use Forgejo. Forgejo supports PostgreSQL (>=10), MySQL (>=5.7) or MariaDB (>=10.0), SQLite, and MSSQL (>=2008R2 SP3). This page will guide into preparing database. Only PostgreSQL and MySQL/MariaDB will be covered here since those database engines are widely-used in production.

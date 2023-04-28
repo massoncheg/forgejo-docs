@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Merge Message templates'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/699f20234b9f7cdbbeeee3be004470c598fa1147/docs/content/doc/usage/merge-message-templates.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/e8433b7fe6dd1dfa5ecf0633568cc3e34caeb0f9/docs/content/doc/usage/merge-message-templates.en-us.md'
 ---
 
 ## File names

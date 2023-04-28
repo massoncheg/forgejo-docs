@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Push Options'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/6e75739c5ba1de30c37adbd9e590674b583912c2/docs/content/doc/usage/push-to-create.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/6e75739c5ba1de30c37adbd9e590674b583912c2/docs/content/doc/usage/push.en-us.md'
 ---
 
 # Push To Create
@@ -27,6 +27,18 @@ git push -u origin main
 
 This assumes you are using an SSH remote, but you can also use HTTPS remotes as well.
 
-## Push options (bonus)
+## Push options
 
-Push-to-create will default to the visibility defined by `DEFAULT_PUSH_CREATE_PRIVATE` in `app.ini`. To explicitly set the visibility, you can use a push option.
+Push-to-create will default to the visibility defined by `DEFAULT_PUSH_CREATE_PRIVATE` in `app.ini`. To explicitly set the visibility there is support for some [push options](https://git-scm.com/docs/git-push#Documentation/git-push.txt--oltoptiongt).
+
+- `repo.private` (true|false) - Change the repository's visibility.
+
+  This is particularly useful when combined with push-to-create.
+
+- `repo.template` (true|false) - Change whether the repository is a template.
+
+Example of changing a repository's visibility to public:
+
+```shell
+git push -o repo.private=false -u origin main
+```
