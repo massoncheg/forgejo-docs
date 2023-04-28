@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Push Options'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/6e75739c5ba1de30c37adbd9e590674b583912c2/docs/content/doc/usage/push.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/push.en-us.md'
 ---
 
 # Push To Create

@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Container Registry'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/e8433b7fe6dd1dfa5ecf0633568cc3e34caeb0f9/docs/content/doc/packages/container.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/packages/container.en-us.md'
 ---
 
 Publish [Open Container Initiative](https://opencontainers.org/) compliant images for your user or organization.

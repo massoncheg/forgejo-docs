@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Maven Packages Repository'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/92d3e2a6f899347cfa47221d5b25cdcaf2cce486/docs/content/doc/packages/maven.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/packages/maven.en-us.md'
 ---
 
 Publish [Maven](https://maven.apache.org) packages for your user or organization.

@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Reverse proxy'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/e8433b7fe6dd1dfa5ecf0633568cc3e34caeb0f9/docs/content/doc/usage/authentication.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/authentication.en-us.md'
 ---
 
 Forgejo supports Reverse Proxy Header authentication, it will read headers as a trusted login user name or user email address. This hasn't been enabled by default, you can enable it with
