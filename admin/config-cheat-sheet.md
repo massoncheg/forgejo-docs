@@ -43,13 +43,13 @@ reported as part of the default configuration when running `forgejo --help` or o
   - A built-in value set at build time (see building from source)
   - Otherwise it defaults to _`AppWorkPath`_`/custom`
   - If any of the above are relative paths then they are made absolute against the
-    the directory of the _`AppWorkPath`_
+    directory of the _`AppWorkPath`_
 - _`CustomConf`_: This is the path to the `app.ini` file.
   - The `--config` flag passed to the binary
   - A built-in value set at build time (see building from source)
   - Otherwise it defaults to _`CustomPath`_`/conf/app.ini`
   - If any of the above are relative paths then they are made absolute against the
-    the directory of the _`CustomPath`_
+    directory of the _`CustomPath`_
 
 In addition there is _`StaticRootPath`_ which can be set as a built-in at build time, but will otherwise default to _`AppWorkPath`_
 
@@ -823,7 +823,7 @@ Default templates for project boards:
 ## Issue and pull request attachments (`attachment`)
 
 - `ENABLED`: **true**: Whether issue and pull request attachments are enabled.
-- `ALLOWED_TYPES`: **.csv,.docx,.fodg,.fodp,.fods,.fodt,.gif,.gz,.jpeg,.jpg,.log,.md,.mov,.mp4,.odf,.odg,.odp,.ods,.odt,.pdf,.png,.pptx,.svg,.tgz,.txt,.webm,.xls,.xlsx,.zip**: Comma-separated list of allowed file extensions (`.zip`), mime types (`text/plain`) or wildcard type (`image/*`, `audio/*`, `video/*`). Empty value or `*/*` allows all types.
+- `ALLOWED_TYPES`: **.csv,.docx,.fodg,.fodp,.fods,.fodt,.gif,.gz,.jpeg,.jpg,.log,.md,.mov,.mp4,.odf,.odg,.odp,.ods,.odt,.patch,.pdf,.png,.pptx,.svg,.tgz,.txt,.webm,.xls,.xlsx,.zip**: Comma-separated list of allowed file extensions (`.zip`), mime types (`text/plain`) or wildcard type (`image/*`, `audio/*`, `video/*`). Empty value or `*/*` allows all types.
 - `MAX_SIZE`: **4**: Maximum size (MB).
 - `MAX_FILES`: **5**: Maximum number of attachments that can be uploaded at once.
 - `STORAGE_TYPE`: **local**: Storage type for attachments, `local` for local disk or `minio` for s3 compatible object storage service, default is `local` or other name defined with `[storage.xxx]`
