@@ -31,4 +31,4 @@ It has the power to exclude people from a space.
 
 Their decisions must be logical, fact based and transparent to the Forgejo community who trust them with this responsibility.
 
-* https://codeberg.org/circlebuilder
+- https://codeberg.org/circlebuilder

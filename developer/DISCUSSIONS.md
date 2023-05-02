@@ -7,6 +7,7 @@ license: 'CC-BY-SA-4.0'
 The [Forgejo issue tracker](https://codeberg.org/forgejo/forgejo/issues) is where **bugs** should be reported and **features** requested.
 
 Dedicated repositories in the [Forgejo organization](https://codeberg.org/forgejo) cover areas such as:
+
 - the [website](https://codeberg.org/forgejo/website)
 - the [Code of Conduct](https://codeberg.org/forgejo/code-of-conduct)
 - the [sustainability and funding](https://codeberg.org/forgejo/sustainability).
