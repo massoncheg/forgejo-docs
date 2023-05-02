@@ -28,7 +28,7 @@ Before rebasing on top of Gitea, all branches are copied to `soft-fork/YYYY-MM-D
 
 ### Tags
 
-Because the branches are rebased on top of Gitea, only the latest tag will be found in a given branch. For instance `v1.19.0-1` won't be found in the `v1.19/forgejo` branch after it is rebased.
+Because the branches are rebased on top of Gitea, only the latest tag will be found in a given branch. For instance `v1.18.0-1` won't be found in the `v1.18/forgejo` branch after it is rebased.
 
 ## Rebasing
 
@@ -97,16 +97,17 @@ The purpose of each _Feature branch_ is documented below:
 
 - [forgejo-branding](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-branding) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
   Replacing upstream branding with Forgejo branding
+  - Backports: [v1.19/forgejo-branding](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-branding)
 
 ### [Internationalization](https://codeberg.org/forgejo/forgejo/issues?labels=82637)
 
 - [forgejo-i18n](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-i18n) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
   Internationalization support for Forgejo with a workflow based on Weblate.
+  - Backports: [v1.19/forgejo-i18n](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-i18n)
 
 ### [Accessibility](https://codeberg.org/forgejo/forgejo/issues?labels=81214)
 
-- Backports only: [v1.19/forgejo-a11y](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-a11y) based on [v1.19/forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-development)
-  Backport future upstream a11y improvements to the current release of Forgejo
+- [forgejo-a11y](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-a11y) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
 
 ### [Federation](https://codeberg.org/forgejo/forgejo/issues?labels=79349)
 
