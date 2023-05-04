@@ -17,5 +17,6 @@ their needs.
   - [code.forgejo.org](code-forgejo-org)
   - [Forgejo runner implementation notes](forgejo-runner)
 - For maintainers
+  - [Hardware infrastructure](infrastructure)
   - [Release management](RELEASE)
   - [Secrets](SECRETS)
