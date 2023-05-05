@@ -59,6 +59,8 @@ For example:
 docker push forgejo.example.com/testuser/myimage:latest
 ```
 
+For more information please check the [docker push](https://docs.docker.com/engine/reference/commandline/push/) documentation page.
+
 ## Pull an image
 
 Pull an image by executing the following command:
