@@ -54,7 +54,7 @@ Note: Forgejo requires [docker >= 20.10.6](https://wiki.alpinelinux.org/wiki/Rel
 - Increase the log level with `forgejo manager logging add console -n traceconsole -l TRACE -e '((modules/git)|(services/mirror))'`
 - If the upgrade from version x.y to version x.y+2 fails and there is a need to narrow down the problem, try upgrading to the latest minor version of each major version and verify it works. It will show which major version causes the issue and help debug the problem. For instance, if upgrading from Forgejo 1.18.2-0 to Forgejo 1.19.0-0 does not work:
   - Upgrade from Forgejo 1.18.2 to Forgejo 1.18.5 (the last minor version of the 1.18 major version) and verify Forgejo works.
-  - Upgrade to Forgejo 1.19.0-0 (the last minor version of the 1.19 major version) and verify Forgejo works.
+  - Upgrade to Forgejo 1.19.3-0 (the last minor version of the 1.19 major version) and verify Forgejo works.
 
 #### Unexpected database version
 
@@ -62,6 +62,7 @@ The database version is stored in the database and can be retrieved with **selec
 
 | Forgejo version                                                                               | Date          | Database |
 | --------------------------------------------------------------------------------------------- | ------------- | -------- |
+| [1.19.3-0](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/RELEASE-NOTES.md#1-19-3-0) | May 2023      | v243     |
 | [1.18.5-0](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/RELEASE-NOTES.md#1-18-5-0) | February 2023 | v231     |
 
 | Gitea version                                                      | Date           | Database                                                                                                                                                                                                  |
@@ -98,7 +99,7 @@ The database version is stored in the database and can be retrieved with **selec
 
 - All versions
   - Symptom: [blank / 500 page after login when running SQLite](https://github.com/go-gitea/gitea/issues/18650)
-  - Workaround: upgrade to [Forgejo 1.18.0-1 or greater](https://codeberg.org/forgejo/forgejo/commit/443675d18072d2a345bc4644d3f52dee42f58b44) and run `gitea doctor --all --fix`
+  - Workaround: upgrade to [Forgejo 1.19.3-0 or greater](https://codeberg.org/forgejo/forgejo/commit/443675d18072d2a345bc4644d3f52dee42f58b44) and run `gitea doctor --all --fix`
 
 ### Versions with known issues
 
