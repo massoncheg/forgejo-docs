@@ -20,7 +20,7 @@ However, if Forgejo uses a S3 storage for attachments with a PostgresQL database
 In the simplest case where everything is on a single file system and if the instance is not busy (no mirrors, no users), the backup can be done with:
 
 - `forgejo dump` to collect everything into one zip file
-- `psql/mysql/sqlite dump`. Although the zip file created by `forgejo dump` contains a copy of the database it has serious long standing open bugs that may introduce problems when re-injecting the SQL dump in a new database.
+- `psql/mysql/mssql dump`. Although the zip file created by `forgejo dump` contains a copy of the database it has serious long standing open bugs that may introduce problems when re-injecting the SQL dump in a new database. Note that there is no need to dump SQLite because the database itself is included in the zip file already.
 
 ### Verify Forgejo works
 
