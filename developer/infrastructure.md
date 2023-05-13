@@ -6,22 +6,14 @@ license: 'CC-BY-SA-4.0'
 
 ## Octopuce
 
-[Octopuce provides hardware](https://codeberg.org/forgejo/sustainability) managed by [the devops team](https://codeberg.org/forgejo/governance/src/branch/main/TEAMS.md#devops). It can be accessed via a VPN which provides a DNS for the `octopuce.lan` internal domain.
+[Octopuce provides hardware](https://codeberg.org/forgejo/sustainability) managed by [the devops team](https://codeberg.org/forgejo/governance/src/branch/main/TEAMS.md#devops). It can be accessed via a VPN which provides a DNS for the `octopuce.forgejo.org` internal domain.
 
 The VPN is deployed and upgraded using the following [Enough command line](https://enough-community.readthedocs.io):
 
 ```shell
 $ mkdir -p ~/.enough
-$ git clone https://forgejo.octopuce.lan/forgejo/octopuce.forgejo.org ~/.enough/octopuce.forgejo.org
-$ enough --domain octopuce.forgejo.org service create --host bind-host openvpn
-```
-
-The Forgejo instance internal to the VPN is deployed and upgraded using the following [Enough command line](https://enough-community.readthedocs.io):
-
-```shell
-$ mkdir -p ~/.enough
-$ git clone https://forgejo.octopuce.lan/forgejo/octopuce.lan ~/.enough/octopuce.lan
-$ enough --domain octopuce.lan service create --host forgejo-host forgejo
+$ git clone https://forgejo.octopuce.forgejo.org/forgejo/enough ~/.enough/octopuce.forgejo.org
+$ enough --domain octopuce.forgejo.org service create openvpn
 ```
 
 ## OVH
