@@ -91,7 +91,7 @@ firefox http://$(cat forgejo-ip):3000
 The user is `root` with password `admin1234`. The runner is registered with:
 
 ```
-cd setup-forgejo ; ./runner/forgejo-runner register --no-interactive --instance "http://$(cat forgejo-ip):3000/" --name runner --token $(cat forgejo-runner-token) --labels ubuntu-latest:docker://node:16-buster,self-hosted
+cd setup-forgejo ; ../runner/forgejo-runner register --no-interactive --instance "http://$(cat forgejo-ip):3000/" --name runner --token $(cat forgejo-runner-token) --labels ubuntu-latest:docker://node:16-buster,self-hosted
 ```
 
 And launched in debug mode with:
