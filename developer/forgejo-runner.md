@@ -101,3 +101,18 @@ And launched in debug mode with:
 ```shell
 cd setup-forgejo ; ACTIONS_STEP_DEBUG=true ../runner/forgejo-runner daemon
 ```
+
+## Try a sample workflow
+
+From the Forgejo web interface, create a repository and add the following to `.forgejo/workflows/try.yaml`. It will launch the job and the result can be observed from the `actions` tab.
+
+```yaml
+on: [push]
+jobs:
+  ls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          ls ${{ github.workspace }}
+```
