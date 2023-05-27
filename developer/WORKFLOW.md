@@ -4,9 +4,7 @@ title: Development workflow
 license: 'CC-BY-SA-4.0'
 ---
 
-Forgejo is a soft fork, i.e. a set of commits applied to the Gitea development branch and the stable branches. On a regular basis those commits are rebased and modified if necessary to keep working. All Forgejo commits are merged into a branch from which binary releases and packages are created and distributed. The development workflow is a set of conventions Forgejo developers are expected to follow to work together.
-
-Discussions on how the workflow should evolve happen [in the isssue tracker](https://codeberg.org/forgejo/forgejo/issues?type=all&state=open&labels=&milestone=0&assignee=0&q=%5BWORKFLOW%5D).
+Forgejo is a set of commits applied to the Gitea development branch and the stable branches. On a regular basis those commits are rebased and modified if necessary to keep working. All Forgejo commits are merged into a branch from which binary releases and packages are created and distributed. The development workflow is a set of conventions Forgejo developers are expected to follow to work together.
 
 ## Naming conventions
 
@@ -22,19 +20,19 @@ Discussions on how the workflow should evolve happen [in the isssue tracker](htt
 - Forgejo: vX.Y/forgejo
 - Feature branches: vX.Y/forgejo-feature-name
 
-### Soft fork history
+### Rebase history
 
 Before rebasing on top of Gitea, all branches are copied to `soft-fork/YYYY-MM-DD/<branch>` for safekeeping. Older `soft-fork/*/<branch>` branches are converted into references under the same name. Similar to how pull requests store their head, they do not clutter the list of branches but can be retrieved if needed with `git fetch +refs/soft-fork/*:refs/soft-fork/*`. Tooling to automate this archival process [is available](https://codeberg.org/forgejo-contrib/soft-fork-tools/src/branch/master/README.md#archive-branches).
 
 ### Tags
 
-Because the branches are rebased on top of Gitea, only the latest tag will be found in a given branch. For instance `v1.18.0-1` won't be found in the `v1.18/forgejo` branch after it is rebased.
+Because the branches are rebased on top of Gitea, only the latest tag will be found in a given branch. For instance `v1.19.3-0` won't be found in the `v1.19/forgejo` branch after it is rebased.
 
 ## Rebasing
 
 ### _Feature branch_
 
-The _Gitea_ branches are mirrored with the Gitea development and stable branches.
+The _Gitea_ branches are manually mirrored with the Gitea development and stable branches.
 
 On a regular basis, each _Feature branch_ is rebased against the base _Gitea_ branch.
 
@@ -48,7 +46,7 @@ If tests do not pass, an issue is filed to the _Feature branch_ that fails the t
 
 ### Cherry picking and rebasing
 
-Because Forgejo is a soft fork of Gitea, the commits in feature branches need to be cherry-picked on top of their base branch. They cannot be rebased using `git rebase`, because their base branch has been rebased.
+Because Forgejo is a set of commits on top of Gitea, they need to be cherry-picked on top of their base branch. They cannot be rebased using `git rebase`, because their base branch has been rebased.
 
 Here is how the commits in the `forgejo-f3` branch can be cherry-picked on top of the latest `forgejo-development` branch:
 
@@ -66,14 +64,14 @@ $ git push --force forgejo-f3 forgejo/forgejo-f3
 
 All _Feature branches_ are based on the {vX.Y/,}forgejo-development branch which provides development tools and documentation.
 
-The `forgejo-development` branch is based on the {vX.Y/,}forgejo-ci branch which provides the Woodpecker CI configuration.
+The `forgejo-development` branch is based on the {vX.Y/,}forgejo-ci branch which provides the CI configuration.
 
 The purpose of each _Feature branch_ is documented below:
 
 ### General purpose
 
 - [forgejo-ci](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-ci) based on [main](https://codeberg.org/forgejo/forgejo/src/branch/main)
-  Woodpecker CI configuration, including the release process.
+  CI configuration, including the release process.
 
   - Backports: [v1.19/forgejo-ci](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-ci)
 
@@ -96,38 +94,37 @@ The purpose of each _Feature branch_ is documented below:
 ### Branding
 
 - [forgejo-branding](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-branding) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
-  Replacing upstream branding with Forgejo branding
+  Replace hardcoded dependencies branding with a Forgejo equivalent.
   - Backports: [v1.19/forgejo-branding](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-branding)
 
 ### [Internationalization](https://codeberg.org/forgejo/forgejo/issues?labels=82637)
 
 - [forgejo-i18n](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-i18n) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
-  Internationalization support for Forgejo with a workflow based on Weblate.
+  Internationalization and localization support.
   - Backports: [v1.19/forgejo-i18n](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-i18n)
 
 ### [Accessibility](https://codeberg.org/forgejo/forgejo/issues?labels=81214)
 
 - [forgejo-a11y](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-a11y) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
+  Accessibility improvements.
 
 ### [Federation](https://codeberg.org/forgejo/forgejo/issues?labels=79349)
 
 - [forgejo-federation](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-federation) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
-  Federation support for Forgejo
+  Federation support.
 
 - [forgejo-f3](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-f3) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
-  [F3](https://lab.forgefriends.org/friendlyforgeformat/gof3) support for Forgejo
+  [F3](https://lab.forgefriends.org/friendlyforgeformat/gof3) support.
 
 ## Pull requests and feature branches
 
-Most people who are used to contributing will be familiar with the workflow of sending a pull request against the default branch. When that happens the reviewer should change the base branch to the appropriate _Feature branch_ instead. If the pull request does not fit in any _Feature branch_, the reviewer needs to make decision to either:
+Most people who are used to contributing will be familiar with the workflow of sending a pull request against the default branch. When that happens the reviewer may ask to change the base branch to the appropriate _Feature branch_ instead. If the pull request does not fit in any _Feature branch_, the reviewer needs to make decision to either:
 
-- Decline the pull request because it is best contributed to Gitea
+- Decline the pull request because it is best contributed to the relevant dependency
 - Create a new _Feature branch_
-
-Returning contributors can figure out which _Feature branch_ to base their pull request on using the list of _Feature branches_.
 
 ## Granularity
 
 _Feature branches_ can contain a number of commits grouped together, for instance for branding the documentation, the landing page and the footer. It makes it convenient for people working on that topic to get the big picture without browsing multiple branches. Creating a new _Feature branch_ for each individual commit, while possible, is likely to be difficult to work with.
 
-Observing the granularity of the existing _Feature branches_ is the best way to figure out what works and what does not. It requires adjustments from time to time depending on the number of contributors and the complexity of the Forgejo codebase that sits on top of Gitea.
+Observing the granularity of the existing _Feature branches_ is the best way to figure out what works and what does not. It requires adjustments from time to time depending on the number of contributors and the complexity of the Forgejo codebase.
