@@ -48,9 +48,9 @@ services:
 Note that the volume should be owned by the user/group with the UID/GID specified in the config file.
 If you don't give the volume correct permissions, the container may not start.
 
-# Databases
+## Databases
 
-## MySQL database
+### MySQL database
 
 ```yaml
 version: "3"
@@ -98,7 +98,7 @@ services:
 +      - ./mysql:/var/lib/mysql
 ```
 
-## PostgreSQL database
+### PostgreSQL database
 
 ```yaml
 version: "3"
