@@ -149,24 +149,29 @@ services:
 
 ## Install Forgejo and git, create git user
 
-First, download the Forgejo binary for your CPU architecture and maybe verify the GPG signature, as described on [the Forgejo download page](https://forgejo.org/download/).
+First, download the Forgejo binary for your CPU architecture and maybe verify the GPG signature,
+as described on [the Forgejo download page](https://forgejo.org/download/).
 
-Next, copy the downloaded Forgejo binary to `/usr/local/bin/` (renaming it to just “forgejo”) and make it executable:
-`# cp forgejo-1.19.3-0-linux-amd64 /usr/local/bin/forgejo`
+Next, copy the downloaded Forgejo binary to `/usr/local/bin/` (renaming it to just "forgejo")
+and make it executable:  
+`# cp forgejo-1.19.3-0-linux-amd64 /usr/local/bin/forgejo`  
 `# chmod 755 /usr/local/bin/forgejo`
 
-Make sure `git` and `git-lfs` are installed:
+Make sure `git` and `git-lfs` are installed:  
 `# apt install git git-lfs`
 
-Create a user `git` on the system. Forgejo will run as that user, and when accessing git through ssh (which is the default), this user is part of the URL _(for example in `git clone git@git.example.lan:YourOrg/YourRepo.git` the `git` before the `@` is the user you’ll create now)._
-On **Debian, Ubuntu** and their derivates that’s done with:
+Create a user `git` on the system. Forgejo will run as that user, and when accessing git through ssh
+(which is the default), this user is part of the URL _(for example in
+`git clone git@git.example.lan:YourOrg/YourRepo.git` the `git` before the `@` is the user you'll create now)._  
+On **Debian, Ubuntu** and their derivates that's done with:
 
 ```
 # adduser --system --shell /bin/bash --gecos 'Git Version Control' \
   --group --disabled-password --home /home/git  git
 ```
 
-On **Linux distributions not based on Debian/Ubuntu** (this should at least work with Red Hat derivates like Fedora, CentOS etc - _feel free to leave a comment about other distros!_), run this instead:
+On **Linux distributions not based on Debian/Ubuntu** (this should at least work with Red Hat derivates
+like Fedora, CentOS etc - _feel free to leave a comment about other distros!_), run this instead:
 
 ```
 # groupadd --system git
@@ -175,138 +180,226 @@ On **Linux distributions not based on Debian/Ubuntu** (this should at least work
    --gid git --home-dir /home/git --create-home git
 ```
 
-## [# ](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#create-directories-forgejo-will-use)Create directories Forgejo will use
+## Create directories Forgejo will use
 
 Now create the directories Forgejo will use and set access rights appropriately:
 
-`# mkdir /var/lib/forgejo`
-`# chown git:git /var/lib/forgejo && chmod 750 /var/lib/forgejo`
+`# mkdir /var/lib/forgejo`  
+`# chown git:git /var/lib/forgejo && chmod 750 /var/lib/forgejo`  
 _This is the directory Forgejo will store its data in, including your git repos._
 
-`# mkdir /etc/forgejo`
-`# chown root:git /etc/forgejo && chmod 770 /etc/forgejo`
-_This is the directory Forgejos config, called `app.ini`, is stored in. Initially it needs to be writable by Forgejo, but after the installation you can make it read-only for Forgejo because then it shouldn’t modify it anymore._
+`# mkdir /etc/forgejo`  
+`# chown root:git /etc/forgejo && chmod 770 /etc/forgejo`  
+_This is the directory Forgejos config, called `app.ini`, is stored in. Initially it needs to
+be writable by Forgejo, but after the installation you can make it read-only for Forgejo because
+then it shouldn't modify it anymore._
 
-## [# ](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#optional-set-up-database)Optional: Set up database
+## Optional: Set up database
 
 When using sqlite as Forgejos database, nothing needs to be done here.
 
-If you need a more powerful database, you can use MySQL/MariaDB or PostgreSQL (apparently sqlite is good enough for at least 10 users, but might even suffice for more[2](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#fn:2) - and I read it’s not too hard to migrate the database from sqlite to something else later).
+If you need a more powerful database, you can use MySQL/MariaDB or PostgreSQL (apparently sqlite
+is good enough for at least 10 users, but might even suffice for more[^sqlite] - and I read it's not
+too hard to migrate the database from sqlite to something else later).
 
-See [Forgejos Database Preparation guide](https://forgejo.org/docs/latest/admin/database-preparation/) for setup instructions.
+See [Forgejos Database Preparation guide](https://forgejo.org/docs/latest/admin/database-preparation/)
+for setup instructions.
 
-## [# ](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#install-systemd-service-for-forgejo)Install systemd service for Forgejo
+## Install systemd service for Forgejo
 
-Forgejo provides a [systemd service script](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/contrib/systemd/forgejo.service). Download it to the correct location:
-`# wget -O /etc/systemd/system/forgejo.service 
-https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/contrib/systemd/forgejo.service`
+Forgejo provides a
+[systemd service script](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/contrib/systemd/forgejo.service).
+Download it to the correct location:  
+`# wget -O /etc/systemd/system/forgejo.service https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/contrib/systemd/forgejo.service`
 
-If you’re _not_ using sqlite, but MySQL or MariaDB or PostgreSQL, you’ll have to edit that file (`/etc/systemd/system/forgejo.service`) and uncomment the corresponding `Wants=` and `After=` lines. <del>Otherwise it _should_ work as it is.</del>
+If you're _not_ using sqlite, but MySQL or MariaDB or PostgreSQL, you'll have to edit that file
+(`/etc/systemd/system/forgejo.service`) and uncomment the corresponding `Wants=` and `After=` lines.
+~~Otherwise it _should_ work as it is.~~
 
-> **NOTE:** For Forgejo 1.19.x, make sure that `forgejo.service` sets `Type=simple`, _not_ `Type=notify`! _(The forgejo.service currently available in their main branch sets `Type=notify`, which only works with the current 1.20 development code, not release 1.19.3, [see this bugreport](https://codeberg.org/forgejo/forgejo/issues/777))._
+> **NOTE:** For Forgejo 1.19.x, make sure that `forgejo.service` sets `Type=simple`, _not_ `Type=notify`!
+> _(The forgejo.service currently available in their main branch sets `Type=notify`, which only
+> works with the current 1.20 development code, not release 1.19.3,
+> [see this bugreport](https://codeberg.org/forgejo/forgejo/issues/777))._
 
-Now enable and start the Forgejo service, so you can go on with the installation:
-`# systemctl enable forgejo.service`
+Now enable and start the Forgejo service, so you can go on with the installation:  
+`# systemctl enable forgejo.service`  
 `# systemctl start forgejo.service`
 
-## [# ](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#forgejos-web-based-configuration)Forgejos web-based configuration
+## Forgejos web-based configuration
 
-You should now be able to access Forgejo in your local web browser, so open http://git.example.lan/ (make sure your WireGuard connection is enabled).
+You should now be able to access Forgejo in your local web browser, so open http://git.example.lan/
+(make sure your WireGuard connection is enabled).
 
-If it doesn’t work:
+If it doesn't work:
 
-- Make sure the forgejo service started successfully by checking the output of
-  `# systemctl status forgejo.service`
-  If that indicates an error but the log lines underneath are too incomplete to tell what caused it,
-  `# journalctl -n 100 --unit forgejo.service`
+- Make sure the forgejo service started successfully by checking the output of  
+  `# systemctl status forgejo.service`  
+  If that indicates an error but the log lines underneath are too incomplete to tell what caused it,  
+  `# journalctl -n 100 --unit forgejo.service`  
   will print the last 100 lines logged by Forgejo.
-- Try http://git.example.lan:3000/ instead - that’s the port Forgejo listens on, this way nginx is circumvented _(later we’ll configure Forgejo to make it only accessible through nginx)_. If that works, [fix your nginx setup](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#setting-up-nginx-as-a-reverse-http-proxy).
-- Try to ping `172.30.0.1` - if that fails, [make sure your WireGuard connection works](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#setting-up-a-wireguard-vpn-server)
-- Try to ping `git.example.lan` - if you can’t, fix your [DNS setup](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#setting-up-dnsmasq-as-dns-server-for-a-local-domain) (also [on the client](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#configure-clients-to-use-the-dns-server)!)
+- Try http://git.example.lan:3000/ instead - that's the port Forgejo listens on,
+  this way nginx is circumvented _(later we'll configure Forgejo to make it only accessible through nginx)_.
+  If that works, [fix your nginx setup](#setting-up-nginx-as-a-reverse-http-proxy).
+- Try to ping `172.30.0.1` - if that fails, [make sure your WireGuard connection works](#setting-up-a-wireguard-vpn-server)
+- Try to ping `git.example.lan` - if you can't, fix your
+  [DNS setup](#setting-up-dnsmasq-as-dns-server-for-a-local-domain)
+  (also [on the client](#configure-clients-to-use-the-dns-server)!)
 
-You should be greeted by Forgejos “Initial Configuration” screen.
+You should be greeted by Forgejos "Initial Configuration" screen.  
 The settings should be mostly self-explanatory, some hints:
 
-- Select the correct database (SQLite3, or if you configured something else in the [Set up database](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#optional-set-up-database) step, select that and set the corresponding options)
-- **Server Domain** should be `git.example.lan` (or whatever you’re actually using),
+- Select the correct database (SQLite3, or if you configured something else in the
+  [Set up database](#optional-set-up-database) step, select that and set the corresponding options)
+- **Server Domain** should be `git.example.lan` (or whatever you're actually using),  
   **Forgejo Base URL** should be `http://git.example.lan`
-- Ignore the **Email Settings** - Forgejo can be easily configured to use system sendmail (dma), but (at least in version 1.19) only in the app.ini, not in the web interface, so we’ll do that later.
-- Check the **Server and Third-Party Service Settings** settings for settings that look relevant for you.
-- I think it makes sense to create the administrator account right now (**Administrator Account Settings**), even more so if you disabled self-registration.
-- Most settings can be easily changed in `/etc/forgejo/app.ini` later, so don’t worry about them too much.
+- Ignore the **Email Settings** - Forgejo can be easily configured to use system sendmail (dma), but
+  (at least in version 1.19) only in the app.ini, not in the web interface, so we'll do that later.
+- Check the **Server and Third-Party Service Settings** settings for settings that look relevant
+  for you.
+- I think it makes sense to create the administrator account right now (**Administrator Account Settings**),
+  even more so if you disabled self-registration.
+- Most settings can be easily changed in `/etc/forgejo/app.ini` later, so don't worry about them too much.
 
-Once you’re done configuring, click `Install Forgejo` and a few seconds later you should be on the dashboard (if you created an administrator account) or at the login/register screen, where you can create an account to then get to the dashboard.
+Once you're done configuring, click `Install Forgejo` and a few seconds later you should be
+on the dashboard (if you created an administrator account) or at the login/register screen, where you
+can create an account to then get to the dashboard.
 
-So far, so good[9](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#fn:9), but we’re not quite done yet - some manual configuration in the app.ini is needed!
+So far, so good[^sowhat], but we're not quite done yet - some manual configuration in the app.ini is needed!
 
-## [# ](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#further-configuration-in-forgejos-app-ini)Further configuration in Forgejos app.ini
+## Further configuration in Forgejos app.ini
 
-Stop the forgejo service:
+Stop the forgejo service:  
 `# systemctl stop forgejo.service`
 
-While at it, make `/etc/forgejo/` and the `app.ini` read-only for the git user (Forgejo doesn’t write to it after the initial configuration):
+While at it, make `/etc/forgejo/` and the `app.ini` read-only for the git user (Forgejo doesn't
+write to it after the initial configuration):  
 `# chmod 750 /etc/forgejo && chmod 640 /etc/forgejo/app.ini`
 
 Now (as root) edit `/etc/forgejo/app.ini`
 
-> **NOTE:** You’ll probably find the [Configuration Cheat Sheet](https://forgejo.org/docs/latest/admin/config-cheat-sheet/) and the [Example app.ini](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/custom/conf/app.example.ini) that contains all options incl. descriptions helpful.
+> **NOTE:** You'll probably find the
+> [Configuration Cheat Sheet](https://forgejo.org/docs/latest/admin/config-cheat-sheet/) and the
+> [Example app.ini](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/custom/conf/app.example.ini)
+> that contains all options incl. descriptions helpful.
 
 I recommend the following changes (in the order of where I put them in the app.ini):
 
-- Forgejo allows uploading files to git repos through the web interface. By default the **file size for uploads** is limited to 3MB per file, and 5 files at once. To increase it, under the `[repository]` section, add a `[repository.upload]` section with a line like `FILE_MAX_SIZE = 4095` (that would be 4095MB, about 4GB) and `MAX FILES = 20` It’ll look somehow like this:
+- Forgejo allows uploading files to git repos through the web interface.
+  By default the **file size for uploads**
+  is limited to 3MB per file, and 5 files at once. To increase it, under the `[repository]` section,
+  add a `[repository.upload]` section with a line like `FILE_MAX_SIZE = 4095`
+  (that would be 4095MB, about 4GB) and `MAX FILES = 20`
+  It'll look somehow like this:
 
-```
-...
-[repository]
-ROOT = /var/lib/forgejo/data/forgejo-repositories
+  ```ini
+  ...
+  [repository]
+  ROOT = /var/lib/forgejo/data/forgejo-repositories
 
-[repository.upload]
-;; max size for files to the repo via web interface, in MB,
-;; defaults to 3 (this sets a limit of about 4GB)
-FILE_MAX_SIZE = 4095
-;; by default 5 files can be uploaded at once, increase to 20
-MAX_FILES = 20
+  [repository.upload]
+  ;; max size for files to the repo via web interface, in MB,
+  ;; defaults to 3 (this sets a limit of about 4GB)
+  FILE_MAX_SIZE = 4095
+  ;; by default 5 files can be uploaded at once, increase to 20
+  MAX_FILES = 20
 
-[server]
-...
-```
+  [server]
+  ...
+  ```
 
-Similar restrictions restrictions exist for attachments to issues/pull requests, configured in the [`[attachment]` sections](https://forgejo.org/docs/latest/admin/config-cheat-sheet/#issue-and-pull-request-attachments-attachment) `MAX_SIZE` (default 4MB) and `MAX_FILES` (default 5) settings.
+  Similar restrictions restrictions exist for attachments to issues/pull requests, configured
+  in the [`[attachment]` sections](https://forgejo.org/docs/latest/admin/config-cheat-sheet/#issue-and-pull-request-attachments-attachment)
+  `MAX_SIZE` (default 4MB) and `MAX_FILES` (default 5) settings.
 
-- In the `[server]` section add a line `HTTP_ADDR = 127.0.0.1` to ensure that Forgejo **only listens on localhost** and is not reachable from the outside at all, except through nginx.
-- By default **LFS data uploads expire** after 20 minutes - this can be too short for big files, slow connections or slow LFS storage (git-lfs seems to automatically restart the upload then - which means that it can take forever and use lots of traffic)..
-  If you’re going to use LFS with big uploads, increase thus limit, by adding a line `LFS_HTTP_AUTH_EXPIRY = 180m` (for 180 minutes) to the `[server]` section.
-- Similarly there are timeouts for all kinds of git operations, that can be too short.
-  I ran into the problem that a migration of a big repository from our old Gitlab server timed out and left the repository in an inconsistent state ([due to a bug in Forgejo/Gitea](https://codeberg.org/forgejo/forgejo/issues/715) that [should be fixed in the next version](https://github.com/go-gitea/gitea/pull/24605) I wasn’t even warned about this in the web interface, there were only some log messages).
-  Anyway, I **increased all those git timeouts** by adding a `[git.timeout]` section below the `[server]` section:
-
-```
-;; Git Operation timeout in seconds
-;; increase the timeouts, so importing big repos (and presumably
-;; pushing large files?) hopefully won't fail anymore
-[git.timeout]
-DEFAULT = 3600 ; Git operations default timeout seconds
-MIGRATE = 6000 ; Migrate external repositories timeout seconds
-MIRROR  = 3000 ; Mirror external repositories timeout seconds
-CLONE   = 3000 ; Git clone from internal repositories timeout seconds
-PULL    = 3000 ; Git pull from internal repositories timeout seconds
-GC      = 600  ; Git repository GC timeout seconds
-```
-
-I increased all timeouts to factor 10 (by adding a 0 at the end); probably not all these timeouts need to be increased (and if, then maybe not this much)… use your own judgement, this worked for me ;-)
-
-- By default LFS files are stored in the filesystem, in `/var/lib/forgejo/data/lfs`. In the `[lfs]` section you can change the `PATH = ...` line to store elsewhere, but you can also configure Forgejo to store the files in an S3-like Object-Storage. More information on that in the [object storage subchapter below](https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/#local-storage-vs-object-storage-for-lfs).
+- In the `[server]` section add a line `HTTP_ADDR = 127.0.0.1` to ensure that Forgejo **only
+  listens on localhost** and is not reachable from the outside at all, except through nginx.
+- By default **LFS data uploads expire** after 20 minutes - this can be too short for big files,
+  slow connections or slow LFS storage (git-lfs seems to automatically restart the upload then -
+  which means that it can take forever and use lots of traffic)..  
+  If you're going to use LFS with big uploads, increase thus limit, by adding a line
+  `LFS_HTTP_AUTH_EXPIRY = 180m` (for 180 minutes) to the `[server]` section.
+- Similarly there are timeouts for all kinds of git operations, that can be too short.  
+  I ran into the problem that a migration of a big repository from our old Gitlab server timed out
+  and left the repository in an inconsistent state
+  ([due to a bug in Forgejo/Gitea](https://codeberg.org/forgejo/forgejo/issues/715) that
+  [should be fixed in the next version](https://github.com/go-gitea/gitea/pull/24605) I wasn't even
+  warned about this in the web interface, there were only some log messages).  
+  Anyway, I **increased all those git timeouts** by adding a `[git.timeout]` section
+  below the `[server]` section:
+  ```ini
+  ;; Git Operation timeout in seconds
+  ;; increase the timeouts, so importing big repos (and presumably
+  ;; pushing large files?) hopefully won't fail anymore
+  [git.timeout]
+  DEFAULT = 3600 ; Git operations default timeout seconds
+  MIGRATE = 6000 ; Migrate external repositories timeout seconds
+  MIRROR  = 3000 ; Mirror external repositories timeout seconds
+  CLONE   = 3000 ; Git clone from internal repositories timeout seconds
+  PULL    = 3000 ; Git pull from internal repositories timeout seconds
+  GC      = 600  ; Git repository GC timeout seconds
+  ```
+  I increased all timeouts to factor 10 (by adding a 0 at the end); probably not all these timeouts
+  need to be increased (and if, then maybe not this much)... use your own judgement, this worked for me ;-)
+- By default LFS files are stored in the filesystem, in `/var/lib/forgejo/data/lfs`.
+  In the `[lfs]` section you can change the `PATH = ...` line to store elsewhere, but you can also
+  configure Forgejo to store the files in an S3-like Object-Storage. More information on that in the
+  [object storage subchapter below](#local-storage-vs-object-storage-for-lfs).
 - Enable sending E-Mails with sendmail/dma by changing the `[mailer]` section like this:
+  ```ini
+  [mailer]
+  ;; send mail with systemwide "sendmail" (actually dma in our case)
+  ENABLED = true
+  PROTOCOL = sendmail
+  FROM = "Forgejo Git" <noreply@yourdomain.com>
+  ```
 
-```
-[mailer]
-;; send mail with systemwide "sendmail" (actually dma in our case)
-ENABLED = true
-PROTOCOL = sendmail
-FROM = "Forgejo Git" <noreply@yourdomain.com>
-```
-
-When you’re done editing the app.ini, save it and start the forgejo service again:
+When you're done editing the app.ini, save it and start the forgejo service again:  
 `# systemctl start forgejo.service`
 
-You can test sending a mail by clicking the user button on the upper right of the Forgejo page (“Profile and Settings”), then `Site Administration`, then `Configuration` and under `Mailer Configuration` type in your mail address and click `Send Testing Email`.
+You can test sending a mail by clicking the user button on the upper right of the Forgejo page
+("Profile and Settings"), then `Site Administration`, then `Configuration` and under
+`Mailer Configuration` type in your mail address and click `Send Testing Email`.
+
+## General hints for using Forgejo
+
+If you've used Github or Gitlab before, the user interface should be familiar; if you're not sure
+how something is done, consult the [Forgejo user guide](https://forgejo.org/docs/latest/user/) and/or
+[Forgejo administrator guide](https://forgejo.org/docs/latest/admin/). If that doesn't answer your
+questions check the [Gitea documentation](https://docs.gitea.io/en-us/) or
+[ask the Forgejo community](https://forgejo.org/docs/latest/admin/seek-assistance/).
+
+Remember that to use Git you'll need to add your SSH public key to Forgejo (User Button on upper right ->
+`Settings` -> `SSH / GPG Keys` -> `[Add Key]`, paste the contents of `$HOME/.git/id_rsa.pub`)
+
+Sometimes you may want/need to use the Forgejo
+[command line interface](https://forgejo.org/docs/latest/admin/command-line/).
+Keep in mind that:
+
+- You need to **run it as `git` user**, for example with `$ sudo -u git forgejo command --argument`
+- You need to specify the **Forgejo work path**, either with the `--work-path /var/lib/forgejo`
+  (or `-w /var/lib/forgejo`) commandline option or by setting the `FORGEJO_WORK_DIR` environment variable
+  (`$ export FORGEJO_WORK_DIR=/var/lib/forgejo`) before calling `forgejo`
+- You need to specify the path to the config (app.ini) with `--config /etc/forgejo/app.ini`
+  (or `-c /etc/forgejo/app.ini`).
+
+So all in all your command might look like:  
+`$ sudo -u git forgejo -w /var/lib/forgejo -c /etc/forgejo/app.ini admin user list`
+
+> **_For convenience_**, you could create a `/usr/local/bin/forgejo.sh` with the following contents:
+>
+> ```sh
+> #!/bin/sh
+> sudo -u git forgejo -w /var/lib/forgejo -c /etc/forgejo/app.ini "$@"
+> ```
+>
+> and make it executable:  
+> `# chmod 755  /usr/local/bin/forgejo.sh`
+>
+> Now if you want to call `forgejo` on the commandline (for the default system-wide installation
+> in `/var/lib/forgejo`), just use e.g. `$ forgejo.sh admin user list` instead of the long
+> line shown above.
+
+You can always call forgejo and its subcommands with `-h` or `--help` to make it output usage
+information like available options and (sub)commands, for example  
+`$ forgejo admin user -h`  
+to show available subcommands to administrate users on the commandline.
