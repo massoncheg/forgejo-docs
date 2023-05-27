@@ -151,6 +151,8 @@ services:
 
 ## Install Forgejo and git, create git user
 
+> **NOTE:** this guide assumes that you'll host on the server with the domain git.example.com" at the beginning.
+
 First, download the Forgejo binary for your CPU architecture and maybe verify the GPG signature,
 as described on [the Forgejo download page](https://forgejo.org/download/).
 
@@ -164,7 +166,7 @@ Make sure `git` and `git-lfs` are installed:
 
 Create a user `git` on the system. Forgejo will run as that user, and when accessing git through ssh
 (which is the default), this user is part of the URL _(for example in
-`git clone git@git.example.lan:YourOrg/YourRepo.git` the `git` before the `@` is the user you'll create now)._  
+`git clone git@git.example.com:YourOrg/YourRepo.git` the `git` before the `@` is the user you'll create now)._
 On **Debian, Ubuntu** and their derivates that's done with:
 
 ```
@@ -223,7 +225,7 @@ Now enable and start the Forgejo service, so you can go on with the installation
 
 ## Forgejos web-based configuration
 
-You should now be able to access Forgejo in your local web browser, so open http://git.example.lan/.
+You should now be able to access Forgejo in your local web browser, so open http://git.example.com/.
 
 If it doesn't work:
 
@@ -238,8 +240,8 @@ The settings should be mostly self-explanatory, some hints:
 
 - Select the correct database (SQLite3, or if you configured something else in the
   "Set up database" step above, select that and set the corresponding options)
-- **Server Domain** should be `git.example.lan` (or whatever you're actually using),  
-  **Forgejo Base URL** should be `http://git.example.lan`
+- **Server Domain** should be `git.example.com` (or whatever you're actually using),
+  **Forgejo Base URL** should be `http://git.example.com`
 - Check the **Server and Third-Party Service Settings** settings for settings that look relevant
   for you.
 - It may make sense to create the administrator account right now (**Administrator Account Settings**),
