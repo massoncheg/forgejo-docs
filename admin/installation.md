@@ -50,6 +50,8 @@ If you don't give the volume correct permissions, the container may not start.
 
 ## Databases
 
+In the following each database is shown as part of a `docker-compose` example file, with a `diff like` presentation that highlights additions to the example above.
+
 ### MySQL database
 
 ```yaml
