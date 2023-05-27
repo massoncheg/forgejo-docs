@@ -47,30 +47,40 @@ The vX.Y/forgejo branch is populated as part of the [rebase on top of Gitea](WOR
 ### Release Notes
 
 - Add an entry in RELEASE-NOTES.md
-- Copy/paste the matching entry from CHANGELOG.md
-- Update the PR references prefixing them with https://github.com/go-gitea/gitea/pull/
 
-### Testing
+### Forgejo release building and testing
 
 When Forgejo is released, artefacts (packages, binaries, etc.) are first published by the CI/CD pipelines in the https://codeberg.org/forgejo-experimental organization, to be downloaded and verified to work.
 
-- Push the vX.Y/forgejo branch to https://codeberg.org/forgejo-integration/forgejo
-- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo-integration (if it fails for whatever reason, the tag and the release can be removed manually)
-  - Binaries are built and uploaded to https://codeberg.org/forgejo/forgejo-integration/releases
-  - Container images are built and uploaded to https://codeberg.org/forgejo-integration/-/packages/container/forgejo/versions
 - Push the vX.Y/forgejo branch to https://codeberg.org/forgejo-experimental/forgejo
-- Push the vX.Y/forgejo branch to https://codeberg.org/forgejo/experimental
-- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo/experimental
-  - Binaries are downloaded from https://codeberg.org/forgejo-integration, signed and copied to https://codeberg.org/forgejo-experimental
-  - Container images are copied from https://codeberg.org/forgejo-integration to https://codeberg.org/forgejo-experimental
-- Fetch the Forgejo release as part of the [forgejo-ci](https://codeberg.org/Codeberg-Infrastructure/scripted-configuration/src/branch/main/hosts/forgejo-ci) test suite. Push the change to a branch of a repository enabled in https://ci.dachary.org/ ([read more...](https://codeberg.org/forgejo/forgejo/issues/208)). It will deploy the release and run high level integration tests.
-- Reach out to packagers and users to manually verify the release works as expected
+- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo-experimental/forgejo
 
-### Publication
+Binaries are built and uploaded to https://codeberg.org/forgejo/forgejo-experimental/releases
+Container images are built and uploaded to https://codeberg.org/forgejo-experimental/-/packages/container/forgejo/versions
 
-- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo/release
-  - Binaries are downloaded from https://codeberg.org/forgejo-integration, signed and copied to https://codeberg.org/forgejo
-  - Container images are copied from https://codeberg.org/forgejo-integration to https://codeberg.org/forgejo
+Fork the Forgejo [infrastructure](https://code.forgejo.org/forgejo/infrastructure) repository, [modify it](https://code.forgejo.org/earl-warren/infrastructure/commit/269eae6c3a17005ad9d825d747745da041d69756) to use the experimental release and push the branch. It will trigger [a workflow](https://code.forgejo.org/earl-warren/infrastructure/src/branch/wip-forgejo/.forgejo/workflows/forgejo.yml) to deploy the release and run high level integration tests.
+
+Reach out to packagers and users to manually verify the release works as expected.
+
+### Forgejo release publication
+
+- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo/forgejo
+
+- Binaries are downloaded from https://codeberg.org/forgejo-experimental, signed and copied to https://codeberg.org/forgejo
+- Container images are copied from https://codeberg.org/forgejo-experimental to https://codeberg.org/forgejo
+
+### Forgejo runner publication
+
+- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo/runner
+
+The release is built from https://codeberg.org/forgejo-integration/runner which is a mirror of https://codeberg.org/forgejo/runner.
+
+- Binaries are downloaded from https://codeberg.org/forgejo-integration, signed and copied to https://codeberg.org/forgejo
+- Container images are copied from https://codeberg.org/forgejo-integration to https://codeberg.org/forgejo
+
+### Securing the release token and cryptographic keys
+
+For both the Forgejo runner and Forgejo itself, copying and signing the release artifacts (container images and binaries) happen on a Forgejo isntance running [behind a VPN](https://forgejo.org/docs/next/developer/infrastructure/#octopuce) to safeguard the token that has write access to the Forgejo repository as well as the cryptographic key used to sign the releases.
 
 ### Website update
 
