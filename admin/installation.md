@@ -15,7 +15,7 @@ docker pull codeberg.org/forgejo/forgejo:1.19.3-0
 
 The **1.19** tag is set to be the latest patch release, starting with [1.19.0-2](https://codeberg.org/forgejo/-/packages/container/forgejo/1.19.0-2). **1.19** will then be equal to **1.19.1-0** when it is released and so on.
 
-Upgrading from **1.X** to **1.X+1** (for instance from **1.18** to **1.19**) requires a [manual operation and human verification](upgrade). However it is possible to use the **X.Y** tag (for instance **1.19**) to get the latest point release automatically.
+Upgrading from **1.X** to **1.X+1** (for instance from **1.18** to **1.19**) requires a [manual operation and human verification](../upgrade). However it is possible to use the **X.Y** tag (for instance **1.19**) to get the latest point release automatically.
 
 Here is a sample [docker-compose](https://docs.docker.com/compose/install/) file:
 
@@ -201,7 +201,7 @@ When using sqlite as Forgejos database, nothing needs to be done here.
 If you need a more powerful database, you can use MySQL/MariaDB or PostgreSQL (apparently sqlite
 is good enough for at least 10 users, but might even suffice for more).
 
-See [Forgejos Database Preparation guide](database-preparation) for
+See [Forgejos Database Preparation guide](../database-preparation) for
 setup instructions.
 
 ## Install systemd service for Forgejo
@@ -262,7 +262,7 @@ write to it after the initial configuration):
 Now (as root) edit `/etc/forgejo/app.ini`
 
 > **NOTE:** You'll probably find the
-> [Configuration Cheat Sheet](config-cheat-sheet) and the
+> [Configuration Cheat Sheet](../config-cheat-sheet) and the
 > [Example app.ini](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/custom/conf/app.example.ini)
 > that contains all options incl. descriptions helpful.
 
@@ -292,7 +292,7 @@ The following changes are recommended if dealing with many large files:
   ```
 
   Similar restrictions restrictions exist for attachments to issues/pull requests, configured
-  in the [`[attachment]` sections](config-cheat-sheet/#issue-and-pull-request-attachments-attachment)
+  in the [`[attachment]` sections](../config-cheat-sheet/#issue-and-pull-request-attachments-attachment)
   `MAX_SIZE` (default 4MB) and `MAX_FILES` (default 5) settings.
 
 - By default **LFS data uploads expire** after 20 minutes - this can be too short for big files,
