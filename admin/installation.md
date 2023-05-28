@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Installation'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://blog.gibson.sh/2023/05/26/vps-with-wireguard-and-forgejo/'
+origin_url: 'https://github.com/DanielGibson/DanielGibson.github.io/blob/58362695f743a545d2530508ce42d5fe1eea84a9/content/post/setup-vps-with-wireguard-and-forgejo.md'
 ---
 
 # Installation with Docker
