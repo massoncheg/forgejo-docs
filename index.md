@@ -4,7 +4,7 @@ title: 'Forgejo v1.20 documentation'
 ---
 
 - [What is Forgejo?](https://forgejo.org/)
-- [Installation](https://forgejo.org/download/)
+- [Installation](admin/installation)
 - [FAQ](https://forgejo.org/faq/)
 - [Administrator guide](admin)
 - [User guide](user)
