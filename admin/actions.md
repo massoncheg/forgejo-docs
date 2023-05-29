@@ -1,6 +1,6 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: 'Forgejo Actions'
+title: 'Forgejo Actions administrator guide'
 license: 'CC-BY-SA-4.0'
 ---
 
@@ -35,13 +35,15 @@ For jobs to run in containers, the `Forgejo runner` needs access to [Docker](htt
 
 ### LXC
 
-For jobs to run in LXC containers, the `Forgejo runner` needs passwordless sudo access on a Debian GNU/Linux bookworm system where [LXC](https://linuxcontainers.org/lxc/) is installed. The [LXC helpers](https://code.forgejo.org/forgejo/lxc-helpers/) can be used as follows to create a suitable container:
+For jobs to run in LXC containers, the `Forgejo runner` needs passwordless sudo access for all `lxc-*` commands on a Debian GNU/Linux `bookworm` system where [LXC](https://linuxcontainers.org/lxc/) is installed. The [LXC helpers](https://code.forgejo.org/forgejo/lxc-helpers/) can be used as follows to create a suitable container:
 
 ```shell
 $ git clone https://code.forgejo.org/forgejo/lxc-helpers
 $ ./lxc-helpers/lxc-helpers.sh lxc_container_create myrunner
 $ ./lxc-helpers/lxc-helpers.sh lxc_container_start myrunner
 ```
+
+> **NOTE:** Multiarch [Go](https://go.dev/) builds and [binfmt](https://github.com/tonistiigi/binfmt) need `bookworm` to produce and test binaries on a single machine for people who do not have access to dedicated hardware. If this is not needed, installing the `Forgejo runner` on `bullseye` will also work.
 
 The `Forgejo runner` can then be installed and run within the `myrunner` container.
 
@@ -97,7 +99,7 @@ INFO[0000] Starting runner daemon
 
 Adding the `.forgejo/workflows/demo.yaml` file to the test repository:
 
-```
+```yaml
 on: [push]
 jobs:
   test:
@@ -137,4 +139,4 @@ If `runs-on` is matched to a label that contains `docker://`, the rest of it is 
 
 ### LXC
 
-If `runs-on` is `self-hosted`, the runner will execute all the steps, as root, within a Debian GNU/Linux bullseye LXC container.
+If `runs-on` is `self-hosted`, the runner will execute all the steps, as root, within a Debian GNU/Linux `bullseye` LXC container.
