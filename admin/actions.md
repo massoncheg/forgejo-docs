@@ -147,7 +147,9 @@ Certain hosts may require specific configurations for runners to work smoothly. 
 
 ### NixOS
 
-The gitea-actions-runner recipe was release in NixOS 23.05. It can be configured via `services.gitea-actions-runner`. Please note that the `services.gitea-actions-runner.instances.<name>.labels` key is not required if only the default forgejo image list is used, however `virtualisation.docker.enable` will need to be set. If podman images are used, `virtualisation.podman.enable` will also need to be set.
+The gitea-actions-runner recipe was release in NixOS 23.05. It can be configured via `services.gitea-actions-runner`.
+
+Please note that the `services.gitea-actions-runner.instances.<name>.labels` key is not required if only the default Forgejo image list is used, however one of `virtualisation.docker.enable` or `virtualisation.podman.enable` will need to be set. The default Forgejo image list is populated with docker images.
 
 #### IPv6 on docker
 
@@ -156,7 +158,7 @@ IPv6 support is not enabled by default in docker. The following snippet enables 
 ```nix
 virtualisation.docker = {
   daemon.settings = {
-    fixed-cidr-v6 = "fd01::/80";
+    fixed-cidr-v6 = "fd00::/80";
     ipv6 = true;
   };
 };
