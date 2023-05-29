@@ -9,29 +9,21 @@ license: 'CC-BY-SA-4.0'
 # Quick start
 
 - Verify that `Enable Repository Actions` is checked in the `Repository` tab of the `/{owner}/{repository}/settings` page.
-
-![enable actions](../../../../images/v1.20/user/actions/enable-repository.png)
-
+  ![enable actions](../../../../images/v1.20/user/actions/enable-repository.png)
 - Add the following to the `.forgejo/workflows/demo.yaml` file in the repository.
-
-```yaml
-on: [push]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo All Good
-```
-
-![demo.yaml file](../../../../images/v1.20/user/actions/demo-yaml.png)
-
+  ```yaml
+  on: [push]
+  jobs:
+    test:
+      runs-on: ubuntu-latest
+      steps:
+        - run: echo All Good
+  ```
+  ![demo.yaml file](../../../../images/v1.20/user/actions/demo-yaml.png)
 - Go to the `Actions` tab of the `/{owner}/{repository}/actions` page of the repository to see the result of the run.
-
-![actions results](../../../../images/v1.20/user/actions/actions-demo.png)
-
+  ![actions results](../../../../images/v1.20/user/actions/actions-demo.png)
 - Click on the workflow link to see the details and the job execution logs.
-
-![actions results](../../../../images/v1.20/user/actions/workflow-demo.png)
+  ![actions results](../../../../images/v1.20/user/actions/workflow-demo.png)
 
 # Glossary
 
