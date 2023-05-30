@@ -103,7 +103,7 @@ Adding the `.forgejo/workflows/demo.yaml` file to the test repository:
 on: [push]
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: docker
     steps:
       - run: echo All Good
 ```
@@ -128,7 +128,7 @@ If no `Forgejo runner` is available, `Forgejo` will wait for one to connect and 
 The jobs defined in the files found in `.forgejo/workflows` specify the environment they need to run with `runs-on`. Each `Forgejo runner` declares, with the `--labels` option, which one they support so `Forgejo` knows to submit jobs accordingly. For instance if a job has:
 
 ```yaml
-runs-on: ubuntu-latest
+runs-on: docker
 ```
 
 the job will be submitted to a runner that registered with `--labels docker:docker://node:16-bullseye`.
