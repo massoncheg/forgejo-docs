@@ -335,7 +335,7 @@ The following changes are recommended if dealing with many large files:
   PROTOCOL = sendmail
   FROM = "Forgejo Git" <noreply@yourdomain.com>
   ```
-- By default Forgejo will listen to the port 3000 but that  can be [changed to 80 with HTTP_PORT](../config-cheat-sheet) like this:
+- By default Forgejo will listen to the port 3000 but that can be [changed to 80 with HTTP_PORT](../config-cheat-sheet) like this:
   ```ini
   [server]
   HTTP_PORT = 80
