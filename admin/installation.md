@@ -244,7 +244,7 @@ The settings should be mostly self-explanatory, some hints:
 - Select the correct database (SQLite3, or if you configured something else in the
   "Set up database" step above, select that and set the corresponding options)
 - **Server Domain** should be `git.example.com` (or whatever you're actually using),
-  **Forgejo Base URL** should be `http://git.example.com:3000` (assuming you didn't change HTTP_PORT a different value than 3000)
+  **Forgejo Base URL** should be `http://git.example.com:3000` (assuming you won't change HTTP_PORT a different value than 3000)
 - Check the **Server and Third-Party Service Settings** settings for settings that look relevant
   for you.
 - It may make sense to create the administrator account right now (**Administrator Account Settings**),
