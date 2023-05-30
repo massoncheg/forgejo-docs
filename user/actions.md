@@ -17,7 +17,7 @@ The following guide explains key **concepts** to help understand how `workflows`
   on: [push]
   jobs:
     test:
-      runs-on: ubuntu-latest
+      runs-on: docker
       steps:
         - run: echo All Good
   ```
@@ -65,31 +65,31 @@ A container with the specified `image:` is run before the `job` starts and is te
 
 ## The machine running the workflow
 
-Each `job` in a `workflow` must specify the kind of machine it needs to run its `steps` with `runs-on`. For instance `ubuntu-latest` in the following `workflow`:
+Each `job` in a `workflow` must specify the kind of machine it needs to run its `steps` with `runs-on`. For instance `docker` in the following `workflow`:
 
 ```yaml
 ---
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: docker
 ```
 
-means that the `Forgejo runner` that claims to provide a kind of machine labelled `ubuntu-latest` will be selected by `Forgejo` and sent the job to be run.
+means that the `Forgejo runner` that claims to provide a kind of machine labelled `docker` will be selected by `Forgejo` and sent the job to be run.
 
 The actual machine provided by the runner **entirely depends on how the `Forgejo runner` was registered** (see the [Forgejo Actions administrator guide](../../admin/actions) for more information).
 
-By default the `ubuntu-latest` label is a Docker container created from a [Node.js 16 Debian GNU/Linux buster image](https://hub.docker.com/_/node/tags?name=16-buster) and will run each `step` as root. The full list of available `labels` for a given repository can be seen in the `/{owner}/{repo}/settings/actions/runners` page.
+The list of available `labels` for a given repository can be seen in the `/{owner}/{repo}/settings/actions/runners` page.
 
 ![actions results](../../../../images/v1.20/user/actions/list-of-runners.png)
 
 ### Container
 
-When the `runs-on` label matches a container image, the jobs will inherit the limitations imposed by the engine (Docker for instance) that runs the container. In particular they will not be able to run or install software that depends on `systemd`, such as Docker.
+By default the `docker` label will create a container from a [Node.js 16 Debian GNU/Linux bullseye image](https://hub.docker.com/_/node/tags?name=16-bullseye) and will run each `step` as root. Since an application container is used, the jobs will inherit the limitations imposed by the engine (Docker for instance). In particular they will not be able to run or install software that depends on `systemd`.
 
-A job can choose the container image with `container:`, [as shown in this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml). For instance the following will ensure the job is run using [Alpine 3.18](https://hub.docker.com/_/alpine/tags?name=3.18) instead of the container image matching the `ubuntu-latest` label.
+If the default image is unsuitable, a job can specify an alternate container image with `container:`, [as shown in this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml). For instance the following will ensure the job is run using [Alpine 3.18](https://hub.docker.com/_/alpine/tags?name=3.18).
 
 ```yaml
-runs-on: ubuntu-latest
+runs-on: docker
 container:
   image: alpine:3.18
 ```
@@ -106,7 +106,7 @@ Each example is part of the [setup-forgejo](https://code.forgejo.org/actions/set
 
 - [Echo](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-echo/.forgejo/workflows/test.yml) - a single step that prints one sentence.
 - [PostgreSQL service](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/test.yml) - a PostgreSQL service and a connection to display the (empty) list of tables of the default database.
-- [Choosing the image with `container`](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: ubuntu-latest` image with the `alpine:3.18` image using `container:`.
+- [Choosing the image with `container`](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.18` image using `container:`.
 
 # Glossary
 

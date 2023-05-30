@@ -67,7 +67,7 @@ The `Forgejo runner` needs to connect to a `Forgejo` instance and must register 
 For instance, using a token obtained for a test repository from `next.forgejo.org`:
 
 ```shell
-forgejo-runner register --no-interactive --token {TOKEN} --name runner --instance https://next.forgejo.org --labels ubuntu-latest:docker://node:16-buster,self-hosted
+forgejo-runner register --no-interactive --token {TOKEN} --name runner --instance https://next.forgejo.org --labels docker:docker://node:16-bullseye,self-hosted
 INFO Registering runner, arch=amd64, os=linux, version=2.0.3.
 WARN Runner in user-mode.
 DEBU Successfully pinged the Forgejo instance server
@@ -84,7 +84,7 @@ It will create a `.runner` file that looks like:
   "name": "runner",
   "token": "{TOKEN}",
   "address": "https://next.forgejo.org",
-  "labels": ["ubuntu-latest:docker://node:16-buster", "self-hosted"]
+  "labels": ["docker:docker://node:16-bullseye", "self-hosted"]
 }
 ```
 
@@ -131,11 +131,11 @@ The jobs defined in the files found in `.forgejo/workflows` specify the environm
 runs-on: ubuntu-latest
 ```
 
-the job will be submitted to a runner that registered with `--labels ubuntu-latest:docker://node:16-buster`.
+the job will be submitted to a runner that registered with `--labels docker:docker://node:16-bullseye`.
 
 ### Docker
 
-If `runs-on` is matched to a label that contains `docker://`, the rest of it is interpreted as a container image. The runner will execute all the steps, as root, within a container created from that image.
+If `runs-on` is matched to a label that contains `docker://`, the rest of it is interpreted as a container image. The runner will execute all the steps, as root, within a container created from that image by default.
 
 ### LXC
 
