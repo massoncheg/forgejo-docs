@@ -228,10 +228,10 @@ Now enable and start the Forgejo service, so you can go on with the installation
 
 ## Forgejos web-based configuration
 
-You should now be able to access Forgejo in your local web browser, so open http://git.example.com/.
+You should now be able to access Forgejo in your local web browser, so open http://git.example.com:3000/.
 
 > **NOTE:** by default Forgejo will listen to the port 3000 but that
-> can be [changed to 80 with HTTP_PORT](../config-cheat-sheet).
+> can be [changed later to 80 with HTTP_PORT](../config-cheat-sheet).
 
 If it doesn't work:
 
@@ -247,7 +247,7 @@ The settings should be mostly self-explanatory, some hints:
 - Select the correct database (SQLite3, or if you configured something else in the
   "Set up database" step above, select that and set the corresponding options)
 - **Server Domain** should be `git.example.com` (or whatever you're actually using),
-  **Forgejo Base URL** should be `http://git.example.com`
+  **Forgejo Base URL** should be `http://git.example.com:3000`
 - Check the **Server and Third-Party Service Settings** settings for settings that look relevant
   for you.
 - It may make sense to create the administrator account right now (**Administrator Account Settings**),
