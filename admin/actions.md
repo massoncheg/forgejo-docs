@@ -140,3 +140,26 @@ If `runs-on` is matched to a label that contains `docker://`, the rest of it is 
 ### LXC
 
 If `runs-on` is `self-hosted`, the runner will execute all the steps, as root, within a Debian GNU/Linux `bullseye` LXC container.
+
+## Host environment
+
+Certain hosts may require specific configurations for runners to work smoothly. Anything specific to these host environments can be found below.
+
+### NixOS
+
+The gitea-actions-runner recipe was release in NixOS 23.05. It can be configured via `services.gitea-actions-runner`.
+
+Please note that the `services.gitea-actions-runner.instances.<name>.labels` key may be set to `[]` (an empty list) to use the packaged Forgejo instance list. One of `virtualisation.docker.enable` or `virtualisation.podman.enable` will need to be set. The default Forgejo image list is populated with docker images.
+
+#### IPv6 on docker
+
+IPv6 support is not enabled by default in docker. The following snippet enables this.
+
+```nix
+virtualisation.docker = {
+  daemon.settings = {
+    fixed-cidr-v6 = "fd00::/80";
+    ipv6 = true;
+  };
+};
+```
