@@ -15,7 +15,7 @@ their needs.
   - [Developer Certificate of Origin (DCO)](DCO)
   - [Development workflow](WORKFLOW)
   - [code.forgejo.org](code-forgejo-org)
-  - [Forgejo runner implementation notes](forgejo-runner)
+  - [Forgejo runner implementation notes](https://code.forgejo.org/forgejo/runner/#hacking)
 - For maintainers
   - [Hardware infrastructure](infrastructure)
   - [Release management](RELEASE)
