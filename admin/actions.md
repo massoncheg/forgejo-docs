@@ -76,7 +76,8 @@ $ ./lxc-helpers/lxc-helpers.sh lxc_container_run bash
 The `Forgejo runner` needs to connect to a `Forgejo` instance and must register itself before doing so. It will be given permission to read the repositories and send back information to `Forgejo` such as the logs or its status. A special kind of token is needed and can be obtained from the `Create new runner` button:
 
 - in `/admin/runners` to gain access to all repositories.
-- in `/org/{organization}/settings/actions/runners` to gain access to all repositories within the organization.
+- in `/org/{org}/settings/actions/runners` to gain access to all repositories within the organization.
+- in `/user/settings/actions/runners` to gain access to all repositories of the logged in user
 - in `/{owner}/{repository}/settings/actions/runners` to gain access to a single repository.
 
 For instance, using a token obtained for a test repository from `next.forgejo.org`:

@@ -29,9 +29,10 @@ The following guide explains key **concepts** to help understand how `workflows`
 
 # Secrets
 
-A repository or an organization can hold secrets, a set of key/value pairs that are stored encrypted in the `Forgejo` database and revealed to the `workflows` as `${{ secrets.KEY }}`. They can be defined from the web interface:
+A repository, a user or an organization can hold secrets, a set of key/value pairs that are stored encrypted in the `Forgejo` database and revealed to the `workflows` as `${{ secrets.KEY }}`. They can be defined from the web interface:
 
 - in `/org/{org}/settings/actions/secrets` to be available in all the repositories that belong to the organization
+- in `/user/settings/actions/secrets` to be available in all the repositories that belong to the logged in user
 - in `/{owner}/{repo}/settings/actions/secrets` to be available to the `workflows` of a single repository
 
 ![add a secret](../../../../images/v1.20/user/actions/secret-add.png)
