@@ -13,6 +13,21 @@ ENABLED = true
 
 `Forgejo` itself does not run the jobs, it relies on the [Forgejo runner](https://code.forgejo.org/forgejo/runner) to do so.
 
+# Default Actions URL
+
+When `uses:` does not specify an absolution URL for the `Action`, the value of `DEFAULT_ACTIONS_URL` is prepended to it.
+
+```yaml
+[actions]
+ENABLED = true
+DEFAULT_ACTIONS_URL = https://code.forgejo.org
+```
+
+The [actions organization](https://code.forgejo.org/actions) contains a set of actions that are:
+
+- known to work with Forgejo Actions
+- published under a Free Software license
+
 # Forgejo runner
 
 ## Installation

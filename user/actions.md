@@ -40,30 +40,13 @@ Once the secret is added, its value cannot be changed or displayed.
 
 ![secrets list](../../../../images/v1.20/user/actions/secret-list.png)
 
-# Concepts
+# Workflow reference guide
 
-## Forgejo runner
+The syntax and semantic of the YAML file describing a `workflow` are partially explained here. When an entry is missing the [GitHub Actions](https://docs.github.com/en/actions) documentation can help because there are similarities. But there also are significant differences that deserve testing.
 
-`Forgejo` itself does not run the `jobs`, it relies on the [Forgejo runner](https://code.forgejo.org/forgejo/runner) to do so. See the [Forgejo Actions administrator guide](../../admin/actions) for more information.
+## jobs
 
-## Services
-
-PostgreSQL, redis and other services can conveniently be run from container images with something similar to (see the [full example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/test.yml)):
-
-```yaml
-services:
-  pgsql:
-    image: postgres:15
-    env:
-      POSTGRES_DB: test
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - '5432:5432'
-```
-
-A container with the specified `image:` is run before the `job` starts and is terminated when it completes. The job can address the service using its name, in this case `pgsql`.
-
-## The machine running the workflow
+### runs-on
 
 Each `job` in a `workflow` must specify the kind of machine it needs to run its `steps` with `runs-on`. For instance `docker` in the following `workflow`:
 
@@ -82,7 +65,7 @@ The list of available `labels` for a given repository can be seen in the `/{owne
 
 ![actions results](../../../../images/v1.20/user/actions/list-of-runners.png)
 
-### Container
+#### Container
 
 By default the `docker` label will create a container from a [Node.js 16 Debian GNU/Linux bullseye image](https://hub.docker.com/_/node/tags?name=16-bullseye) and will run each `step` as root. Since an application container is used, the jobs will inherit the limitations imposed by the engine (Docker for instance). In particular they will not be able to run or install software that depends on `systemd`.
 
@@ -94,11 +77,70 @@ container:
   image: alpine:3.18
 ```
 
-### LXC
+#### LXC
 
 The `runs-on: self-hosted` label will run the jobs in a [LXC](https://linuxcontainers.org/lxc/) container where software that rely on `systemd` can be installed. Nested containers can also be created recursively (see [the setup-forgejo integration tests](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/.forgejo/workflows/integration.yml) for an example).
 
 `Services` are not supported for jobs that run on LXC.
+
+### steps
+
+#### uses
+
+Specifies the repository from which the `Action` will be cloned.
+
+A relative `Action` such as `uses: actions/checkout@v3` will clone the repository at the URL composed by prepending the default actions URL which is https://code.forgejo.org/actions. It is the equivalent of providing the fully qualified URL `uses: https://code.forgejo.org/actions/checkout@v3`. In other words the following:
+
+```yaml
+on: [push]
+jobs:
+  test:
+    runs-on: docker
+    steps:
+      - uses: actions/checkout@v3
+```
+
+is the same as:
+
+```yaml
+on: [push]
+jobs:
+  test:
+    runs-on: docker
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v3
+```
+
+# Concepts
+
+## Forgejo runner
+
+`Forgejo` itself does not run the `jobs`, it relies on the [Forgejo runner](https://code.forgejo.org/forgejo/runner) to do so. See the [Forgejo Actions administrator guide](../../admin/actions) for more information.
+
+## Actions
+
+An `Action` is a repository that contains the equivalent of a function in any programming language, with inputs and outputs as desccribed in the `action.yml` file at the root of the repository (see [this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/action.yml)).
+
+One of the most commonly used action is [checkout](https://code.forgejo.org/actions/checkout#usage) which clones the repository that triggered a `workflow`. Another one is [setup-go](https://code.forgejo.org/actions/setup-go#usage) that will install Go.
+
+Just as any other program of function, an `Action` has pre-requisites to successfully be installed and run. When looking at re-using an existing `Action`, this is an important consideration. For instance [setup-go](https://code.forgejo.org/actions/setup-go) depends on NodeJS during installation.
+
+## Services
+
+PostgreSQL, redis and other services can conveniently be run from container images with something similar to (see the [full example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/test.yml)):
+
+```yaml
+services:
+  pgsql:
+    image: postgres:15
+    env:
+      POSTGRES_DB: test
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+```
+
+A container with the specified `image:` is run before the `job` starts and is terminated when it completes. The job can address the service using its name, in this case `pgsql`.
 
 # Examples
 
