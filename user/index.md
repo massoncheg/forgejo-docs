@@ -21,6 +21,7 @@ involved in running it on their machines.
   - [Citable Code](https://docs.codeberg.org/collaborating/citable-code/)
   - [Labels](labels)
   - [Automatically Linked References](linked-references)
+  - [Blocking users](blocking-user)
 - Working with Git Repositories
   - [Clone & Commit via Web](https://docs.codeberg.org/git/clone-commit-via-web/)
   - [Tags and Releases](https://docs.codeberg.org/git/using-tags/)
