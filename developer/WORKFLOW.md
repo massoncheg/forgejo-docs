@@ -91,6 +91,11 @@ The purpose of each _Feature branch_ is documented below:
   Customize Forgejo to have more privacy.
   - Backports: [v1.19/forgejo-privacy](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-privacy)
 
+### Moderation
+
+- [forgejo-moderation](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-moderation) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
+  Add moderation tooling for users and admins.
+
 ### Branding
 
 - [forgejo-branding](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-branding) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
