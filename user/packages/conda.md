@@ -1,8 +1,8 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: 'Conda Packages Repository'
+title: 'Conda Package Registry'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/packages/conda.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/packages/conda.en-us.md'
 ---
 
 Publish [Conda](https://docs.conda.io/en/latest/) packages for your user or organization.

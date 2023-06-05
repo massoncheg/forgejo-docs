@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Command Line'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/administration/command-line.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/administration/command-line.en-us.md'
 ---
 
 ## Usage
@@ -208,7 +208,7 @@ Admin operations:
         - `--synchronize-users`: Enable user synchronization.
         - `--page-size value`: Search page size.
       - Examples:
-        - `forgejo admin auth add-ldap --name ldap --security-protocol unencrypted --host mydomain.org --port 389 --user-search-base "ou=Users,dc=mydomain,dc=org" --user-filter "(&(objectClass=posixAccount)(uid=%s))" --email-attribute mail`
+        - `forgejo admin auth add-ldap --name ldap --security-protocol unencrypted --host mydomain.org --port 389 --user-search-base "ou=Users,dc=mydomain,dc=org" --user-filter "(&(objectClass=posixAccount)(|(uid=%[1]s)(mail=%[1]s)))" --email-attribute mail`
     - `update-ldap`: Update existing LDAP (via Bind DN) authentication source
       - Options:
         - `--id value`: ID of authentication source. Required.

@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Incoming Email'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/incoming-email.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/incoming-email.en-us.md'
 ---
 
 Forgejo supports the execution of several actions through incoming mails. This page describes how to set this up.

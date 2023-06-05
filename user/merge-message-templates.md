@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Merge Message templates'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/merge-message-templates.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/merge-message-templates.en-us.md'
 ---
 
 ## File names
@@ -32,3 +32,10 @@ You can use the following variables enclosed in `${}` inside these templates whi
 - PullRequestIndex: Pull request's index number
 - PullRequestReference: Pull request's reference char with index number. i.e. #1, !2
 - ClosingIssues: return a string contains all issues which will be closed by this pull request i.e. `close #1, close #2`
+
+## Rebase
+
+When rebasing without a merge commit, `REBASE_TEMPLATE.md` modifies the message of the last commit. The following additional variables are available in this template:
+
+- CommitTitle: Commit's title
+- CommitBody: Commits's body text

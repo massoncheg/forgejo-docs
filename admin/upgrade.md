@@ -41,7 +41,7 @@ Note: Forgejo requires [docker >= 20.10.6](https://wiki.alpinelinux.org/wiki/Rel
 
 ### Performing the upgrade
 
-- If the upgrade is from a Gitea version [lower than 1.6](https://github.com/go-gitea/gitea/blob/e82db15cfa0d1cd85ee493128960a481eb44271c/models/migrations/migrations.go#L63) and greater or equal to 1.2.0, proceed as follows:
+- If the upgrade is from a Gitea version [lower than 1.6](https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/models/migrations/migrations.go#L63) and greater or equal to 1.2.0, proceed as follows:
   - Upgrade to 1.2.3 and manually verify it runs
   - Upgrade to 1.4.3 and manually verify it runs
   - Upgrade to 1.5.3 and manually verify it runs

@@ -1,8 +1,8 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: 'Pub Packages Repository'
+title: 'Pub Package Registry'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/packages/pub.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/packages/pub.en-us.md'
 ---
 
 Publish [Pub](https://dart.dev/guides/packages) packages for your user or organization.

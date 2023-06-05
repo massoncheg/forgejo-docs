@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Automatically Linked References in Issues, Pull Requests and Commit Messages'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/linked-references.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/linked-references.en-us.md'
 ---
 
 When an issue, pull request or comment is posted, the text description is parsed
@@ -162,28 +162,28 @@ In the examples, `User1/Repo1` refers to the repository where the reference is u
 
 | Reference in User1/Repo1    | Repo1 issues are external | RepoZ issues are external | Should render                                           |
 | --------------------------- | :-----------------------: | :-----------------------: | ------------------------------------------------------- |
-| `#1234`                     |            no             |            N/A            | A link to issue/pull 1234 in `User1/Repo1`              |
-| `!1234`                     |            no             |            N/A            | A link to issue/pull 1234 in `User1/Repo1`              |
-| `#1234`                     |            yes            |            N/A            | A link to _external issue_ 1234 for `User1/Repo1`       |
-| `!1234`                     |            yes            |            N/A            | A link to _PR_ 1234 for `User1/Repo1`                   |
-| `User1/Repo1#1234`          |            no             |            N/A            | A link to issue/pull 1234 in `User1/Repo1`              |
-| `User1/Repo1!1234`          |            no             |            N/A            | A link to issue/pull 1234 in `User1/Repo1`              |
-| `User1/Repo1#1234`          |            yes            |            N/A            | A link to _external issue_ 1234 for `User1/Repo1`       |
-| `User1/Repo1!1234`          |            yes            |            N/A            | A link to _PR_ 1234 for `User1/Repo1`                   |
-| `UserZ/RepoZ#1234`          |            N/A            |            no             | A link to issue/pull 1234 in `UserZ/RepoZ`              |
-| `UserZ/RepoZ!1234`          |            N/A            |            no             | A link to issue/pull 1234 in `UserZ/RepoZ`              |
-| `UserZ/RepoZ#1234`          |            N/A            |            yes            | A link to _external issue_ 1234 for `UserZ/RepoZ`       |
-| `UserZ/RepoZ!1234`          |            N/A            |            yes            | A link to _PR_ 1234 for `UserZ/RepoZ`                   |
+| `#1234`                     |            no             |             -             | A link to issue/pull 1234 in `User1/Repo1`              |
+| `!1234`                     |            no             |             -             | A link to issue/pull 1234 in `User1/Repo1`              |
+| `#1234`                     |            yes            |             -             | A link to _external issue_ 1234 for `User1/Repo1`       |
+| `!1234`                     |            yes            |             -             | A link to _PR_ 1234 for `User1/Repo1`                   |
+| `User1/Repo1#1234`          |            no             |             -             | A link to issue/pull 1234 in `User1/Repo1`              |
+| `User1/Repo1!1234`          |            no             |             -             | A link to issue/pull 1234 in `User1/Repo1`              |
+| `User1/Repo1#1234`          |            yes            |             -             | A link to _external issue_ 1234 for `User1/Repo1`       |
+| `User1/Repo1!1234`          |            yes            |             -             | A link to _PR_ 1234 for `User1/Repo1`                   |
+| `UserZ/RepoZ#1234`          |             -             |            no             | A link to issue/pull 1234 in `UserZ/RepoZ`              |
+| `UserZ/RepoZ!1234`          |             -             |            no             | A link to issue/pull 1234 in `UserZ/RepoZ`              |
+| `UserZ/RepoZ#1234`          |             -             |            yes            | A link to _external issue_ 1234 for `UserZ/RepoZ`       |
+| `UserZ/RepoZ!1234`          |             -             |            yes            | A link to _PR_ 1234 for `UserZ/RepoZ`                   |
 | **Alphanumeric issue IDs:** |             -             |             -             | -                                                       |
-| `AAA-1234`                  |            yes            |            N/A            | A link to _external issue_ `AAA-1234` for `User1/Repo1` |
-| `!1234`                     |            yes            |            N/A            | A link to _PR_ 1234 for `User1/Repo1`                   |
-| `User1/Repo1!1234`          |            yes            |            N/A            | A link to _PR_ 1234 for `User1/Repo1`                   |
-| _Not supported_             |            N/A            |            yes            | A link to _external issue_ `AAA-1234` for `UserZ/RepoZ` |
-| `UserZ/RepoZ!1234`          |            N/A            |            yes            | A link to _PR_ 1234 in `UserZ/RepoZ`                    |
+| `AAA-1234`                  |            yes            |             -             | A link to _external issue_ `AAA-1234` for `User1/Repo1` |
+| `!1234`                     |            yes            |             -             | A link to _PR_ 1234 for `User1/Repo1`                   |
+| `User1/Repo1!1234`          |            yes            |             -             | A link to _PR_ 1234 for `User1/Repo1`                   |
+| _Not supported_             |             -             |            yes            | A link to _external issue_ `AAA-1234` for `UserZ/RepoZ` |
+| `UserZ/RepoZ!1234`          |             -             |            yes            | A link to _PR_ 1234 in `UserZ/RepoZ`                    |
 
 _The last section is for repositories with external issue trackers that use alphanumeric format._
 
-_**N/A**: not applicable._
+_**-**: not applicable._
 
 Note: automatic references between repositories with different types of issues (external vs. internal) are not fully supported
 and may render invalid links.

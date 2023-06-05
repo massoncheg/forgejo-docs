@@ -1,8 +1,8 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: 'Cargo Packages Repository'
+title: 'Cargo Package Registry'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/packages/cargo.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/packages/cargo.en-us.md'
 ---
 
 Publish [Cargo](https://doc.rust-lang.org/stable/cargo/) packages for your user or organization.
@@ -11,7 +11,7 @@ Publish [Cargo](https://doc.rust-lang.org/stable/cargo/) packages for your user 
 
 To work with the Cargo package registry, you need [Rust and Cargo](https://www.rust-lang.org/tools/install).
 
-Cargo stores informations about the available packages in a package index stored in a git repository.
+Cargo stores information about the available packages in a package index stored in a git repository.
 This repository is needed to work with the registry.
 The following section describes how to create it.
 

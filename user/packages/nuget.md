@@ -1,8 +1,8 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: 'NuGet Packages Repository'
+title: 'NuGet Package Registry'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/packages/nuget.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/packages/nuget.en-us.md'
 ---
 
 Publish [NuGet](https://www.nuget.org/) packages for your user or organization. The package registry supports the V2 and V3 API protocol and you can work with [NuGet Symbol Packages](https://docs.microsoft.com/en-us/nuget/create-packages/symbol-packages-snupkg) too.

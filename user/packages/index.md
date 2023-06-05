@@ -9,19 +9,24 @@ The following package managers are currently supported:
 
 | Name                   | Language   | Package client             |
 | ---------------------- | ---------- | -------------------------- |
+| [Alpine](alpine)       | -          | `apk`                      |
 | [Cargo](cargo)         | Rust       | `cargo`                    |
 | [Chef](chef)           | -          | `knife`                    |
 | [Composer](composer)   | PHP        | `composer`                 |
 | [Conan](conan)         | C++        | `conan`                    |
 | [Conda](conda)         | -          | `conda`                    |
 | [Container](container) | -          | any OCI compliant client   |
+| [CRAN](cran)           | R          |                            |
+| [Debian](debian)       | -          | `apt`                      |
 | [Generic](generic)     | -          | any HTTP client            |
+| [Go](go)               | Go         | `go`                       |
 | [Helm](helm)           | -          | any HTTP client, `cm-push` |
 | [Maven](maven)         | Java       | `mvn`, `gradle`            |
 | [npm](npm)             | JavaScript | `npm`, `yarn`, `pnpm`      |
 | [NuGet](nuget)         | .NET       | `nuget`                    |
 | [Pub](pub)             | Dart       | `dart`, `flutter`          |
 | [PyPI](pypi)           | Python     | `pip`, `twine`             |
+| [RPM](rpm)             | -          | `yum`, `dnf`               |
 | [RubyGems](rubygems)   | Ruby       | `gem`, `Bundler`           |
 | [Swift](swift)         | Swift      | `swift`                    |
 | [Vagrant](vagrant)     | -          | `vagrant`                  |

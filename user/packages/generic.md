@@ -1,8 +1,8 @@
 ---
 layout: '~/layouts/Markdown.astro'
-title: 'Generic Packages Repository'
+title: 'Generic Package Registry'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/ad03c6e0a36033c6f59262d8cfd6416ae3cc93d6/docs/content/doc/usage/packages/generic.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/packages/generic.en-us.md'
 ---
 
 Publish generic files, like release binaries or other output, for your user or organization.
@@ -37,7 +37,7 @@ curl --user your_username:your_password_or_token \
 
 If you are using 2FA or OAuth use a [personal access token]({{< relref "doc/developers/api-usage.en-us.md#authentication" >}}) instead of the password.
 
-The server reponds with the following HTTP Status codes.
+The server responds with the following HTTP Status codes.
 
 | HTTP Status Code  | Meaning                                                       |
 | ----------------- | ------------------------------------------------------------- |
@@ -69,7 +69,7 @@ curl --user your_username:your_token_or_password \
      https://forgejo.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
-The server reponds with the following HTTP Status codes.
+The server responds with the following HTTP Status codes.
 
 | HTTP Status Code | Meaning                            |
 | ---------------- | ---------------------------------- |
@@ -97,7 +97,7 @@ curl --user your_username:your_token_or_password -X DELETE \
      https://forgejo.example.com/api/packages/testuser/generic/test_package/1.0.0
 ```
 
-The server reponds with the following HTTP Status codes.
+The server responds with the following HTTP Status codes.
 
 | HTTP Status Code | Meaning                    |
 | ---------------- | -------------------------- |
@@ -126,7 +126,7 @@ curl --user your_username:your_token_or_password -X DELETE \
      https://forgejo.example.com/api/packages/testuser/generic/test_package/1.0.0/file.bin
 ```
 
-The server reponds with the following HTTP Status codes.
+The server responds with the following HTTP Status codes.
 
 | HTTP Status Code | Meaning                            |
 | ---------------- | ---------------------------------- |
