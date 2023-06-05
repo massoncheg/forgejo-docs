@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Repository Permissions'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/95574213ea1b57f207f60a12557ffbfc349ee274/content/collaborating/repo-permissions.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/2887826c38b3aae76a18f0696b40217b429226ce/content/collaborating/repo-permissions.md'
 ---
 
 <!-- See also  https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/permissions.en-us.md -->

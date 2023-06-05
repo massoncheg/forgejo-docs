@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Email Settings'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/95574213ea1b57f207f60a12557ffbfc349ee274/content/getting-started/email-settings.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/2887826c38b3aae76a18f0696b40217b429226ce/content/getting-started/email-settings.md'
 ---
 
 By default, Forgejo will send notifications to your registered email addresses.
@@ -37,3 +37,5 @@ You can check and modify your issue subscription status under the “Notificatio
 When you watch a repository (by clicking on the “Watch” button in a repository), you will receive emails for every change (creation of issues, pull requests, comments, etc.) done in this repository.
 
 To stop watching a repository, simply click on “Unwatch” in a repository.
+
+To list all of your watched repositories, click on `/notifications/watching`. Alternatively you can click the menu button “Profile and Settings...” in the top-right corner of Forgejo and click on "Subscriptions" in the dropdown.
