@@ -765,7 +765,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 
 - `GRAVATAR_SOURCE`: **gravatar**: Can be `gravatar`, `duoshuo` or anything like
   `http://cn.gravatar.com/avatar/`.
-- `DISABLE_GRAVATAR`: **false**: Enable this to use local avatars only. **DEPRECATED [v1.18+]** moved to database. Use admin panel to configure.
+- `DISABLE_GRAVATAR`: **true**: Enable this to use local avatars only. **DEPRECATED [v1.18+]** moved to database. Use admin panel to configure.
 - `ENABLE_FEDERATED_AVATAR`: **false**: Enable support for federated avatars (see
   [http://www.libravatar.org](http://www.libravatar.org)). **DEPRECATED [v1.18+]** moved to database. Use admin panel to configure.
 
