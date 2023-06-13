@@ -49,6 +49,24 @@ The syntax and semantic of the YAML file describing a `workflow` are partially e
 
 Workflows can trigger on certain events. Not everything from https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows is implemented yet. Please refer to the [forgejo/actions package source code](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/actions/workflows.go) and the [list of webhook event names](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/webhook/type.go) to find out about supported triggers.
 
+You can use implemented events to trigger workflows:
+
+```yaml
+on:
+  <event-name>:
+    <event-parameter>:
+    ...
+```
+
+e.g. to run a workflow when branch `main` is pushed
+
+```yaml
+on:
+  push:
+    branches:
+      - main
+```
+
 ## jobs
 
 ### runs-on
