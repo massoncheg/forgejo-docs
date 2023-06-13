@@ -45,6 +45,10 @@ Once the secret is added, its value cannot be changed or displayed.
 
 The syntax and semantic of the YAML file describing a `workflow` are partially explained here. When an entry is missing the [GitHub Actions](https://docs.github.com/en/actions) documentation can help because there are similarities. But there also are significant differences that deserve testing.
 
+## on
+
+Workflows can trigger on certain events. Not everything from https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows is implemented yet. Please refer to the [forgejo/actions package source code](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/actions/workflows.go) and the [list of webhook event names](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/webhook/type.go) to find out about supported triggers.
+
 ## jobs
 
 ### runs-on
