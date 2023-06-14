@@ -8,22 +8,26 @@ license: 'CC-BY-SA-4.0'
 
 The Forgejo release numbers are composed of the Gitea release number followed by a dash and a serial number. For instance:
 
-- Gitea **v1.18.0** will be Forgejo **v1.18.0-0**, **v1.18.0-1**, etc
+- Gitea **v1.20.0** will be Forgejo **v1.20.0-0**, **v1.20.0-1**, etc
 
 The Gitea release candidates are suffixed with **-rcN** which is handled as a special case for packaging: although **X.Y.Z** is lexicographically lower than **X.Y.Z-rc1** is is considered greater. The Forgejo serial number must therefore be inserted before the **-rcN** suffix to preserve the expected version ordering.
 
-- Gitea **v1.18.0-rc0** will be Forgejo **v1.18.0-0-rc0**, **v1.18.0-1-rc0**
-- Gitea **v1.18.0-rc1** will be Forgejo **v1.18.0-2-rc1**, **v1.18.0-3-rc1**, **v1.18.0-4-rc1**
-- Gitea **v1.18.0** will be Forgejo **v1.18.0-5**, **v1.18.0-6**, **v1.18.0-7**
+- Gitea **v1.20.0-rc0** will be Forgejo **v1.20.0-0-rc0**, **v1.20.0-1-rc0**
+- Gitea **v1.20.0-rc1** will be Forgejo **v1.20.0-2-rc1**, **v1.20.0-3-rc1**, **v1.20.0-4-rc1**
+- Gitea **v1.20.0** will be Forgejo **v1.20.0-5**, **v1.20.0-6**, **v1.20.0-7**
 - etc.
 
-Because Forgejo is a soft fork of Gitea, it must retain the same release numbering scheme to be compatible with libraries and tools that depend on it. For instance, the tea CLI or the Gitea SDK will behave differently depending on the server version they connect to. If Forgejo had a different numbering scheme, it would no longer be compatible with the Gitea ecosystem.
+Because Forgejo depends on Gitea, it must retain the same release numbering scheme to be compatible with libraries and tools that depend on it. For instance, the tea CLI or the Gitea SDK will behave differently depending on the server version they connect to. If Forgejo had a different numbering scheme, it would no longer be compatible with the Gitea ecosystem.
 
-From a [Semantic Versioning](https://semver.org/) standpoint, all Forgejo releases are [pre-releases](https://semver.org/#spec-item-9) because they are suffixed with a dash. They are syntactically correct but do not comply with the Semantic Versioning recommendations. Gitea is not compliant either and as long as Forgejo is a soft fork, it inherits this problem.
+From a [Semantic Versioning](https://semver.org/) standpoint, all Forgejo releases are [pre-releases](https://semver.org/#spec-item-9) because they are suffixed with a dash. They are syntactically correct but do not comply with the Semantic Versioning recommendations. Gitea is not compliant either and Forgejo inherits this problem.
 
 ## Release process
 
-When publishing the vX.Y.Z-N release, the following steps must be followed:
+The TL;DR: to publish a vX.Y.Z-N release is to:
+
+- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo-integration/forgejo to trigger a workflow that will publish the release in https://codeberg.org/forgejo-experimental/forgejo
+- Give it some time for people to try it out
+- Push the vX.Y.Z-N tag to https://forgejo.octopuce.forgejo.org/forgejo-release/forgejo to trigger a workflow that will sign the release from https://codeberg.org/forgejo-experimental/forgejo and publish it in https://codeberg.org/forgejo-release/forgejo
 
 ### Semantic version
 
@@ -52,11 +56,13 @@ The vX.Y/forgejo branch is populated as part of the [rebase on top of Gitea](WOR
 
 When Forgejo is released, artefacts (packages, binaries, etc.) are first published by the CI/CD pipelines in the https://codeberg.org/forgejo-experimental organization, to be downloaded and verified to work.
 
-- Push the vX.Y/forgejo branch to https://codeberg.org/forgejo-experimental/forgejo
-- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo-experimental/forgejo
+- Locally set the vX.Y.Z-N tag to the tip of the https://codeberg.org/forgejo/forgejo/vX.Y/forgejo branch
+- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo-integration/forgejo
 
-Binaries are built and uploaded to https://codeberg.org/forgejo/forgejo-experimental/releases
-Container images are built and uploaded to https://codeberg.org/forgejo-experimental/-/packages/container/forgejo/versions
+Binaries are built and uploaded to https://codeberg.org/forgejo-integration/forgejo/releases
+Container images are built and uploaded to https://codeberg.org/forgejo-integration/-/packages/container/forgejo/versions
+
+If the release is successfully built, it will be copied to https://codeberg.org/forgejo/forgejo-experimental. Otherwise the logs of the workflow that tried to build the release in https://codeberg.org/forgejo-integration/forgejo/actions contains the error that needs fixing.
 
 Fork the Forgejo [infrastructure](https://code.forgejo.org/forgejo/infrastructure) repository, [modify it](https://code.forgejo.org/earl-warren/infrastructure/commit/269eae6c3a17005ad9d825d747745da041d69756) to use the experimental release and push the branch. It will trigger [a workflow](https://code.forgejo.org/earl-warren/infrastructure/src/branch/wip-forgejo/.forgejo/workflows/forgejo.yml) to deploy the release and run high level integration tests.
 
@@ -64,10 +70,13 @@ Reach out to packagers and users to manually verify the release works as expecte
 
 ### Forgejo release publication
 
-- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo/forgejo
+- Push the vX.Y.Z-N tag to https://forgejo.octopuce.forgejo.org/forgejo/forgejo
 
-- Binaries are downloaded from https://codeberg.org/forgejo-experimental, signed and copied to https://codeberg.org/forgejo
-- Container images are copied from https://codeberg.org/forgejo-experimental to https://codeberg.org/forgejo
+It will trigger a workflow to:
+
+- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo/forgejo
+- Downoad Binaries from https://codeberg.org/forgejo-experimental, sign them and copy them to https://codeberg.org/forgejo
+- Copy container images from https://codeberg.org/forgejo-experimental to https://codeberg.org/forgejo
 
 ### Forgejo runner publication
 
