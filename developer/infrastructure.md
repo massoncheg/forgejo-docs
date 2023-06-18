@@ -44,3 +44,45 @@ Login in the machine hosting the Forgejo instance for debugging purposes:
 ```shell
 enough --domain code.forgejo.org ssh bind-host
 ```
+
+## Installing Forgejo runners
+
+### Preparing the LXC hypervisor
+
+```shell
+git clone https://code.forgejo.org/forgejo/lxc-helpers/
+
+lxc-helpers.sh lxc_container_create forgejo-integration-runner
+lxc-helpers.sh lxc_container_start forgejo-integration-runner
+lxc-helpers.sh lxc_container_user_install forgejo-integration-runner $(id -u) $USER
+```
+
+### Creating an LXC container
+
+```shell
+lxc-helpers.sh lxc_container_run forgejo-integration-runner -- sudo --user debian bash
+sudo apt-get update
+sudo apt-get install wget docker.io emacs-nox
+sudo usermod -aG docker $USER
+lxc-helpers.sh lxc_prepare_environment
+wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.0.4/forgejo-runner-amd64
+chmod +x forgejo-runner
+```
+
+### Creating a runner
+
+```shell
+URL=codeberg.org/forgejo-integration
+PATH=$(pwd):$PATH
+mkdir -p $URL ; cd $URL
+forgejo-runner generate-config > config.yml
+## edit config.yml
+## obtain a token for $URL
+forgejo-runner register --no-interactive --token XXXXXXX --name runner --instance https://codeberg.org --labels docker:docker://node:16-bullseye,self-hosted
+forgejo-runner --config config.yml daemon | cat -v | tee runner.log
+```
+
+#### codeberg.org config.yml
+
+- `fetch_timeout: 30s` # because it can be slow at times
+- `fetch_interval: 60s` # because there is throttling and 429 replies will mess up the runner
