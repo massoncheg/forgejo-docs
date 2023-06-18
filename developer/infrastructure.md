@@ -52,37 +52,39 @@ enough --domain code.forgejo.org ssh bind-host
 ```shell
 git clone https://code.forgejo.org/forgejo/lxc-helpers/
 
-lxc-helpers.sh lxc_container_create forgejo-integration-runner
-lxc-helpers.sh lxc_container_start forgejo-integration-runner
-lxc-helpers.sh lxc_container_user_install forgejo-integration-runner $(id -u) $USER
+lxc-helpers.sh lxc_container_create forgejo-runners
+lxc-helpers.sh lxc_container_start forgejo-runners
+lxc-helpers.sh lxc_container_user_install forgejo-runners $(id -u) $USER
 ```
 
 ### Creating an LXC container
 
 ```shell
-lxc-helpers.sh lxc_container_run forgejo-integration-runner -- sudo --user debian bash
+lxc-helpers.sh lxc_container_run forgejo-runners -- sudo --user debian bash
 sudo apt-get update
 sudo apt-get install wget docker.io emacs-nox
 sudo usermod -aG docker $USER
 lxc-helpers.sh lxc_prepare_environment
 wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.0.4/forgejo-runner-amd64
 chmod +x forgejo-runner
+echo 'export PATH=$HOME:$PATH' >> .bashrc
+echo 'export TERM=vt100' >> .bashrc
 ```
 
 ### Creating a runner
 
 ```shell
 URL=codeberg.org/forgejo-integration
-PATH=$(pwd):$PATH
 mkdir -p $URL ; cd $URL
 forgejo-runner generate-config > config.yml
 ## edit config.yml
 ## obtain a token for $URL
 forgejo-runner register --no-interactive --token XXXXXXX --name runner --instance https://codeberg.org --labels docker:docker://node:16-bullseye,self-hosted
-forgejo-runner --config config.yml daemon | cat -v | tee runner.log
+forgejo-runner --config config.yml daemon |& cat -v > runner.log &
 ```
 
 #### codeberg.org config.yml
 
 - `fetch_timeout: 30s` # because it can be slow at times
 - `fetch_interval: 60s` # because there is throttling and 429 replies will mess up the runner
+- cache `enabled: false` # because codeberg.org is still v1.19
