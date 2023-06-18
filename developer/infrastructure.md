@@ -73,13 +73,26 @@ echo 'export TERM=vt100' >> .bashrc
 
 ### Creating a runner
 
+Multiple runners can co-exist on the same machine. To keep things
+organized they are located in a directtory that is the same as the url
+from which the token is obtained. For instance
+DIR=codeberg.org/forgejo-integration means that the token was obtained from the
+https://codeberg.org/forgejo-integration organization.
+
+If a runner only provides unprivileged docker containers, the labels
+should be
+`LABELS=docker:docker://node:16-bullseye,ubuntu-latest:docker://node:16-bullseye`.
+
+If a runner provides LXC containers and unprivileged docker
+containers, the labels should be
+`LABELS=docker:docker://node:16-bullseye,self-hosted`.
+
 ```shell
-URL=codeberg.org/forgejo-integration
-mkdir -p $URL ; cd $URL
+mkdir -p $DIR ; cd $DIR
 forgejo-runner generate-config > config.yml
 ## edit config.yml
-## obtain a token for $URL
-forgejo-runner register --no-interactive --token XXXXXXX --name runner --instance https://codeberg.org --labels docker:docker://node:16-bullseye,self-hosted
+## Obtain a $TOKEN from https://$DIR
+forgejo-runner register --no-interactive --token $TOKEN --name runner --instance https://codeberg.org --labels $LABELS
 forgejo-runner --config config.yml daemon |& cat -v > runner.log &
 ```
 
