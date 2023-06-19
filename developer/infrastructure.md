@@ -52,6 +52,8 @@ enough --domain code.forgejo.org ssh bind-host
 ```shell
 git clone https://code.forgejo.org/forgejo/lxc-helpers/
 
+lxc-helpers.sh lxc_prepare_environment
+sudo lxc-helpers.sh lxc_install_lxc_inside 10.120.13
 lxc-helpers.sh lxc_container_create forgejo-runners
 lxc-helpers.sh lxc_container_start forgejo-runners
 lxc-helpers.sh lxc_container_user_install forgejo-runners $(id -u) $USER
@@ -62,12 +64,11 @@ lxc-helpers.sh lxc_container_user_install forgejo-runners $(id -u) $USER
 ```shell
 lxc-helpers.sh lxc_container_run forgejo-runners -- sudo --user debian bash
 sudo apt-get update
-sudo apt-get install wget docker.io emacs-nox
-sudo usermod -aG docker $USER
+sudo apt-get install -y wget docker.io emacs-nox
+sudo usermod -aG docker $USER # exit & enter again for the group to be active
 lxc-helpers.sh lxc_prepare_environment
-wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.0.4/forgejo-runner-amd64
-chmod +x forgejo-runner
-echo 'export PATH=$HOME:$PATH' >> .bashrc
+sudo wget -O /usr/local/bin/forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.0.4/forgejo-runner-amd64
+sudo chmod +x /usr/local/bin/forgejo-runner
 echo 'export TERM=vt100' >> .bashrc
 ```
 
