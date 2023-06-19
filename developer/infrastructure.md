@@ -54,14 +54,14 @@ git clone https://code.forgejo.org/forgejo/lxc-helpers/
 
 lxc-helpers.sh lxc_prepare_environment
 sudo lxc-helpers.sh lxc_install_lxc_inside 10.120.13
-lxc-helpers.sh lxc_container_create forgejo-runners
-lxc-helpers.sh lxc_container_start forgejo-runners
-lxc-helpers.sh lxc_container_user_install forgejo-runners $(id -u) $USER
 ```
 
 ### Creating an LXC container
 
 ```shell
+lxc-helpers.sh lxc_container_create forgejo-runners
+lxc-helpers.sh lxc_container_start forgejo-runners
+lxc-helpers.sh lxc_container_user_install forgejo-runners $(id -u) $USER
 lxc-helpers.sh lxc_container_run forgejo-runners -- sudo --user debian bash
 sudo apt-get update
 sudo apt-get install -y wget docker.io emacs-nox
