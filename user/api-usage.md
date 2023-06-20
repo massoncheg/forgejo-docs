@@ -41,8 +41,7 @@ $ curl --url https://yourusername:password@forgejo.your.host/api/v1/users/<usern
 ```
 
 To use the API with basic authentication with two factor authentication
-enabled, you'll need to send an additional header that contains the one
-time password (6 digitrotating token).
+enabled, you'll need to send an additional header that contains the one-time password (6-digit rotating token).
 An example of the header is `X-Forgejo-OTP: 123456` where `123456`
 is where you'd place the code from your authenticator.
 Here is how the request would look like in curl:
