@@ -3,9 +3,9 @@ layout: '~/layouts/Markdown.astro'
 title: 'Forgejo v1.20 documentation'
 ---
 
-- [What is Forgejo?](https://forgejo.org/)
+- [What is Forgejo?](/)
 - [Installation](admin/installation)
-- [FAQ](https://forgejo.org/faq/)
+- [FAQ](/faq)
 - [Administrator guide](admin)
 - [User guide](user)
 - [Developer guide](developer)

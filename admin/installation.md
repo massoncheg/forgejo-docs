@@ -154,7 +154,7 @@ services:
 > **NOTE:** this guide assumes that you'll host on the server with the domain git.example.com.
 
 First, download the Forgejo binary for your CPU architecture and maybe verify the GPG signature,
-as described on [the Forgejo download page](https://forgejo.org/download/).
+as described on [the Forgejo download page](/download).
 
 Next, copy the downloaded Forgejo binary to `/usr/local/bin/` (renaming it to just "forgejo")
 and make it executable:
@@ -335,7 +335,7 @@ The following changes are recommended if dealing with many large files:
   PROTOCOL = sendmail
   FROM = "Forgejo Git" <noreply@yourdomain.com>
   ```
-- By default Forgejo will listen to the port 3000 but that can be [changed to 80 with HTTP_PORT](../config-cheat-sheet) like this:
+- By default Forgejo will listen to the port 3000 but that can be [changed to 80 with HTTP_PORT](config-cheat-sheet) like this:
   ```ini
   [server]
   HTTP_PORT = 80
@@ -351,7 +351,7 @@ You can test sending a mail by clicking the user button on the upper right of th
 ## General hints for using Forgejo
 
 Sometimes you may want/need to use the Forgejo
-[command line interface](https://forgejo.org/docs/latest/admin/command-line/).
+[command line interface](command-line).
 Keep in mind that:
 
 - You need to **run it as `git` user**, for example with `$ sudo -u git forgejo command --argument`
