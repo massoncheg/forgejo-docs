@@ -16,3 +16,4 @@ These documents are targeted to people who run Forgejo on their machines.
 - [Incoming Email](incoming-email)
 - [Logging Configuration](logging-documentation)
 - [Actions](actions)
+- [Search Engines and robots.txt](search-engines-indexation)
