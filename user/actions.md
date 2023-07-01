@@ -2,6 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Forgejo Actions user guide'
 license: 'CC-BY-SA-4.0'
+similar: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/usage/actions/faq.en-us.md https://docs.github.com/en/actions'
 ---
 
 `Forgejo Actions` provides continuous integration driven from the files in the `.forgejo/workflows` directory of a repository. The syntax and semantic of the `workflow` files will be familiar to people used to [GitHub Actions](https://docs.github.com/en/actions) but **they are not and will never be identical**.
@@ -47,9 +48,7 @@ The syntax and semantic of the YAML file describing a `workflow` are partially e
 
 ## on
 
-Workflows can trigger on certain events. Not everything from https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows is implemented yet. Please refer to the [forgejo/actions package source code](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/actions/workflows.go) and the [list of webhook event names](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/webhook/type.go) to find out about supported triggers.
-
-You can use implemented events to trigger workflows:
+Workflows will be triggered `on` certain events with the following:
 
 ```yaml
 on:
@@ -66,6 +65,23 @@ on:
     branches:
       - main
 ```
+
+| trigger event               | activity types                                                                                                           |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| create                      | not applicable                                                                                                           |
+| delete                      | not applicable                                                                                                           |
+| fork                        | not applicable                                                                                                           |
+| gollum                      | not applicable                                                                                                           |
+| push                        | not applicable                                                                                                           |
+| issues                      | `opened`, `edited`, `closed`, `reopened`, `assigned`, `unassigned`, `milestoned`, `demilestoned`, `labeled`, `unlabeled` |
+| issue_comment               | `created`, `edited`, `deleted`                                                                                           |
+| pull_request                | `opened`, `edited`, `closed`, `reopened`, `assigned`, `unassigned`, `synchronize`, `labeled`, `unlabeled`                |
+| pull_request_review         | `submitted`, `edited`                                                                                                    |
+| pull_request_review_comment | `created`, `edited`                                                                                                      |
+| release                     | `published`, `edited`                                                                                                    |
+| registry_package            | `published`                                                                                                              |
+
+Not everything from https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows is implemented yet. Please refer to the [forgejo/actions package source code](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/actions/workflows.go) and the [list of webhook event names](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/webhook/type.go) to find out about supported triggers.
 
 ## jobs
 
