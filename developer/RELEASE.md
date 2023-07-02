@@ -80,12 +80,17 @@ It will trigger a workflow to:
 
 ### Forgejo runner publication
 
-- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo/runner
+- Push the vX.Y.Z-N tag to https://code.forgejo.org/forgejo/runner
 
-The release is built from https://codeberg.org/forgejo-integration/runner which is a mirror of https://codeberg.org/forgejo/runner.
+The release is built on https://code.forgejo.org/forgejo-integration/runner, which is a mirror of https://code.forgejo.org/forgejo/runner.
 
-- Binaries are downloaded from https://codeberg.org/forgejo-integration, signed and copied to https://codeberg.org/forgejo
-- Container images are copied from https://codeberg.org/forgejo-integration to https://codeberg.org/forgejo
+The release is published on
+https://forgejo.octopuce.forgejo.org/forgejo/runner, which is a mirror
+of https://code.forgejo.org/forgejo-integration/runner. It is behind a
+VPN and its role is to copy and sign release artifacts.
+
+- Binaries are downloaded from https://code.forgejo.org/forgejo-integration/runner, signed and copied to https://code.forgejo.org/forgejo/runner.
+- Container images are copied from https://code.forgejo.org/forgejo-integration to https://code.forgejo.org/forgejo
 
 ### Securing the release token and cryptographic keys
 
