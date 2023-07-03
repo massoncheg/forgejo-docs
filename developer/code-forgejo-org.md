@@ -4,14 +4,13 @@ title: code.forgejo.org
 license: 'CC-BY-SA-4.0'
 ---
 
-https://code.forgejo.org is a Forgejo instance running the latest stable
-version. It is dedicated to hosting the following repositories:
+https://code.forgejo.org is a Forgejo instance running the latest
+stable version, starting with the release candidates. It is dedicated
+to hosting repositories dedicated to Forgejo development, among which:
 
-- Default Forgejo Runner actions https://code.forgejo.org/actions
+- setup-forgejo a Forgejo Action to spawn a Forgejo instance and a runner for testing purposes https://code.forgejo.org/actions/setup-forgejo
 - Forgejo Runner https://code.forgejo.org/forgejo/runner
 - [ACT](https://github.com/nektos/act) soft fork https://code.forgejo.org/forgejo/act
-- [Infrastructure as code](https://enough-community.readthedocs.io) used to deploy code.forgejo.org https://code.forgejo.org/forgejo/infrastructure
-- [Infrastructure as code](https://enough-community.readthedocs.io) secrets in a private repository
 
 To make these repositories easier to find, the following push mirrors are in place:
 
