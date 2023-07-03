@@ -16,9 +16,13 @@ The VPN is deployed and upgraded using the following [Enough command line](https
 
 ```shell
 $ mkdir -p ~/.enough
-$ git clone https://forgejo.octopuce.forgejo.org/forgejo/enough ~/.enough/octopuce.forgejo.org
+$ git clone https://forgejo.octopuce.forgejo.org/forgejo/enough-octopuce ~/.enough/octopuce.forgejo.org
 $ enough --domain octopuce.forgejo.org service create openvpn
 ```
+
+## Hetzner
+
+https://hetzner01.forgejo.org runs on an [EX101](https://www.hetzner.com/dedicated-rootserver/ex101) Hetzner hardware.
 
 ## OVH
 
@@ -29,7 +33,7 @@ It is deployed and upgraded using the following [Enough command line](https://en
 
 ```shell
 $ mkdir -p ~/.enough
-$ git clone https://code.forgejo.org/forgejo/<secret repository> ~/.enough/code.forgejo.org
+$ git clone https://forgejo.octopuce.forgejo.org/forgejo/enough-code ~/.enough/code.forgejo.org
 $ enough --domain code.forgejo.org service create --host bind-host forgejo
 ```
 
