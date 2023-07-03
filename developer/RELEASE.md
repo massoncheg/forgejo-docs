@@ -92,6 +92,14 @@ VPN and its role is to copy and sign release artifacts.
 - Binaries are downloaded from https://code.forgejo.org/forgejo-integration/runner, signed and copied to https://code.forgejo.org/forgejo/runner.
 - Container images are copied from https://code.forgejo.org/forgejo-integration to https://code.forgejo.org/forgejo
 
+If the publishing the release needs debug, it can be done manually:
+
+- https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug has the same secrets as https://forgejo.octopuce.forgejo.org/forgejo-release/runner
+- Make the changes, tag with vX.Y.Z-N and force push the tag to https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug
+- Watch the action run at https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug/actions
+- To skip one of the publish phases (binaries or container images), delete it and commit in the repository before pushing the tag
+- Reflect the changes in a PR at https://code.forgejo.org/forgejo/runner to make sure they are not lost
+
 ### Securing the release token and cryptographic keys
 
 For both the Forgejo runner and Forgejo itself, copying and signing the release artifacts (container images and binaries) happen on a Forgejo isntance running [behind a VPN](infrastructure#octopuce) to safeguard the token that has write access to the Forgejo repository as well as the cryptographic key used to sign the releases.
