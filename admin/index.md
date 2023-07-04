@@ -17,3 +17,4 @@ These documents are targeted to people who run Forgejo on their machines.
 - [Logging Configuration](logging-documentation)
 - [Actions](actions)
 - [Search Engines and robots.txt](search-engines-indexation)
+- [Recommended Settings and Tips](recommendations)
