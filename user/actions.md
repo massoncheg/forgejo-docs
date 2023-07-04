@@ -5,13 +5,13 @@ license: 'CC-BY-SA-4.0'
 similar: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/usage/actions/faq.en-us.md https://docs.github.com/en/actions'
 ---
 
-`Forgejo Actions` provides continuous integration driven from the files in the `.forgejo/workflows` directory of a repository. The syntax and semantic of the `workflow` files will be familiar to people used to [GitHub Actions](https://docs.github.com/en/actions) but **they are not and will never be identical**.
+`Forgejo Actions` provides Continuous Integration driven from the files in the `.forgejo/workflows` directory of a repository, with a web interface to show the results. The syntax and semantic of the `workflow` files will be familiar to people used to [GitHub Actions](https://docs.github.com/en/actions) but **they are not and will never be identical**.
 
 The following guide explains key **concepts** to help understand how `workflows` are interpreted, with a set of **examples** that can be copy/pasted and modified to fit particular use cases.
 
 # Quick start
 
-- Verify that `Enable Repository Actions` is checked in the `Repository` tab of the `/{owner}/{repository}/settings` page.
+- Verify that `Enable Repository Actions` is checked in the `Repository` tab of the `/{owner}/{repository}/settings` page. If the checkbox does not show it means the administrator of the Forgejo instance did not activate the feature.
   ![enable actions](../../../../images/v1.20/user/actions/enable-repository.png)
 - Add the following to the `.forgejo/workflows/demo.yaml` file in the repository.
   ```yaml
@@ -27,6 +27,69 @@ The following guide explains key **concepts** to help understand how `workflows`
   ![actions results](../../../../images/v1.20/user/actions/actions-demo.png)
 - Click on the workflow link to see the details and the job execution logs.
   ![actions results](../../../../images/v1.20/user/actions/workflow-demo.png)
+
+# Concepts
+
+## Forgejo runner
+
+`Forgejo` itself does not run the `jobs`, it relies on the [Forgejo runner](https://code.forgejo.org/forgejo/runner) to do so. See the [Forgejo Actions administrator guide](../../admin/actions) for more information.
+
+## Actions
+
+An `Action` is a repository that contains the equivalent of a function in any programming language, with inputs and outputs as desccribed in the `action.yml` file at the root of the repository (see [this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/action.yml)).
+
+One of the most commonly used action is [checkout](https://code.forgejo.org/actions/checkout#usage) which clones the repository that triggered a `workflow`. Another one is [setup-go](https://code.forgejo.org/actions/setup-go#usage) that will install Go.
+
+Just as any other program of function, an `Action` has pre-requisites to successfully be installed and run. When looking at re-using an existing `Action`, this is an important consideration. For instance [setup-go](https://code.forgejo.org/actions/setup-go) depends on NodeJS during installation.
+
+## Services
+
+PostgreSQL, redis and other services can conveniently be run from container images with something similar to (see the [full example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/test.yml)):
+
+```yaml
+services:
+  pgsql:
+    image: postgres:15
+    env:
+      POSTGRES_DB: test
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+```
+
+A container with the specified `image:` is run before the `job` starts and is terminated when it completes. The job can address the service using its name, in this case `pgsql`.
+
+# The list of runners and their tasks
+
+A `Forgejo runner` listens on a `Forgejo` instance, waiting for jobs. To figure out if a runner is available for a given repository, go to `/{owner}/{repository}/settings/actions/runners`. If there are none, you can run one for yourself on your laptop.
+
+![list of runners](../../../../images/v1.20/user/actions/list-of-runners.png)
+
+Some runners are **Global** and are available for every repository, others are only available for the repositories within a given user or organization. And there can even be runners dedicated to a single repository. The `Forgejo` administrator is the only one able to launch a **Global** runner. But the user who owns an organization can launch a runner without requiring any special permission. All they need to do is to get a runner registration token and install the runner on their own laptop or on a server of their choosing (see the [Forgejo Actions administrator guide](../../admin/actions) for more information).
+
+Clicking on the pencil icon next to a runner shows the list of tasks it executed, with the status and a link to display the details of the execution.
+
+![show the runners tasks](../../../../images/v1.20/user/actions/runner-tasks.png)
+
+# The list of tasks in a repository
+
+From the `Actions` tab in a repository, the list of ongoing and past tasks triggered by this repository is displayed with their status.
+
+![the list of actions in a repository](../../../../images/v1.20/user/actions/actions-list.png)
+
+Following the link on a task displays the logs and the `Re-run all jobs` button. It is also possible to re-run a specific job by hovering on it and clicking on the arrows.
+
+![the details of an action](../../../../images/v1.20/user/actions/actions-detail.png)
+
+# Tasks run from pull requests
+
+The first time a user proposes a pull request, the task is blocked to reduce the security risks.
+
+![blocked action](../../../../images/v1.20/user/actions/action-blocked.png)
+
+It can be **Approve**d by a maintainer of the project and there will be no need to unblocker future pull requests.
+
+![button to approve an action](../../../../images/v1.20/user/actions/action-approve.png)
 
 # Secrets
 
@@ -128,7 +191,7 @@ The `runs-on: self-hosted` label will run the jobs in a [LXC](https://linuxconta
 
 Specifies the repository from which the `Action` will be cloned.
 
-A relative `Action` such as `uses: actions/checkout@v3` will clone the repository at the URL composed by prepending the default actions URL which is https://code.forgejo.org/actions. It is the equivalent of providing the fully qualified URL `uses: https://code.forgejo.org/actions/checkout@v3`. In other words the following:
+A relative `Action` such as `uses: actions/checkout@v3` will clone the repository at the URL composed by prepending the default actions URL which is https://code.forgejo.org/. It is the equivalent of providing the fully qualified URL `uses: https://code.forgejo.org/actions/checkout@v3`. In other words the following:
 
 ```yaml
 on: [push]
@@ -150,36 +213,12 @@ jobs:
       - uses: https://code.forgejo.org/actions/checkout@v3
 ```
 
-# Concepts
-
-## Forgejo runner
-
-`Forgejo` itself does not run the `jobs`, it relies on the [Forgejo runner](https://code.forgejo.org/forgejo/runner) to do so. See the [Forgejo Actions administrator guide](../../admin/actions) for more information.
-
-## Actions
-
-An `Action` is a repository that contains the equivalent of a function in any programming language, with inputs and outputs as desccribed in the `action.yml` file at the root of the repository (see [this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/action.yml)).
-
-One of the most commonly used action is [checkout](https://code.forgejo.org/actions/checkout#usage) which clones the repository that triggered a `workflow`. Another one is [setup-go](https://code.forgejo.org/actions/setup-go#usage) that will install Go.
-
-Just as any other program of function, an `Action` has pre-requisites to successfully be installed and run. When looking at re-using an existing `Action`, this is an important consideration. For instance [setup-go](https://code.forgejo.org/actions/setup-go) depends on NodeJS during installation.
-
-## Services
-
-PostgreSQL, redis and other services can conveniently be run from container images with something similar to (see the [full example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/test.yml)):
-
-```yaml
-services:
-  pgsql:
-    image: postgres:15
-    env:
-      POSTGRES_DB: test
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - '5432:5432'
-```
-
-A container with the specified `image:` is run before the `job` starts and is terminated when it completes. The job can address the service using its name, in this case `pgsql`.
+When possible **it is strongly recommended to choose fully qualified
+URLs** to avoid ambiguities. During installation, the `Forgejo'
+instance may use another default URL and a workflow could fail because
+it gets an outdated version from https://tooold.org/actions/checkout
+instead. Or even a repository that does not contain the intended
+action.
 
 # Examples
 
@@ -191,7 +230,7 @@ Each example is part of the [setup-forgejo](https://code.forgejo.org/actions/set
 
 # Glossary
 
-- **workflow:** a file in the `.forgejo/workflows` directory that contains **jobs**.
+- **workflow or task:** a file in the `.forgejo/workflows` directory that contains **jobs**.
 - **job:** a sequential set of **steps**.
 - **step:** a command the **runner** is required to carry out.
 - **action:** a repository that can be used in a way similar to a function in any programming language to run a single **step**.
