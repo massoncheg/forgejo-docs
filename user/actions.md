@@ -42,6 +42,17 @@ One of the most commonly used action is [checkout](https://code.forgejo.org/acti
 
 Just as any other program of function, an `Action` has pre-requisites to successfully be installed and run. When looking at re-using an existing `Action`, this is an important consideration. For instance [setup-go](https://code.forgejo.org/actions/setup-go) depends on NodeJS during installation.
 
+## Caching commonly used files
+
+When a `job` starts, it can communicate with the `Forgejo runner` to
+fetch commonly used files that were saved by previous runs. For
+instance the https://code.forgejo.org/actions/setup-go action will do
+that by default to save downloading and compiling packages found in
+`go.mod`.
+
+It is also possible to explicitly control what is cached and when
+using the https://code.forgejo.org/actions/cache action.
+
 ## Services
 
 PostgreSQL, redis and other services can conveniently be run from container images with something similar to (see the [full example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/test.yml)):

@@ -209,6 +209,22 @@ host:
   workdir_parent:
 ```
 
+## Cache configuration
+
+Some actions such as https://code.forgejo.org/actions/cache or
+https://code.forgejo.org/actions/setup-go can communicate with the
+`Forgejo runner` to save and restore commonly used files such as
+compilation dependencies. They are stored as compressed tar archives,
+fetched when a job starts and saved when it completes.
+
+If the machine has a fast disk, uploading the cache when the job
+starts may significantly reduce the bandwidth required to download
+and rebuild dependencies.
+
+If the machine on which the `Forgejo runner` is running has a slow
+disk and plenty of CPU and bandwidth, it may be better to not activate
+the cache as it can slow down the execution time.
+
 ## Running the daemon
 
 Once the `Forgejo runner` is successfully registered, it can be run from the directory in which the `.runner` file is found with:
