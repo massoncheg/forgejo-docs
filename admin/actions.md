@@ -4,7 +4,7 @@ title: 'Forgejo Actions administrator guide'
 license: 'CC-BY-SA-4.0'
 ---
 
-`Forgejo Actions` provides continuous integration driven from the files in the `.forgejo/workflows` directory of a repository. It is still experimental and disabled by default. It can be activated by adding the following to `app.ini`:
+`Forgejo Actions` provides continuous integration driven from the files in the `.forgejo/workflows` directory of a repository. It is still in beta and disabled by default. It can be activated by adding the following to `app.ini`:
 
 ```yaml
 [actions]
@@ -15,7 +15,8 @@ ENABLED = true
 
 # Default Actions URL
 
-When `uses:` does not specify an absolution URL for the `Action`, the value of `DEFAULT_ACTIONS_URL` is prepended to it.
+When `uses:` does not specify an absolution URL for the `Action`, the
+value of `DEFAULT_ACTIONS_URL` is prepended to it.
 
 ```yaml
 [actions]
@@ -23,10 +24,21 @@ ENABLED = true
 DEFAULT_ACTIONS_URL = https://code.forgejo.org
 ```
 
-The [actions organization](https://code.forgejo.org/actions) contains a set of actions that are:
+The actions found at https://code.forgejo.org are:
 
 - known to work with Forgejo Actions
 - published under a Free Software license
+
+They can be found in the following organizations:
+
+- [General purpose actions](https://code.forgejo.org/actions)
+- [Docker actions](https://code.forgejo.org/docker)
+
+When setting `DEFAULT_ACTIONS_URL` to a Forgejo instance with an open
+registration, **care must be taken to avoid name conflicts**. For
+instance if an action has `uses: foo/bar@main` it will clone and try
+to run the action found at `DEFAULT_ACTIONS_URL/foo/bar` if it exists,
+even if it provides something different than what is expected.
 
 # Forgejo runner
 
@@ -35,9 +47,9 @@ The [actions organization](https://code.forgejo.org/actions) contains a set of a
 Download the latest [binary release](https://code.forgejo.org/forgejo/runner/releases) and verify their signature:
 
 ```shell
-$ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.0.3/forgejo-runner-amd64
+$ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.1.0/forgejo-runner-amd64
 $ chmod +x forgejo-runner
-$ wget -O forgejo-runner.asc https://code.forgejo.org/forgejo/runner/releases/download/v2.0.3/forgejo-runner-amd64.asc
+$ wget -O forgejo-runner.asc https://code.forgejo.org/forgejo/runner/releases/download/v2.1.0/forgejo-runner-amd64.asc
 $ gpg --keyserver keys.openpgp.org --recv EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
 $ gpg --verify forgejo-runner.asc forgejo-runner
 Good signature from "Forgejo <contact@forgejo.org>"
@@ -54,8 +66,10 @@ For jobs to run in LXC containers, the `Forgejo runner` needs passwordless sudo 
 
 ```shell
 $ git clone https://code.forgejo.org/forgejo/lxc-helpers
-$ ./lxc-helpers/lxc-helpers.sh lxc_container_create myrunner
-$ ./lxc-helpers/lxc-helpers.sh lxc_container_start myrunner
+$ sudo cp -a lxc-helpers/lxc-helpers{,-lib}.sh /usr/local/bin
+$ lxc-helpers.sh lxc_container_create myrunner
+$ lxc-helpers.sh lxc_container_start myrunner
+$ lxc-helpers.sh lxc_container_user_install forgejo-runners 1000 debian
 ```
 
 > **NOTE:** Multiarch [Go](https://go.dev/) builds and [binfmt](https://github.com/tonistiigi/binfmt) need `bookworm` to produce and test binaries on a single machine for people who do not have access to dedicated hardware. If this is not needed, installing the `Forgejo runner` on `bullseye` will also work.
@@ -63,13 +77,13 @@ $ ./lxc-helpers/lxc-helpers.sh lxc_container_start myrunner
 The `Forgejo runner` can then be installed and run within the `myrunner` container.
 
 ```shell
-$ ./lxc-helpers/lxc-helpers.sh lxc_container_run bash
-# apt-get install docker.io wget gnupg2
-# wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.0.3/forgejo-runner-amd64
+$ lxc-helpers.sh lxc_container_run forgejo-runners -- sudo --user debian bash
+$ sudo apt-get install docker.io wget gnupg2
+$ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.1.0/forgejo-runner-amd64
 ...
 ```
 
-**Warning:** LXC containers do not provide a level of security that makes them safe for potentially malicious users to run jobs. They provide an excellent isolation for jobs that may accidentally damage the system they run on.
+> **Warning:** LXC containers do not provide a level of security that makes them safe for potentially malicious users to run jobs. They provide an excellent isolation for jobs that may accidentally damage the system they run on.
 
 ## Registration
 
@@ -80,13 +94,13 @@ The `Forgejo runner` needs to connect to a `Forgejo` instance and must register 
 - in `/user/settings/actions/runners` to gain access to all repositories of the logged in user
 - in `/{owner}/{repository}/settings/actions/runners` to gain access to a single repository.
 
+![add a runner](../../../../images/v1.20/user/actions/runners-add.png)
+
 For instance, using a token obtained for a test repository from `next.forgejo.org`:
 
 ```shell
 forgejo-runner register --no-interactive --token {TOKEN} --name runner --instance https://next.forgejo.org --labels docker:docker://node:16-bullseye,self-hosted
-INFO Registering runner, arch=amd64, os=linux, version=2.0.3.
-WARN Runner in user-mode.
-DEBU Successfully pinged the Forgejo instance server
+INFO Registering runner, arch=amd64, os=linux, version=2.1.0.
 INFO Runner registered successfully.
 ```
 
@@ -104,7 +118,114 @@ It will create a `.runner` file that looks like:
 }
 ```
 
-## Running
+## Configuration
+
+The default configuration for the runner can be
+displayed with `forgejo-runner generate-config`, stored in a
+`config.yml` file, modified and used instead of the default with the
+`--config` flag.
+
+```yaml
+$ forgejo-runner generate-config > config.yml
+# Example configuration file, it's safe to copy this as the default config file without any modification.
+
+log:
+  # The level of logging, can be trace, debug, info, warn, error, fatal
+  level: info
+
+runner:
+  # Where to store the registration result.
+  file: .runner
+  # Execute how many tasks concurrently at the same time.
+  capacity: 1
+  # Extra environment variables to run jobs.
+  envs:
+    A_TEST_ENV_NAME_1: a_test_env_value_1
+    A_TEST_ENV_NAME_2: a_test_env_value_2
+  # Extra environment variables to run jobs from a file.
+  # It will be ignored if it's empty or the file doesn't exist.
+  env_file: .env
+  # The timeout for a job to be finished.
+  # Please note that the Forgejo instance also has a timeout (3h by default) for the job.
+  # So the job could be stopped by the Forgejo instance if it's timeout is shorter than this.
+  timeout: 3h
+  # Whether skip verifying the TLS certificate of the Forgejo instance.
+  insecure: false
+  # The timeout for fetching the job from the Forgejo instance.
+  fetch_timeout: 5s
+  # The interval for fetching the job from the Forgejo instance.
+  fetch_interval: 2s
+  # The labels of a runner are used to determine which jobs the runner can run, and how to run them.
+  # Like: ["macos-arm64:host", "ubuntu-latest:docker://node:16-bullseye", "ubuntu-22.04:docker://node:16-bullseye"]
+  # If it's empty when registering, it will ask for inputting labels.
+  # If it's empty when execute `deamon`, will use labels in `.runner` file.
+  labels: []
+
+cache:
+  # Enable cache server to use actions/cache.
+  enabled: true
+  # The directory to store the cache data.
+  # If it's empty, the cache data will be stored in $HOME/.cache/actcache.
+  dir: ""
+  # The host of the cache server.
+  # It's not for the address to listen, but the address to connect from job containers.
+  # So 0.0.0.0 is a bad choice, leave it empty to detect automatically.
+  host: ""
+  # The port of the cache server.
+  # 0 means to use a random available port.
+  port: 0
+
+container:
+  # Specifies the network to which the container will connect.
+  # Could be host, bridge or the name of a custom network.
+  # If it's empty, create a network automatically.
+  network: ""
+  # Whether to use privileged mode or not when launching task containers (privileged mode is required for Docker-in-Docker).
+  privileged: false
+  # And other options to be used when the container is started (eg, --add-host=my.forgejo.url:host-gateway).
+  options:
+  # The parent directory of a job's working directory.
+  # If it's empty, /workspace will be used.
+  workdir_parent:
+  # Volumes (including bind mounts) can be mounted to containers. Glob syntax is supported, see https://github.com/gobwas/glob
+  # You can specify multiple volumes. If the sequence is empty, no volumes can be mounted.
+  # For example, if you only allow containers to mount the `data` volume and all the json files in `/src`, you should change the config to:
+  # valid_volumes:
+  #   - data
+  #   - /src/*.json
+  # If you want to allow any volume, please use the following configuration:
+  # valid_volumes:
+  #   - '**'
+  valid_volumes: []
+  # overrides the docker client host with the specified one.
+  # If it's empty, act_runner will find an available docker host automatically.
+  # If it's "-", act_runner will find an available docker host automatically, but the docker host won't be mounted to the job containers and service containers.
+  # If it's not empty or "-", the specified docker host will be used. An error will be returned if it doesn't work.
+  docker_host: ""
+
+host:
+  # The parent directory of a job's working directory.
+  # If it's empty, $HOME/.cache/act/ will be used.
+  workdir_parent:
+```
+
+## Cache configuration
+
+Some actions such as https://code.forgejo.org/actions/cache or
+https://code.forgejo.org/actions/setup-go can communicate with the
+`Forgejo runner` to save and restore commonly used files such as
+compilation dependencies. They are stored as compressed tar archives,
+fetched when a job starts and saved when it completes.
+
+If the machine has a fast disk, uploading the cache when the job
+starts may significantly reduce the bandwidth required to download
+and rebuild dependencies.
+
+If the machine on which the `Forgejo runner` is running has a slow
+disk and plenty of CPU and bandwidth, it may be better to not activate
+the cache as it can slow down the execution time.
+
+## Running the daemon
 
 Once the `Forgejo runner` is successfully registered, it can be run from the directory in which the `.runner` file is found with:
 
@@ -112,6 +233,14 @@ Once the `Forgejo runner` is successfully registered, it can be run from the dir
 $ forgejo-runner daemon
 INFO[0000] Starting runner daemon
 ```
+
+To verify it is actually available for the targeted repository, go to `/{owner}/{repository}/settings/actions/runners`. It will show the runners:
+
+- dedicated to the repository with the **repo** type
+- available to all repositories within an organization or a user
+- available to all repositories, with the **Global** type
+
+![list the runners](../../../../images/v1.20/user/actions/list-of-runners.png)
 
 Adding the `.forgejo/workflows/demo.yaml` file to the test repository:
 
@@ -139,19 +268,19 @@ It will also show a similar output in the `Actions` tab of the repository.
 
 If no `Forgejo runner` is available, `Forgejo` will wait for one to connect and submit the job as soon as it is available.
 
-## Job environment
+## Labels and `runs-on`
 
-The jobs defined in the files found in `.forgejo/workflows` specify the environment they need to run with `runs-on`. Each `Forgejo runner` declares, with the `--labels` option, which one they support so `Forgejo` knows to submit jobs accordingly. For instance if a job has:
+The workflows / tasks defined in the files found in `.forgejo/workflows` must specify the environment they need to run with `runs-on`. Each `Forgejo runner` declares with **labels** which one they support so `Forgejo` knows sends them tasks accordingly. For instance if a job within a workflow has:
 
 ```yaml
 runs-on: docker
 ```
 
-the job will be submitted to a runner that registered with `--labels docker:docker://node:16-bullseye`.
+it will be submitted to a runner that registered with a `docker` label (for instance with `--labels docker:docker://node:16-bullseye`).
 
 ### Docker
 
-If `runs-on` is matched to a label that contains `docker://`, the rest of it is interpreted as a container image. The runner will execute all the steps, as root, within a container created from that image by default.
+If `runs-on` is matched to a label that contains `docker://`, the rest of it is interpreted as the default container image to use if no other is specified. The runner will execute all the steps, as root, within a container created from that image.
 
 ### LXC
 
@@ -163,7 +292,7 @@ Certain hosts may require specific configurations for runners to work smoothly. 
 
 ### NixOS
 
-The gitea-actions-runner recipe was released in NixOS 23.05. It can be configured via `services.gitea-actions-runner`.
+The `gitea-actions-runner` recipe was released in NixOS 23.05. It can be configured via `services.gitea-actions-runner`.
 
 Please note that the `services.gitea-actions-runner.instances.<name>.labels` key may be set to `[]` (an empty list) to use the packaged Forgejo instance list. One of `virtualisation.docker.enable` or `virtualisation.podman.enable` will need to be set. The default Forgejo image list is populated with docker images.
 
