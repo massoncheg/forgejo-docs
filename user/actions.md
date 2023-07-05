@@ -231,6 +231,41 @@ it gets an outdated version from https://tooold.org/actions/checkout
 instead. Or even a repository that does not contain the intended
 action.
 
+# Debugging workflows with forgejo-runner exec
+
+To get a quicker debug loop when working on a workflow, it may be more
+convenient to run them on your laptop using `forgejo-runner exec`. For
+instance:
+
+```sh
+$ git clone --depth 1 http://code.forgejo.org/forgejo/runner
+$ cd runner
+$ forgejo-runner exec --workflows .forgejo/workflows/test.yml --job lint
+INFO[0000] Using default workflow event: push
+INFO[0000] Planning job: lint
+INFO[0000] cache handler listens on: http://192.168.1.20:44261
+INFO[0000] Start server on http://192.168.1.20:34567
+[checks/check and test] 🚀  Start image=node:16-bullseye
+[checks/check and test]   🐳  docker pull image=node:16-bullseye platform= username= forcePull=false
+[checks/check and test]   🐳  docker create image=node:16-bullseye platform= entrypoint=["/bin/sleep" "10800"] cmd=[]
+[checks/check and test]   🐳  docker run image=node:16-bullseye platform= entrypoint=["/bin/sleep" "10800"] cmd=[]
+[checks/check and test]   ☁  git clone 'https://code.forgejo.org/actions/setup-go' # ref=v3
+[checks/check and test] ⭐ Run Main actions/setup-go@v3
+[checks/check and test]   🐳  docker cp src=/home/loic/.cache/act/actions-setup-go@v3/ dst=/var/run/act/actions/actions-setup-go@v3/
+...
+|
+| ==> Ok
+|
+[checks/check and test]   ✅  Success - Main test
+[checks/check and test] ⭐ Run Post actions/setup-go@v3
+[checks/check and test]   🐳  docker exec cmd=[node /var/run/act/actions/actions-setup-go@v3/dist/cache-save/index.js] user= workdir=
+[checks/check and test]   ✅  Success - Post actions/setup-go@v3
+[checks/check and test] Cleaning up services for job check and test
+[checks/check and test] Cleaning up container for job check and test
+[checks/check and test] Cleaning up network for job check and test, and network name is: FORGEJO-ACTIONS-TASK-push_WORKFLOW-checks_JOB-check-and-test-network
+[checks/check and test] 🏁  Job succeeded
+```
+
 # Examples
 
 Each example is part of the [setup-forgejo](https://code.forgejo.org/actions/setup-forgejo/) action [test suite](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata).
