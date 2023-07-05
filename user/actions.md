@@ -360,9 +360,10 @@ test "KEY2=$KEY2" = "KEY2=value2"
 
 # Glossary
 
-- **workflow or task:** a file in the `.forgejo/workflows` directory that contains **jobs**.
-- **job:** a sequential set of **steps**.
-- **step:** a command the **runner** is required to carry out.
 - **action:** a repository that can be used in a way similar to a function in any programming language to run a single **step**.
-- **runner:** the [Forgejo runner](https://code.forgejo.org/forgejo/runner) daemon tasked to execute the **workflows**.
+- **expression:** a string enclosed in `${{ ... }}` and evaluated at runtime
+- **job:** a sequential set of **steps**.
 - **label** the kind of machine that is matched against the value of `runs-on` in a **workflow**.
+- **runner:** the [Forgejo runner](https://code.forgejo.org/forgejo/runner) daemon tasked to execute the **workflows**.
+- **step:** a command the **runner** is required to carry out.
+- **workflow or task:** a file in the `.forgejo/workflows` directory that contains **jobs**.
