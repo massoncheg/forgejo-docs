@@ -42,6 +42,47 @@ One of the most commonly used action is [checkout](https://code.forgejo.org/acti
 
 Just as any other program of function, an `Action` has pre-requisites to successfully be installed and run. When looking at re-using an existing `Action`, this is an important consideration. For instance [setup-go](https://code.forgejo.org/actions/setup-go) depends on NodeJS during installation.
 
+## Expressions
+
+In a `workflow` file strings that look like `${{ ... }}` are evaluated by the `Forgejo runner` and are called expressions. As a shortcut, `if: ${{ ... }}` is equivalent to `if: ...`, i.e the `${{ }}` surrounding the expression is implicit and can be stripped. [Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-expression/.forgejo/workflows/test.yml) that illustrates expressions.
+
+### Literals
+
+- boolean: true or false
+- null: null
+- number: any number format supported by JSON
+- string: enclosed in single quotes. Two single quotes
+
+### Logical operators
+
+| Operator | Description           |
+| -------- | --------------------- |
+| `( )`    | Logical grouping      |
+| `[ ]`    | Index                 |
+| `.`      | Property de-reference |
+| `!`      | Not                   |
+| `<`      | Less than             |
+| `<=`     | Less than or equal    |
+| `>`      | Greater than          |
+| `>=`     | Greater than or equal |
+| `==`     | Equal                 |
+| `!=`     | Not equal             |
+| `&&`     | And                   |
+| `\|\|`   | Or                    |
+
+> **NOTE:** String comparisons are case insensitive.
+
+### Functions
+
+- `contains( search, item )`. Returns `true` if `search` contains `item`. If `search` is an array, this function returns `true` if the `item` is an element in the array. If `search` is a string, this function returns `true` if the `item` is a substring of `search`. This function is not case sensitive. Casts values to a string.
+- `startsWith( searchString, searchValue )`. Returns `true` when `searchString` starts with `searchValue`. This function is not case sensitive. Casts values to a string.
+- `endsWith( searchString, searchValue )`. Returns `true` if `searchString` ends with `searchValue`. This function is not case sensitive. Casts values to a string.
+- `format( string, replaceValue0, replaceValue1, ..., replaceValueN)`. Replaces values in the `string`, with the variable `replaceValueN`. Variables in the `string` are specified using the `{N}` syntax, where `N` is an integer. You must specify at least one `replaceValue` and `string`. Escape curly braces using double braces.
+- `join( array, optionalSeparator )`. The value for `array` can be an array or a string. All values in `array` are concatenated into a string. If you provide `optionalSeparator`, it is inserted between the concatenated values. Otherwise, the default separator `,` is used. Casts values to a string.
+- `toJSON(value)`. Returns a pretty-print JSON representation of `value`.
+- `fromJSON(value)`. Returns a JSON object or JSON data type for `value`. You can use this function to provide a JSON object as an evaluated expression or to convert environment variables from a string.
+- `hashFiles(path)`. Returns a single hash for the set of files that matches the `path` pattern. You can provide a single `path` pattern or multiple `path` patterns separated by commas. The `path` is relative to the `GITHUB_WORKSPACE` directory and can only include files inside of the `GITHUB_WORKSPACE`. This function calculates an individual SHA-256 hash for each matched file, and then uses those hashes to calculate a final SHA-256 hash for the set of files. If the `path` pattern does not match any files, this returns an empty string. For more information about SHA-256, see "[SHA-2](https://en.wikipedia.org/wiki/SHA-2).". You shell globs to match file names.
+
 ## Caching commonly used files
 
 When a `job` starts, it can communicate with the `Forgejo runner` to
