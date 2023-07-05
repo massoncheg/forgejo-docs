@@ -268,8 +268,36 @@ INFO[0000] Start server on http://192.168.1.20:34567
 
 # Examples
 
-Each example is part of the [setup-forgejo](https://code.forgejo.org/actions/setup-forgejo/) action [test suite](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata).
+Each example is part of the [setup-forgejo](https://code.forgejo.org/actions/setup-forgejo/) action [test suite](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata). They can be run locally with something similar to:
 
+```sh
+$ git clone --depth 1 http://code.forgejo.org/actions/setup-forgejo
+$ cd setup-forgejo
+$ forgejo-runner exec --workflows testdata/example-expression/.forgejo/workflows/test.yml
+INFO[0000] Using the only detected workflow event: push
+INFO[0000] Planning jobs for event: push
+INFO[0000] cache handler listens on: http://192.168.1.20:43773
+INFO[0000] Start server on http://192.168.1.20:34567
+[test.yml/test] 🚀  Start image=node:16-bullseye
+[test.yml/test]   🐳  docker pull image=node:16-bullseye platform= username= forcePull=false
+[test.yml/test]   🐳  docker create image=node:16-bullseye platform= entrypoint=["/bin/sleep" "10800"] cmd=[]
+[test.yml/test]   🐳  docker run image=node:16-bullseye platform= entrypoint=["/bin/sleep" "10800"] cmd=[]
+[test.yml/test] ⭐ Run Main set -x
+test "KEY1=value1" = "KEY1=value1"
+test "KEY2=$KEY2" = "KEY2=value2"
+[test.yml/test]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/0] user= workdir=
+| + test KEY1=value1 = KEY1=value1
+| + test KEY2=value2 = KEY2=value2
+[test.yml/test]   ✅  Success - Main set -x
+test "KEY1=value1" = "KEY1=value1"
+test "KEY2=$KEY2" = "KEY2=value2"
+[test.yml/test] Cleaning up services for job test
+[test.yml/test] Cleaning up container for job test
+[test.yml/test] Cleaning up network for job test, and network name is: FORGEJO-ACTIONS-TASK-push_WORKFLOW-test-yml_JOB-test-network
+[test.yml/test] 🏁  Job succeeded
+```
+
+- [Expression](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-expression/.forgejo/workflows/test.yml) - a collection of various forms of expression
 - [Echo](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-echo/.forgejo/workflows/test.yml) - a single step that prints one sentence.
 - [PostgreSQL service](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/test.yml) - a PostgreSQL service and a connection to display the (empty) list of tables of the default database.
 - [Choosing the image with `container`](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.18` image using `container:`.
