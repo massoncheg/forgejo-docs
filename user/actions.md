@@ -256,7 +256,9 @@ The `runs-on: self-hosted` label will run the jobs in a [LXC](https://linuxconta
 
 #### uses
 
-Specifies the repository from which the `Action` will be cloned.
+Specifies the repository from which the `Action` will be cloned or a directory where it can be found.
+
+#### Remote actions
 
 A relative `Action` such as `uses: actions/checkout@v3` will clone the repository at the URL composed by prepending the default actions URL which is https://code.forgejo.org/. It is the equivalent of providing the fully qualified URL `uses: https://code.forgejo.org/actions/checkout@v3`. In other words the following:
 
@@ -286,6 +288,17 @@ instance may use another default URL and a workflow could fail because
 it gets an outdated version from https://tooold.org/actions/checkout
 instead. Or even a repository that does not contain the intended
 action.
+
+#### Local actions
+
+An action that begins with a `./` will be loaded from a directory
+instead of being cloned from a repository. The structure of the
+directory is otherwise the same as if it was located in a remote
+repository.
+
+> **NOTE:** the most common mistake when using an action included in the repository under test is to forget to checkout the repository with `uses: actions/checkout@v3`.
+
+[Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-local-action/).
 
 # Debugging workflows with forgejo-runner exec
 
@@ -353,8 +366,9 @@ test "KEY2=$KEY2" = "KEY2=value2"
 [test.yml/test] 🏁  Job succeeded
 ```
 
-- [Expression](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-expression/.forgejo/workflows/test.yml) - a collection of various forms of expression
 - [Echo](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-echo/.forgejo/workflows/test.yml) - a single step that prints one sentence.
+- [Expression](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-expression/.forgejo/workflows/test.yml) - a collection of various forms of expression
+- [Local actions](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-local-action/.forgejo) - using an action found in a directory instead of a remote repository
 - [PostgreSQL service](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/test.yml) - a PostgreSQL service and a connection to display the (empty) list of tables of the default database.
 - [Choosing the image with `container`](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.18` image using `container:`.
 
