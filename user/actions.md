@@ -157,6 +157,21 @@ on:
 
 Not everything from https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows is implemented yet. Please refer to the [forgejo/actions package source code](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/actions/workflows.go) and the [list of webhook event names](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/webhook/type.go) to find out about supported triggers.
 
+## env
+
+Set environment variables that are available in the workflow in the `env` `context` and as regular environment variables.
+
+```yaml
+env:
+  KEY1: value1
+  KEY2: value2
+```
+
+- The expression `${{ env.KEY1 }}` will be evaluated to `value1`
+- The environment variable `KEY1` will be set to `value1`
+
+[Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-expression/.forgejo/workflows/test.yml).
+
 ## jobs
 
 ### runs-on
