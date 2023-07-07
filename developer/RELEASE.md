@@ -70,7 +70,7 @@ Reach out to packagers and users to manually verify the release works as expecte
 
 ### Forgejo release publication
 
-- Push the vX.Y.Z-N tag to https://forgejo.octopuce.forgejo.org/forgejo/forgejo
+- Push the vX.Y.Z-N tag to https://forgejo.octopuce.forgejo.org/forgejo-release/forgejo
 
 It will trigger a workflow to:
 
@@ -95,10 +95,13 @@ VPN and its role is to copy and sign release artifacts.
 If the publishing the release needs debug, it can be done manually:
 
 - https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug has the same secrets as https://forgejo.octopuce.forgejo.org/forgejo-release/runner
-- Make the changes, tag with vX.Y.Z-N and force push the tag to https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug
+- Make the changes, commit them, tag the commit with vX.Y.Z-N and force push the tag to https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug. Note that it does not matter that the tag is not on a commit that matches the release because this action only cares about the tag: it does not build any content itself, it copies it from one organization to another. However it matters that it matches a SHA that is found in the destination repository of the release otherwise it won't be able to set the tag (setting a tag on a non-existing sha does not work).
 - Watch the action run at https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug/actions
 - To skip one of the publish phases (binaries or container images), delete it and commit in the repository before pushing the tag
 - Reflect the changes in a PR at https://code.forgejo.org/forgejo/runner to make sure they are not lost
+
+It can also be done from the CLI with `forgejo-runner exec` and
+providing the secrets from the command line.
 
 ### Securing the release token and cryptographic keys
 
