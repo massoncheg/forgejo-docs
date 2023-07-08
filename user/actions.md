@@ -96,7 +96,7 @@ using the https://code.forgejo.org/actions/cache action.
 
 ## Services
 
-PostgreSQL, redis and other services can conveniently be run from container images with something similar to (see the [full example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/test.yml)):
+PostgreSQL, redis and other services can be run from container images with something similar to the following. See also the [set of examples](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/).
 
 ```yaml
 services:
@@ -110,6 +110,36 @@ services:
 ```
 
 A container with the specified `image:` is run before the `job` starts and is terminated when it completes. The job can address the service using its name, in this case `pgsql`.
+
+### image
+
+The location of the container image to run.
+
+### env
+
+Key/value pairs injected in the environment when running the container, equivalent to [--env](https://docs.docker.com/engine/reference/commandline/run/).
+
+### ports
+
+Port binding of the container, equivalent to [--publish](https://docs.docker.com/engine/reference/commandline/run/).
+
+### cmd
+
+A list of command and arguments, equivalent to [[COMMAND] [ARG...]](https://docs.docker.com/engine/reference/commandline/run/).
+
+### options
+
+A string of additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/). For instance: "--workdir /myworkdir --ulimit nofile=1024:1024".
+
+> **NOTE:** the `--volume` option is restricted to a whitelist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions) for more information.
+
+### username
+
+The username to authenticate with the registry where the image is located.
+
+### password
+
+The password to authenticate with the registry where the image is located.
 
 # The list of runners and their tasks
 
@@ -369,7 +399,8 @@ test "KEY2=$KEY2" = "KEY2=value2"
 - [Echo](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-echo/.forgejo/workflows/test.yml) - a single step that prints one sentence.
 - [Expression](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-expression/.forgejo/workflows/test.yml) - a collection of various forms of expression
 - [Local actions](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-local-action/.forgejo) - using an action found in a directory instead of a remote repository
-- [PostgreSQL service](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/test.yml) - a PostgreSQL service and a connection to display the (empty) list of tables of the default database.
+- [PostgreSQL service](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/postgres.yml) - a PostgreSQL service and a connection to display the (empty) list of tables of the default database.
+- [Using services](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/) - illustrates how to configure and use services
 - [Choosing the image with `container`](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.18` image using `container:`.
 
 # Glossary
