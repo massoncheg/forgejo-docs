@@ -36,7 +36,10 @@ The following guide explains key **concepts** to help understand how `workflows`
 
 ## Actions
 
-An `Action` is a repository that contains the equivalent of a function in any programming language, with inputs and outputs as desccribed in the `action.yml` file at the root of the repository (see [this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/action.yml)).
+An `Action` is a repository that contains the equivalent of a function in any programming language. It comes in two flavors, depending on the file found at the root of the repository:
+
+- **action.yml:** describes the inputs and outputs of the action and the implementation. See [this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/action.yml).
+- **Dockerfile:** if no `action.yml` file is found, it is used to create an image with `docker build` and run a container from it to carry out the action. See [this example](https://code.forgejo.org/forgejo/test-setup-forgejo-docker) and [the workflow that uses it](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-docker-action). Note that files written outside of the **workspace** will be lost when the **step** using such an action terminates.
 
 One of the most commonly used action is [checkout](https://code.forgejo.org/actions/checkout#usage) which clones the repository that triggered a `workflow`. Another one is [setup-go](https://code.forgejo.org/actions/setup-go#usage) that will install Go.
 
@@ -396,12 +399,13 @@ test "KEY2=$KEY2" = "KEY2=value2"
 [test.yml/test] 🏁  Job succeeded
 ```
 
-- [Echo](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-echo/.forgejo/workflows/test.yml) - a single step that prints one sentence.
+- [Echo](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-echo/.forgejo/workflows/test.yml) - a single step that prints one sentence
 - [Expression](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-expression/.forgejo/workflows/test.yml) - a collection of various forms of expression
 - [Local actions](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-local-action/.forgejo) - using an action found in a directory instead of a remote repository
-- [PostgreSQL service](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/postgres.yml) - a PostgreSQL service and a connection to display the (empty) list of tables of the default database.
+- [PostgreSQL service](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/postgres.yml) - a PostgreSQL service and a connection to display the (empty) list of tables of the default database
 - [Using services](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/) - illustrates how to configure and use services
-- [Choosing the image with `container`](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.18` image using `container:`.
+- [Choosing the image with `container`](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.18` image using `container:`
+- [Docker action](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-docker-action/.forgejo/workflows/test.yml) - using a action implemented as a `Dockerfile`
 
 # Glossary
 
@@ -412,3 +416,4 @@ test "KEY2=$KEY2" = "KEY2=value2"
 - **runner:** the [Forgejo runner](https://code.forgejo.org/forgejo/runner) daemon tasked to execute the **workflows**.
 - **step:** a command the **runner** is required to carry out.
 - **workflow or task:** a file in the `.forgejo/workflows` directory that contains **jobs**.
+- **workspace** is the directory where the files of the **job** are stored and shared between all **step**s
