@@ -166,13 +166,13 @@ Following the link on a task displays the logs and the `Re-run all jobs` button.
 
 ![the details of an action](../../../../images/v1.20/user/actions/actions-detail.png)
 
-# Tasks run from pull requests
+# Pull request actions are moderated
 
 The first time a user proposes a pull request, the task is blocked to reduce the security risks.
 
 ![blocked action](../../../../images/v1.20/user/actions/action-blocked.png)
 
-It can be **Approve**d by a maintainer of the project and there will be no need to unblocker future pull requests.
+It can be approved by a maintainer of the project and there will be no need to unblock future pull requests.
 
 ![button to approve an action](../../../../images/v1.20/user/actions/action-approve.png)
 
