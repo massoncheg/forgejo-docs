@@ -267,7 +267,7 @@ The list of available `labels` for a given repository can be seen in the `/{owne
 
 ![actions results](../../../../images/v1.20/user/actions/list-of-runners.png)
 
-#### Container
+#### container
 
 By default the `docker` label will create a container from a [Node.js 16 Debian GNU/Linux bullseye image](https://hub.docker.com/_/node/tags?name=16-bullseye) and will run each `step` as root. Since an application container is used, the jobs will inherit the limitations imposed by the engine (Docker for instance). In particular they will not be able to run or install software that depends on `systemd`.
 
@@ -278,6 +278,12 @@ runs-on: docker
 container:
   image: alpine:3.18
 ```
+
+#### options
+
+A string of additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/). For instance: "--workdir /myworkdir --ulimit nofile=1024:1024".
+
+> **NOTE:** the `--volume` option is restricted to a whitelist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions) for more information.
 
 #### LXC
 
