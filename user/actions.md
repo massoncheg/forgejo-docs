@@ -297,7 +297,7 @@ The `runs-on: self-hosted` label will run the jobs in a [LXC](https://linuxconta
 
 Specifies the repository from which the `Action` will be cloned or a directory where it can be found.
 
-#### Remote actions
+##### Remote actions
 
 A relative `Action` such as `uses: actions/checkout@v3` will clone the repository at the URL composed by prepending the default actions URL which is https://code.forgejo.org/. It is the equivalent of providing the fully qualified URL `uses: https://code.forgejo.org/actions/checkout@v3`. In other words the following:
 
@@ -328,7 +328,7 @@ it gets an outdated version from https://tooold.org/actions/checkout
 instead. Or even a repository that does not contain the intended
 action.
 
-#### Local actions
+##### Local actions
 
 An action that begins with a `./` will be loaded from a directory
 instead of being cloned from a repository. The structure of the
@@ -338,6 +338,29 @@ repository.
 > **NOTE:** the most common mistake when using an action included in the repository under test is to forget to checkout the repository with `uses: actions/checkout@v3`.
 
 [Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-local-action/).
+
+##### with
+
+A dictionary mapping the inputs of the action to concrete values. The `action.yml` defines and documents the inputs.
+
+```yaml
+on: [push]
+jobs:
+  ls:
+    runs-on: docker
+    steps:
+      - uses: actions/checkout@v3
+      - id: local-action
+        uses: ./.forgejo/local-action
+        with:
+          input-two-required: 'two'
+```
+
+[Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-local-action/.forgejo/workflows/test.yml)
+
+For remote actions that are implemented with a `Dockerfile` instead of `action.yml`, the `args` key is used as command line arguments when the container is run.
+
+[Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-docker-action/.forgejo/workflows/test.yml)
 
 # Debugging workflows with forgejo-runner exec
 
