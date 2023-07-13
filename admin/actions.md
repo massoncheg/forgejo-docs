@@ -87,7 +87,11 @@ $ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/downlo
 
 ## Registration
 
-The `Forgejo runner` needs to connect to a `Forgejo` instance and must register itself before doing so. It will be given permission to read the repositories and send back information to `Forgejo` such as the logs or its status. A special kind of token is needed and can be obtained from the `Create new runner` button:
+The `Forgejo runner` needs to connect to a `Forgejo` instance and must be registered before doing so. It will give it permission to read the repositories and send back information to `Forgejo` such as the logs or its status.
+
+### Online registration
+
+A special kind of token is needed and can be obtained from the `Create new runner` button:
 
 - in `/admin/runners` to gain access to all repositories.
 - in `/org/{org}/settings/actions/runners` to gain access to all repositories within the organization.
@@ -117,6 +121,36 @@ It will create a `.runner` file that looks like:
   "labels": ["docker:docker://node:16-bullseye", "self-hosted"]
 }
 ```
+
+### Offline registration
+
+When Infrastructure as Code (Ansible, kubernetes, etc.) is used to
+deploy and configure both Forgejo and the Forgejo runner, it may be
+more convenient for it to generate a secret and share it with both.
+
+The `forgejo forgejo-cli register --secret <secret>` subcommand can be
+used to register the runner with the Forgejo instance and the
+`forgejo-runner create-runner-file --secret <secret>` subcommand can
+be used to configure the Forgejo runner with the credentials that will
+allow it to start picking up tasks from the Forgejo instances as soon
+as it comes online.
+
+For instance, on the machine running Forgejo:
+
+```sh
+$ forgejo forgejo-cli register --name runner-name --scope myorganization \
+          --labels docker \
+          --secret 7c31591e8b67225a116d4a4519ea8e507e08f71f
+```
+
+and on the machine on which the Forgejo runner is installed:
+
+```sh
+$ forgejo-runner create-runner-file --instance https://example.conf \
+                 --secret 7c31591e8b67225a116d4a4519ea8e507e08f71f
+```
+
+> **NOTE:** the labels known to the runner are defined in the `config.yml` and **MUST** match the labels provided to the `forgejo-cli register` command above. In this example, `labels: ['docker:docker://node:16-bullseye']` will tell the Forgejo runner that when a **job** specifies `runs-on: docker`, it will run in a container created from the `node:16-bullseye` image by default.
 
 ## Configuration
 
