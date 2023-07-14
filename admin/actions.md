@@ -47,9 +47,9 @@ even if it provides something different than what is expected.
 Download the latest [binary release](https://code.forgejo.org/forgejo/runner/releases) and verify their signature:
 
 ```shell
-$ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.2.0/forgejo-runner-amd64
+$ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.3.0/forgejo-runner-amd64
 $ chmod +x forgejo-runner
-$ wget -O forgejo-runner.asc https://code.forgejo.org/forgejo/runner/releases/download/v2.2.0/forgejo-runner-amd64.asc
+$ wget -O forgejo-runner.asc https://code.forgejo.org/forgejo/runner/releases/download/v2.3.0/forgejo-runner-amd64.asc
 $ gpg --keyserver keys.openpgp.org --recv EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
 $ gpg --verify forgejo-runner.asc forgejo-runner
 Good signature from "Forgejo <contact@forgejo.org>"
@@ -79,7 +79,7 @@ The `Forgejo runner` can then be installed and run within the `myrunner` contain
 ```shell
 $ lxc-helpers.sh lxc_container_run forgejo-runners -- sudo --user debian bash
 $ sudo apt-get install docker.io wget gnupg2
-$ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.2.0/forgejo-runner-amd64
+$ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v2.3.0/forgejo-runner-amd64
 ...
 ```
 
@@ -104,7 +104,7 @@ For instance, using a token obtained for a test repository from `next.forgejo.or
 
 ```shell
 forgejo-runner register --no-interactive --token {TOKEN} --name runner --instance https://next.forgejo.org --labels docker:docker://node:16-bullseye,self-hosted
-INFO Registering runner, arch=amd64, os=linux, version=2.2.0.
+INFO Registering runner, arch=amd64, os=linux, version=2.3.0.
 INFO Runner registered successfully.
 ```
 
