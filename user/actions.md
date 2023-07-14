@@ -108,11 +108,11 @@ services:
     env:
       POSTGRES_DB: test
       POSTGRES_PASSWORD: postgres
-    ports:
-      - '5432:5432'
 ```
 
 A container with the specified `image:` is run before the `job` starts and is terminated when it completes. The job can address the service using its name, in this case `pgsql`.
+
+The IP address of `pgsql` is on the same [docker network](https://docs.docker.com/engine/reference/commandline/network/) as the container running the **steps** and there is no need for port binding (see the [docker run --publish](https://docs.docker.com/engine/reference/commandline/run/) option for more information). The `postgres:15` image exposes the PostgreSQL port 5432 and a client will be able to connect as [shown in this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/postgresql.yml)
 
 ### image
 
@@ -121,10 +121,6 @@ The location of the container image to run.
 ### env
 
 Key/value pairs injected in the environment when running the container, equivalent to [--env](https://docs.docker.com/engine/reference/commandline/run/).
-
-### ports
-
-Port binding of the container, equivalent to [--publish](https://docs.docker.com/engine/reference/commandline/run/).
 
 ### cmd
 
