@@ -4,7 +4,7 @@ title: Development workflow
 license: 'CC-BY-SA-4.0'
 ---
 
-Forgejo is a set of commits applied to the Gitea development branch and the stable branches. On a regular basis those commits are rebased and modified if necessary to keep working. All Forgejo commits are merged into a branch from which binary releases and packages are created and distributed. The development workflow is a set of conventions Forgejo developers are expected to follow to work together.
+Forgejo is a set of commits applied to the Gitea development branch and the stable branches. On a regular basis those commits are cherry-picked and modified if necessary to keep working. All Forgejo commits are merged into a branch from which binary releases and packages are created and distributed. The development workflow is a set of conventions Forgejo developers are expected to follow to work together.
 
 ## Naming conventions
 
@@ -20,45 +20,40 @@ Forgejo is a set of commits applied to the Gitea development branch and the stab
 - Forgejo: vX.Y/forgejo
 - Feature branches: vX.Y/forgejo-feature-name
 
-### Rebase history
+### Branches history
 
-Before rebasing on top of Gitea, all branches are copied to `soft-fork/YYYY-MM-DD/<branch>` for safekeeping. Older `soft-fork/*/<branch>` branches are converted into references under the same name. Similar to how pull requests store their head, they do not clutter the list of branches but can be retrieved if needed with `git fetch +refs/soft-fork/*:refs/soft-fork/*`. Tooling to automate this archival process [is available](https://codeberg.org/forgejo-contrib/soft-fork-tools/src/branch/master/README.md#archive-branches).
+Before cherry-picking on top of Gitea, all branches are copied to `soft-fork/YYYY-MM-DD/<branch>` for safekeeping. Older `soft-fork/*/<branch>` branches are converted into references under the same name. Similar to how pull requests store their head, they do not clutter the list of branches but can be retrieved if needed with `git fetch +refs/soft-fork/*:refs/soft-fork/*`. Tooling to automate this archival process [is available](https://codeberg.org/forgejo-contrib/soft-fork-tools/src/branch/master/README.md#archive-branches).
 
-### Tags
+## Cherry-picking
 
-Because the branches are rebased on top of Gitea, only the latest tag will be found in a given branch. For instance `v1.19.3-0` won't be found in the `v1.19/forgejo` branch after it is rebased.
+### _Feature branches_
 
-## Rebasing
+On a weekly basis all of _Forgejo_ commits are cherry-picked on top of
+the latest Gitea development branch. It starts like this:
 
-### _Feature branch_
+- the `forgejo-ci` branch is `reset --hard` with _Gitea_ main
+- all the commits it contained are `cherry-pick -x` and conflicts resolved
+- the `forgejo-ci` branch is force pushed after the CI confirms it is sane
 
-The _Gitea_ branches are manually mirrored with the Gitea development and stable branches.
+The same is done for the `forgejo-development` branch is based on
+`forgejo-ci` and the commits it contains are similarly `cherry-pick
+-x`. The same is done for each _Feature branch_ until they all pass
+the CI.
 
-On a regular basis, each _Feature branch_ is rebased against the base _Gitea_ branch.
+### Development branch
 
-### forgejo branch
+Once all _Feature branches_ are ready, the `forgejo` branch is `reset --hard`
+with _Gitea_ main, all _Feature branches_ are merged into it
+and it is force pushed.
 
-The latest _Gitea_ branch resets the _forgejo_ branch and all _Feature branches_ are merged into it.
+### Stable branches
 
-If tests pass after pushing _forgejo_ to the https://codeberg.org/forgejo-integration/forgejo repository, it can be pushed to the https://codeberg.org/forgejo/forgejo repository.
+The stable branches cannot be force pushed because they would no
+longer contain the tags from which releases were made. Instead, the following is done:
 
-If tests do not pass, an issue is filed to the _Feature branch_ that fails the test. Once the issue is resolved, another round of rebasing starts.
-
-### Cherry picking and rebasing
-
-Because Forgejo is a set of commits on top of Gitea, they need to be cherry-picked on top of their base branch. They cannot be rebased using `git rebase`, because their base branch has been rebased.
-
-Here is how the commits in the `forgejo-f3` branch can be cherry-picked on top of the latest `forgejo-development` branch:
-
-```
-$ git fetch --all
-$ git remote get-url forgejo
-git@codeberg.org:forgejo/forgejo.git
-$ git checkout -b forgejo/forgejo-f3
-$ git reset --hard forgejo/forgejo-development
-$ git cherry-pick $(git rev-list --reverse forgejo/soft-fork/2022-12-10/forgejo-development..forgejo/soft-fork/2022-12-10/forgejo-f3)
-$ git push --force forgejo-f3 forgejo/forgejo-f3
-```
+- All _Forgejo_ commits are reverted
+- The Gitea branch is merged
+- All _Feature branches_ are merged
 
 ## Feature branches
 
