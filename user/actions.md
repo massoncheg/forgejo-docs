@@ -36,7 +36,10 @@ The following guide explains key **concepts** to help understand how `workflows`
 
 ## Actions
 
-An `Action` is a repository that contains the equivalent of a function in any programming language, with inputs and outputs as desccribed in the `action.yml` file at the root of the repository (see [this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/action.yml)).
+An `Action` is a repository that contains the equivalent of a function in any programming language. It comes in two flavors, depending on the file found at the root of the repository:
+
+- **action.yml:** describes the inputs and outputs of the action and the implementation. See [this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/action.yml).
+- **Dockerfile:** if no `action.yml` file is found, it is used to create an image with `docker build` and run a container from it to carry out the action. See [this example](https://code.forgejo.org/forgejo/test-setup-forgejo-docker) and [the workflow that uses it](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-docker-action). Note that files written outside of the **workspace** will be lost when the **step** using such an action terminates.
 
 One of the most commonly used action is [checkout](https://code.forgejo.org/actions/checkout#usage) which clones the repository that triggered a `workflow`. Another one is [setup-go](https://code.forgejo.org/actions/setup-go#usage) that will install Go.
 
@@ -81,7 +84,6 @@ In a `workflow` file strings that look like `${{ ... }}` are evaluated by the `F
 - `join( array, optionalSeparator )`. The value for `array` can be an array or a string. All values in `array` are concatenated into a string. If you provide `optionalSeparator`, it is inserted between the concatenated values. Otherwise, the default separator `,` is used. Casts values to a string.
 - `toJSON(value)`. Returns a pretty-print JSON representation of `value`.
 - `fromJSON(value)`. Returns a JSON object or JSON data type for `value`. You can use this function to provide a JSON object as an evaluated expression or to convert environment variables from a string.
-- `hashFiles(path)`. Returns a single hash for the set of files that matches the `path` pattern. You can provide a single `path` pattern or multiple `path` patterns separated by commas. The `path` is relative to the `GITHUB_WORKSPACE` directory and can only include files inside of the `GITHUB_WORKSPACE`. This function calculates an individual SHA-256 hash for each matched file, and then uses those hashes to calculate a final SHA-256 hash for the set of files. If the `path` pattern does not match any files, this returns an empty string. For more information about SHA-256, see "[SHA-2](https://en.wikipedia.org/wiki/SHA-2).". You shell globs to match file names.
 
 ## Caching commonly used files
 
@@ -105,11 +107,11 @@ services:
     env:
       POSTGRES_DB: test
       POSTGRES_PASSWORD: postgres
-    ports:
-      - '5432:5432'
 ```
 
 A container with the specified `image:` is run before the `job` starts and is terminated when it completes. The job can address the service using its name, in this case `pgsql`.
+
+The IP address of `pgsql` is on the same [docker network](https://docs.docker.com/engine/reference/commandline/network/) as the container running the **steps** and there is no need for port binding (see the [docker run --publish](https://docs.docker.com/engine/reference/commandline/run/) option for more information). The `postgres:15` image exposes the PostgreSQL port 5432 and a client will be able to connect as [shown in this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/postgresql.yml)
 
 ### image
 
@@ -118,10 +120,6 @@ The location of the container image to run.
 ### env
 
 Key/value pairs injected in the environment when running the container, equivalent to [--env](https://docs.docker.com/engine/reference/commandline/run/).
-
-### ports
-
-Port binding of the container, equivalent to [--publish](https://docs.docker.com/engine/reference/commandline/run/).
 
 ### cmd
 
@@ -163,13 +161,13 @@ Following the link on a task displays the logs and the `Re-run all jobs` button.
 
 ![the details of an action](../../../../images/v1.20/user/actions/actions-detail.png)
 
-# Tasks run from pull requests
+# Pull request actions are moderated
 
 The first time a user proposes a pull request, the task is blocked to reduce the security risks.
 
 ![blocked action](../../../../images/v1.20/user/actions/action-blocked.png)
 
-It can be **Approve**d by a maintainer of the project and there will be no need to unblocker future pull requests.
+It can be approved by a maintainer of the project and there will be no need to unblock future pull requests.
 
 ![button to approve an action](../../../../images/v1.20/user/actions/action-approve.png)
 
@@ -264,7 +262,7 @@ The list of available `labels` for a given repository can be seen in the `/{owne
 
 ![actions results](../../../../images/v1.20/user/actions/list-of-runners.png)
 
-#### Container
+#### container
 
 By default the `docker` label will create a container from a [Node.js 16 Debian GNU/Linux bullseye image](https://hub.docker.com/_/node/tags?name=16-bullseye) and will run each `step` as root. Since an application container is used, the jobs will inherit the limitations imposed by the engine (Docker for instance). In particular they will not be able to run or install software that depends on `systemd`.
 
@@ -275,6 +273,12 @@ runs-on: docker
 container:
   image: alpine:3.18
 ```
+
+#### options
+
+A string of additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/). For instance: "--workdir /myworkdir --ulimit nofile=1024:1024".
+
+> **NOTE:** the `--volume` option is restricted to a whitelist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions) for more information.
 
 #### LXC
 
@@ -288,7 +292,7 @@ The `runs-on: self-hosted` label will run the jobs in a [LXC](https://linuxconta
 
 Specifies the repository from which the `Action` will be cloned or a directory where it can be found.
 
-#### Remote actions
+##### Remote actions
 
 A relative `Action` such as `uses: actions/checkout@v3` will clone the repository at the URL composed by prepending the default actions URL which is https://code.forgejo.org/. It is the equivalent of providing the fully qualified URL `uses: https://code.forgejo.org/actions/checkout@v3`. In other words the following:
 
@@ -319,7 +323,7 @@ it gets an outdated version from https://tooold.org/actions/checkout
 instead. Or even a repository that does not contain the intended
 action.
 
-#### Local actions
+##### Local actions
 
 An action that begins with a `./` will be loaded from a directory
 instead of being cloned from a repository. The structure of the
@@ -329,6 +333,29 @@ repository.
 > **NOTE:** the most common mistake when using an action included in the repository under test is to forget to checkout the repository with `uses: actions/checkout@v3`.
 
 [Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-local-action/).
+
+##### with
+
+A dictionary mapping the inputs of the action to concrete values. The `action.yml` defines and documents the inputs.
+
+```yaml
+on: [push]
+jobs:
+  ls:
+    runs-on: docker
+    steps:
+      - uses: actions/checkout@v3
+      - id: local-action
+        uses: ./.forgejo/local-action
+        with:
+          input-two-required: 'two'
+```
+
+[Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-local-action/.forgejo/workflows/test.yml)
+
+For remote actions that are implemented with a `Dockerfile` instead of `action.yml`, the `args` key is used as command line arguments when the container is run.
+
+[Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-docker-action/.forgejo/workflows/test.yml)
 
 # Debugging workflows with forgejo-runner exec
 
@@ -396,12 +423,13 @@ test "KEY2=$KEY2" = "KEY2=value2"
 [test.yml/test] 🏁  Job succeeded
 ```
 
-- [Echo](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-echo/.forgejo/workflows/test.yml) - a single step that prints one sentence.
+- [Echo](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-echo/.forgejo/workflows/test.yml) - a single step that prints one sentence
 - [Expression](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-expression/.forgejo/workflows/test.yml) - a collection of various forms of expression
 - [Local actions](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-local-action/.forgejo) - using an action found in a directory instead of a remote repository
-- [PostgreSQL service](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/postgres.yml) - a PostgreSQL service and a connection to display the (empty) list of tables of the default database.
+- [PostgreSQL service](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/postgres.yml) - a PostgreSQL service and a connection to display the (empty) list of tables of the default database
 - [Using services](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/) - illustrates how to configure and use services
-- [Choosing the image with `container`](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.18` image using `container:`.
+- [Choosing the image with `container`](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.18` image using `container:`
+- [Docker action](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-docker-action/.forgejo/workflows/test.yml) - using a action implemented as a `Dockerfile`
 
 # Glossary
 
@@ -412,3 +440,4 @@ test "KEY2=$KEY2" = "KEY2=value2"
 - **runner:** the [Forgejo runner](https://code.forgejo.org/forgejo/runner) daemon tasked to execute the **workflows**.
 - **step:** a command the **runner** is required to carry out.
 - **workflow or task:** a file in the `.forgejo/workflows` directory that contains **jobs**.
+- **workspace** is the directory where the files of the **job** are stored and shared between all **step**s
