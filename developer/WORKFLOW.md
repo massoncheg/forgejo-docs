@@ -48,12 +48,19 @@ and it is force pushed.
 
 ### Stable branches
 
-The stable branches cannot be force pushed because they would no
+The stable branches are not force pushed because they would no
 longer contain the tags from which releases were made. Instead, the following is done:
 
-- All _Forgejo_ commits are reverted
-- The Gitea branch is merged
-- All _Feature branches_ are merged
+- The _Gitea_ commits are cherry-picked
+- If there is a conflict
+  - revert the _Forgejo_ commit that caused the conflict
+  - cherry-pick the _Gitea_ commit
+  - cherry-pick the _Forgejo_ commit back and resolve the conflict
+
+This ensures the conflict resolution is documented in the relevant
+_Forgejo_ commit. The conflict must not be resolved in the _Gitea_
+commit because there would be no convenient way to know why and how it
+happened when browing the commit history.
 
 ## Feature branches
 
