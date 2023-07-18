@@ -36,14 +36,14 @@ Forgejo supports scoped access tokens, which allow users to restrict tokens to o
 Forgejo token scopes are as follows:
 
 | Name                                      | Description                                                                                                                                          |
-| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **(no scope)**                            | Not supported. A scope is required even for public repositories.                                                                                     |
 | **activitypub**                           | `activitypub` API routes: ActivityPub related operations.                                                                                            |
 | &nbsp;&nbsp;&nbsp; **read:activitypub**   | Grants read access for ActivityPub operations.                                                                                                       |
 | &nbsp;&nbsp;&nbsp; **write:activitypub**  | Grants read/write/delete access for ActivityPub operations.                                                                                          |
 | **admin**                                 | `/admin/*` API routes: Site-wide administrative operations (hidden for non-admin accounts).                                                          |
 | &nbsp;&nbsp;&nbsp; **read:admin**         | Grants read access for admin operations, such as getting cron jobs or registered user emails.                                                        |
-| &nbsp;&nbsp;&nbsp; **write:admin**        | Grants read/write/delete access for admin operations, such as running cron jobs or updating user accounts.                                           |     |
+| &nbsp;&nbsp;&nbsp; **write:admin**        | Grants read/write/delete access for admin operations, such as running cron jobs or updating user accounts.                                           |
 | **issue**                                 | `issues/*`, `labels/*`, `milestones/*` API routes: Issue-related operations.                                                                         |
 | &nbsp;&nbsp;&nbsp; **read:issue**         | Grants read access for issues operations, such as getting issue comments, issue attachments, and milestones.                                         |
 | &nbsp;&nbsp;&nbsp; **write:issue**        | Grants read/write/delete access for issues operations, such as posting or editing an issue comment or attachment, and updating milestones.           |
