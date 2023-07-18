@@ -5,7 +5,7 @@ license: 'CC-BY-SA-4.0'
 origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/2887826c38b3aae76a18f0696b40217b429226ce/content/collaborating/repo-permissions.md'
 ---
 
-<!-- See also  https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/permissions.en-us.md -->
+<!-- See also  https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/usage/permissions.en-us.md -->
 
 When you invite collaborators to join your repository or when you create teams for your organization, you have to decide what each collaborator/team is allowed to do.
 

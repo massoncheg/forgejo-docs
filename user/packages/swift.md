@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Swift Packages Repository'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/packages/swift.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/usage/packages/swift.en-us.md'
 ---
 
 # Swift Packages Repository

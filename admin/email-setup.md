@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Email setup'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/administration/email-setup.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/administration/email-setup.en-us.md'
 ---
 
 Forgejo has mailer functionality for sending transactional emails (such as registration confirmation). It can be configured to either use Sendmail (or compatible MTAs like Postfix and msmtp) or directly use SMTP server.
