@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Email Settings'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/2887826c38b3aae76a18f0696b40217b429226ce/content/getting-started/email-settings.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/5d457efc069b52d512632fea024917e0848346cd/content/getting-started/email-settings.md'
 ---
 
 By default, Forgejo will send notifications to your registered email addresses.

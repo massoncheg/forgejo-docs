@@ -2,14 +2,20 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Repository Permissions'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/2887826c38b3aae76a18f0696b40217b429226ce/content/collaborating/repo-permissions.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/5d457efc069b52d512632fea024917e0848346cd/content/collaborating/repo-permissions.md'
 ---
-
-<!-- See also  https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/usage/permissions.en-us.md -->
 
 When you invite collaborators to join your repository or when you create teams for your organization, you have to decide what each collaborator/team is allowed to do.
 
 You can assign teams different levels of permission for each unit (e.g. issues, PR's, wiki).
+
+## Profile and Visibility
+
+Visibility of your repositories is in general inherited from your profile. So other user can only see your repositories, if your profile is _public_.
+
+If you want to limit visibility access to your repositories you can set your **user visibility** in the user privacy settings to **Limited**. Even if your repository is public, non-contributors will get a 404-error if they try to access your repository.
+
+![screenshot showing the updated README](../../../../images/v1.20/user/repo-permissions/user-settings-privacy-limited.webp)
 
 ## Collaborators
 
@@ -118,7 +124,7 @@ Each unit is configured to have one of these 3 permission levels:
 - Read: Members can view the unit, and do standard actions for that unit (See the Read column under [Collaborators](#collaborators)).
 - Write: Members can view the unit, and execute write actions that unit (See the Write column under [Collaborators](#collaborators)).
 
-When a team is configured to have administrator access, you cannot change units.
+When a team is configured to have administrator access, when this is specified, you cannot change units. The team will have admin permissions (See the Admin column under _Collaborators_).
 
 Currently, there are six units that can be configured:
 
@@ -134,4 +140,4 @@ There are also two units which can be toggled:
 - External Wiki: access to external wiki.
 - External Issues: access to the external issue tracker.
 
-A team can be given the permission to create new repositories. When a member of such team creates a new repository, they will get administrator access to the repository.
+A team can be given the permission to create new repositories. When a member of such team creates a new repository, he/she will get administrator access to the repository.

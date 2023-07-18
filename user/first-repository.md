@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: Your First Repository
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/2887826c38b3aae76a18f0696b40217b429226ce/content/getting-started/first-repository.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/5d457efc069b52d512632fea024917e0848346cd/content/getting-started/first-repository.md'
 ---
 
 Almost everything on Forgejo happens in a repository. Think of a repository as a home for your project, where all of its source code can be organized using Git, as well as where you can track issues and read and write wikis.
@@ -10,6 +10,8 @@ Almost everything on Forgejo happens in a repository. Think of a repository as a
 This article will guide you through creating your first repository on Forgejo, connecting your local development environment and making your first commit.
 
 ## Creating a Repository
+
+> A note to more advanced users: It's currently not possible to use Push-to-Create to push a fresh repository onto Forgejo.
 
 To create a new repository, you need be logged in to your account.
 
@@ -73,11 +75,7 @@ If you want to start a fresh project (so if you don't already have source code t
 
 #### 1. Navigate to your local workspace (optional)
 
-If you're just getting started, it's a good idea to keep your projects neatly sorted in a dedicated directory, like in the following example.
-We assume a Linux machine. `mkdir` creates a new directory, `cd` changes into it.
-`$` is indicating that the commands are run as a user without admin permissions.
-`~/repositories$` is meant to be read as „current working directory is the repositories folder within the home directory”.
-The username here is `knut` on a machine with the name of `iceberg`.
+If you're just getting started, it's a good idea to keep your projects neatly sorted in a dedicated directory, like in this example:
 
 ```bash
 knut@iceberg:~$ mkdir repositories
@@ -99,15 +97,11 @@ remote: Counting objects: 100% (4/4), done.
 remote: Compressing objects: 100% (3/3), done.
 remote: Total 4 (delta 0), reused 0 (delta 0)
 Unpacking objects: 100% (4/4), 11.94 KiB | 764.00 KiB/s, done.
-
-The exact values for size and download speed might differ on your machine.
-
 ```
 
 #### 3. Navigate to the cloned repository
 
 After cloning, the repository should now be in a new directory with the same name as your repository. In this case, it's called `foobar`.
-The command `ls` lists all files within the current folder.
 
 ```bash
 knut@iceberg:~/repositories$ cd foobar
@@ -140,6 +134,12 @@ knut@iceberg:~/my-project$ git remote add origin https://codeberg.org/knut/fooba
 ```
 
 If all is done correctly, this command should output nothing.
+
+> **Errors:**
+> If you added an already initalized remote repository and try to push, you will get an error, if your local commit history is different from the history of the remote. You have some choices to resolve the conflict:
+>
+> - Merge your changes with the ones in the remote `git pull`
+> - If you are sure, that you want to overwrite all changes in the remote, you can force push with `git -f push`
 
 ## Making your first commit
 
@@ -221,8 +221,6 @@ Date:   Sat Sep 26 12:29:57 2020 +0200
     Initial commit
 ```
 
-The dates, commit hash and author will be different for your project.
-
 #### 4. Push your changes to Forgejo
 
 If you're happy with the changes you made, the next step is to present them to the world by pushing them to Forgejo:
@@ -243,8 +241,6 @@ To https://codeberg.org/knut/foobar
    c75b509..1e12979  main -> main
 Branch 'main' set up to track remote branch 'main' from 'origin'.
 ```
-
-It is expected that you won't see any visual feedback when entering your password. Type it blind and hit return.
 
 The `-u` option sets the upstream remote, which we want to be Codeberg.org, as configured previously.
 
