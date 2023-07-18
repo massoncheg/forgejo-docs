@@ -128,7 +128,7 @@ When Infrastructure as Code (Ansible, kubernetes, etc.) is used to
 deploy and configure both Forgejo and the Forgejo runner, it may be
 more convenient for it to generate a secret and share it with both.
 
-The `forgejo forgejo-cli register --secret <secret>` subcommand can be
+The `forgejo forgejo-cli actions register --secret <secret>` subcommand can be
 used to register the runner with the Forgejo instance and the
 `forgejo-runner create-runner-file --secret <secret>` subcommand can
 be used to configure the Forgejo runner with the credentials that will
@@ -138,7 +138,7 @@ as it comes online.
 For instance, on the machine running Forgejo:
 
 ```sh
-$ forgejo forgejo-cli register --name runner-name --scope myorganization \
+$ forgejo forgejo-cli actions register --name runner-name --scope myorganization \
           --labels docker \
           --secret 7c31591e8b67225a116d4a4519ea8e507e08f71f
 ```
@@ -150,7 +150,7 @@ $ forgejo-runner create-runner-file --instance https://example.conf \
                  --secret 7c31591e8b67225a116d4a4519ea8e507e08f71f
 ```
 
-> **NOTE:** the labels known to the runner are defined in the `config.yml` and **MUST** match the labels provided to the `forgejo-cli register` command above. In this example, `labels: ['docker:docker://node:16-bullseye']` will tell the Forgejo runner that when a **job** specifies `runs-on: docker`, it will run in a container created from the `node:16-bullseye` image by default.
+> **NOTE:** the labels known to the runner are defined in the `config.yml` and **MUST** match the labels provided to the `forgejo-cli actions register` command above. In this example, `labels: ['docker:docker://node:16-bullseye']` will tell the Forgejo runner that when a **job** specifies `runs-on: docker`, it will run in a container created from the `node:16-bullseye` image by default.
 
 ## Configuration
 
