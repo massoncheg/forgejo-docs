@@ -10,7 +10,6 @@ These documents are targeted to people who run Forgejo on their machines.
 - [Database Preparation](database-preparation)
 - [Configuration Cheat Sheet](config-cheat-sheet)
 - [Upgrade guide](upgrade)
-- [Command Line](command-line)
 - [Reverse Proxy](reverse-proxy)
 - [Email setup](email-setup)
 - [Incoming Email](incoming-email)
