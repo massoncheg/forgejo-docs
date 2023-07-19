@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Integrated Wiki'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/2887826c38b3aae76a18f0696b40217b429226ce/content/getting-started/wiki.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/5d457efc069b52d512632fea024917e0848346cd/content/getting-started/wiki.md'
 ---
 
 A [wiki](https://en.wikipedia.org/wiki/Wiki) is a collaborative space on the web. It is a common practice to use wikis to collect knowledge and share information.  
@@ -15,7 +15,7 @@ The user in these examples is `knut`, the polar bear and its repository is `foob
 To enable the wiki for a repository, visit the `Settings` page and activate `Enable Repository Wiki` in the `Advanced Section`. It will default to the built-in wiki which is described here, but you can add an URI to an external site the "Wiki" tab should link to.
 
 > **Warning**  
-> Be aware that the wiki, once enabled, is accessible for _everyone_ who has `read` access to your repository - on public repositories even anonymous guests can access the wiki.  
+> Be aware that the wiki, once enabled, is accessible for _everyone_ who has `read` access to your repository - on public repositories even unauthenticated guests can access the wiki.  
 > The wiki is _not_ a suitable place for storing private information or secrets (like passwords).
 
 To edit the wiki `write` permission to the repository is required.
@@ -35,7 +35,9 @@ The web UI in your browser is currently limited to adding, updating, and deletin
 
 ![Wiki home page with edit buttons](../../../../images/v1.20/user/wiki/wiki_pageview.png)
 
-## Adding content via a local Git client
+Clicking on the "Insert Image" button will make the following text appear in your text editor: `![](https://)`
+
+## Adding content using a local Git client
 
 You can work with the wiki repo as you would with any other Git repo on Forgejo.
 
@@ -48,7 +50,7 @@ git commit -am "create Home page"
 
 Editing locally allows you to use your favorite editor (preferably with Markdown syntax check and highlighting) and manage additional assets like images.
 
-### Adding images
+### Adding images using a local Git client
 
 You can add images to the root directory or a specific subfolder (like `assets` or `images`) using your local Git client.
 
@@ -64,11 +66,23 @@ git commit -m "add image"
 git push
 ```
 
+## Attaching images in Markdown documents
+
 Now, you can reference the image in Markdown, like this:
+
+**File in repository**:
 
 ```markdown
 ![image alt text](images/image.png 'image title')
 ```
+
+**External image**:
+
+```markdown
+![image alt text](https://example.com/image.jpg 'image title')
+```
+
+When including images from Forgejo repositories, keep in mind that _you should use the raw version of the image._
 
 After saving your changes, the image should be visible.
 

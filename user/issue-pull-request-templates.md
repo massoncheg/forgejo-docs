@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Issue and Pull Request Templates'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/usage/issue-pull-request-templates.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/usage/issue-pull-request-templates.en-us.md'
 ---
 
 Some projects have a standard list of questions that users need to answer
