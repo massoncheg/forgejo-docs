@@ -60,6 +60,22 @@ Good signature from "Forgejo <contact@forgejo.org>"
 
 For jobs to run in containers, the `Forgejo runner` needs access to [Docker](https://docs.docker.com/engine/install/).
 
+### Podman
+
+While Podman is generally compatible to Docker,
+it does not run socket for managing containers by default
+(because it doesn't usually need one).
+
+If the Forgejo runner complains about "daemon Docker Engine socket not found", or "cannot ping the docker daemon",
+you can use podman to provide a Docker compatible socket from an unprivileged user
+and pass that socket on to the runner,
+e.g. by executing:
+
+```shell
+$ podman system service -t 0 &
+$ DOCKER_HOST=unix://${XDG_RUNTIME_DIR}/podman/podman.sock ./forgejo-runner daemon
+```
+
 ### LXC
 
 For jobs to run in LXC containers, the `Forgejo runner` needs passwordless sudo access for all `lxc-*` commands on a Debian GNU/Linux `bookworm` system where [LXC](https://linuxcontainers.org/lxc/) is installed. The [LXC helpers](https://code.forgejo.org/forgejo/lxc-helpers/) can be used as follows to create a suitable container:
