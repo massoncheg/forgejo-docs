@@ -9,7 +9,7 @@ This guide helps Forgejo admins perform upgrades safely and provides guidance to
 
 ### Backup
 
-To be safe, make sure to perform a full backup before upgrading. It is a requirement when upgrading to a new stable release (going from v1.18 to v1.19 for instance) but is also a good precaution when installing a patch release (going from v1.18.3-1 to v1.18.3-2 for instance).
+To be safe, make sure to perform a full backup before upgrading. It is a requirement when upgrading to a new stable release (going from v1.19 to v1.20 for instance) but is also a good precaution when installing a patch release (going from v1.19.3-0 to v1.19.4-0 for instance).
 
 The reliable way to perform a backup is with a synchronized point-in-time snapshot of all the storage used by Forgejo.
 
@@ -51,10 +51,24 @@ Note: Forgejo requires [docker >= 20.10.6](https://wiki.alpinelinux.org/wiki/Rel
 
 ### Troubleshooting
 
-- Increase the log level with `forgejo manager logging add console -n traceconsole -l TRACE -e '((modules/git)|(services/mirror))'`
-- If the upgrade from version x.y to version x.y+2 fails and there is a need to narrow down the problem, try upgrading to the latest minor version of each major version and verify it works. It will show which major version causes the issue and help debug the problem. For instance, if upgrading from Forgejo 1.18.2-0 to Forgejo 1.19.0-0 does not work:
-  - Upgrade from Forgejo 1.18.2 to Forgejo 1.18.5 (the last minor version of the 1.18 major version) and verify Forgejo works.
-  - Upgrade to Forgejo 1.19.3-0 (the last minor version of the 1.19 major version) and verify Forgejo works.
+- Increase the log level. By default, the logs are outputted to console. If you need to collect logs from files, you could copy the following config into your `app.ini` file (remove all other [log] sections), then you can find the \*.log files in Forgejo's log directory.
+  ```ini
+   ; To show all SQL logs, you can also set LOG_SQL=true in the [database] section
+   [log]
+   LEVEL=debug
+   MODE=console,file
+   ROUTER=console,file
+   XORM=console,file
+   ENABLE_XORM_LOG=true
+   FILE_NAME=gitea.log
+   [log.file.router]
+   FILE_NAME=router.log
+   [log.file.xorm]
+   FILE_NAME=xorm.log
+  ```
+- If the upgrade from version x.y to version x.y+2 fails and there is a need to narrow down the problem, try upgrading to the latest minor version of each major version and verify it works. It will show which major version causes the issue and help debug the problem. For instance, if upgrading from Forgejo 1.19.3-0 to Forgejo 1.20.1-0 does not work:
+  - Upgrade from Forgejo 1.19.3-0 to Forgejo 1.19.4-0 (the last minor version of the 1.19 major version) and verify Forgejo works.
+  - Upgrade to Forgejo 1.20.1-0 (the last minor version of the 1.20 major version) and verify Forgejo works.
 
 #### Unexpected database version
 
@@ -62,7 +76,8 @@ The database version is stored in the database and can be retrieved with **selec
 
 | Forgejo version                                                                               | Date          | Database |
 | --------------------------------------------------------------------------------------------- | ------------- | -------- |
-| [1.19.3-0](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/RELEASE-NOTES.md#1-19-3-0) | May 2023      | v243     |
+| [1.20.1-0](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/RELEASE-NOTES.md#1-20-1-0) | July 2023     | v259     |
+| [1.19.4-0](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/RELEASE-NOTES.md#1-19-4-0) | July 2023     | v243     |
 | [1.18.5-0](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/RELEASE-NOTES.md#1-18-5-0) | February 2023 | v231     |
 
 | Gitea version                                                      | Date           | Database                                                                                                                                                                                                  |
@@ -87,6 +102,10 @@ The database version is stored in the database and can be retrieved with **selec
     In your config, you can check the security section for `DISABLE_GIT_HOOKS`. To enable them again, you must set the setting to `false`.
 
 ### Only when upgrading to a specific version
+
+- [1.20.1-0](https://forgejo.org/2023-07-release-v1/)
+
+- The [tokens](https://forgejo.org/docs/v1.20/user/oauth2-provider/#scoped-tokens) were refactored in a way that does not guarantee their scope will be preserved. They may be larger or narrower and the only way to be sure that the intended scope is preserved is to re-create the token.
 
 - [1.15.2](https://blog.gitea.io/2021/09/gitea-1.15.2-is-released/)
 
