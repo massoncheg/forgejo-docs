@@ -1,0 +1,21 @@
+---
+layout: '~/layouts/Markdown.astro'
+title: 'Profile customization'
+license: 'Apache-2.0'
+origin_url: 'https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/usage/profile-readme.en-us.md'
+---
+
+By default the profile page of a user is the list of repositories they
+own. It is possible to customize it with a short description that
+shows to the left, under their avatar. It can now be fully
+personalized with a markdown file that is displayed instead of the
+list of repositories.
+
+![Profile page](../../../../images/v1.20/user/profile/profile-step1.png)
+
+It uses the `README.md` file from the `.profile` repository of the
+user, if it exists.
+
+![Profile README.md](../../../../images/v1.20/user/profile/profile-step2.png)
+
+> **NOTE:** if a the `.profile` repository is private the `README.md` they contain will be displayed publicly. It is **strongly recommended** to verify no such repository exist in a given instance before upgrading.
