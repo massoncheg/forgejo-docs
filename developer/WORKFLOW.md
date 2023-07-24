@@ -62,6 +62,10 @@ _Forgejo_ commit. The conflict must not be resolved in the _Gitea_
 commit because there would be no convenient way to know why and how it
 happened when browing the commit history.
 
+To improve the readability of the git history, pull requests to stable
+branches are rebased on top of the branch instead of being merged. It
+saves one merge commit and creates a linear history.
+
 ## Feature branches
 
 All _Feature branches_ are based on the {vX.Y/,}forgejo-development branch which provides development tools and documentation.
