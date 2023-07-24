@@ -817,7 +817,7 @@ Default templates for project boards:
 ## Log (`log`)
 
 - `ROOT_PATH`: **\<empty\>**: Root path for log files.
-- `MODE`: **console**: Logging mode. For multiple modes, use a comma to separate values. You can configure each mode in per mode log subsections `\[log.writer-mode-name\]`.
+- `MODE`: **console**: Logging mode. For multiple modes, use a comma to separate values. You can configure each mode in per mode log subsections `[log.writer-mode-name]`.
 - `LEVEL`: **Info**: General log level. \[Trace, Debug, Info, Warn, Error, Critical, Fatal, None\]
 - `STACKTRACE_LEVEL`: **None**: Default log level at which to log create stack traces (rarely useful, do not set it). \[Trace, Debug, Info, Warn, Error, Critical, Fatal, None\]
 - `ENABLE_SSH_LOG`: **false**: save ssh log to log file
