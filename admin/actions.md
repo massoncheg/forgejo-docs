@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: 'Forgejo Actions administrator guide'
 license: 'CC-BY-SA-4.0'
 ---

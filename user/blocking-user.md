@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: Blocking a user
 license: 'CC-BY-SA-4.0'
 ---

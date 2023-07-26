@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: Code of Conduct and moderation team
 license: 'CC-BY-SA-4.0'
 ---

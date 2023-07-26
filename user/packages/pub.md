@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: 'Pub Package Registry'
 license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/usage/packages/pub.en-us.md'

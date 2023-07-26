@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: Developer Certificate of Origin (DCO)
 license: 'CC-BY-SA-4.0'
 ---

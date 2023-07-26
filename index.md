@@ -1,12 +1,11 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: 'Forgejo v1.20 documentation'
 ---
 
 - [What is Forgejo?](/)
-- [Installation](admin/installation)
-- [FAQ](/faq)
-- [Administrator guide](admin)
-- [User guide](user)
-- [Developer guide](developer)
-- [License](license)
+- [Installation](./admin/installation/)
+- [FAQ](/faq/)
+- [Administrator guide](./admin/)
+- [User guide](./user/)
+- [Developer guide](./developer/)
+- [License](./license/)

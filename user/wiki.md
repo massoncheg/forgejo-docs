@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: 'Integrated Wiki'
 license: 'CC-BY-SA-4.0'
 origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/5d457efc069b52d512632fea024917e0848346cd/content/getting-started/wiki.md'
@@ -102,7 +101,7 @@ Very basic example for a sidebar:
 
 ### Content
 
-- [Page 1](Page-1)
+- [Page 1](./Page-1/)
 
 > knuts wiki
 ```

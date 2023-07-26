@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: Release management
 license: 'CC-BY-SA-4.0'
 ---
@@ -42,7 +41,7 @@ The TL;DR: to publish a vX.Y.Z-N release is to:
 
 ### Cherry pick the latest commits from Gitea
 
-The vX.Y/forgejo branch is populated as part of the [rebase on top of Gitea](WORKFLOW.md). The release happens in between rebase and it is worth checking if the matching Gitea branch, release/vX.Y contains commits that should be included in the release.
+The vX.Y/forgejo branch is populated as part of the [rebase on top of Gitea](./workflow/). The release happens in between rebase and it is worth checking if the matching Gitea branch, release/vX.Y contains commits that should be included in the release.
 
 - `cherry-pick -x` the commits
 - push the vX.Y/forgejo branch including the commits
@@ -105,12 +104,12 @@ providing the secrets from the command line.
 
 ### Securing the release token and cryptographic keys
 
-For both the Forgejo runner and Forgejo itself, copying and signing the release artifacts (container images and binaries) happen on a Forgejo isntance running [behind a VPN](infrastructure#octopuce) to safeguard the token that has write access to the Forgejo repository as well as the cryptographic key used to sign the releases.
+For both the Forgejo runner and Forgejo itself, copying and signing the release artifacts (container images and binaries) happen on a Forgejo isntance running [behind a VPN](./infrastructure#octopuce/) to safeguard the token that has write access to the Forgejo repository as well as the cryptographic key used to sign the releases.
 
 ### Website update
 
 - Restart the last CI build at https://codeberg.org/forgejo/website/src/branch/main/
-- Verify [https://forgejo.org/download/](/download) points to the expected release
+- Verify [https://forgejo.org/download/](/download/) points to the expected release
 - Update the [documentation link to the latest version](https://codeberg.org/forgejo/website/src/commit/e63c6f8ab64876b10b86de1d18162b6ccb87bd99/.woodpecker.yml#L35)
 - Manually try the instructions to work
 

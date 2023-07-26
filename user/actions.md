@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: 'Forgejo Actions user guide'
 license: 'CC-BY-SA-4.0'
 similar: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/usage/actions/faq.en-us.md https://docs.github.com/en/actions'
@@ -32,7 +31,7 @@ The following guide explains key **concepts** to help understand how `workflows`
 
 ## Forgejo runner
 
-`Forgejo` itself does not run the `jobs`, it relies on the [Forgejo runner](https://code.forgejo.org/forgejo/runner) to do so. See the [Forgejo Actions administrator guide](../../admin/actions) for more information.
+`Forgejo` itself does not run the `jobs`, it relies on the [Forgejo runner](https://code.forgejo.org/forgejo/runner) to do so. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
 
 ## Actions
 
@@ -129,7 +128,7 @@ A list of command and arguments, equivalent to [[COMMAND] [ARG...]](https://docs
 
 A string of additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/). For instance: "--workdir /myworkdir --ulimit nofile=1024:1024".
 
-> **NOTE:** the `--volume` option is restricted to a whitelist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions) for more information.
+> **NOTE:** the `--volume` option is restricted to a whitelist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
 
 ### username
 
@@ -145,7 +144,7 @@ A `Forgejo runner` listens on a `Forgejo` instance, waiting for jobs. To figure 
 
 ![list of runners](../../../../images/v1.20/user/actions/list-of-runners.png)
 
-Some runners are **Global** and are available for every repository, others are only available for the repositories within a given user or organization. And there can even be runners dedicated to a single repository. The `Forgejo` administrator is the only one able to launch a **Global** runner. But the user who owns an organization can launch a runner without requiring any special permission. All they need to do is to get a runner registration token and install the runner on their own laptop or on a server of their choosing (see the [Forgejo Actions administrator guide](../../admin/actions) for more information).
+Some runners are **Global** and are available for every repository, others are only available for the repositories within a given user or organization. And there can even be runners dedicated to a single repository. The `Forgejo` administrator is the only one able to launch a **Global** runner. But the user who owns an organization can launch a runner without requiring any special permission. All they need to do is to get a runner registration token and install the runner on their own laptop or on a server of their choosing (see the [Forgejo Actions administrator guide](../../admin/actions/) for more information).
 
 Clicking on the pencil icon next to a runner shows the list of tasks it executed, with the status and a link to display the details of the execution.
 
@@ -256,7 +255,7 @@ jobs:
 
 means that the `Forgejo runner` that claims to provide a kind of machine labelled `docker` will be selected by `Forgejo` and sent the job to be run.
 
-The actual machine provided by the runner **entirely depends on how the `Forgejo runner` was registered** (see the [Forgejo Actions administrator guide](../../admin/actions) for more information).
+The actual machine provided by the runner **entirely depends on how the `Forgejo runner` was registered** (see the [Forgejo Actions administrator guide](../../admin/actions/) for more information).
 
 The list of available `labels` for a given repository can be seen in the `/{owner}/{repo}/settings/actions/runners` page.
 
@@ -278,7 +277,7 @@ container:
 
 A string of additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/). For instance: "--workdir /myworkdir --ulimit nofile=1024:1024".
 
-> **NOTE:** the `--volume` option is restricted to a whitelist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions) for more information.
+> **NOTE:** the `--volume` option is restricted to a whitelist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
 
 #### LXC
 

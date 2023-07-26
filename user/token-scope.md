@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: 'Access Token scope'
 license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/62ac3251fa545d32bdfc9ff824106b97ec63edbb/docs/content/doc/development/oauth2-provider.en-us.md'

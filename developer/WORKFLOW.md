@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: Development workflow
 license: 'CC-BY-SA-4.0'
 ---

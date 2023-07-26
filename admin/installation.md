@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: 'Installation'
 license: 'CC-BY-SA-4.0'
 origin_url: 'https://github.com/DanielGibson/DanielGibson.github.io/blob/58362695f743a545d2530508ce42d5fe1eea84a9/content/post/setup-vps-with-wireguard-and-forgejo.md'
@@ -15,7 +14,7 @@ docker pull codeberg.org/forgejo/forgejo:1.20.1-0
 
 The **1.20** tag is set to be the latest patch release, starting with [1.20.1-0](https://codeberg.org/forgejo/-/packages/container/forgejo/1.20.1-0). **1.20** will then be equal to **1.20.2-0** when it is released and so on.
 
-Upgrading from **1.X** to **1.X+1** (for instance from **1.19** to **1.20**) requires a [manual operation and human verification](../upgrade). However it is possible to use the **X.Y** tag (for instance **1.20**) to get the latest point release automatically.
+Upgrading from **1.X** to **1.X+1** (for instance from **1.19** to **1.20**) requires a [manual operation and human verification](../upgrade/). However it is possible to use the **X.Y** tag (for instance **1.20**) to get the latest point release automatically.
 
 Here is a sample [docker-compose](https://docs.docker.com/compose/install/) file:
 
@@ -154,7 +153,7 @@ services:
 > **NOTE:** this guide assumes that you'll host on the server with the domain git.example.com.
 
 First, download the Forgejo binary for your CPU architecture and maybe verify the GPG signature,
-as described on [the Forgejo download page](/download).
+as described on [the Forgejo download page](/download/).
 
 Next, copy the downloaded Forgejo binary to `/usr/local/bin/` (renaming it to just "forgejo")
 and make it executable:
@@ -208,7 +207,7 @@ When using sqlite as Forgejos database, nothing needs to be done here.
 If you need a more powerful database, you can use MySQL/MariaDB or PostgreSQL (apparently sqlite
 is good enough for at least 10 users, but might even suffice for more).
 
-See [Forgejos Database Preparation guide](../database-preparation) for
+See [Forgejos Database Preparation guide](../database-preparation/) for
 setup instructions.
 
 ## Install systemd service for Forgejo
@@ -269,7 +268,7 @@ write to it after the initial configuration):
 Now (as root) edit `/etc/forgejo/app.ini`
 
 > **NOTE:** You'll probably find the
-> [Configuration Cheat Sheet](../config-cheat-sheet) and the
+> [Configuration Cheat Sheet](../config-cheat-sheet/) and the
 > [Example app.ini](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/custom/conf/app.example.ini)
 > that contains all options incl. descriptions helpful.
 
@@ -335,7 +334,7 @@ The following changes are recommended if dealing with many large files:
   PROTOCOL = sendmail
   FROM = "Forgejo Git" <noreply@yourdomain.com>
   ```
-- By default Forgejo will listen to the port 3000 but that can be [changed to 80 with HTTP_PORT](config-cheat-sheet) like this:
+- By default Forgejo will listen to the port 3000 but that can be [changed to 80 with HTTP_PORT](./config-cheat-sheet/) like this:
   ```ini
   [server]
   HTTP_PORT = 80
@@ -351,7 +350,7 @@ You can test sending a mail by clicking the user button on the upper right of th
 ## General hints for using Forgejo
 
 Sometimes you may want/need to use the Forgejo
-[command line interface](command-line).
+[command line interface](./command-line/).
 Keep in mind that:
 
 - You need to **run it as `git` user**, for example with `$ sudo -u git forgejo command --argument`

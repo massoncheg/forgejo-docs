@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: Bugs, features and discussions
 license: 'CC-BY-SA-4.0'
 ---

@@ -1,5 +1,4 @@
 ---
-layout: '~/layouts/Markdown.astro'
 title: 'OAuth2 provider'
 license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/development/oauth2-provider.en-us.md'
@@ -28,7 +27,7 @@ To use the Authorization Code Grant as a third party application it is required 
 
 ## Scoped Tokens
 
-See the [Access Token scope](../token-scope) section for more information.
+See the [Access Token scope](../token-scope/) section for more information.
 
 ## Client types
 
