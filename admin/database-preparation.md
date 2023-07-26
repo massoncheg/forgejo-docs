@@ -121,12 +121,14 @@ Note: All steps below requires that the database engine of your choice is instal
 
    Replace database name as appropriate.
 
-6. Allow the database user to access the database created above by adding the following authentication rule to `pg_hba.conf`.
+6. Allow the database user to access the database created above by adding the following authentication rules to `pg_hba.conf`.
 
    For local database:
 
    ```ini
-   local    forgejodb    forgejo    scram-sha-256
+   local    forgejodb    forgejo                   scram-sha-256
+   host     forgejodb    forgejo    127.0.0.1/32   scram-sha-256
+   host     forgejodb    forgejo    ::1/128        scram-sha-256
    ```
 
    For remote database:
@@ -146,7 +148,7 @@ Note: All steps below requires that the database engine of your choice is instal
    For local database:
 
    ```
-   psql -U forgejo -d forgejodb
+   psql -U forgejo -d forgejodb -h localhost
    ```
 
    For remote database:
