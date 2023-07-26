@@ -127,8 +127,8 @@ Note: All steps below requires that the database engine of your choice is instal
 
    ```ini
    local    forgejodb    forgejo                   scram-sha-256
-   host     forgejodb    forgejo    127.0.0.1/32   scram-sha-256
-   host     forgejodb    forgejo    ::1/128        scram-sha-256
+   host     forgejodb    forgejo    127.0.0.1/32   scram-sha-256  # IPv4 local connections
+   host     forgejodb    forgejo    ::1/128        scram-sha-256  # IPv6 local connections
    ```
 
    For remote database:
