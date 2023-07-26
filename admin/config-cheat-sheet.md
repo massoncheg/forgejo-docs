@@ -2,7 +2,7 @@
 layout: '~/layouts/Markdown.astro'
 title: 'Configuration Cheat Sheet'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/administration/config-cheat-sheet.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d0dbe52e76f3038777c3b50066e3636105387ca3/docs/content/doc/administration/config-cheat-sheet.en-us.md'
 ---
 
 This is a cheat sheet for the Forgejo configuration file. It contains most of the settings
@@ -26,14 +26,14 @@ Values containing `#` or `;` must be quoted using `` ` `` or `"""`.
 ## Default Configuration (non-`app.ini` configuration)
 
 These values are environment-dependent but form the basis of a lot of values. They will be
-reported as part of the default configuration when running `forgejo --help` or on start-up. The order they are emitted there is slightly different but we will list them here in the order they are set-up.
+reported as part of the default configuration when running `forgejo help` or on start-up. The order they are emitted there is slightly different but we will list them here in the order they are set-up.
 
 - _`AppPath`_: This is the absolute path of the running forgejo binary.
 - _`AppWorkPath`_: This refers to "working path" of the `forgejo` binary. It is determined by using the first set thing in the following hierarchy:
   - The `--work-path` flag passed to the binary
   - The environment variable `$FORGEJO_WORK_DIR`
   - A built-in value set at build time (see building from source)
-  - Otherwise it defaults to the directory of the _`AppPath`_
+  - Otherwise, it defaults to the directory of the _`AppPath`_
   - If any of the above are relative paths then they are made absolute against
     the directory of the _`AppPath`_
 - _`CustomPath`_: This is the base directory for custom templates and other options.
@@ -41,17 +41,17 @@ reported as part of the default configuration when running `forgejo --help` or o
   - The `--custom-path` flag passed to the binary
   - The environment variable `$FORGEJO_CUSTOM`
   - A built-in value set at build time (see building from source)
-  - Otherwise it defaults to _`AppWorkPath`_`/custom`
+  - Otherwise, it defaults to _`AppWorkPath`_`/custom`
   - If any of the above are relative paths then they are made absolute against the
     directory of the _`AppWorkPath`_
 - _`CustomConf`_: This is the path to the `app.ini` file.
   - The `--config` flag passed to the binary
   - A built-in value set at build time (see building from source)
-  - Otherwise it defaults to _`CustomPath`_`/conf/app.ini`
+  - Otherwise, it defaults to _`CustomPath`_`/conf/app.ini`
   - If any of the above are relative paths then they are made absolute against the
     directory of the _`CustomPath`_
 
-In addition there is _`StaticRootPath`_ which can be set as a built-in at build time, but will otherwise default to _`AppWorkPath`_
+In addition, there is _`StaticRootPath`_ which can be set as a built-in at build time, but will otherwise default to _`AppWorkPath`_
 
 ## Overall (`DEFAULT`)
 
@@ -60,6 +60,7 @@ In addition there is _`StaticRootPath`_ which can be set as a built-in at build 
   This should be a dedicated system (non-user) account. Setting this incorrectly will cause Forgejo
   to not start.
 - `RUN_MODE`: **prod**: Application run mode, affects performance and debugging: `dev` or `prod`, default is `prod`. Mode `dev` makes Forgejo easier to develop and debug, values other than `dev` are treated as `prod` which is for production use.
+- `WORK_PATH`: **_the-work-path_**: The working directory, see the comment of AppWorkPath above.
 
 ## Repository (`repository`)
 
