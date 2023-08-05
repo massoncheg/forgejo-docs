@@ -8,7 +8,7 @@ similar: 'https://github.com/go-gitea/gitea/blob/main/docs/content/doc/usage/act
 
 The following guide explains key **concepts** to help understand how `workflows` are interpreted, with a set of **examples** that can be copy/pasted and modified to fit particular use cases.
 
-# Quick start
+## Quick start
 
 - Verify that `Enable Repository Actions` is checked in the `Repository` tab of the `/{owner}/{repository}/settings` page. If the checkbox does not show it means the administrator of the Forgejo instance did not activate the feature.
   ![enable actions](../../../../images/v1.20/user/actions/enable-repository.png)
@@ -27,13 +27,13 @@ The following guide explains key **concepts** to help understand how `workflows`
 - Click on the workflow link to see the details and the job execution logs.
   ![actions results](../../../../images/v1.20/user/actions/workflow-demo.png)
 
-# Concepts
+## Concepts
 
-## Forgejo runner
+### Forgejo runner
 
 `Forgejo` itself does not run the `jobs`, it relies on the [Forgejo runner](https://code.forgejo.org/forgejo/runner) to do so. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
 
-## Actions
+### Actions
 
 An `Action` is a repository that contains the equivalent of a function in any programming language. It comes in two flavors, depending on the file found at the root of the repository:
 
@@ -44,18 +44,18 @@ One of the most commonly used action is [checkout](https://code.forgejo.org/acti
 
 Just as any other program of function, an `Action` has pre-requisites to successfully be installed and run. When looking at re-using an existing `Action`, this is an important consideration. For instance [setup-go](https://code.forgejo.org/actions/setup-go) depends on NodeJS during installation.
 
-## Expressions
+### Expressions
 
 In a `workflow` file strings that look like `${{ ... }}` are evaluated by the `Forgejo runner` and are called expressions. As a shortcut, `if: ${{ ... }}` is equivalent to `if: ...`, i.e the `${{ }}` surrounding the expression is implicit and can be stripped. [Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-expression/.forgejo/workflows/test.yml) that illustrates expressions.
 
-### Literals
+#### Literals
 
 - boolean: true or false
 - null: null
 - number: any number format supported by JSON
 - string: enclosed in single quotes. Two single quotes
 
-### Logical operators
+#### Logical operators
 
 | Operator | Description           |
 | -------- | --------------------- |
@@ -74,7 +74,7 @@ In a `workflow` file strings that look like `${{ ... }}` are evaluated by the `F
 
 > **NOTE:** String comparisons are case insensitive.
 
-### Functions
+#### Functions
 
 - `contains( search, item )`. Returns `true` if `search` contains `item`. If `search` is an array, this function returns `true` if the `item` is an element in the array. If `search` is a string, this function returns `true` if the `item` is a substring of `search`. This function is not case sensitive. Casts values to a string.
 - `startsWith( searchString, searchValue )`. Returns `true` when `searchString` starts with `searchValue`. This function is not case sensitive. Casts values to a string.
@@ -84,7 +84,7 @@ In a `workflow` file strings that look like `${{ ... }}` are evaluated by the `F
 - `toJSON(value)`. Returns a pretty-print JSON representation of `value`.
 - `fromJSON(value)`. Returns a JSON object or JSON data type for `value`. You can use this function to provide a JSON object as an evaluated expression or to convert environment variables from a string.
 
-## Caching commonly used files
+### Caching commonly used files
 
 When a `job` starts, it can communicate with the `Forgejo runner` to
 fetch commonly used files that were saved by previous runs. For
@@ -95,7 +95,7 @@ that by default to save downloading and compiling packages found in
 It is also possible to explicitly control what is cached and when
 using the https://code.forgejo.org/actions/cache action.
 
-## Services
+### Services
 
 PostgreSQL, redis and other services can be run from container images with something similar to the following. See also the [set of examples](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/).
 
@@ -112,33 +112,33 @@ A container with the specified `image:` is run before the `job` starts and is te
 
 The IP address of `pgsql` is on the same [docker network](https://docs.docker.com/engine/reference/commandline/network/) as the container running the **steps** and there is no need for port binding (see the [docker run --publish](https://docs.docker.com/engine/reference/commandline/run/) option for more information). The `postgres:15` image exposes the PostgreSQL port 5432 and a client will be able to connect as [shown in this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-service/.forgejo/workflows/postgresql.yml)
 
-### image
+#### image
 
 The location of the container image to run.
 
-### env
+#### env
 
 Key/value pairs injected in the environment when running the container, equivalent to [--env](https://docs.docker.com/engine/reference/commandline/run/).
 
-### cmd
+#### cmd
 
 A list of command and arguments, equivalent to [[COMMAND] [ARG...]](https://docs.docker.com/engine/reference/commandline/run/).
 
-### options
+#### options
 
 A string of additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/). For instance: "--workdir /myworkdir --ulimit nofile=1024:1024".
 
 > **NOTE:** the `--volume` option is restricted to a whitelist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
 
-### username
+#### username
 
 The username to authenticate with the registry where the image is located.
 
-### password
+#### password
 
 The password to authenticate with the registry where the image is located.
 
-# The list of runners and their tasks
+## The list of runners and their tasks
 
 A `Forgejo runner` listens on a `Forgejo` instance, waiting for jobs. To figure out if a runner is available for a given repository, go to `/{owner}/{repository}/settings/actions/runners`. If there are none, you can run one for yourself on your laptop.
 
@@ -150,7 +150,7 @@ Clicking on the pencil icon next to a runner shows the list of tasks it executed
 
 ![show the runners tasks](../../../../images/v1.20/user/actions/runner-tasks.png)
 
-# The list of tasks in a repository
+## The list of tasks in a repository
 
 From the `Actions` tab in a repository, the list of ongoing and past tasks triggered by this repository is displayed with their status.
 
@@ -160,7 +160,7 @@ Following the link on a task displays the logs and the `Re-run all jobs` button.
 
 ![the details of an action](../../../../images/v1.20/user/actions/actions-detail.png)
 
-# Pull request actions are moderated
+## Pull request actions are moderated
 
 The first time a user proposes a pull request, the task is blocked to reduce the security risks.
 
@@ -170,7 +170,7 @@ It can be approved by a maintainer of the project and there will be no need to u
 
 ![button to approve an action](../../../../images/v1.20/user/actions/action-approve.png)
 
-# Secrets
+## Secrets
 
 A repository, a user or an organization can hold secrets, a set of key/value pairs that are stored encrypted in the `Forgejo` database and revealed to the `workflows` as `${{ secrets.KEY }}`. They can be defined from the web interface:
 
@@ -184,11 +184,11 @@ Once the secret is added, its value cannot be changed or displayed.
 
 ![secrets list](../../../../images/v1.20/user/actions/secret-list.png)
 
-# Workflow reference guide
+## Workflow reference guide
 
 The syntax and semantic of the YAML file describing a `workflow` are partially explained here. When an entry is missing the [GitHub Actions](https://docs.github.com/en/actions) documentation can help because there are similarities. But there also are significant differences that deserve testing.
 
-## on
+### on
 
 Workflows will be triggered `on` certain events with the following:
 
@@ -225,7 +225,7 @@ on:
 
 Not everything from https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows is implemented yet. Please refer to the [forgejo/actions package source code](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/actions/workflows.go) and the [list of webhook event names](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/webhook/type.go) to find out about supported triggers.
 
-## env
+### env
 
 Set environment variables that are available in the workflow in the `env` `context` and as regular environment variables.
 
@@ -240,9 +240,9 @@ env:
 
 [Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-expression/.forgejo/workflows/test.yml).
 
-## jobs
+### jobs
 
-### runs-on
+#### runs-on
 
 Each `job` in a `workflow` must specify the kind of machine it needs to run its `steps` with `runs-on`. For instance `docker` in the following `workflow`:
 
@@ -261,7 +261,7 @@ The list of available `labels` for a given repository can be seen in the `/{owne
 
 ![actions results](../../../../images/v1.20/user/actions/list-of-runners.png)
 
-#### container
+##### container
 
 By default the `docker` label will create a container from a [Node.js 16 Debian GNU/Linux bullseye image](https://hub.docker.com/_/node/tags?name=16-bullseye) and will run each `step` as root. Since an application container is used, the jobs will inherit the limitations imposed by the engine (Docker for instance). In particular they will not be able to run or install software that depends on `systemd`.
 
@@ -273,25 +273,25 @@ container:
   image: alpine:3.18
 ```
 
-#### options
+##### options
 
 A string of additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/). For instance: "--workdir /myworkdir --ulimit nofile=1024:1024".
 
 > **NOTE:** the `--volume` option is restricted to a whitelist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
 
-#### LXC
+##### LXC
 
 The `runs-on: self-hosted` label will run the jobs in a [LXC](https://linuxcontainers.org/lxc/) container where software that rely on `systemd` can be installed. Nested containers can also be created recursively (see [the setup-forgejo integration tests](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/.forgejo/workflows/integration.yml) for an example).
 
 `Services` are not supported for jobs that run on LXC.
 
-### steps
+#### steps
 
-#### uses
+##### uses
 
 Specifies the repository from which the `Action` will be cloned or a directory where it can be found.
 
-##### Remote actions
+###### Remote actions
 
 A relative `Action` such as `uses: actions/checkout@v3` will clone the repository at the URL composed by prepending the default actions URL which is https://code.forgejo.org/. It is the equivalent of providing the fully qualified URL `uses: https://code.forgejo.org/actions/checkout@v3`. In other words the following:
 
@@ -322,7 +322,7 @@ it gets an outdated version from https://tooold.org/actions/checkout
 instead. Or even a repository that does not contain the intended
 action.
 
-##### Local actions
+###### Local actions
 
 An action that begins with a `./` will be loaded from a directory
 instead of being cloned from a repository. The structure of the
@@ -333,7 +333,7 @@ repository.
 
 [Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-local-action/).
 
-##### with
+###### with
 
 A dictionary mapping the inputs of the action to concrete values. The `action.yml` defines and documents the inputs.
 
@@ -356,7 +356,7 @@ For remote actions that are implemented with a `Dockerfile` instead of `action.y
 
 [Checkout the example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-docker-action/.forgejo/workflows/test.yml)
 
-# Debugging workflows with forgejo-runner exec
+## Debugging workflows with forgejo-runner exec
 
 To get a quicker debug loop when working on a workflow, it may be more
 convenient to run them on your laptop using `forgejo-runner exec`. For
@@ -391,7 +391,7 @@ INFO[0000] Start server on http://192.168.1.20:34567
 [checks/check and test] 🏁  Job succeeded
 ```
 
-# Examples
+## Examples
 
 Each example is part of the [setup-forgejo](https://code.forgejo.org/actions/setup-forgejo/) action [test suite](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata). They can be run locally with something similar to:
 
@@ -430,7 +430,7 @@ test "KEY2=$KEY2" = "KEY2=value2"
 - [Choosing the image with `container`](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.18` image using `container:`
 - [Docker action](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/testdata/example-docker-action/.forgejo/workflows/test.yml) - using a action implemented as a `Dockerfile`
 
-# Glossary
+## Glossary
 
 - **action:** a repository that can be used in a way similar to a function in any programming language to run a single **step**.
 - **expression:** a string enclosed in `${{ ... }}` and evaluated at runtime

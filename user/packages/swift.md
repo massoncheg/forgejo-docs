@@ -4,15 +4,15 @@ license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/usage/packages/swift.en-us.md'
 ---
 
-# Swift Packages Repository
+## Swift Packages Repository
 
 Publish [Swift](hhttps://www.swift.org/) packages for your user or organization.
 
-## Requirements
+### Requirements
 
 To work with the Swift package registry, you need to use [swift](https://www.swift.org/getting-started/) to consume and a HTTP client (like `curl`) to publish packages.
 
-## Configuring the package registry
+### Configuring the package registry
 
 To register the package registry and provide credentials, execute:
 
@@ -28,7 +28,7 @@ swift package-registry set https://forgejo.example.com/api/packages/{owner}/swif
 
 The login is optional and only needed if the package registry is private.
 
-## Publish a package
+### Publish a package
 
 First you have to pack the contents of your package:
 
@@ -58,7 +58,7 @@ curl -X PUT --user {username}:{password} \
 
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
 
-## Install a package
+### Install a package
 
 To install a Swift package from the package registry, add it in the `Package.swift` file dependencies list:
 

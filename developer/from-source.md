@@ -4,7 +4,7 @@ license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/docs/content/doc/installation/from-source.en-us.md'
 ---
 
-# Installation from source
+## Installation from source
 
 You should [install go](https://golang.org/doc/install) and set up your go
 environment correctly. In particular, it is recommended to set the `$GOPATH`
@@ -26,7 +26,7 @@ executable path, you will have to manage this yourself.
 obtain the same version as our continuous integration, see the advice given in
 [Hacking on Forgejo]({{< relref "doc/development/hacking-on-forgejo.en-us.md" >}})
 
-## Download
+### Download
 
 First, we must retrieve the source code. Since, the advent of go modules, the
 simplest way of doing this is to use Git directly as we no longer have to have
@@ -57,7 +57,7 @@ git tag -l
 git checkout v1.20.0-5
 ```
 
-## Build
+### Build
 
 To build from source, the following programs must be present on the system:
 
@@ -106,7 +106,7 @@ TAGS="bindata" make backend
 
 Webpack source maps are by default enabled in development builds and disabled in production builds. They can be enabled by setting the `ENABLE_SOURCEMAP=true` environment variable.
 
-## Test
+### Test
 
 After following the steps above, a `forgejo` binary will be available in the working directory.
 It can be tested from this directory or moved to a directory with test data. When Forgejo is

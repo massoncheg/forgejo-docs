@@ -4,7 +4,7 @@ license: 'CC-BY-SA-4.0'
 origin_url: 'https://github.com/DanielGibson/DanielGibson.github.io/blob/58362695f743a545d2530508ce42d5fe1eea84a9/content/post/setup-vps-with-wireguard-and-forgejo.md'
 ---
 
-# Installation with Docker
+## Installation with Docker
 
 Forgejo provides [container images](https://codeberg.org/forgejo/-/packages/container/forgejo/versions) for use with Docker or other containerization tools.
 
@@ -47,11 +47,11 @@ services:
 Note that the volume should be owned by the user/group with the UID/GID specified in the config file.
 If you don't give the volume correct permissions, the container may not start.
 
-## Databases
+### Databases
 
 In the following each database is shown as part of a `docker-compose` example file, with a `diff like` presentation that highlights additions to the example above.
 
-### MySQL database
+#### MySQL database
 
 ```yaml
 version: "3"
@@ -99,7 +99,7 @@ services:
 +      - ./mysql:/var/lib/mysql
 ```
 
-### PostgreSQL database
+#### PostgreSQL database
 
 ```yaml
 version: "3"
@@ -146,9 +146,9 @@ services:
 +      - ./postgres:/var/lib/postgresql/data
 ```
 
-# Installation from binary
+## Installation from binary
 
-## Install Forgejo and git, create git user
+### Install Forgejo and git, create git user
 
 > **NOTE:** this guide assumes that you'll host on the server with the domain git.example.com.
 
@@ -186,7 +186,7 @@ like Fedora, CentOS etc.), run this instead:
    --gid git --home-dir /home/git --create-home git
 ```
 
-## Create directories Forgejo will use
+### Create directories Forgejo will use
 
 Now create the directories Forgejo will use and set access rights appropriately:
 
@@ -200,7 +200,7 @@ _This is the directory Forgejo's config, called `app.ini`, is stored in. Initial
 be writable by Forgejo, but after the installation you can make it read-only for Forgejo because
 then it shouldn't modify it anymore._
 
-## Optional: Set up database
+### Optional: Set up database
 
 When using sqlite as Forgejos database, nothing needs to be done here.
 
@@ -210,7 +210,7 @@ is good enough for at least 10 users, but might even suffice for more).
 See [Forgejos Database Preparation guide](../database-preparation/) for
 setup instructions.
 
-## Install systemd service for Forgejo
+### Install systemd service for Forgejo
 
 Forgejo provides a
 [systemd service script](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/contrib/systemd/forgejo.service).
@@ -225,7 +225,7 @@ Now enable and start the Forgejo service, so you can go on with the installation
 `# systemctl enable forgejo.service`  
 `# systemctl start forgejo.service`
 
-## Forgejos web-based configuration
+### Forgejos web-based configuration
 
 You should now be able to access Forgejo in your local web browser, so open http://git.example.com:3000/.
 
@@ -256,7 +256,7 @@ can create an account to then get to the dashboard.
 
 So far, so good, but we're not quite done yet - some manual configuration in the app.ini is needed.
 
-## Further configuration in Forgejo's app.ini
+### Further configuration in Forgejo's app.ini
 
 Stop the forgejo service:  
 `# systemctl stop forgejo.service`
@@ -347,7 +347,7 @@ You can test sending a mail by clicking the user button on the upper right of th
 ("Profile and Settings"), then `Site Administration`, then `Configuration` and under
 `Mailer Configuration` type in your mail address and click `Send Testing Email`.
 
-## General hints for using Forgejo
+### General hints for using Forgejo
 
 Sometimes you may want/need to use the Forgejo
 [command line interface](./command-line/).

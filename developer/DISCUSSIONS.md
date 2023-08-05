@@ -13,7 +13,7 @@ Dedicated repositories in the [Forgejo organization](https://codeberg.org/forgej
 
 Other discussions regarding all **non technical aspects** of Forgejo, such as the governance, happen in a dedicated [issue tracker](https://codeberg.org/forgejo/discussions/issues) and in the [matrix chatroom](https://matrix.to/#/#forgejo-chat:matrix.org).
 
-# Security
+## Security
 
 The [security team](https://codeberg.org/forgejo/governance/src/branch/main/TEAMS.md#security) takes care of security vulnerabilities. It handles sensitive security-related issues reported to [security@forgejo.org](mailto:security@forgejo.org) using [encryption](https://keyoxide.org/security@forgejo.org).
 
