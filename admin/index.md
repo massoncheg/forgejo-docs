@@ -8,6 +8,7 @@ These documents are targeted to people who run Forgejo on their machines.
 - [Installation](./installation/)
 - [Database Preparation](./database-preparation/)
 - [Configuration Cheat Sheet](./config-cheat-sheet/)
+- [Storage settings](./storage/)
 - [Upgrade guide](./upgrade/)
 - [Reverse Proxy](./reverse-proxy/)
 - [Email setup](./email-setup/)
