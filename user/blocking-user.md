@@ -41,6 +41,7 @@ When you block a user:
 
 - You stop following them.
 - They stop following you.
+- They are removed as collaborators on repositories you own as an individual.
 
 After you've blocked them:
 
