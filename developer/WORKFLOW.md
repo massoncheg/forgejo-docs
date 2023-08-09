@@ -78,23 +78,18 @@ The purpose of each _Feature branch_ is documented below:
 - [forgejo-ci](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-ci) based on [main](https://codeberg.org/forgejo/forgejo/src/branch/main)
   CI configuration, including the release process.
 
-  - Backports: [v1.19/forgejo-ci](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-ci)
-
 - [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development) based on [forgejo-ci](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-ci)
   Forgejo development tools and documentation.
-  - Backports: [v1.19/forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-development)
 
 ### Dependency
 
 - [forgejo-dependency](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-dependency) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
   Each commit is prefixed with the name of dependency in uppercase, for instance **[GOTH]** or **[GITEA]**. They are standalone and implement either a bug fix or a feature that is in the process of being contributed to the dependency. It is better to contribute directly to the dependency instead of adding a commit to this branch but it is sometimes not possible, for instance when someone does not have a GitHub account. The author of the commit is responsible for rebasing and resolve conflicts. The ultimate goal of this branch is to be empty and it is expected that a continuous effort is made to reduce its content so that the technical debt it represents does not burden Forgejo long term.
-  - Backports: [v1.19/forgejo-dependency](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-dependency)
 
 ### [Privacy](https://codeberg.org/forgejo/forgejo/issues?labels=83271)
 
 - [forgejo-privacy](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-privacy) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
   Customize Forgejo to have more privacy.
-  - Backports: [v1.19/forgejo-privacy](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-privacy)
 
 ### Moderation
 
@@ -105,13 +100,11 @@ The purpose of each _Feature branch_ is documented below:
 
 - [forgejo-branding](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-branding) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
   Replace hardcoded dependencies branding with a Forgejo equivalent.
-  - Backports: [v1.19/forgejo-branding](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-branding)
 
 ### [Internationalization](https://codeberg.org/forgejo/forgejo/issues?labels=82637)
 
 - [forgejo-i18n](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-i18n) based on [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development)
   Internationalization and localization support.
-  - Backports: [v1.19/forgejo-i18n](https://codeberg.org/forgejo/forgejo/src/branch/v1.19/forgejo-i18n)
 
 ### [Accessibility](https://codeberg.org/forgejo/forgejo/issues?labels=81214)
 
