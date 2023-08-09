@@ -79,7 +79,11 @@ The purpose of each _Feature branch_ is documented below:
   CI configuration, including the release process.
 
 - [forgejo-development](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-development) based on [forgejo-ci](https://codeberg.org/forgejo/forgejo/src/branch/forgejo-ci)
-  Forgejo development tools and documentation.
+  Forgejo development tools, tests etc. that do not fit in a feature branch or that are used by multiple feature branches. The commits titles should be prefixed with
+  a string that reflects their purpose such as `[DOCS]`, `[DB]`, `[TESTS]` etc.
+
+  The database migrations of all feature branches must be in the `forgejo-development` branch. This is a requirement to ensure they do not conflict with each other
+  and happen in sequence.
 
 ### Dependency
 
