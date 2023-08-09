@@ -7,13 +7,13 @@ license: 'CC-BY-SA-4.0'
 
 The Forgejo release numbers are composed of the Gitea release number followed by a dash and a serial number. For instance:
 
-- Gitea **v1.20.0** will be Forgejo **v1.20.0-0**, **v1.20.0-1**, etc
+- Gitea **v1.21.0** will be Forgejo **v1.21.0-0**, **v1.21.0-1**, etc
 
 The Gitea release candidates are suffixed with **-rcN** which is handled as a special case for packaging: although **X.Y.Z** is lexicographically lower than **X.Y.Z-rc1** is is considered greater. The Forgejo serial number must therefore be inserted before the **-rcN** suffix to preserve the expected version ordering.
 
-- Gitea **v1.20.0-rc0** will be Forgejo **v1.20.0-0-rc0**, **v1.20.0-1-rc0**
-- Gitea **v1.20.0-rc1** will be Forgejo **v1.20.0-2-rc1**, **v1.20.0-3-rc1**, **v1.20.0-4-rc1**
-- Gitea **v1.20.0** will be Forgejo **v1.20.0-5**, **v1.20.0-6**, **v1.20.0-7**
+- Gitea **v1.21.0-rc0** will be Forgejo **v1.21.0-0-rc0**, **v1.21.0-1-rc0**
+- Gitea **v1.21.0-rc1** will be Forgejo **v1.21.0-2-rc1**, **v1.21.0-3-rc1**, **v1.21.0-4-rc1**
+- Gitea **v1.21.0** will be Forgejo **v1.21.0-5**, **v1.21.0-6**, **v1.21.0-7**
 - etc.
 
 Because Forgejo depends on Gitea, it must retain the same release numbering scheme to be compatible with libraries and tools that depend on it. For instance, the tea CLI or the Gitea SDK will behave differently depending on the server version they connect to. If Forgejo had a different numbering scheme, it would no longer be compatible with the Gitea ecosystem.

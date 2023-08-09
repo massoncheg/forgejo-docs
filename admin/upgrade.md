@@ -8,7 +8,7 @@ This guide helps Forgejo admins perform upgrades safely and provides guidance to
 
 ### Backup
 
-To be safe, make sure to perform a full backup before upgrading. It is a requirement when upgrading to a new stable release (going from v1.19 to v1.20 for instance) but is also a good precaution when installing a patch release (going from v1.19.3-0 to v1.19.4-0 for instance).
+To be safe, make sure to perform a full backup before upgrading. It is a requirement when upgrading to a new stable release (going from v1.20 to v1.21 for instance) but is also a good precaution when installing a patch release (going from v1.20.1-0 to v1.20.2-0 for instance).
 
 The reliable way to perform a backup is with a synchronized point-in-time snapshot of all the storage used by Forgejo.
 
@@ -104,7 +104,7 @@ The database version is stored in the database and can be retrieved with **selec
 
 - [1.20.1-0](https://forgejo.org/2023-07-release-v1/)
 
-- The [tokens](https://forgejo.org/docs/v1.20/user/oauth2-provider/#scoped-tokens) were refactored in a way that does not guarantee their scope will be preserved. They may be larger or narrower and the only way to be sure that the intended scope is preserved is to re-create the token.
+- The [tokens](https://forgejo.org/docs/v1.21/user/oauth2-provider/#scoped-tokens) were refactored in a way that does not guarantee their scope will be preserved. They may be larger or narrower and the only way to be sure that the intended scope is preserved is to re-create the token.
 
 - [1.15.2](https://blog.gitea.io/2021/09/gitea-1.15.2-is-released/)
 

@@ -44,17 +44,17 @@ To work with tagged releases, the following commands can be used:
 
 ```bash
 git branch -a
-git checkout v1.20.0-5
+git checkout v1.21.2-0
 ```
 
-To build Forgejo from source at a specific tagged release (like v1.20.0-5), list the
+To build Forgejo from source at a specific tagged release (like v1.21.2-0), list the
 available tags and check out the specific tag.
 
 List available tags with the following.
 
 ```bash
 git tag -l
-git checkout v1.20.0-5
+git checkout v1.21.2-0
 ```
 
 ### Build

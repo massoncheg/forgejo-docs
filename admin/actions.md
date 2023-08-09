@@ -113,7 +113,7 @@ A special kind of token is needed and can be obtained from the `Create new runne
 - in `/user/settings/actions/runners` to gain access to all repositories of the logged in user
 - in `/{owner}/{repository}/settings/actions/runners` to gain access to a single repository.
 
-![add a runner](../../../../images/v1.20/user/actions/runners-add.png)
+![add a runner](../../../../images/v1.21/user/actions/runners-add.png)
 
 For instance, using a token obtained for a test repository from `next.forgejo.org`:
 
@@ -289,7 +289,7 @@ To verify it is actually available for the targeted repository, go to `/{owner}/
 - available to all repositories within an organization or a user
 - available to all repositories, with the **Global** type
 
-![list the runners](../../../../images/v1.20/user/actions/list-of-runners.png)
+![list the runners](../../../../images/v1.21/user/actions/list-of-runners.png)
 
 Adding the `.forgejo/workflows/demo.yaml` file to the test repository:
 
