@@ -7,7 +7,7 @@ The storage for each subsystem (`attachments`, `lfs`, `avatars`,
 `repo-avatars`, `repo-archive`, `packages`, `actions_log`,
 `actions_artifact`) is defined in `app.ini`. It can either be on disk
 (`local`) or using a MinIO server (`minio`). The default is `local`
-storage, using the following hierarchy under the `WORK_PATH` directory:
+storage, using the following hierarchy under the `APP_DATA_PATH` directory:
 
 | storage           | default base path  | app.ini sections                                   |
 | ----------------- | ------------------ | -------------------------------------------------- |
@@ -20,7 +20,7 @@ storage, using the following hierarchy under the `WORK_PATH` directory:
 | actions_log       | actions_log/       | [actions_log] or [storage.actions_log]             |
 | actions_artifacts | actions_artifacts/ | [actions_artifacts] or [storage.actions_artifacts] |
 
-For instance if `WORK_PATH` was `/appdata`, the default directory to
+For instance if `APP_DATA_PATH` was `/appdata`, the default directory to
 store attachments would be `/appdata/attachements`.
 
 ## Overriding the defaults
@@ -78,9 +78,9 @@ PATH = /mystorage
 If the value of PATH for the `XXXX` subsystem is relative, it is
 constructed as follows:
 
-- The default base path is `WORK_PATH` (for instance `/appdata`)
-- If `[storage].PATH` is relative (for instance `storage`), the default base path becomes `WORK_PATH`/`[storage].PATH` (for instance `/appdata/storage`)
-- If `[storage.XXXX].PATH` is relative, the path becomes `WORK_PATH`/`[storage].PATH`/`[storage.XXXX].PATH` (for instance`/appdata/storage/lfs`)
+- The default base path is `APP_DATA_PATH` (for instance `/appdata`)
+- If `[storage].PATH` is relative (for instance `storage`), the default base path becomes `APP_DATA_PATH`/`[storage].PATH` (for instance `/appdata/storage`)
+- If `[storage.XXXX].PATH` is relative, the path becomes `APP_DATA_PATH`/`[storage].PATH`/`[storage.XXXX].PATH` (for instance`/appdata/storage/lfs`)
 
 It is recommended to always set the `PATH` values to an absolute path
 name because it is easier to understand and maintain.
