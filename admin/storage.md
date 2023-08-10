@@ -11,14 +11,14 @@ storage, using the following hierarchy under the `APP_DATA_PATH` directory:
 
 | storage           | default base path  | app.ini sections    |
 | ----------------- | ------------------ | ------------------- |
-| attachments       | attachments/       | [attachments]       |
-| lfs               | lfs/               | [lfs]               |
-| avatars           | avatars/           | [avatars]           |
-| repo-avatars      | repo-avatars/      | [repo-avatars]      |
-| repo-archive      | repo-archive/      | [repo-archive]      |
-| packages          | packages/          | [packages]          |
-| actions_log       | actions_log/       | [actions_log]       |
-| actions_artifacts | actions_artifacts/ | [actions_artifacts] |
+| Attachments       | attachments/       | [attachment]        |
+| LFS               | lfs/               | [lfs]               |
+| Avatars           | avatars/           | [avatars]           |
+| Repo avatars      | repo-avatars/      | [repo-avatars]      |
+| Repo archives     | repo-archive/      | [repo-archive]      |
+| Packages          | packages/          | [packages]          |
+| Actions logs      | actions_log/       | [actions_log]       |
+| Actions Artifacts | actions_artifacts/ | [actions_artifacts] |
 
 For instance if `APP_DATA_PATH` was `/appdata`, the default directory to
 store attachments would be `/appdata/attachments`.
@@ -41,7 +41,7 @@ for each subsystem in a `[XXXX]` section. For instance setting:
 [storage]
 PATH = /mystorage
 
-[attachments]
+[attachment]
 PATH = /otherstorage/attachments
 ```
 
@@ -114,7 +114,7 @@ For instance:
 [storage]
 PATH = /default
 
-[attachments]
+[attachment]
 PATH = /first
 ```
 
@@ -122,7 +122,8 @@ Will set the value of `PATH` for attachments to `/first`.
 
 ## Undocumented features
 
-It is **strongly** recommended to avoid using undocumented features
-(such as `[storage.attachments]` as an alternative to `[attachments]`
-for instance) because their behavior is not thoroughly tested and may
-lead to unexpected results.
+It is **strongly** recommended to avoid using undocumented features -
+such as `[storage.attachments]` as an alternative to `[attachment]`
+for instance (the plural is not a typo, it is a unification problem) -
+because their behavior is not thoroughly tested and may lead to
+unexpected results.

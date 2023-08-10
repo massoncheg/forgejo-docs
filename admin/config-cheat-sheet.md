@@ -1210,14 +1210,14 @@ WARNING: Changing the settings below can break federation.
 
 | storage           | default base path  | app.ini sections    |
 | ----------------- | ------------------ | ------------------- |
-| attachments       | attachments/       | [attachments]       |
-| lfs               | lfs/               | [lfs]               |
-| avatars           | avatars/           | [avatars]           |
-| repo-avatars      | repo-avatars/      | [repo-avatars]      |
-| repo-archive      | repo-archive/      | [repo-archive]      |
-| packages          | packages/          | [packages]          |
-| actions_log       | actions_log/       | [actions_log]       |
-| actions_artifacts | actions_artifacts/ | [actions_artifacts] |
+| Attachments       | attachments/       | [attachment]        |
+| LFS               | lfs/               | [lfs]               |
+| Avatars           | avatars/           | [avatars]           |
+| Repo avatars      | repo-avatars/      | [repo-avatars]      |
+| Repo archives     | repo-archive/      | [repo-archive]      |
+| Packages          | packages/          | [packages]          |
+| Actions logs      | actions_log/       | [actions_log]       |
+| Actions Artifacts | actions_artifacts/ | [actions_artifacts] |
 
 The storage configuration for attachments, lfs, avatars, repo-avatars, repo-archive, packages, actions_log, actions_artifact is [explained in detail in a dedicated section](../storage/).
 
