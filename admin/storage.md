@@ -3,25 +3,23 @@ title: 'Storage settings'
 license: 'CC-BY-SA-4.0'
 ---
 
-The storage for each subsystem (`attachments`, `lfs`, `avatars`,
-`repo-avatars`, `repo-archive`, `packages`, `actions_log`,
-`actions_artifact`) is defined in `app.ini`. It can either be on disk
+The storage for each subsystem is defined in `app.ini`. It can either be on disk
 (`local`) or using a MinIO server (`minio`). The default is `local`
 storage, using the following hierarchy under the `APP_DATA_PATH` directory:
 
-| storage           | default base path  | app.ini sections    |
-| ----------------- | ------------------ | ------------------- |
-| Attachments       | attachments/       | [attachment]        |
-| LFS               | lfs/               | [lfs]               |
-| Avatars           | avatars/           | [avatars]           |
-| Repo avatars      | repo-avatars/      | [repo-avatars]      |
-| Repo archives     | repo-archive/      | [repo-archive]      |
-| Packages          | packages/          | [packages]          |
-| Actions logs      | actions_log/       | [actions_log]       |
-| Actions Artifacts | actions_artifacts/ | [actions_artifacts] |
+| subsystem           | default base path  | app.ini sections      |
+| ------------------- | ------------------ | --------------------- |
+| Attachments         | attachments/       | [attachment]          |
+| LFS                 | lfs/               | [lfs]                 |
+| Avatars             | avatars/           | [avatar]              |
+| Repository avatars  | repo-avatars/      | [repo-avatar]         |
+| Repository archives | repo-archive/      | [repo-archive]        |
+| Packages            | packages/          | [packages]            |
+| Actions logs        | actions_log/       | [storage.actions_log] |
+| Actions Artifacts   | actions_artifacts/ | [actions.artifacts]   |
 
 For instance if `APP_DATA_PATH` was `/appdata`, the default directory to
-store attachments would be `/appdata/attachments`.
+store attachments will be `/appdata/attachments`.
 
 ## Overriding the defaults
 
@@ -33,9 +31,9 @@ section. For instance setting:
 PATH = /mystorage
 ```
 
-would change the default for storing attachments to
+will change the default for storing attachments to
 `/mystorage/attachments`. It is also possible to change these settings
-for each subsystem in a `[XXXX]` section. For instance setting:
+for each subsystem in their dedicated section. For instance:
 
 ```
 [storage]
@@ -45,8 +43,8 @@ PATH = /mystorage
 PATH = /otherstorage/attachments
 ```
 
-would store attachments in `/otherstorage/attachments` while `lfs`
-files would be stored in `/mystorage/lfs`.
+will store attachments in `/otherstorage/attachments` while `lfs`
+files will be stored in `/mystorage/lfs`.
 
 ## Storage type
 
@@ -57,14 +55,18 @@ The value of `STORAGE_TYPE` can be `local` (the default) or `minio`. For instanc
 STORAGE_TYPE = minio
 ```
 
-Will use `minio` for all subsystems (`attachments`, `lfs`, etc.)
+will use `minio` for all subsystems (Attachments, LFS, etc.)
 instead of storing them on disk. Each storage type has its own
 settings, as explained below.
 
 ## `local` storage
 
 There is just one setting when the `STORAGE_TYPE` is set to `local`,
-`PATH`. For instance:
+`PATH`. It must be an absolute path and is interpreted as follows.
+
+In the `[storage]` section, `PATH` is the directory under which the default
+base path of each subsystem will be created instead of
+`APP_DATA_PATH`. For instance, if `APP_DATA_PATH` equals `/appdata`:
 
 ```
 [storage]
@@ -72,14 +74,25 @@ STORAGE_TYPE = local
 PATH = /mystorage
 ```
 
-If the value of PATH for the `XXXX` subsystem is relative, it is
-constructed as follows:
+Will create attachments in `/mystorage/attachments` instead of
+`/appdata/attachments`, LFS files in `/mystorage/lfs` instead of
+`/appdata/lfs`, etc.
 
-- The default base path is `APP_DATA_PATH` (for instance `/appdata`)
-- If `[storage].PATH` is relative (for instance `storage`), the default base path becomes `APP_DATA_PATH`/`[storage].PATH` (for instance `/appdata/storage`)
+In the section dedicated to a subsystem (see the table above), `PATH`
+is the base path under which all files will be stored. For instance:
 
-It is recommended to always set the `PATH` values to an absolute path
-name because it is easier to understand and maintain.
+```
+[storage]
+STORAGE_TYPE = local
+PATH = /mystorage
+
+[attachment]
+STORAGE_TYPE = local
+PATH = /otherstorage/attachments
+```
+
+will store attachments in `/otherstorage/attachments` while `lfs`
+files will be stored in `/mystorage/lfs`.
 
 ## `minio` storage
 

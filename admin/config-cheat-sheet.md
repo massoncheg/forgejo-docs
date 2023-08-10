@@ -801,6 +801,8 @@ Default templates for project boards:
 - `MAX_SIZE`: **4**: Maximum size (MB).
 - `MAX_FILES`: **5**: Maximum number of attachments that can be uploaded at once.
 
+Additional settings can be included in this section to specify where the data is stored, as [explained in detail in the storage documentation](../storage/).
+
 ## Log (`log`)
 
 - `ROOT_PATH`: **\<empty\>**: Root path for log files.
@@ -1198,6 +1200,8 @@ WARNING: Changing the settings below can break federation.
 - `LIMIT_SIZE_SWIFT`: **-1**: Maximum size of a Swift upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`)
 - `LIMIT_SIZE_VAGRANT`: **-1**: Maximum size of a Vagrant upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`)
 
+Additional settings can be included in this section to specify where the data is stored, as [explained in detail in the storage documentation](../storage/).
+
 ## Mirror (`mirror`)
 
 - `ENABLED`: **true**: Enables the mirror functionality. Set to **false** to disable all mirrors. Pre-existing mirrors remain valid but won't be updated; may be converted to regular repo.
@@ -1206,20 +1210,40 @@ WARNING: Changing the settings below can break federation.
 - `DEFAULT_INTERVAL`: **8h**: Default interval between each check
 - `MIN_INTERVAL`: **10m**: Minimum interval for checking. (Must be >1m).
 
+## LFS (`lfs`)
+
+Settings can be included in this section to specify where the LFS files are stored, as [explained in detail in the storage documentation](../storage/).
+
+## Repository Avatars (`repo-avatar`)
+
+Settings can be included in this section to specify where the repository avatars are stored, as [explained in detail in the storage documentation](../storage/).
+
+## Avatars (`avatar`)
+
+Settings can be included in this section to specify where the avatars are stored, as [explained in detail in the storage documentation](../storage/).
+
+## Actions logs (`storage.actions_log`)
+
+Settings can be included in this section to specify where the actions logs are stored, as [explained in detail in the storage documentation](../storage/).
+
+## Actions Artifacts (`storage.artifacts`)
+
+Settings can be included in this section to specify where the actions artifacts are stored, as [explained in detail in the storage documentation](../storage/).
+
 ## Storage (`storage`)
 
-| storage           | default base path  | app.ini sections    |
-| ----------------- | ------------------ | ------------------- |
-| Attachments       | attachments/       | [attachment]        |
-| LFS               | lfs/               | [lfs]               |
-| Avatars           | avatars/           | [avatars]           |
-| Repo avatars      | repo-avatars/      | [repo-avatars]      |
-| Repo archives     | repo-archive/      | [repo-archive]      |
-| Packages          | packages/          | [packages]          |
-| Actions logs      | actions_log/       | [actions_log]       |
-| Actions Artifacts | actions_artifacts/ | [actions_artifacts] |
+| subsystem           | default base path  | app.ini sections      |
+| ------------------- | ------------------ | --------------------- |
+| Attachments         | attachments/       | [attachment]          |
+| LFS                 | lfs/               | [lfs]                 |
+| Avatars             | avatars/           | [avatar]              |
+| Repository avatars  | repo-avatars/      | [repo-avatar]         |
+| Repository archives | repo-archive/      | [repo-archive]        |
+| Packages            | packages/          | [packages]            |
+| Actions logs        | actions_log/       | [storage.actions_log] |
+| Actions Artifacts   | actions_artifacts/ | [actions.artifacts]   |
 
-The storage configuration for attachments, lfs, avatars, repo-avatars, repo-archive, packages, actions_log, actions_artifact is [explained in detail in a dedicated section](../storage/).
+The settings for all these sections are [explained in detail in the storage documentation](../storage/).
 
 ## Proxy (`proxy`)
 
