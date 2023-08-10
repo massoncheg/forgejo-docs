@@ -771,7 +771,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 - `DISABLE_GRAVATAR`: **false**: Enable this to use local avatars only. **DEPRECATED [v1.18+]** moved to database. Use admin panel to configure.
 - `ENABLE_FEDERATED_AVATAR`: **false**: Enable support for federated avatars (see
 
-- `AVATAR_STORAGE_TYPE`: **default**: Storage type defined in `[storage.xxx]`. Default is `default` which will read `[storage]` if no section `[storage]` will be a type `local`.
+- `AVATAR_STORAGE_TYPE`: **default**: Storage type [as explained in detail in the storage documentation](../storage/).
 - `AVATAR_UPLOAD_PATH`: **data/avatars**: Path to store user avatar image files.
 - `AVATAR_MAX_WIDTH`: **4096**: Maximum avatar image width in pixels.
 - `AVATAR_MAX_HEIGHT`: **4096**: Maximum avatar image height in pixels.
@@ -779,7 +779,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 - `AVATAR_MAX_ORIGIN_SIZE`: **262144** (256KiB): If the uploaded file is not larger than this byte size, the image will be used as is, without resizing/converting.
 - `AVATAR_RENDERED_SIZE_FACTOR`: **2**: The multiplication factor for rendered avatar images. Larger values result in finer rendering on HiDPI devices.
 
-- `REPOSITORY_AVATAR_STORAGE_TYPE`: **default**: Storage type defined in `[storage.xxx]`. Default is `default` which will read `[storage]` if no section `[storage]` will be a type `local`.
+- `REPOSITORY_AVATAR_STORAGE_TYPE`: **default**: Storage type defined [as explained in detail in the storage documentation](../storage/).
 - `REPOSITORY_AVATAR_UPLOAD_PATH`: **data/repo-avatars**: Path to store repository avatar image files.
 - `REPOSITORY_AVATAR_FALLBACK`: **none**: How Forgejo deals with missing repository avatars
   - none = no avatar will be displayed
@@ -1208,16 +1208,16 @@ WARNING: Changing the settings below can break federation.
 
 ## Storage (`storage`)
 
-| storage           | default base path  | app.ini sections                                   |
-| ----------------- | ------------------ | -------------------------------------------------- |
-| attachments       | attachments/       | [attachments] or [storage.attachements]            |
-| lfs               | lfs/               | [lfs] or [storage.lfs]                             |
-| avatars           | avatars/           | [avatars] or [storage.avatars]                     |
-| repo-avatars      | repo-avatars/      | [repo-avatars] or [storage.repo-avatars]           |
-| repo-archive      | repo-archive/      | [repo-archive] or [storage.repo-archive]           |
-| packages          | packages/          | [packages] or [storage.packages]                   |
-| actions_log       | actions_log/       | [actions_log] or [storage.actions_log]             |
-| actions_artifacts | actions_artifacts/ | [actions_artifacts] or [storage.actions_artifacts] |
+| storage           | default base path  | app.ini sections    |
+| ----------------- | ------------------ | ------------------- |
+| attachments       | attachments/       | [attachments]       |
+| lfs               | lfs/               | [lfs]               |
+| avatars           | avatars/           | [avatars]           |
+| repo-avatars      | repo-avatars/      | [repo-avatars]      |
+| repo-archive      | repo-archive/      | [repo-archive]      |
+| packages          | packages/          | [packages]          |
+| actions_log       | actions_log/       | [actions_log]       |
+| actions_artifacts | actions_artifacts/ | [actions_artifacts] |
 
 The storage configuration for attachments, lfs, avatars, repo-avatars, repo-archive, packages, actions_log, actions_artifact is [explained in detail in a dedicated section](../storage/).
 
