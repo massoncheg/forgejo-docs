@@ -21,7 +21,7 @@ storage, using the following hierarchy under the `APP_DATA_PATH` directory:
 | actions_artifacts | actions_artifacts/ | [actions_artifacts] |
 
 For instance if `APP_DATA_PATH` was `/appdata`, the default directory to
-store attachments would be `/appdata/attachements`.
+store attachments would be `/appdata/attachments`.
 
 ## Overriding the defaults
 
@@ -33,7 +33,7 @@ section. For instance setting:
 PATH = /mystorage
 ```
 
-would change the default for storing attachements to
+would change the default for storing attachments to
 `/mystorage/attachments`. It is also possible to change these settings
 for each subsystem in a `[XXXX]` section. For instance setting:
 
@@ -42,10 +42,10 @@ for each subsystem in a `[XXXX]` section. For instance setting:
 PATH = /mystorage
 
 [attachments]
-PATH = /otherstorage/attachements
+PATH = /otherstorage/attachments
 ```
 
-would store attachments in `/otherstorage/attachements` while `lfs`
+would store attachments in `/otherstorage/attachments` while `lfs`
 files would be stored in `/mystorage/lfs`.
 
 ## Storage type
@@ -57,7 +57,7 @@ The value of `STORAGE_TYPE` can be `local` (the default) or `minio`. For instanc
 STORAGE_TYPE = minio
 ```
 
-Will use `minio` for all subsystems (`attachements`, `lfs`, etc.)
+Will use `minio` for all subsystems (`attachments`, `lfs`, etc.)
 instead of storing them on disk. Each storage type has its own
 settings, as explained below.
 
@@ -118,11 +118,11 @@ PATH = /default
 PATH = /first
 ```
 
-Will set the value of `PATH` for attachements to `/first`.
+Will set the value of `PATH` for attachments to `/first`.
 
 ## Undocumented features
 
 It is **strongly** recommended to avoid using undocumented features
-(such as `[storage.attachments]` as an alternative to `[attachements]`
+(such as `[storage.attachments]` as an alternative to `[attachments]`
 for instance) because their behavior is not thoroughly tested and may
 lead to unexpected results.
