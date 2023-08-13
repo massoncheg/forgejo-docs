@@ -305,7 +305,6 @@ The following configuration set `Content-Type: application/vnd.android.package-a
   If `PROTOCOL` is `fcgi` or `fcgi+unix`, the default value is `%(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/`.
   If listen on `0.0.0.0`, the default value is `%(PROTOCOL)s://localhost:%(HTTP_PORT)s/`, Otherwise the default
   value is `%(PROTOCOL)s://%(HTTP_ADDR)s:%(HTTP_PORT)s/`.
-  if `PROTOCOL` is set to `http+unix`.
 - `LOCAL_USE_PROXY_PROTOCOL`: **%(USE_PROXY_PROTOCOL)s**: When making local connections pass the PROXY protocol header.
   This should be set to false if the local connection will go through the proxy.
 - `PER_WRITE_TIMEOUT`: **30s**: Timeout for any write to the connection. (Set to -1 to
@@ -477,7 +476,7 @@ Configuration at `[queue]` will set defaults for queues with overrides for indiv
 - `CONN_STR`: **redis://127.0.0.1:6379/0**: Connection string for the redis queue type. For `redis-cluster` use `redis+cluster://127.0.0.1:6379/0`. Options can be set using query params. Similarly, LevelDB options can also be set using: **leveldb://relative/path?option=value** or **leveldb:///absolute/path?option=value**, and will override `DATADIR`
 - `QUEUE_NAME`: **\_queue**: The suffix for default redis and disk queue name. Individual queues will default to **`name`**`QUEUE_NAME` but can be overridden in the specific `queue.name` section.
 - `SET_NAME`: **\_unique**: The suffix that will be added to the default redis and disk queue `set` name for unique queues. Individual queues will default to **`name`**`QUEUE_NAME`_`SET_NAME`_ but can be overridden in the specific `queue.name` section.
-- `MAX_WORKERS`: **10**: Maximum number of worker go-routines for the queue.
+- `MAX_WORKERS`: **(dynamic)**: Maximum number of worker go-routines for the queue. Default value is "CpuNum/2" clipped to between 1 and 10.
 
 Forgejo creates the following non-unique queues:
 
@@ -772,7 +771,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 - `DISABLE_GRAVATAR`: **false**: Enable this to use local avatars only. **DEPRECATED [v1.18+]** moved to database. Use admin panel to configure.
 - `ENABLE_FEDERATED_AVATAR`: **false**: Enable support for federated avatars (see
 
-- `AVATAR_STORAGE_TYPE`: **default**: Storage type defined in `[storage.xxx]`. Default is `default` which will read `[storage]` if no section `[storage]` will be a type `local`.
+- `AVATAR_STORAGE_TYPE`: **default**: Storage type [as explained in detail in the storage documentation](../storage/).
 - `AVATAR_UPLOAD_PATH`: **data/avatars**: Path to store user avatar image files.
 - `AVATAR_MAX_WIDTH`: **4096**: Maximum avatar image width in pixels.
 - `AVATAR_MAX_HEIGHT`: **4096**: Maximum avatar image height in pixels.
@@ -780,7 +779,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 - `AVATAR_MAX_ORIGIN_SIZE`: **262144** (256KiB): If the uploaded file is not larger than this byte size, the image will be used as is, without resizing/converting.
 - `AVATAR_RENDERED_SIZE_FACTOR`: **2**: The multiplication factor for rendered avatar images. Larger values result in finer rendering on HiDPI devices.
 
-- `REPOSITORY_AVATAR_STORAGE_TYPE`: **default**: Storage type defined in `[storage.xxx]`. Default is `default` which will read `[storage]` if no section `[storage]` will be a type `local`.
+- `REPOSITORY_AVATAR_STORAGE_TYPE`: **default**: Storage type defined [as explained in detail in the storage documentation](../storage/).
 - `REPOSITORY_AVATAR_UPLOAD_PATH`: **data/repo-avatars**: Path to store repository avatar image files.
 - `REPOSITORY_AVATAR_FALLBACK`: **none**: How Forgejo deals with missing repository avatars
   - none = no avatar will be displayed
@@ -801,18 +800,8 @@ Default templates for project boards:
 - `ALLOWED_TYPES`: **.csv,.docx,.fodg,.fodp,.fods,.fodt,.gif,.gz,.jpeg,.jpg,.log,.md,.mov,.mp4,.odf,.odg,.odp,.ods,.odt,.patch,.pdf,.png,.pptx,.svg,.tgz,.txt,.webm,.xls,.xlsx,.zip**: Comma-separated list of allowed file extensions (`.zip`), mime types (`text/plain`) or wildcard type (`image/*`, `audio/*`, `video/*`). Empty value or `*/*` allows all types.
 - `MAX_SIZE`: **4**: Maximum size (MB).
 - `MAX_FILES`: **5**: Maximum number of attachments that can be uploaded at once.
-- `STORAGE_TYPE`: **local**: Storage type for attachments, `local` for local disk or `minio` for s3 compatible object storage service, default is `local` or other name defined with `[storage.xxx]`
-- `SERVE_DIRECT`: **false**: Allows the storage driver to redirect to authenticated URLs to serve files directly. Currently, only Minio/S3 is supported via signed URLs, local does nothing.
-- `PATH`: **data/attachments**: Path to store attachments only available when STORAGE_TYPE is `local`
-- `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when STORAGE_TYPE is `minio`
-- `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`
-- `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
-- `MINIO_BUCKET`: **gitea**: Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
-- `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when STORAGE_TYPE is `minio`
-- `MINIO_BASE_PATH`: **attachments/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
-- `MINIO_USE_SSL`: **false**: Minio enabled ssl only available when STORAGE_TYPE is `minio`
-- `MINIO_INSECURE_SKIP_VERIFY`: **false**: Minio skip SSL verification available when STORAGE_TYPE is `minio`
-- `MINIO_CHECKSUM_ALGORITHM`: **default**: Minio checksum algorithm: `default` (for MinIO or AWS S3) or `md5` (for Cloudflare or Backblaze)
+
+Additional settings can be included in this section to specify where the data is stored, as [explained in detail in the storage documentation](../storage/).
 
 ## Log (`log`)
 
@@ -1211,6 +1200,8 @@ WARNING: Changing the settings below can break federation.
 - `LIMIT_SIZE_SWIFT`: **-1**: Maximum size of a Swift upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`)
 - `LIMIT_SIZE_VAGRANT`: **-1**: Maximum size of a Vagrant upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`)
 
+Additional settings can be included in this section to specify where the data is stored, as [explained in detail in the storage documentation](../storage/).
+
 ## Mirror (`mirror`)
 
 - `ENABLED`: **true**: Enables the mirror functionality. Set to **false** to disable all mirrors. Pre-existing mirrors remain valid but won't be updated; may be converted to regular repo.
@@ -1221,126 +1212,38 @@ WARNING: Changing the settings below can break federation.
 
 ## LFS (`lfs`)
 
-Storage configuration for lfs data. It will be derived from default `[storage]` or
-`[storage.xxx]` when set `STORAGE_TYPE` to `xxx`. When derived, the default of `PATH`
-is `data/lfs` and the default of `MINIO_BASE_PATH` is `lfs/`.
+Settings can be included in this section to specify where the LFS files are stored, as [explained in detail in the storage documentation](../storage/).
 
-- `STORAGE_TYPE`: **local**: Storage type for lfs, `local` for local disk or `minio` for s3 compatible object storage service or other name defined with `[storage.xxx]`
-- `SERVE_DIRECT`: **false**: Allows the storage driver to redirect to authenticated URLs to serve files directly. Currently, only Minio/S3 is supported via signed URLs, local does nothing.
-- `PATH`: **./data/lfs**: Where to store LFS files, only available when `STORAGE_TYPE` is `local`. If not set it fall back to deprecated LFS_CONTENT_PATH value in [server] section.
-- `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when `STORAGE_TYPE` is `minio`
-- `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when `STORAGE_TYPE` is `minio`
-- `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when `STORAGE_TYPE is` `minio`
-- `MINIO_BUCKET`: **gitea**: Minio bucket to store the lfs only available when `STORAGE_TYPE` is `minio`
-- `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when `STORAGE_TYPE` is `minio`
-- `MINIO_BASE_PATH`: **lfs/**: Minio base path on the bucket only available when `STORAGE_TYPE` is `minio`
-- `MINIO_USE_SSL`: **false**: Minio enabled ssl only available when `STORAGE_TYPE` is `minio`
-- `MINIO_INSECURE_SKIP_VERIFY`: **false**: Minio skip SSL verification available when STORAGE_TYPE is `minio`
+## Repository Avatars (`repo-avatar`)
+
+Settings can be included in this section to specify where the repository avatars are stored, as [explained in detail in the storage documentation](../storage/).
+
+## Avatars (`avatar`)
+
+Settings can be included in this section to specify where the avatars are stored, as [explained in detail in the storage documentation](../storage/).
+
+## Actions logs (`storage.actions_log`)
+
+Settings can be included in this section to specify where the actions logs are stored, as [explained in detail in the storage documentation](../storage/).
+
+## Actions Artifacts (`storage.artifacts`)
+
+Settings can be included in this section to specify where the actions artifacts are stored, as [explained in detail in the storage documentation](../storage/).
 
 ## Storage (`storage`)
 
-Default storage configuration for attachments, lfs, avatars, repo-avatars, repo-archive, packages, actions_log, actions_artifact.
+| subsystem           | default base path  | app.ini sections      |
+| ------------------- | ------------------ | --------------------- |
+| Attachments         | attachments/       | [attachment]          |
+| LFS                 | lfs/               | [lfs]                 |
+| Avatars             | avatars/           | [avatar]              |
+| Repository avatars  | repo-avatars/      | [repo-avatar]         |
+| Repository archives | repo-archive/      | [repo-archive]        |
+| Packages            | packages/          | [packages]            |
+| Actions logs        | actions_log/       | [storage.actions_log] |
+| Actions Artifacts   | actions_artifacts/ | [actions.artifacts]   |
 
-- `STORAGE_TYPE`: **local**: Storage type, `local` for local disk or `minio` for s3 compatible object storage service.
-- `SERVE_DIRECT`: **false**: Allows the storage driver to redirect to authenticated URLs to serve files directly. Currently, only Minio/S3 is supported via signed URLs, local does nothing.
-- `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when `STORAGE_TYPE` is `minio`
-- `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when `STORAGE_TYPE` is `minio`
-- `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when `STORAGE_TYPE is` `minio`
-- `MINIO_BUCKET`: **gitea**: Minio bucket to store the data only available when `STORAGE_TYPE` is `minio`
-- `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when `STORAGE_TYPE` is `minio`
-- `MINIO_USE_SSL`: **false**: Minio enabled ssl only available when `STORAGE_TYPE` is `minio`
-- `MINIO_INSECURE_SKIP_VERIFY`: **false**: Minio skip SSL verification available when STORAGE_TYPE is `minio`
-
-The recommanded storage configuration for minio like below:
-
-```ini
-[storage]
-STORAGE_TYPE = minio
-; Minio endpoint to connect only available when STORAGE_TYPE is `minio`
-MINIO_ENDPOINT = localhost:9000
-; Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`
-MINIO_ACCESS_KEY_ID =
-; Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
-MINIO_SECRET_ACCESS_KEY =
-; Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
-MINIO_BUCKET = gitea
-; Minio location to create bucket only available when STORAGE_TYPE is `minio`
-MINIO_LOCATION = us-east-1
-; Minio enabled ssl only available when STORAGE_TYPE is `minio`
-MINIO_USE_SSL = false
-; Minio skip SSL verification available when STORAGE_TYPE is `minio`
-MINIO_INSECURE_SKIP_VERIFY = false
-SERVE_DIRECT = true
-```
-
-Defaultly every storage has their default base path like below
-
-| storage           | default base path  |
-| ----------------- | ------------------ |
-| attachments       | attachments/       |
-| lfs               | lfs/               |
-| avatars           | avatars/           |
-| repo-avatars      | repo-avatars/      |
-| repo-archive      | repo-archive/      |
-| packages          | packages/          |
-| actions_log       | actions_log/       |
-| actions_artifacts | actions_artifacts/ |
-
-And bucket, basepath or `SERVE_DIRECT` could be special or overrided, if you want to use a different you can:
-
-```ini
-[storage.actions_log]
-MINIO_BUCKET = forgejo_actions_log
-SERVE_DIRECT = true
-MINIO_BASE_PATH = my_actions_log/ ; default is actions_log/ if blank
-```
-
-If you want to customerize a different storage for `lfs` if above default storage defined
-
-```ini
-[lfs]
-STORAGE_TYPE = my_minio
-
-[storage.my_minio]
-STORAGE_TYPE = minio
-; Minio endpoint to connect only available when STORAGE_TYPE is `minio`
-MINIO_ENDPOINT = localhost:9000
-; Minio accessKeyID to connect only available when STORAGE_TYPE is `minio`
-MINIO_ACCESS_KEY_ID =
-; Minio secretAccessKey to connect only available when STORAGE_TYPE is `minio`
-MINIO_SECRET_ACCESS_KEY =
-; Minio bucket to store the attachments only available when STORAGE_TYPE is `minio`
-MINIO_BUCKET = forgejo
-; Minio location to create bucket only available when STORAGE_TYPE is `minio`
-MINIO_LOCATION = us-east-1
-; Minio enabled ssl only available when STORAGE_TYPE is `minio`
-MINIO_USE_SSL = false
-; Minio skip SSL verification available when STORAGE_TYPE is `minio`
-MINIO_INSECURE_SKIP_VERIFY = false
-```
-
-## Repository Archive Storage (`storage.repo-archive`)
-
-Configuration for repository archive storage. It will inherit from default `[storage]` or
-`[storage.xxx]` when set `STORAGE_TYPE` to `xxx`. The default of `PATH`
-is `data/repo-archive` and the default of `MINIO_BASE_PATH` is `repo-archive/`.
-
-- `STORAGE_TYPE`: **local**: Storage type for repo archive, `local` for local disk or `minio` for s3 compatible object storage service or other name defined with `[storage.xxx]`
-- `SERVE_DIRECT`: **false**: Allows the storage driver to redirect to authenticated URLs to serve files directly. Currently, only Minio/S3 is supported via signed URLs, local does nothing.
-- `PATH`: **./data/repo-archive**: Where to store archive files, only available when `STORAGE_TYPE` is `local`.
-- `MINIO_ENDPOINT`: **localhost:9000**: Minio endpoint to connect only available when `STORAGE_TYPE` is `minio`
-- `MINIO_ACCESS_KEY_ID`: Minio accessKeyID to connect only available when `STORAGE_TYPE` is `minio`
-- `MINIO_SECRET_ACCESS_KEY`: Minio secretAccessKey to connect only available when `STORAGE_TYPE is` `minio`
-- `MINIO_BUCKET`: **gitea**: Minio bucket to store the lfs only available when `STORAGE_TYPE` is `minio`
-- `MINIO_LOCATION`: **us-east-1**: Minio location to create bucket only available when `STORAGE_TYPE` is `minio`
-- `MINIO_BASE_PATH`: **repo-archive/**: Minio base path on the bucket only available when `STORAGE_TYPE` is `minio`
-- `MINIO_USE_SSL`: **false**: Minio enabled ssl only available when `STORAGE_TYPE` is `minio`
-- `MINIO_INSECURE_SKIP_VERIFY`: **false**: Minio skip SSL verification available when STORAGE_TYPE is `minio`
-
-## Repository Archives (`repo-archive`)
-
-- `STORAGE_TYPE`: **local**: Storage type for actions logs, `local` for local disk or `minio` for s3 compatible object storage service, default is `local` or other name defined with `[storage.xxx]`
-- `MINIO_BASE_PATH`: **repo-archive/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
+The settings for all these sections are [explained in detail in the storage documentation](../storage/).
 
 ## Proxy (`proxy`)
 
@@ -1360,8 +1263,6 @@ PROXY_HOSTS = *.github.com
 
 - `ENABLED`: **false**: Enable/Disable actions
 - `DEFAULT_ACTIONS_URL`: **https://code.forgejo.org**: Default address to get action plugins, e.g. the default value means downloading from "https://code.forgejo.org/actions/checkout" for "uses: actions/checkout@v3"
-- `STORAGE_TYPE`: **local**: Storage type for actions logs, `local` for local disk or `minio` for s3 compatible object storage service, default is `local` or other name defined with `[storage.xxx]`
-- `MINIO_BASE_PATH`: **actions_log/**: Minio base path on the bucket only available when STORAGE_TYPE is `minio`
 
 ## Other (`other`)
 
