@@ -22,7 +22,7 @@ to be installed separately.
 
 ### Default Actions URL
 
-In a [workflow](https://forgejo.org/docs/v1.20/user/actions/#glossary), when `uses:` does not specify an absolute URL, the
+In a [workflow](../../user/actions/#glossary), when `uses:` does not specify an absolute URL, the
 value of `DEFAULT_ACTIONS_URL` is prepended to it.
 
 ```yaml
@@ -49,20 +49,20 @@ even if it provides something different than what is expected.
 
 ## Forgejo runner
 
-The `Forgejo runner` is a daemon that fetch workflows to run from a
-Forgejo instance, execute them, sends back with the logs and
+The `Forgejo runner` is a daemon that fetches workflows to run from a
+Forgejo instance, executes them, sends back with the logs and
 ultimately reports its success or failure.
 
 ### Installation
 
-Each `Forgejo runner` releases is published for all supported architectures as:
+Each `Forgejo runner` release is published for all supported architectures as:
 
 - [binaries](https://code.forgejo.org/forgejo/runner/releases)
 - [OCI images](https://code.forgejo.org/forgejo/-/packages/container/runner/versions)
 
 #### Installation of the binary
 
-Download the latest [binary release](https://code.forgejo.org/forgejo/runner/releases) and verify their signature:
+Download the latest [binary release](https://code.forgejo.org/forgejo/runner/releases) and verify its signature:
 
 ```shell
 $ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v3.0.0/forgejo-runner-amd64
@@ -99,8 +99,8 @@ to demonstrate how to install that OCI image to successfully run a workflow.
 
 ### Execution of the workflows
 
-The `Forgejo runner` relies application containers (Docker, Podman,
-...) or system containers (LXC) to execute a workflow in an isolated
+The `Forgejo runner` relies on application containers (Docker, Podman,
+etc) or system containers (LXC) to execute a workflow in an isolated
 environment. They need to be installed and configured independently.
 
 - **Docker:**
@@ -118,8 +118,8 @@ environment. They need to be installed and configured independently.
   ```
 
 - **Podman:**
-  While Podman is generally compatible to Docker,
-  it does not run socket for managing containers by default
+  While Podman is generally compatible with Docker,
+  it does not create a socket for managing containers by default
   (because it doesn't usually need one).
 
   If the Forgejo runner complains about "daemon Docker Engine socket not found", or "cannot ping the docker daemon",
