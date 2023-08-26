@@ -373,7 +373,7 @@ If no `Forgejo runner` is available, `Forgejo` will wait for one to connect and 
 
 ### Labels and `runs-on`
 
-The workflows / tasks defined in the files found in `.forgejo/workflows` must specify the environment they need to run with `runs-on`. Each `Forgejo runner` declares with **labels** which one they support so `Forgejo` knows sends them tasks accordingly. For instance if a job within a workflow has:
+The workflows / tasks defined in the files found in `.forgejo/workflows` must specify the environment they need to run with `runs-on`. Each `Forgejo runner` declares with **labels** which one they support so `Forgejo` sends them tasks accordingly. For instance if a job within a workflow has:
 
 ```yaml
 runs-on: docker
