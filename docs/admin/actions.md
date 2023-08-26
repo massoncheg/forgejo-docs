@@ -78,7 +78,7 @@ Good signature from "Forgejo <contact@forgejo.org>"
 
 The [OCI
 images](https://code.forgejo.org/forgejo/-/packages/container/runner/versions)
-are built from the Dockerfile [found in the source
+are built from the Dockerfile which is [found in the source
 directory](https://code.forgejo.org/forgejo/runner/src/branch/main/Dockerfile). It contains the `forgejo-runner` binary.
 
 ```shell
@@ -163,10 +163,10 @@ The `Forgejo runner` needs to connect to a `Forgejo` instance and must be regist
 - Online registration
   A special kind of token is needed and can be obtained from the `Create new runner` button:
 
-  - in `/admin/runners` to gain access to all repositories.
-  - in `/org/{org}/settings/actions/runners` to gain access to all repositories within the organization.
-  - in `/user/settings/actions/runners` to gain access to all repositories of the logged in user
-  - in `/{owner}/{repository}/settings/actions/runners` to gain access to a single repository.
+  - in `/admin/runners` to accept workflows from all repositories.
+  - in `/org/{org}/settings/actions/runners` to accept workflows from all repositories within the organization.
+  - in `/user/settings/actions/runners` to accept workflows from all repositories of the logged in user
+  - in `/{owner}/{repository}/settings/actions/runners` to accept workflows from a single repository.
 
   ![add a runner](../../../../images/v1.21/user/actions/runners-add.png)
 
