@@ -8,17 +8,17 @@ origin_url: https://github.com/go-gitea/gitea/blob/307ee2c044abe62c7e61787a6283e
 
 ## Usage
 
-`gitea [global options] command [command or global options] [arguments...]`
+`forgejo [global options] command [command or global options] [arguments...]`
 
 ## Global options
 
 All global options can be placed at the command level.
 
 - `--help`, `-h`: Show help text and exit. Optional.
-- `--version`, `-v`: Show version and exit. Optional. (example: `Gitea version 1.1.0+218-g7b907ed built with: bindata, sqlite`).
-- `--work-path path`, `-w path`: Gitea's work path. Optional. (default: the binary's path or `$GITEA_WORK_DIR`)
-- `--custom-path path`, `-C path`: Gitea's custom folder path. Optional. (default: `WorkPath`/custom or `$GITEA_CUSTOM`).
-- `--config path`, `-c path`: Gitea configuration file path. Optional. (default: `CustomPath`/conf/app.ini).
+- `--version`, `-v`: Show version and exit. Optional. (example: `Forgejo version 1.20.3+0 built with GNU Make 4.4.1, go1.20.7 : bindata, timetzdata, sqlite, sqlite_unlock_notify`).
+- `--work-path path`, `-w path`: Forgejo's work path. Optional. (default: the binary's path or `$GITEA_WORK_DIR`)
+- `--custom-path path`, `-C path`: Forgejo's custom folder path. Optional. (default: `WorkPath`/custom or `$GITEA_CUSTOM`).
+- `--config path`, `-c path`: Forgejo configuration file path. Optional. (default: `CustomPath`/conf/app.ini).
 
 NB: The defaults custom-path, config and work-path can also be
 changed at build time (if preferred).
@@ -36,13 +36,13 @@ Starts the server:
   - `--quiet`, `-q`: Only emit Fatal logs on the console for logs emitted before logging set up.
   - `--verbose`: Emit tracing logs on the console for logs emitted before logging is set-up.
 - Examples:
-  - `gitea web`
-  - `gitea web --port 80`
-  - `gitea web --config /etc/gitea.ini --pid /some/custom/gitea.pid`
+  - `forgejo web`
+  - `forgejo web --port 80`
+  - `forgejo web --config /etc/forgejo.ini --pid /some/custom/forgejo.pid`
 - Notes:
-  - Gitea should not be run as root. To bind to a port below 1024, you can use setcap on
-    Linux: `sudo setcap 'cap_net_bind_service=+ep' /path/to/gitea`. This will need to be
-    redone every time you update Gitea.
+  - Forgejo should not be run as root. To bind to a port below 1024, you can use setcap on
+    Linux: `sudo setcap 'cap_net_bind_service=+ep' /path/to/forgejo`. This will need to be
+    redone every time you update Forgejo.
 
 ### admin
 
@@ -55,7 +55,7 @@ Admin operations:
         - `--admin`: List only admin users. Optional.
       - Description: lists all users that exist
       - Examples:
-        - `gitea admin user list`
+        - `forgejo admin user list`
     - `delete`:
       - Options:
         - `--email`: Email of the user to be deleted.
@@ -63,11 +63,10 @@ Admin operations:
         - `--id`: ID of user to be deleted.
         - One of `--id`, `--username` or `--email` is required. If more than one is provided then all have to match.
       - Examples:
-        - `gitea admin user delete --id 1`
+        - `forgejo admin user delete --id 1`
     - `create`:
       - Options:
-        - `--name value`: Username. Required. As of Gitea 1.9.0, use the `--username` flag instead.
-        - `--username value`: Username. Required. New in Gitea 1.9.0.
+        - `--username value`: Username. Required.
         - `--password value`: Password. Required.
         - `--email value`: Email. Required.
         - `--admin`: If provided, this makes the user an admin. Optional.
@@ -79,13 +78,13 @@ Admin operations:
         - `--random-password-length`: If provided, it will be used to configure the length of the randomly generated
           password. Optional. (default: 12)
       - Examples:
-        - `gitea admin user create --username myname --password asecurepassword --email me@example.com`
+        - `forgejo admin user create --username myname --password asecurepassword --email me@example.com`
     - `change-password`:
       - Options:
         - `--username value`, `-u value`: Username. Required.
         - `--password value`, `-p value`: New password. Required.
       - Examples:
-        - `gitea admin user change-password --username myname --password asecurepassword`
+        - `forgejo admin user change-password --username myname --password asecurepassword`
     - `must-change-password`:
       - Args:
         - `[username...]`: Users that must change their passwords
@@ -99,25 +98,25 @@ Admin operations:
         - `--token-name value`, `-t value`: Token name. Required.
         - `--scopes value`: Comma-separated list of scopes. Scopes follow the format `[read|write]:<block>` or `all` where `<block>` is one of the available visual groups you can see when opening the API page showing the available routes (for example `repo`).
       - Examples:
-        - `gitea admin user generate-access-token --username myname --token-name mytoken`
-        - `gitea admin user generate-access-token --help`
+        - `forgejo admin user generate-access-token --username myname --token-name mytoken`
+        - `forgejo admin user generate-access-token --help`
   - `regenerate`
     - Options:
       - `hooks`: Regenerate Git Hooks for all repositories
       - `keys`: Regenerate authorized_keys file
     - Examples:
-      - `gitea admin regenerate hooks`
-      - `gitea admin regenerate keys`
+      - `forgejo admin regenerate hooks`
+      - `forgejo admin regenerate keys`
   - `auth`:
     - `list`:
       - Description: lists all external authentication sources that exist
       - Examples:
-        - `gitea admin auth list`
+        - `forgejo admin auth list`
     - `delete`:
       - Options:
         - `--id`: ID of source to be deleted. Required.
       - Examples:
-        - `gitea admin auth delete --id 1`
+        - `forgejo admin auth delete --id 1`
     - `add-oauth`:
       - Options:
         - `--name`: Application Name.
@@ -142,7 +141,7 @@ Admin operations:
         - `--group-team-map`: JSON mapping between groups and org teams. (Optional)
         - `--group-team-map-removal`: Activate automatic team membership removal depending on groups. (Optional)
       - Examples:
-        - `gitea admin auth add-oauth --name external-github --provider github --key OBTAIN_FROM_SOURCE --secret OBTAIN_FROM_SOURCE`
+        - `forgejo admin auth add-oauth --name external-github --provider github --key OBTAIN_FROM_SOURCE --secret OBTAIN_FROM_SOURCE`
     - `update-oauth`:
       - Options:
         - `--id`: ID of source to be updated. Required.
@@ -166,7 +165,7 @@ Admin operations:
         - `--admin-group`: Group Claim value for administrator users. (Optional)
         - `--restricted-group`: Group Claim value for restricted users. (Optional)
       - Examples:
-        - `gitea admin auth update-oauth --id 1 --name external-github-updated`
+        - `forgejo admin auth update-oauth --id 1 --name external-github-updated`
     - `add-smtp`:
       - Options:
         - `--name`: Application Name. Required.
@@ -186,14 +185,14 @@ Admin operations:
         - `--option=false` to disable
           If those options are not specified value would not be changed in `update-smtp` or would use default `false` value in `add-smtp`
       - Examples:
-        - `gitea admin auth add-smtp --name ldap --host smtp.mydomain.org --port 587 --skip-verify --active`
+        - `forgejo admin auth add-smtp --name ldap --host smtp.mydomain.org --port 587 --skip-verify --active`
     - `update-smtp`:
       - Options:
         - `--id`: ID of source to be updated. Required.
         - other options are shared with `add-smtp`
       - Examples:
-        - `gitea admin auth update-smtp --id 1 --host smtp.mydomain.org --port 587 --skip-verify=false`
-        - `gitea admin auth update-smtp --id 1 --active=false`
+        - `forgejo admin auth update-smtp --id 1 --host smtp.mydomain.org --port 587 --skip-verify=false`
+        - `forgejo admin auth update-smtp --id 1 --active=false`
     - `add-ldap`: Add new LDAP (via Bind DN) authentication source
       - Options:
         - `--name value`: Authentication name. Required.
@@ -218,7 +217,7 @@ Admin operations:
         - `--synchronize-users`: Enable user synchronization.
         - `--page-size value`: Search page size.
       - Examples:
-        - `gitea admin auth add-ldap --name ldap --security-protocol unencrypted --host mydomain.org --port 389 --user-search-base "ou=Users,dc=mydomain,dc=org" --user-filter "(&(objectClass=posixAccount)(|(uid=%[1]s)(mail=%[1]s)))" --email-attribute mail`
+        - `forgejo admin auth add-ldap --name ldap --security-protocol unencrypted --host mydomain.org --port 389 --user-search-base "ou=Users,dc=mydomain,dc=org" --user-filter "(&(objectClass=posixAccount)(|(uid=%[1]s)(mail=%[1]s)))" --email-attribute mail`
     - `update-ldap`: Update existing LDAP (via Bind DN) authentication source
       - Options:
         - `--id value`: ID of authentication source. Required.
@@ -244,8 +243,8 @@ Admin operations:
         - `--synchronize-users`: Enable user synchronization.
         - `--page-size value`: Search page size.
       - Examples:
-        - `gitea admin auth update-ldap --id 1 --name "my ldap auth source"`
-        - `gitea admin auth update-ldap --id 1 --username-attribute uid --firstname-attribute givenName --surname-attribute sn`
+        - `forgejo admin auth update-ldap --id 1 --name "my ldap auth source"`
+        - `forgejo admin auth update-ldap --id 1 --username-attribute uid --firstname-attribute givenName --surname-attribute sn`
     - `add-ldap-simple`: Add new LDAP (simple auth) authentication source
       - Options:
         - `--name value`: Authentication name. Required.
@@ -266,7 +265,7 @@ Admin operations:
         - `--avatar-attribute value`: The attribute of the user’s LDAP record containing the user’s avatar.
         - `--user-dn value`: The user’s DN. Required.
       - Examples:
-        - `gitea admin auth add-ldap-simple --name ldap --security-protocol unencrypted --host mydomain.org --port 389 --user-dn "cn=%s,ou=Users,dc=mydomain,dc=org" --user-filter "(&(objectClass=posixAccount)(cn=%s))" --email-attribute mail`
+        - `forgejo admin auth add-ldap-simple --name ldap --security-protocol unencrypted --host mydomain.org --port 389 --user-dn "cn=%s,ou=Users,dc=mydomain,dc=org" --user-filter "(&(objectClass=posixAccount)(cn=%s))" --email-attribute mail`
     - `update-ldap-simple`: Update existing LDAP (simple auth) authentication source
       - Options:
         - `--id value`: ID of authentication source. Required.
@@ -288,8 +287,8 @@ Admin operations:
         - `--avatar-attribute value`: The attribute of the user’s LDAP record containing the user’s avatar.
         - `--user-dn value`: The user’s DN.
       - Examples:
-        - `gitea admin auth update-ldap-simple --id 1 --name "my ldap auth source"`
-        - `gitea admin auth update-ldap-simple --id 1 --username-attribute uid --firstname-attribute givenName --surname-attribute sn`
+        - `forgejo admin auth update-ldap-simple --id 1 --name "my ldap auth source"`
+        - `forgejo admin auth update-ldap-simple --id 1 --username-attribute uid --firstname-attribute givenName --surname-attribute sn`
 
 ### cert
 
@@ -307,15 +306,15 @@ directory and will overwrite any existing files.
   - `--duration value`: Duration which the certificate is valid for. Optional. (default: 8760h0m0s)
   - `--ca`: If provided, this cert generates it's own certificate authority. Optional.
 - Examples:
-  - `gitea cert --host git.example.com,example.com,www.example.com --ca`
+  - `forgejo cert --host git.example.com,example.com,www.example.com --ca`
 
 ### dump
 
-Dumps all files and databases into a zip file. Outputs into a file like `gitea-dump-1482906742.zip`
+Dumps all files and databases into a zip file. Outputs into a file like `forgejo-dump-1482906742.zip`
 in the current directory.
 
 - Options:
-  - `--file name`, `-f name`: Name of the dump file with will be created. Optional. (default: gitea-dump-[timestamp].zip).
+  - `--file name`, `-f name`: Name of the dump file with will be created. Optional. (default: forgejo-dump-[timestamp].zip).
   - `--tempdir path`, `-t path`: Path to the temporary directory used. Optional. (default: /tmp).
   - `--skip-repository`, `-R`: Skip the repository dumping. Optional.
   - `--skip-custom-dir`: Skip dumping of the custom dir. Optional.
@@ -327,8 +326,8 @@ in the current directory.
   - `--verbose`, `-V`: If provided, shows additional details. Optional.
   - `--type`: Set the dump output format. Optional. (default: zip)
 - Examples:
-  - `gitea dump`
-  - `gitea dump --verbose`
+  - `forgejo dump`
+  - `forgejo dump --verbose`
 
 ### generate
 
@@ -342,9 +341,9 @@ for automatic deployments.
       - `JWT_SECRET`: LFS & OAUTH2 JWT authentication secret (LFS_JWT_SECRET is aliased to this option for backwards compatibility).
       - `SECRET_KEY`: Global secret key.
     - Examples:
-      - `gitea generate secret INTERNAL_TOKEN`
-      - `gitea generate secret JWT_SECRET`
-      - `gitea generate secret SECRET_KEY`
+      - `forgejo generate secret INTERNAL_TOKEN`
+      - `forgejo generate secret JWT_SECRET`
+      - `forgejo generate secret SECRET_KEY`
 
 ### keys
 
@@ -353,9 +352,9 @@ Provides an SSHD AuthorizedKeysCommand. Needs to be configured in the sshd confi
 ```ini
 ...
 # The value of -e and the AuthorizedKeysCommandUser should match the
-# username running Gitea
+# username running Forgejo
 AuthorizedKeysCommandUser git
-AuthorizedKeysCommand /path/to/gitea keys -e git -u %u -t %t -k %k
+AuthorizedKeysCommand /path/to/forgejo keys -e git -u %u -t %t -k %k
 ```
 
 The command will return the appropriate authorized_keys line for the
@@ -363,10 +362,10 @@ provided key. You should also set the value
 `SSH_CREATE_AUTHORIZED_KEYS_FILE=false` in the `[server]` section of
 `app.ini`.
 
-NB: opensshd requires the Gitea program to be owned by root and not
+NB: opensshd requires the Forgejo program to be owned by root and not
 writable by group or others. The program must be specified by an absolute
 path.
-NB: Gitea must be running for this command to succeed.
+NB: Forgejo must be running for this command to succeed.
 
 ### migrate
 
@@ -379,13 +378,13 @@ Converts an existing MySQL database from utf8 to utf8mb4.
 
 ### doctor
 
-Diagnose the problems of current Gitea instance according the given configuration.
+Diagnose the problems of current Forgejo instance according the given configuration.
 Currently there are a check list below:
 
 - Check if OpenSSH authorized_keys file id correct
-  When your Gitea instance support OpenSSH, your Gitea instance binary path will be written to `authorized_keys`
-  when there is any public key added or changed on your Gitea instance.
-  Sometimes if you moved or renamed your Gitea binary when upgrade and you haven't run `Update the '.ssh/authorized_keys' file with Gitea SSH keys. (Not needed for the built-in SSH server.)` on your Admin Panel. Then all pull/push via SSH will not be work.
+  When your Forgejo instance support OpenSSH, your Forgejo instance binary path will be written to `authorized_keys`
+  when there is any public key added or changed on your Forgejo instance.
+  Sometimes if you moved or renamed your Forgejo binary when upgrade and you haven't run `Update the '.ssh/authorized_keys' file with Forgejo SSH keys. (Not needed for the built-in SSH server.)` on your Admin Panel. Then all pull/push via SSH will not be work.
   This check will help you to check if it works well.
 
 For contributors, if you want to add more checks, you can write a new function like `func(ctx *cli.Context) ([]string, error)` and
@@ -412,23 +411,23 @@ unchanged in the database schema. This may lead to warning such as:
 2020/08/02 11:32:29 ...rm/session_schema.go:360:Sync2() [W] Table user Column keep_activity_private db default is , struct default is 0
 ```
 
-You can cause Gitea to recreate these tables and copy the old data into the new table
+You can cause Forgejo to recreate these tables and copy the old data into the new table
 with the defaults set appropriately by using:
 
 ```
-gitea doctor recreate-table user
+forgejo doctor recreate-table user
 ```
 
-You can ask Gitea to recreate multiple tables using:
+You can ask Forgejo to recreate multiple tables using:
 
 ```
-gitea doctor recreate-table table1 table2 ...
+forgejo doctor recreate-table table1 table2 ...
 ```
 
-And if you would like Gitea to recreate all tables simply call:
+And if you would like Forgejo to recreate all tables simply call:
 
 ```
-gitea doctor recreate-table
+forgejo doctor recreate-table
 ```
 
 It is highly recommended to back-up your database before running these commands.
@@ -449,9 +448,9 @@ Manage running server operations:
       - `pause`: Pause logging
         - Notes:
           - The logging level will be raised to INFO temporarily if it is below this level.
-          - Gitea will buffer logs up to a certain point and will drop them after that point.
+          - Forgejo will buffer logs up to a certain point and will drop them after that point.
       - `resume`: Resume logging
-      - `release-and-reopen`: Cause Gitea to release and re-open files and connections used for logging (Equivalent to sending SIGUSR1 to Gitea.)
+      - `release-and-reopen`: Cause Forgejo to release and re-open files and connections used for logging (Equivalent to sending SIGUSR1 to Forgejo.)
       - `remove name`: Remove the named logger
         - Options:
           - `--group group`, `-g group`: Set the group to remove the sublogger from. (defaults to `default`)
@@ -514,7 +513,7 @@ Manage running server operations:
               - `--host value`, `-H value`: Mail server host (defaults to: 127.0.0.1:25)
               - `--send-to value`, `-s value`: Email address(es) to send to
               - `--subject value`, `-S value`: Subject header of sent emails
-  - `processes`: Display Gitea processes and goroutine information
+  - `processes`: Display Forgejo processes and goroutine information
     - Options:
       - `--flat`: Show processes as flat table rather than as tree
       - `--no-system`: Do not show system processes
@@ -524,12 +523,12 @@ Manage running server operations:
 
 ### dump-repo
 
-Dump-repo dumps repository data from Git/GitHub/Gitea/GitLab:
+Dump-repo dumps repository data from Git/Forgejo/Gitea/GitHub/GitLab:
 
 - Options:
   - `--git_service service` : Git service, it could be `git`, `github`, `gitea`, `gitlab`, If clone_addr could be recognized, this could be ignored.
   - `--repo_dir dir`, `-r dir`: Repository dir path to store the data
-  - `--clone_addr addr`: The URL will be clone, currently could be a git/github/gitea/gitlab http/https URL. i.e. https://github.com/lunny/tango.git
+  - `--clone_addr addr`: The URL will be clone, currently could be a git/forgejo/gitea/github/gitlab http/https URL. i.e. https://github.com/lunny/tango.git
   - `--auth_username lunny`: The username to visit the clone_addr
   - `--auth_password <password>`: The password to visit the clone_addr
   - `--auth_token <token>`: The personal token to visit the clone_addr
@@ -557,17 +556,17 @@ Generate a new token for a runner to use to register with the server
 To register a global runner:
 
 ```
-gitea actions generate-runner-token
+forgejo actions generate-runner-token
 ```
 
 To register a runner for a specific organization, in this case `org`:
 
 ```
-gitea actions generate-runner-token -s org
+forgejo actions generate-runner-token -s org
 ```
 
 To register a runner for a specific repo, in this case `username/test-repo`:
 
 ```
-gitea actions generate-runner-token -s username/test-repo
+forgejo actions generate-runner-token -s username/test-repo
 ```
