@@ -384,9 +384,9 @@ to show available subcommands to administrate users on the commandline.
 
 ## Installation from package
 
-Presently, Forgejo is accessible for installation through platform-specific packages as well. At this
+Forgejo is also available for installation using package managers on many platforms. At this
 time, Forgejo has been successfully adapted for use on various platforms, including Alpine Linux, Arch
 Linux, Debian, Fedora, Gentoo, Manjaro, and the Nix ecosystem. It's important to acknowledge that these
 platform-specific packages are under the care of distribution packagers, and specific packages are
-currently undergoing testing. For a carefully curated inventory, please refer to the following
-[webpage](https://codeberg.org/forgejo-contrib/delightful-forgejo#packaging).
+currently undergoing testing. For a carefully curated inventory, please refer to
+[the "Delightful Forgejo" list](https://codeberg.org/forgejo-contrib/delightful-forgejo#packaging).
