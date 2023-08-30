@@ -381,3 +381,12 @@ You can always call forgejo and its subcommands with `-h` or `--help` to make it
 information like available options and (sub)commands, for example  
 `$ forgejo admin user -h`  
 to show available subcommands to administrate users on the commandline.
+
+## Installation from package
+
+Presently, Forgejo is accessible for installation through platform-specific packages as well. At this
+time, Forgejo has been successfully adapted for use on various platforms, including Alpine Linux, Arch
+Linux, Debian, Fedora, Gentoo, Manjaro, and the Nix ecosystem. It's important to acknowledge that these
+platform-specific packages are under the care of distribution packagers, and specific packages are
+currently undergoing testing. For a carefully curated inventory, please refer to the following
+[webpage](https://codeberg.org/forgejo-contrib/delightful-forgejo#packaging).
