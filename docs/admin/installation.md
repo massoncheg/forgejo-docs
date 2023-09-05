@@ -36,7 +36,7 @@ services:
     networks:
       - forgejo
     volumes:
-      - ./forgejo:/data
+      - ./forgejo:/var/lib/gitea
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -76,7 +76,7 @@ services:
     networks:
       - forgejo
     volumes:
-      - ./forgejo:/data
+      - ./forgejo:/var/lib/gitea
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -124,7 +124,7 @@ services:
     networks:
       - forgejo
     volumes:
-      - ./forgejo:/data
+      - ./forgejo:/var/lib/gitea
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
