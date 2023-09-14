@@ -42,6 +42,7 @@ When you block a user:
 - You stop following them.
 - They stop following you.
 - They are removed as collaborators on repositories you own as an individual.
+- All pending repository transfers caused by the them are removed.
 
 After you've blocked them:
 
@@ -49,3 +50,4 @@ After you've blocked them:
 - They cannot open issues or pull requests on repository you own.
 - They cannot add reactions to your comments.
 - They cannot post comments on issues and pull request you've opened.
+- They cannot transfer repositories to you.
