@@ -147,6 +147,18 @@ Look at existing links for examples.
 
 Images should be stored in the `docs/_images/` directory, and should be referenced by their path relative to the markdown files where they are used.
 
+Use 1280 x 800 as dimensions for screenshots that show the whole page.
+
+Consistency is improved by having a standard window size for
+screenshots to ensure things are shown at roughly the same scale and
+layout. 1280 x 800 is close to the largest size where there is no
+extraneous padding at the sides.
+
+When taking a screenshot one can use "responsive design mode" in Firefox
+(Cmd+Alt+M on macOS, Ctrl+Shift+M on GNU/Linux) which allows you to enter
+the viewport size in the toolbar at the top. It also has a handy
+screenshot button.
+
 ## Code of Conduct
 
 All contributors are required to abide by the [Forgejo Code of Conduct](https://codeberg.org/forgejo/code-of-conduct).
