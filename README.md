@@ -63,6 +63,10 @@ pnpm run preview
 This command will clone the [website repo](https://codeberg.org/forgejo/forgejo)
 and launch a local development server. The current docs branch will be opened in the browser.
 
+The URL to the documentation preview looks like
+`http://localhost:4321/docs/{branch}/` where `{branch}` is the
+name of the current branch from which the preview is run.
+
 Modifications can be made to the docs while the dev server is running, and the preview will live-reload.
 
 #### Linting and formatting
