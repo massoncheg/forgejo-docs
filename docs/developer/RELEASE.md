@@ -51,6 +51,17 @@ The vX.Y/forgejo branch is populated as part of the [rebase on top of Gitea](../
 
 - Add an entry in RELEASE-NOTES.md
 
+The dependencies where user visible changes should be harvested when they are upgraded are:
+
+- [Alpine](https://www.alpinelinux.org/)
+- [git](https://pkgs.alpinelinux.org/packages?name=git)
+- [gnupg](https://pkgs.alpinelinux.org/packages?name=gnupg)
+- [sqlite](https://pkgs.alpinelinux.org/packages?name=sqlite)
+- [openssh](https://pkgs.alpinelinux.org/packages?name=openssh)
+- [Gitea](https://github.com/go-gitea/gitea)
+- [chroma](https://github.com/alecthomas/chroma/) - syntax highlight
+- [go-enry](https://github.com/go-enry/go-enry) & [linguist](https://github.com/github-linguist/linguist) - language detection
+
 ### Forgejo release building and testing
 
 When Forgejo is released, artefacts (packages, binaries, etc.) are first published by the CI/CD pipelines in the https://codeberg.org/forgejo-experimental organization, to be downloaded and verified to work.
