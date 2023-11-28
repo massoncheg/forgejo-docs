@@ -9,7 +9,7 @@ license: 'CC-BY-SA-4.0'
 - _stable_: the latest major version receives full support (bugfixes and security fixes)
 - _oldstable_: the previous major version receives only critical security support
 
-Major version are usually released every 6 month.
+There are about two major versions every year.
 
 ## Release numbering
 
