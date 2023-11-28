@@ -5,7 +5,7 @@ license: 'CC-BY-SA-4.0'
 
 ## Maintenance policy
 
-- _unstable_: the current development version receives new features (should not be used in production)
+- _experimental_: the current development version receives new features (should not be used in production)
 - _stable_: the latest major version receives full support (bugfixes and security fixes)
 - _oldstable_: the previous major version receives only critical security support
 
