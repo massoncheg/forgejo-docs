@@ -29,5 +29,3 @@ Do you know how to configure it properly? Why not document that here?
 
 Vim has [a Go plugin](https://github.com/fatih/vim-go) that can likely be used to work on Forgejo's code base.
 Do you know how to configure it properly? Why not document that here?
-
-
