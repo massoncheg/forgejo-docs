@@ -23,6 +23,8 @@ npm config set {scope}:registry https://forgejo.example.com/api/packages/{owner}
 npm config set -- '//forgejo.example.com/api/packages/{owner}/npm/:_authToken' "{token}"
 ```
 
+**NOTE:** in the example below (`npm config set -- '//forgejo...`) the leading scheme, `https:`, is intentionally missing. It must not be included. The following is **incorrect**: `npm config set -- 'https://forgejo...`
+
 | Parameter | Description                                                    |
 | --------- | -------------------------------------------------------------- |
 | `scope`   | The scope of the packages.                                     |
