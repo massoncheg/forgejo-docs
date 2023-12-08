@@ -22,7 +22,7 @@ Go code is formatted automatically when saved.
 
 ## Emacs
 
-Emacs has [a Go mode](https://github.com/dominikh/go-mode.el) that can likely be used to work on Forgejo's code base.
+Emacs has [a Go mode](https://github.com/golang/tools/blob/master/gopls/doc/emacs.md) that can likely be used to work on Forgejo's code base.
 Do you know how to configure it properly? Why not document that here?
 
 ## Vim
