@@ -304,6 +304,8 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
     ```
   - `/etc/nginx/sites-available/next.forgejo.org` same as `/etc/nginx/sites-available/code.forgejo.org`
 
+  Rotating 30 days backups happen daily /etc/cron.daily/forgejo-code-backup.sh
+
 - `runner-forgejo-helm` on hetzner03
 
   Dedicated to https://codeberg.org/forgejo-contrib/forgejo-helm and running from an ephemral disk
