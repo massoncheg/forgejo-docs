@@ -42,9 +42,9 @@ jobs:
         uses: https://code.forgejo.org/forgejo/action-website-preview@main
         with:
           directory: /tmp/dist
-          name: 'docs_pull_${{ env.GITHUB_REF_NAME }}'
+          name: 'docs_pull_${{ github.event.pull_request.number }}'
           pages-token: ${{ secrets.WEBSITETOKEN }}
           repository: forgejo/docs
           repository-host: codeberg.org
           repository-token: ${{ secrets.WEBSITETOKEN }}
-          pr-number: ${{ env.GITHUB_REF_NAME }}
+          pr-number: ${{ github.event.pull_request.number }}
