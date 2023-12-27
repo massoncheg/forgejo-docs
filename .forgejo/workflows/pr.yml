@@ -10,6 +10,8 @@ jobs:
       image: node:20
     steps:
       - uses: https://code.forgejo.org/actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: lint
         run: |
           corepack enable
