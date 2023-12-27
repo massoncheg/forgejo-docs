@@ -33,7 +33,7 @@ jobs:
         run: |
           cd /tmp/website
           colon=':'
-          branch=docs_pull_${{ env.GITHUB_REF_NAME }}
+          branch=docs_pull_${{ github.event.pull_request.number }}
           sed -i.orig -e "s|origin$colon '.*|origin$colon 'https$colon//forgejo.codeberg.page',|" -e "s|basePathname$colon '/'|basePathname$colon '/@$branch//'|" src/config.ts
           cat src/config.ts
           corepack enable
