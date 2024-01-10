@@ -16,8 +16,10 @@ To enable the wiki for a repository, visit the `Settings` page and activate `Ena
 > **Warning**  
 > Be aware that the wiki, once enabled, is accessible for _everyone_ who has `read` access to your repository - on public repositories even unauthenticated guests can access the wiki.  
 > The wiki is _not_ a suitable place for storing private information or secrets (like passwords).
+>
+> Activating the `Allow anyone to edit the Wiki` option in `Settings` will give everyone with an account write access to the wiki.
 
-To edit the wiki `write` permission to the repository is required.
+To edit the wiki `write` permission to the repository is required, unless the `Allow anyone to edit the Wiki` setting is activated on the `Settings` page, in the `Advanced Settings` section.
 
 ## Wiki structure
 
