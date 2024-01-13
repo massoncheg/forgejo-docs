@@ -34,6 +34,7 @@ involved in running it on their machines.
   - [Actions](./actions/)
   - [Merge Message templates](./merge-message-templates/)
   - [Webhooks](./webhooks/)
+  - [Programming language detection](./language-detection/)
   - Authentication
     - [Generating an Access Token](https://docs.codeberg.org/advanced/access-token/)
     - [Access Token scope](./token-scope/)
