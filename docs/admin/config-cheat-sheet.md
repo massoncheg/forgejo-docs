@@ -9,7 +9,7 @@ that can be configured as well as their default values.
 
 Any changes to the Forgejo configuration file should be made in `custom/conf/app.ini`
 or any corresponding location. When installing from a distribution, this will
-typically be found at `/etc/forgejo/conf/app.ini`.
+typically be found at `/etc/forgejo/app.ini`.
 
 The defaults provided here are best-effort (not built automatically). They are
 accurately recorded in [app.example.ini](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/custom/conf/app.example.ini)
