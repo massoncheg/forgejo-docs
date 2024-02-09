@@ -26,7 +26,7 @@ The command has the following structure:
   - `draft`/ `for-review`: Currently ignored silently
 - `<branch>/<session>`: The target branch to open the PR **(required)**
 - `-o <topic|title|description>`: Options for the PR
-  - `title`: The PR title
+  - `title`: The PR title. If left empty, the first line of the first new Git commit will be used instead.
   - `topic`: The branch name the PR should be opened for **(required)**
   - `description`: The PR description
   - `force-push`: confirm force update the target branch
