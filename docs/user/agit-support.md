@@ -10,7 +10,7 @@ Agit allows creating pull requests to a target repository by pushing directly to
 
 ## Creating Pull Requests
 
-Creating a new Pull Request can be done by pushing to the branch of your choice followed by a specific refspec (a location identifier known to Git).
+Creating a new Pull Request can be done by pushing to the branch of your choice followed by a specific [refspec](https://git-scm.com/book/en/v2/Git-Internals-The-Refspec) (a location identifier known to Git).
 
 Here is an example:
 
