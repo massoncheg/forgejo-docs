@@ -15,7 +15,7 @@ Creating a new Pull Request can be done by pushing to the branch of your choice 
 Here is an example:
 
 ```shell
-git push origin HEAD:refs/for/master
+git push origin HEAD:refs/for/master -o topic="hello-world"
 ```
 
 The command has the following structure:
