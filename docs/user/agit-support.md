@@ -12,13 +12,13 @@ Similarly to [Gerrit](https://www.gerritcodereview.com), it is possible to creat
 
 Creating a new Pull Request can be done by pushing to the branch that you are targeting followed by a specific [refspec](https://git-scm.com/book/en/v2/Git-Internals-The-Refspec) (a location identifier known to Git).
 
-For clarity, suppose that you cloned a repository and created a new commit on top of the `main` branch. Here is how you would create a Pull Request targeting the `main` branch:
+For clarity, suppose that you cloned a repository and created a new commit on top of the `main` branch. A Pull Request targeting the `main` branch can be created like this:
 
 ```shell
 git push origin HEAD:refs/for/main -o topic="topic-branch"
 ```
 
-The topic branch can also be supplied directly in the `ref`:
+The topic branch can also be supplied directly in the refspec:
 
 ```shell
 git push origin HEAD:refs/for/main/topic-branch
