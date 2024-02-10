@@ -41,8 +41,15 @@ The following parameters are available:
 
 ### Caveats
 
-Pushing new changes to an existing Pull Request created with Agit requires some caution. Otherwise, Forgejo may not be able to associate your new changes with your existing Pull Request, resulting in the creation of a new Pull Request.
+Some caution is required when pushing new changes to an existing Pull Request that was created using AGit. Otherwise, Forgejo may not be able to associate your new changes with your existing Pull Request, resulting in the creation of a new Pull Request.
 
-If you wish to push additional changes to a pull request that you previously created using Agit, you **must** use the same topic that you used before.
+If you wish to push a second commit to a Pull Request that you previously created using AGit, you **must** use the same topic that you used before.
 
-If you rebase your local commits, you **must** use the topic you previously used **together** with the `force-push` option.
+If you rebase or amend a commit that is already a part of your Pull Request, you **must** push it using the topic that you used before **together** with the `force-push` option.
+
+#### For Gerrit users
+
+Despite the similarites with the Gerrit workflow, AGit does **not** act as a drop-in replacement.
+
+- Submitting new changes will **not** create different "reviews" that can be reviewed individually. Subsequent commits will be appended to the same Pull Request.
+- Forgejo does not rely on [Change-Ids](https://gerrit-review.googlesource.com/Documentation/user-changeid.html).
