@@ -15,13 +15,23 @@ Creating a new Pull Request can be done by pushing to the branch that you are ta
 For clarity, suppose that you cloned a repository and created a new commit on top of the `main` branch. Here is you can create a Pull Request targeting the `main` branch:
 
 ```shell
-git push origin HEAD:refs/for/main -o topic="hello-world"
+git push origin HEAD:refs/for/main -o topic="topic-branch"
+```
+
+The topic branch can also be supplied directly in the `ref`:
+
+```shell
+git push origin HEAD:refs/for/main/topic-branch
 ```
 
 It is possible to use some additional parameters, such as `topic`, `title` and `description`. Here's another example targeting the `master` branch:
 
 ```shell
-git push origin HEAD:refs/for/master -o topic="Topic of my PR" -o title="Title of the PR" -o description="# The PR Description\nThis can be **any** markdown content.\n- [x] Ok"
+git push origin HEAD:refs/for/master -o topic="topic-branch" \
+  -o title="Title of the PR"
+  -o description="# The PR Description
+This can be **any** markdown content.\n
+- [x] Ok"
 ```
 
 ### Parameters
@@ -35,7 +45,7 @@ The following parameters are available:
 - `<branch>/<session>`: The target branch to open the PR **(required)**
 - `-o <topic|title|description>`: Options for the PR
   - `title`: The PR title. If left empty, the first line of the first new Git commit will be used instead.
-  - `topic`: The branch name the PR should be opened for. **(required)**
+  - `topic`: The branch name the PR should be opened for.*
   - `description`: The PR description
   - `force-push`: confirm force update the target branch
 
