@@ -71,4 +71,6 @@ The following parameters are available:
   - `topic`: Topic. Under the hood, this is just a branch. If you wish to push any further commits to a Pull Request you created using AGit, you **must** use the same topic, as it is used to associate your new commits with your existing Pull Request.
   - `force-push`: Necessary when rebasing or amending your previous commits. Otherwise, a new Pull Request will be opened, **even if you supply the same topic value**.
 
-**For Gerrit users:** Forgejo does not support [Change-Ids](https://gerrit-review.googlesource.com/Documentation/user-changeid.html), as it relies on the `topic` parameter instead. Subsequent commits submitted under the same topic will belong to the same Pull Request.
+In summary, Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing Pull Request. If you amend a commit, squash all of your commits or otherwise [retroactively modify](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) commits that have already been submitted, you should use the `force-push` parameter to avoid opening a duplicate Pull Request.
+
+**For Gerrit users:** Forgejo does not support [Change-Ids](https://gerrit-review.googlesource.com/Documentation/user-changeid.html).
