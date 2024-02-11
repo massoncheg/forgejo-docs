@@ -12,7 +12,7 @@ Using Push Options (`-o`) and a [Refspec](https://git-scm.com/book/en/v2/Git-Int
 
 ## Creating Pull Requests
 
-For reasons of clarity, this document will lead with some examples first.
+For clarity reasons, this document will lead with some examples first.
 
 A full list of the parameters, as well as information on avoiding duplicate Pull Requests when rebasing or amending a commit, will follow.
 
