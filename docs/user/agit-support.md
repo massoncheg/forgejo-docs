@@ -52,7 +52,7 @@ git push origin HEAD:refs/for/remote-branch/local-branch \
   -o title="My First Pull Request!"
 ```
 
-This syntax may be a bit disorienting for users that are accustomed to commands such as `git push origin remote-branch` or `git push origin local-branch:remote-branch`, the latter of which inc.
+This syntax may be a bit disorienting for users that are accustomed to commands such as `git push origin remote-branch` or `git push origin local-branch:remote-branch`.
 
 Just like when using `git push origin remote-branch`, it is important to reiterate that supplying the local branch name is optional, as long as you checkout `local-branch` using `git checkout local-branch` beforehand.
 
