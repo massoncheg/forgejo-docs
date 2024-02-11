@@ -53,7 +53,7 @@ git push origin HEAD:refs/for/remote-branch/local-branch \
 
 This syntax may be a bit disorienting for users that are accustomed to commands such as `git push origin remote-branch` or `git push origin local-branch:remote-branch`.
 
-Just like when using `git push origin remote-branch`, it is important to reiterate that supplying the local branch name is optional, as long as you checkout `local-branch` using `git checkout local-branch` beforehand and **use the `topic` push option**:
+Just like when using `git push origin remote-branch`, supplying the local branch name is optional, as long as you checkout `local-branch` using `git checkout local-branch` beforehand and **use the `topic` push option**:
 
 ```shell
 git checkout local-branch
