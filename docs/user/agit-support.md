@@ -65,10 +65,10 @@ The following parameters are available:
   - `for`/`draft``for-review`: This parameter describes the Pull Request type. **for** opens a normal Pull Request. **draft** and **for-review** are currently silently ignored.
   - `<branch>`: The target branch that a Pull Request should be merged against **(required)**
   - `<session>`: The local branch that should be submitted remotely. If left empty, the currently checked out branch will be used by default.
-- `-o <topic|title|description>`: Push options
+- `-o <topic|title|description|force-push>`: Push options
+  - `topic`: Topic. Under the hood, this is just a branch. If you want to push any further commits to a Pull Request that was created using AGit, you **must** use the same topic, as it is used to associate your new commits with your existing Pull Request.
   - `title`: Title of the Pull Request. If left empty, the first line of the first new Git commit will be used instead.
   - `description`: Description of the Pull Request.
-  - `topic`: Topic. Under the hood, this is just a branch. If you want to push any further commits to a Pull Request that was created using AGit, you **must** use the same topic, as it is used to associate your new commits with your existing Pull Request.
   - `force-push`: Necessary when rebasing or amending your previous commits. Otherwise, a new Pull Request will be opened, **even if you use the same topic**.
 
 In summary, Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing Pull Request. If you amend a commit, squash all of your commits or otherwise [retroactively modify](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) commits that have already been submitted, you should use the `force-push` parameter to avoid opening a duplicate Pull Request.
