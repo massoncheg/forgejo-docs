@@ -8,13 +8,13 @@ Forgejo ships with limited support for [AGit-Flow](https://git-repo.info/en/2020
 
 Similarly to [Gerrit's workflow](https://www.gerritcodereview.com), this workflow provides a way of submitting changes to a remote repository using the `git push` command alone, without having to create forks or feature branches and then using the web UI to create a Pull Request.
 
-Using Push Options (`-o`) and a [refspec](https://git-scm.com/book/en/v2/Git-Internals-The-Refspec) (a location identifier known to Git), it is possible to supply the information required to open a Pull Request, such as the target branch or the Pull Request's title.
+Using Push Options (`-o`) and a [Refspec](https://git-scm.com/book/en/v2/Git-Internals-The-Refspec) (a location identifier known to Git), it is possible to supply the information required to open a Pull Request, such as the target branch or the Pull Request's title.
 
 ## Creating Pull Requests
 
 For reasons of clarity, this document will lead with some examples first.
 
-A full list of the parameters, as well as instructions on avoiding duplicate Pull Requests when rebasing or amending a commit, will follow.
+A full list of the parameters, as well as information on avoiding duplicate Pull Requests when rebasing or amending a commit, will follow.
 
 ### Usage Examples
 
