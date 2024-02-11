@@ -48,13 +48,21 @@ However, the changes that you want to submit reside in a local branch called `lo
 
 ```shell
 git push origin HEAD:refs/for/remote-branch/local-branch \
-  -o topic="my-first-contribution" \
   -o title="My First Pull Request!"
 ```
 
 This syntax may be a bit disorienting for users that are accustomed to commands such as `git push origin remote-branch` or `git push origin local-branch:remote-branch`.
 
-Just like when using `git push origin remote-branch`, it is important to reiterate that supplying the local branch name is optional, as long as you checkout `local-branch` using `git checkout local-branch` beforehand.
+Just like when using `git push origin remote-branch`, it is important to reiterate that supplying the local branch name is optional, as long as you checkout `local-branch` using `git checkout local-branch` beforehand and **use the `topic` push option**:
+
+```shell
+git checkout local-branch
+git push origin HEAD:refs/for/remote-branch \
+  -o topic="my-first-agit-pr" \
+  -o title="My First Pull Request!"
+```
+
+**If you do not use the topic push option,** `<session>` will be used as the topic instead.
 
 ### Parameters
 
@@ -64,13 +72,15 @@ The following parameters are available:
 - `refs/<for|draft|for-review>/<branch>/<session>`: Refspec **(required)**
   - `for`/`draft``for-review`: This parameter describes the Pull Request type. **for** opens a normal Pull Request. **draft** and **for-review** are currently silently ignored.
   - `<branch>`: The target branch that a Pull Request should be merged against **(required)**
-  - `<session>`: The local branch that should be submitted remotely. If left empty, the currently checked out branch will be used by default.
+  - `<session>`: The local branch that should be submitted remotely. **If left empty,** the currently checked out branch will be submitted by default, however, you **must** use `topic`.
 - `-o <topic|title|description|force-push>`: Push options
-  - `topic`: Topic. Under the hood, this is just a branch. If you want to push any further commits to a Pull Request that was created using AGit, you **must** use the same topic, as it is used to associate your new commits with your existing Pull Request.
-  - `title`: Title of the Pull Request. If left empty, the first line of the first new Git commit will be used instead.
+  - `topic`: Topic. Under the hood, this is just a branch. **If left empty,** `<session>`, if present, will be used instead. Otherwise, Forgejo will return an error. If you want to push additional commits to a Pull Request that was created using AGit, you **must** use the same topic.
+  - `title`: Title of the Pull Request. **If left empty,** the first line of the first new Git commit will be used instead.
   - `description`: Description of the Pull Request.
-  - `force-push`: Necessary when rebasing or amending your previous commits. Otherwise, a new Pull Request will be opened, **even if you use the same topic**.
+  - `force-push`: Necessary when rebasing, amending or [retrospectively modifying](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) your previous commits. Otherwise, a new Pull Request will be opened, **even if you use the same topic**.
 
-In summary, Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing Pull Request. If you amend a commit, squash all of your commits or otherwise [retroactively modify](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) commits that have already been submitted, you should use the `force-push` parameter to avoid opening a duplicate Pull Request.
+---
 
-**For Gerrit users:** Forgejo does not support [Change-Ids](https://gerrit-review.googlesource.com/Documentation/user-changeid.html).
+Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing Pull Request.
+
+**For Gerrit users:** Forgejo does not support [Gerrit's Change-Ids](https://gerrit-review.googlesource.com/Documentation/user-changeid.html).
