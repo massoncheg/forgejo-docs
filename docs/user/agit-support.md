@@ -34,7 +34,7 @@ It is also possible to use some additional parameters, such as `topic`, `title` 
 
 ```shell
 git push origin HEAD:refs/for/master -o topic="topic-branch" \
-  -o title="Title of the PR"
+  -o title="Title of the PR" \
   -o description="# The PR Description
 This can be **any** markdown content.\n
 - [x] Ok"
@@ -49,7 +49,7 @@ However, the changes that you want to submit reside in a local branch called `lo
 ```shell
 git push origin HEAD:refs/for/remote-branch/local-branch \
   -o topic="my-first-contribution" \
-  -o title="My First Pull Request!" \
+  -o title="My First Pull Request!"
 ```
 
 This syntax can be disorienting for users that are accustomed to commands such as `git push origin remote-branch` or `git push origin local-branch:remote-branch`.
