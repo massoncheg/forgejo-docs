@@ -70,7 +70,7 @@ The following parameters are available:
 
 - `HEAD`: The target branch **(required)**
 - `refs/<for|draft|for-review>/<branch>/<session>`: Refspec **(required)**
-  - `for`/`draft``for-review`: This parameter describes the Pull Request type. **for** opens a normal Pull Request. **draft** and **for-review** are currently silently ignored.
+  - `for`/`draft`/`for-review`: This parameter describes the Pull Request type. **for** opens a normal Pull Request. **draft** and **for-review** are currently silently ignored.
   - `<branch>`: The target branch that a Pull Request should be merged against **(required)**
   - `<session>`: The local branch that should be submitted remotely. **If left empty,** the currently checked out branch will be submitted by default, however, you **must** use `topic`.
 - `-o <topic|title|description|force-push>`: Push options
