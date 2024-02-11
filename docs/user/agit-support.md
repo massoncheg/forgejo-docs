@@ -42,7 +42,7 @@ This can be **any** markdown content.\n
 
 #### A More Complex Example
 
-Suppose that the currently checked out branch in your local repository is `main`, yet you wish to submit a Pull Request meant for a remote branch called `remote-branch`.
+Suppose that the currently checked out branch in your local repository is `main`, yet you would like to submit a Pull Request meant for a remote branch called `remote-branch`.
 
 However, the changes that you want to submit reside in a local branch called `local-branch`. In order to submit the changes residing in the `local-branch` branch **without** checking it out, you can supply the name of the local branch (`local-branch`) using the `<session>` parameter:
 
@@ -52,7 +52,7 @@ git push origin HEAD:refs/for/remote-branch/local-branch \
   -o title="My First Pull Request!"
 ```
 
-This syntax can be disorienting for users that are accustomed to commands such as `git push origin remote-branch` or `git push origin local-branch:remote-branch`.
+This syntax may be a bit disorienting for users that are accustomed to commands such as `git push origin remote-branch` or `git push origin local-branch:remote-branch`, the latter of which inc.
 
 Just like when using `git push origin remote-branch`, it is important to reiterate that supplying the local branch name is optional, as long as you checkout `local-branch` using `git checkout local-branch` beforehand.
 
@@ -68,8 +68,8 @@ The following parameters are available:
 - `-o <topic|title|description>`: Push options
   - `title`: Title of the Pull Request. If left empty, the first line of the first new Git commit will be used instead.
   - `description`: Description of the Pull Request.
-  - `topic`: Topic. Under the hood, this is just a branch. If you wish to push any further commits to a Pull Request you created using AGit, you **must** use the same topic, as it is used to associate your new commits with your existing Pull Request.
-  - `force-push`: Necessary when rebasing or amending your previous commits. Otherwise, a new Pull Request will be opened, **even if you supply the same topic value**.
+  - `topic`: Topic. Under the hood, this is just a branch. If you want to push any further commits to a Pull Request that was created using AGit, you **must** use the same topic, as it is used to associate your new commits with your existing Pull Request.
+  - `force-push`: Necessary when rebasing or amending your previous commits. Otherwise, a new Pull Request will be opened, **even if you use the same topic**.
 
 In summary, Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing Pull Request. If you amend a commit, squash all of your commits or otherwise [retroactively modify](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) commits that have already been submitted, you should use the `force-push` parameter to avoid opening a duplicate Pull Request.
 
