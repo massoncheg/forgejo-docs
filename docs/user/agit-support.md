@@ -62,7 +62,7 @@ git push origin HEAD:refs/for/remote-branch \
   -o title="My First Pull Request!"
 ```
 
-**If you do not use the topic push option,** `<session>` will be used as the topic instead.
+**If you do not use the `topic` push option,** `<session>` will be used as the topic instead.
 
 ### Parameters
 
