@@ -21,7 +21,7 @@ A full list of the parameters, as well as information on avoiding duplicate Pull
 Suppose that you cloned a repository and created a new commit on top of the `main` branch. A Pull Request targeting the `main` branch using your **currently checked out branch** can be created like this:
 
 ```shell
-git push origin HEAD:refs/for/main -o topic="topic-branch"
+git push origin HEAD:refs/for/main -o topic="agit-typo-fixes"
 ```
 
 The topic will be visible in the Pull Request and it will be used to associate further commits to the same Pull Request. Under the hood, it is essentially just a branch.
