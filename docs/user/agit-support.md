@@ -6,7 +6,7 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f
 
 Forgejo ships with limited support for [AGit-Flow](https://git-repo.info/en/2020/03/agit-flow-and-git-repo/). It was originally introduced in Gitea `1.13`.
 
-Similarly to [Gerrit's workflow](https://www.gerritcodereview.com), this workflow provides a way of submitting changes to a remote repository using the `git push` command alone, without having to create forks or feature branches and then using the web UI to create a Pull Request.
+Similarly to [Gerrit's workflow](https://www.gerritcodereview.com), this workflow provides a way of submitting changes to repositories hosted on Forgejo instances using the `git push` command alone, without having to create forks or feature branches and then using the web UI to create a Pull Request.
 
 Using Push Options (`-o`) and a [Refspec](https://git-scm.com/book/en/v2/Git-Internals-The-Refspec) (a location identifier known to Git), it is possible to supply the information required to open a Pull Request, such as the target branch or the Pull Request's title.
 
@@ -18,19 +18,24 @@ A full list of the parameters, as well as information on avoiding duplicate Pull
 
 ### Usage Examples
 
-Suppose that you cloned a repository and created a new commit on top of the `main` branch. A Pull Request targeting the `main` branch can be created like this:
+Suppose that you cloned a repository and created a new commit on top of the `main` branch. A Pull Request targeting the `main` branch using your **currently checked out branch** can be created like this:
 
 ```shell
 git push origin HEAD:refs/for/main -o topic="topic-branch"
 ```
 
-The topic branch can also be supplied directly in the refspec:
+The topic will be visible in the Pull Request and it will be used to associate further commits to the same Pull Request. Under the hood, it is essentially just a branch.
+
+It can also be supplied directly using the `<session>` parameter in the **Refspec**, which will set the topic as `topic-branch` **and** push the **local branch** `topic-branch` instead:
 
 ```shell
+# topic-branch is the session parameter and the topic
 git push origin HEAD:refs/for/main/topic-branch
 ```
 
-It is also possible to use some additional parameters, such as `topic`, `title` and `description`. Here's another example targeting the `master` branch:
+A detailed explanation illustrating the difference between using `-o topic` and `<session>` will follow shortly.
+
+It is also possible to use some additional parameters, such as `title` and `description`. Here's another example targeting the `master` branch:
 
 ```shell
 git push origin HEAD:refs/for/master -o topic="topic-branch" \
@@ -74,12 +79,10 @@ The following parameters are available:
   - `<branch>`: The target branch that a Pull Request should be merged against **(required)**
   - `<session>`: The local branch that should be submitted remotely. **If left empty,** the currently checked out branch will be submitted by default, however, you **must** use `topic`.
 - `-o <topic|title|description|force-push>`: Push options
-  - `topic`: Topic. Under the hood, this is just a branch. **If left empty,** `<session>`, if present, will be used instead. Otherwise, Forgejo will return an error. If you want to push additional commits to a Pull Request that was created using AGit, you **must** use the same topic.
+  - `topic`: Essentially an identifier. **If left empty,** the value of `<session>`, if present, will also be used for the topic. Otherwise, Forgejo will return an error. If you want to push additional commits to a Pull Request that was created using AGit, you **must** use the same topic.
   - `title`: Title of the Pull Request. **If left empty,** the first line of the first new Git commit will be used instead.
   - `description`: Description of the Pull Request.
   - `force-push`: Necessary when rebasing, amending or [retroactively modifying](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) your previous commits. Otherwise, a new Pull Request will be opened, **even if you use the same topic**.
-
----
 
 Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing Pull Request.
 
