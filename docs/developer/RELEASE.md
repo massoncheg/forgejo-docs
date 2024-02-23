@@ -5,47 +5,38 @@ license: 'CC-BY-SA-4.0'
 
 ## Release numbering
 
-The Forgejo release numbers are composed of the Gitea release number followed by a dash and a serial number. For instance:
+The Forgejo release numbers are compliant with [Semantic Versioning](https://semver.org/). They are followed by the Gitea release number with which it is compatible. For instance:
 
-- Gitea **v1.21.0** will be Forgejo **v1.21.0-0**, **v1.21.0-1**, etc
+- Forgejo **v7.0.0+1.22.0** is compatible with Gitea **v1.22.0**.
 
-The Gitea release candidates are suffixed with **-rcN** which is handled as a special case for packaging: although **X.Y.Z** is lexicographically lower than **X.Y.Z-rc1** is is considered greater. The Forgejo serial number must therefore be inserted before the **-rcN** suffix to preserve the expected version ordering.
+The release candidates are composed by adding the `-rc` suffix. For instance:
 
-- Gitea **v1.21.0-rc0** will be Forgejo **v1.21.0-0-rc0**, **v1.21.0-1-rc0**
-- Gitea **v1.21.0-rc1** will be Forgejo **v1.21.0-2-rc1**, **v1.21.0-3-rc1**, **v1.21.0-4-rc1**
-- Gitea **v1.21.0** will be Forgejo **v1.21.0-5**, **v1.21.0-6**, **v1.21.0-7**
+- Forgejo **v7.0.0-rc0+1.22.0**
+- Forgejo **v7.0.0-rc1+1.22.0**
 - etc.
-
-Because Forgejo depends on Gitea, it must retain the same release numbering scheme to be compatible with libraries and tools that depend on it. For instance, the tea CLI or the Gitea SDK will behave differently depending on the server version they connect to. If Forgejo had a different numbering scheme, it would no longer be compatible with the Gitea ecosystem.
-
-From a [Semantic Versioning](https://semver.org/) standpoint, all Forgejo releases are [pre-releases](https://semver.org/#spec-item-9) because they are suffixed with a dash. They are syntactically correct but do not comply with the Semantic Versioning recommendations. Gitea is not compliant either and Forgejo inherits this problem.
 
 ## Stable release process
 
-The TL;DR: to publish a vX.Y.Z-N release is to:
+The TL;DR: to publish a vX.Y.Z+A.B.C release is to:
 
-- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo-integration/forgejo to trigger a workflow that will publish the release in https://codeberg.org/forgejo-experimental/forgejo
+- Push the vX.Y.Z+A.B.C tag to https://codeberg.org/forgejo-integration/forgejo to trigger a workflow that will publish the release in https://codeberg.org/forgejo-experimental/forgejo
 - Give it some time for people to try it out
-- Push the vX.Y.Z-N tag to https://forgejo.octopuce.forgejo.org/forgejo-release/forgejo to trigger a workflow that will sign the release from https://codeberg.org/forgejo-experimental/forgejo and publish it in https://codeberg.org/forgejo-release/forgejo
-
-### Semantic version
-
-- Update the FORGEJO_VERSION variable in the Makefile
+- Push the vX.Y.Z+A.B.C tag to https://forgejo.octopuce.forgejo.org/forgejo-release/forgejo to trigger a workflow that will sign the release from https://codeberg.org/forgejo-experimental/forgejo and publish it in https://codeberg.org/forgejo-release/forgejo
 
 ### Create a milestone and a check list
 
-- Create a `Forgejo vX.X.Z-N` milestone set to the date of the release
-- Create an issue named `[RELEASE] Forgejo vX.Y.Z-N` with a description that includes a list of what needs to be done for the release with links to follow the progress
-- Set the milestone of this issue to `Forgejo vX.X.Z-N`
+- Create a `Forgejo vX.Y.Z+A.B.C` milestone set to the date of the release
+- Create an issue named `[RELEASE] Forgejo vX.Y.Z+A.B.C` with a description that includes a list of what needs to be done for the release with links to follow the progress
+- Set the milestone of this issue to `Forgejo vX.Y.Z+A.B.C`
 - Close the milestone when the release is complete
 
-### Cherry pick the latest commits from Gitea
+### Cutting a release
 
-The vX.Y/forgejo branch is populated as part of the [rebase on top of Gitea](../workflow/). The release happens in between rebase and it is worth checking if the matching Gitea branch, release/vX.Y contains commits that should be included in the release.
+When a new `VX.Y.Z` release is ready to enter the release candidate stages:
 
-- `cherry-pick -x` the commits
-- push the vX.Y/forgejo branch including the commits
-- verify that the tests pass
+- Create a new `vX.Y/forgejo` branch from the `forgejo` branch
+- Set a `vX.(Y+1).Z-dev` tag on the `forgejo` branch
+- Push the `vX.(Y+1).Z-dev` tag to the https://codeberg.org/forgejo-integration/forgejo repository
 
 ### Release Notes
 
@@ -66,8 +57,8 @@ The dependencies where user visible changes should be harvested when they are up
 
 When Forgejo is released, artefacts (packages, binaries, etc.) are first published by the CI/CD pipelines in the https://codeberg.org/forgejo-experimental organization, to be downloaded and verified to work.
 
-- Locally set the vX.Y.Z-N tag to the tip of the https://codeberg.org/forgejo/forgejo/vX.Y/forgejo branch
-- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo-integration/forgejo
+- Locally set the vX.Y.Z+A.B.C tag to the tip of the https://codeberg.org/forgejo/forgejo/vX.Y/forgejo branch
+- Push the vX.Y.Z+A.B.C tag to https://codeberg.org/forgejo-integration/forgejo
 
 It will trigger a [build workflow](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows/build-release.yml) that:
 
@@ -77,7 +68,7 @@ It will trigger a [build workflow](https://codeberg.org/forgejo/forgejo/src/bran
 If the build fails, the logs of the workflow can be found in https://codeberg.org/forgejo-integration/forgejo/actions for debugging.
 Once the build is successful, it must be copied to https://codeberg.org/forgejo-experimental.
 
-- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo-experimental/forgejo
+- Push the vX.Y.Z+A.B.C tag to https://codeberg.org/forgejo-experimental/forgejo
 
 It will trigger a [publish workflow](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows/publish-release.yml) that:
 
@@ -90,11 +81,11 @@ Reach out to packagers and users to manually verify the release works as expecte
 
 ### Forgejo release publication
 
-- Push the vX.Y.Z-N tag to https://forgejo.octopuce.forgejo.org/forgejo-release/forgejo
+- Push the vX.Y.Z+A.B.C tag to https://forgejo.octopuce.forgejo.org/forgejo-release/forgejo
 
 It will trigger a workflow to:
 
-- Push the vX.Y.Z-N tag to https://codeberg.org/forgejo/forgejo
+- Push the vX.Y.Z+A.B.C tag to https://codeberg.org/forgejo/forgejo
 - Downoad Binaries from https://codeberg.org/forgejo-experimental, sign them and copy them to https://codeberg.org/forgejo
 - Copy container images from https://codeberg.org/forgejo-experimental to https://codeberg.org/forgejo
 
@@ -106,7 +97,7 @@ and the branches from https://codeberg.org/forgejo/forgejo.
 
 ### Forgejo runner publication
 
-- Push the vX.Y.Z-N tag to https://code.forgejo.org/forgejo/runner
+- Push the vX.Y.Z+A.B.C tag to https://code.forgejo.org/forgejo/runner
 
 The release is built on https://code.forgejo.org/forgejo-integration/runner, which is a mirror of https://code.forgejo.org/forgejo/runner.
 
@@ -121,7 +112,7 @@ VPN and its role is to copy and sign release artifacts.
 If publishing the release needs debug, it can be done manually:
 
 - https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug has the same secrets as https://forgejo.octopuce.forgejo.org/forgejo-release/runner
-- Make the changes, commit them, tag the commit with vX.Y.Z-N and force push the tag to https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug. Note that it does not matter that the tag is not on a commit that matches the release because this action only cares about the tag: it does not build any content itself, it copies it from one organization to another. However it matters that it matches a SHA that is found in the destination repository of the release otherwise it won't be able to set the tag (setting a tag on a non-existing sha does not work).
+- Make the changes, commit them, tag the commit with vX.Y.Z+A.B.C and force push the tag to https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug. Note that it does not matter that the tag is not on a commit that matches the release because this action only cares about the tag: it does not build any content itself, it copies it from one organization to another. However it matters that it matches a SHA that is found in the destination repository of the release otherwise it won't be able to set the tag (setting a tag on a non-existing sha does not work).
 - Watch the action run at https://forgejo.octopuce.forgejo.org/forgejo-release/runner-debug/actions
 - To skip one of the publish phases (binaries or container images), delete it and commit in the repository before pushing the tag
 - Reflect the changes in a PR at https://code.forgejo.org/forgejo/runner to make sure they are not lost
@@ -141,21 +132,30 @@ For both the Forgejo runner and Forgejo itself, copying and signing the release 
 
 ### DNS update
 
-- Update the `release.forgejo.org` TXT record that starts with `forgejo_versions=` to be `forgejo_versions=vX.Y.Z-N`
+- Update the `release.forgejo.org` TXT record that starts with `forgejo_versions=` to be `forgejo_versions=vX.Y.Z+A.B.C`
 
 ### Standard toot
 
 The following toot can be re-used to announce a minor release at `https://floss.social/@forgejo`. For more significant releases it is best to consider a dedicated and non-standard toot.
 
 ```
-#Forgejo vX.Y.Z-N was just released! This is a minor patch. Check out the release notes and download it at https://forgejo.org/releases/. If you experience any issues with this release, please report to https://codeberg.org/forgejo/forgejo/issues.
+#Forgejo vX.Y.Z+A.B.C was just released! This is a minor patch. Check out the release notes and download it at https://forgejo.org/releases/. If you experience any issues with this release, please report to https://codeberg.org/forgejo/forgejo/issues.
 ```
 
-## Experimental release process
+## Experimental releases
 
-An experimental release is published every time [an update of the Forgejo dependencies](https://codeberg.org/forgejo/forgejo/milestones?q=cleanup) is completed. This release is named after the next stable release, with the `-test` suffix. For instance `v1.22.0-test`.
+The Forgejo development and stable branches are [pushed daily to the
+forgejo-integration](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows/mirror.yml).
+It triggers the [release build
+workflow](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows/build-release.yml)
+which creates a new release for each updated branch, based on their latest commit:
 
-When the stable release is in its final stages, it is replaced by the release candidates, which changes the suffix to be `-X-rcN`. For instance `v1.22.0-2-rc1`.
+- the `forgejo` branch creates the `X.Y-test` release where `X.Y` is based on the most recent tag. For instance:
+  - the tag `v8.0.0-dev` will create the `8.0-test` release
+  - the tag `v8.1.0-dev` will create the `8.1-test` release
+- the `v*/forgejo` branches create `X.Y-test` releases where `X.Y` is based on their name. For instance:
+  - the branch `v7.0/forgejo` will create the `7.0-test` release
+  - the branch `v7.1/forgejo` will create the `7.1-test` release
 
 ## Release signing keys management
 

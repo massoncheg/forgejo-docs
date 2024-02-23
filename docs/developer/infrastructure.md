@@ -305,10 +305,10 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
 
   - LXC creation
     ```sh
-    lxc-helpers.sh lxc_container_create --config "docker" forgejo-next
-    lxc-helpers.sh lxc_container_start forgejo-next
-    lxc-helpers.sh lxc_install_docker forgejo-next
-    lxc-helpers.sh lxc_container_user_install forgejo-next $(id -u) $USER
+    lxc-helpers.sh lxc_container_create --config "docker" forgejo-code
+    lxc-helpers.sh lxc_container_start forgejo-code
+    lxc-helpers.sh lxc_install_docker forgejo-code
+    lxc-helpers.sh lxc_container_user_install forgejo-code $(id -u) $USER
     ```
   - upgrades checklist:
     - `ssh -t debian@hetzner02.forgejo.org lxc-helpers.sh lxc_container_run forgejo-code -- sudo --user debian bash`
@@ -332,9 +332,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
   - upgrades checklist:
     ```sh
     docker stop forgejo
-    docker rm forgejo
-    docker rmi codeberg.org/forgejo-experimental/forgejo:1.22.0-test
-    docker pull codeberg.org/forgejo-experimental/forgejo:1.22.0-test
+    docker rmi codeberg.org/forgejo-experimental/forgejo:7.0-test
     bash -x /home/debian/run-forgejo.sh
     docker logs -n 200 -f forgejo
     ```
