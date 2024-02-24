@@ -329,15 +329,9 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
   Dedicated to https://next.forgejo.org
 
   - LXC creation same as code.forgejo.org
-  - upgrades checklist:
-    ```sh
-    docker stop forgejo
-    docker rm forgejo
-    docker rmi codeberg.org/forgejo-experimental/forgejo:7.0-test
-    bash -x /home/debian/run-forgejo.sh
-    docker logs -n 200 -f forgejo
-    ```
-  - reset everything
+  - `/etc/cron.daily/forgejo-upgrade` runs `/home/debian/run-forgejo.sh > /home/debian/run-forgejo-$(date +%d).log`
+  - When a new major version is published (8.0 for instance) `run-forgejo.sh` must be updated with it
+  - Reset everything
     ```sh
     docker stop forgejo
     docker rm forgejo
@@ -358,7 +352,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
     ```
   - `/etc/nginx/sites-available/next.forgejo.org` same as `/etc/nginx/sites-available/code.forgejo.org`
 
-  Rotating 30 days backups happen daily /etc/cron.daily/forgejo-code-backup.sh
+  Rotating 30 days backups happen daily `/etc/cron.daily/forgejo-code-backup.sh`
 
 - `runner-forgejo-helm` on hetzner03
 
