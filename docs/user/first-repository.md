@@ -1,7 +1,7 @@
 ---
 title: Your First Repository
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/7bb8fa5ca559073c028805888195ee31b1f3d9c2/content/getting-started/first-repository.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/85d333f48badb27f8e4371263db3354f70836dfd/content/getting-started/first-repository.md'
 ---
 
 Almost everything on Forgejo happens in a repository. Think of a repository as a home for your project, where all of its source code can be organized using Git, as well as where you can track issues and read and write wikis.
@@ -9,8 +9,6 @@ Almost everything on Forgejo happens in a repository. Think of a repository as a
 This article will guide you through creating your first repository on Forgejo, connecting your local development environment and making your first commit.
 
 ## Creating a Repository
-
-> A note to more advanced users: It's currently not possible to use Push-to-Create to push a fresh repository onto Forgejo.
 
 To create a new repository, you need be logged in to your account.
 
@@ -66,7 +64,7 @@ In this guide, we'll focus on connecting to Forgejo via HTTP using Git on the co
 - [Clone & Commit via CLI](/git/clone-commit-via-cli/) and
 - [Clone & Commit via Web](/git/clone-commit-via-web/)
 
-> Although we use HTTP in this Getting Started guide, it is a good idea to setup SSH-based authentication once you feel confident to do so
+> Although we use HTTP in this guide, it is a good idea to setup SSH-based authentication once you feel confident to do so.
 
 ### Option A: Clone the newly created, empty repository
 
@@ -132,13 +130,13 @@ Now, you need to tell Git where to push your changes. You would do that by speci
 knut@iceberg:~/my-project$ git remote add origin https://codeberg.org/knut/foobar
 ```
 
-If all is done correctly, this command should output nothing.
+When you clone a repository from the Internet, the URL that you got your copy of the repository from will be automatically used for the `origin` remote.
 
-> **Errors:**
-> If you added an already initalized remote repository and try to push, you will get an error, if your local commit history is different from the history of the remote. You have some choices to resolve the conflict:
->
-> - Merge your changes with the ones in the remote `git pull`
-> - If you are sure, that you want to overwrite all changes in the remote, you can force push with `git -f push`
+If your local copy of the repository is missing some commits that exist in the remote repository, pushing will result in an error. There are two ways to fix this:
+
+- Run `git pull` to combine your local changes with the changes that exist in the remote repository. If this does not work, please follow the instructions in your terminal.
+- If you know what you are doing, you can also overwrite the remote repository uaing `git -f push`.
+  This action will **permanently** alter your remote repository and is not suitable if you are working on a project together with other people.
 
 ## Making your first commit
 

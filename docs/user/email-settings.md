@@ -1,10 +1,13 @@
 ---
 title: 'Email Settings'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/7bb8fa5ca559073c028805888195ee31b1f3d9c2/content/getting-started/email-settings.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/85d333f48badb27f8e4371263db3354f70836dfd/content/getting-started/email-settings.md'
 ---
 
 By default, Forgejo will send notifications to your registered email addresses.
+
+This section only concerns your Forgejo account and will not affect the commits you do not make on the website.
+If you don't know how to **configure your name and email in Git**, take a look at the ["Configuring Git" man page](https://git-scm.com/docs/git-config).
 
 ## Configuring all notifications
 

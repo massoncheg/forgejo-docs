@@ -1,7 +1,7 @@
 ---
 title: 'Repository Permissions'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/7bb8fa5ca559073c028805888195ee31b1f3d9c2/content/collaborating/repo-permissions.md'
+origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/85d333f48badb27f8e4371263db3354f70836dfd/content/collaborating/repo-permissions.md'
 ---
 
 When you invite collaborators to join your repository or when you create teams for your organization, you have to decide what each collaborator/team is allowed to do.
