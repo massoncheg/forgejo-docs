@@ -332,6 +332,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
   - upgrades checklist:
     ```sh
     docker stop forgejo
+    docker rm forgejo
     docker rmi codeberg.org/forgejo-experimental/forgejo:7.0-test
     bash -x /home/debian/run-forgejo.sh
     docker logs -n 200 -f forgejo
