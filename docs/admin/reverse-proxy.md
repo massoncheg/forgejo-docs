@@ -1,7 +1,7 @@
 ---
 title: 'Reverse proxy'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f7e0b81a93c5d/docs/content/usage/authentication.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/usage/authentication.en-us.md'
 ---
 
 Forgejo supports Reverse Proxy Header authentication, it will read headers as a trusted login user name or user email address. This hasn't been enabled by default, you can enable it with
@@ -20,3 +20,9 @@ If set `ENABLE_REVERSE_PROXY_FULL_NAME=true`, a user full name expected in `X-WE
 You can also limit the reverse proxy's IP address range with `[security].REVERSE_PROXY_TRUSTED_PROXIES` which default value is `127.0.0.0/8,::1/128`. By `[security].REVERSE_PROXY_LIMIT`, you can limit trusted proxies level.
 
 Notice: Reverse Proxy Auth doesn't support the API. You still need an access token or basic auth to make API requests.
+
+## Docker / Container Registry
+
+The container registry uses a fixed sub-path `/v2` which can't be changed.
+Even if you deploy Gitea with a different sub-path, `/v2` will be used by the `docker` client.
+Therefore you may need to add an additional route to your reverse proxy configuration.

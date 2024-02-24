@@ -1,7 +1,7 @@
 ---
 title: 'Labels'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f7e0b81a93c5d/docs/content/usage/labels.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/usage/labels.en-us.md'
 ---
 
 You can use labels to classify issues and pull requests and to improve your overview over them.

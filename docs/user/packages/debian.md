@@ -1,7 +1,7 @@
 ---
 title: 'Debian Package Registry'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f7e0b81a93c5d/docs/content/usage/packages/debian.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/usage/packages/debian.en-us.md'
 ---
 
 Publish [Debian](https://www.debian.org/distrib/packages) packages for your user or organization.
@@ -17,7 +17,7 @@ The following examples use `apt`.
 To register the Debian registry add the url to the list of known apt sources:
 
 ```shell
-echo "deb https://forgejo.example.com/api/packages/{owner}/debian {distribution} {component}" | sudo tee -a /etc/apt/sources.list.d/forgejo.list
+echo "deb [signed-by=/etc/apt/keyrings/forgejo-{owner}.asc] https://forgejo.example.com/api/packages/{owner}/debian {distribution} {component}" | sudo tee -a /etc/apt/sources.list.d/forgejo.list
 ```
 
 | Placeholder    | Description               |
@@ -29,13 +29,13 @@ echo "deb https://forgejo.example.com/api/packages/{owner}/debian {distribution}
 If the registry is private, provide credentials in the url. You can use a password or a [personal access token](../../api-usage/#authentication):
 
 ```shell
-echo "deb https://{username}:{your_password_or_token}@forgejo.example.com/api/packages/{owner}/debian {distribution} {component}" | sudo tee -a /etc/apt/sources.list.d/forgejo.list
+echo "deb [signed-by=/etc/apt/keyrings/forgejo-{owner}.asc] https://{username}:{your_password_or_token}@forgejo.example.com/api/packages/{owner}/debian {distribution} {component}" | sudo tee -a /etc/apt/sources.list.d/forgejo.list
 ```
 
 The Debian registry files are signed with a PGP key which must be known to apt:
 
 ```shell
-sudo curl https://forgejo.example.com/api/packages/{owner}/debian/repository.key -o /etc/apt/trusted.gpg.d/forgejo-{owner}.asc
+sudo curl https://forgejo.example.com/api/packages/{owner}/debian/repository.key -o /etc/apt/keyrings/forgejo-{owner}.asc
 ```
 
 Afterwards update the local package index:
@@ -67,15 +67,16 @@ curl --user your_username:your_password_or_token \
 ```
 
 If you are using 2FA or OAuth use a [personal access token](../../api-usage/#authentication) instead of the password.
-You cannot publish a file with the same name twice to a package. You must delete the existing package version first.
+
+You cannot publish a package if a package of the same name, version, distribution, component and architecture already exists. You must delete the existing package first.
 
 The server responds with the following HTTP Status codes.
 
-| HTTP Status Code  | Meaning                                                                         |
-| ----------------- | ------------------------------------------------------------------------------- |
-| `201 Created`     | The package has been published.                                                 |
-| `400 Bad Request` | The package name, version, distribution, component or architecture are invalid. |
-| `409 Conflict`    | A package file with the same combination of parameters exists already.          |
+| HTTP Status Code  | Meaning                                                                |
+| ----------------- | ---------------------------------------------------------------------- |
+| `201 Created`     | The package has been published.                                        |
+| `400 Bad Request` | The package is invalid.                                                |
+| `409 Conflict`    | A package file with the same combination of parameters exists already. |
 
 ## Delete a package
 

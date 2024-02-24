@@ -1,7 +1,7 @@
 ---
 title: 'Email setup'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f7e0b81a93c5d/docs/content/administration/email-setup.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/administration/email-setup.en-us.md'
 ---
 
 Forgejo can be set to send emails such as a registration confirmation, either with [Sendmail](https://man7.org/linux/man-pages/man8/sendmail.8.html) (or compatible MTAs like Postfix and msmtp) or by connecting to an SMTP server.
@@ -31,7 +31,7 @@ For the full list of options check the [Config Cheat Sheet](../config-cheat-shee
 
 - STARTTLS (also known as Opportunistic TLS) via port 587. Initial connection is done over cleartext, but then be upgraded over TLS if the server supports it.
 - SMTPS connection (SMTP over TLS) via the default port 465. Connection to the server use TLS from the beginning.
-- Forced SMTPS connection with `IS_TLS_ENABLED=true`.
+- Forced SMTPS connection with `PROTOCOL=smtps`. (These are both known as Implicit TLS.)
 
 Both `SMTPS` and `STARTTLS` combined with `IS_TLS_ENABLED=true` are known as Implicit TLS and is recommended by [RFC8314](https://tools.ietf.org/html/rfc8314#section-3) since 2018.
 

@@ -1,7 +1,7 @@
 ---
 title: 'Container Registry'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f7e0b81a93c5d/docs/content/usage/packages/container.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/usage/packages/container.en-us.md'
 ---
 
 Publish [Open Container Initiative](https://opencontainers.org/) compliant images for your user or organization.
@@ -28,6 +28,16 @@ Images must follow this naming convention:
 
 `{registry}/{owner}/{image}`
 
+When building your docker image, using the naming convention above, this looks like:
+
+```shell
+# build an image with tag
+docker build -t {registry}/{owner}/{image}:{tag} .
+# name an existing image with tag
+docker tag {some-existing-image}:{tag} {registry}/{owner}/{image}:{tag}
+```
+
+where your registry is the domain of your gitea instance (e.g. gitea.example.com).
 For example, these are all valid image names for the owner `testuser`:
 
 `forgejo.example.com/testuser/myimage`

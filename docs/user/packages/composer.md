@@ -1,7 +1,7 @@
 ---
 title: 'Composer Package Registry'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f7e0b81a93c5d/docs/content/usage/packages/composer.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/usage/packages/composer.en-us.md'
 ---
 
 Publish [Composer](https://getcomposer.org/) packages for your user or organization.
@@ -14,6 +14,7 @@ To work with the Composer package registry, you can use [Composer](https://getco
 
 To publish a Composer package perform a HTTP PUT operation with the package content in the request body.
 The package content must be the zipped PHP project with the `composer.json` file.
+
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
 
 ```
@@ -50,10 +51,11 @@ If you are using 2FA or OAuth use a [personal access token](../../api-usage/#aut
 
 The server responds with the following HTTP Status codes.
 
-| HTTP Status Code  | Meaning                                                                                                |
-| ----------------- | ------------------------------------------------------------------------------------------------------ |
-| `201 Created`     | The package has been published.                                                                        |
-| `400 Bad Request` | The package name and/or version are invalid or a package with the same name and version already exist. |
+| HTTP Status Code  | Meaning                                                                |
+| ----------------- | ---------------------------------------------------------------------- |
+| `201 Created`     | The package has been published.                                        |
+| `400 Bad Request` | The package is invalid.                                                |
+| `409 Conflict`    | A package file with the same combination of parameters exists already. |
 
 ## Configuring the package registry
 

@@ -1,7 +1,7 @@
 ---
 title: 'Swift Packages Repository'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f7e0b81a93c5d/docs/content/usage/packages/swift.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/usage/packages/swift.en-us.md'
 ---
 
 ## Swift Packages Repository
@@ -17,7 +17,8 @@ To work with the Swift package registry, you need to use [swift](https://www.swi
 To register the package registry and provide credentials, execute:
 
 ```shell
-swift package-registry set https://forgejo.example.com/api/packages/{owner}/swift -login {username} -password {password}
+swift package-registry set https://forgejo.example.com/api/packages/{owner}/swift
+swift package-registry login https://forgejo.example.com/api/packages/{owner}/swift --username {username} --password {password}
 ```
 
 | Placeholder | Description                                                                                                                                  |
@@ -57,6 +58,14 @@ curl -X PUT --user {username}:{password} \
 | `metadata`  | (Optional) The metadata of the package. JSON encoded subset of https://schema.org/SoftwareSourceCode                                         |
 
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
+
+The server responds with the following HTTP Status codes.
+
+| HTTP Status Code  | Meaning                                                                |
+| ----------------- | ---------------------------------------------------------------------- |
+| `201 Created`     | The package has been published.                                        |
+| `400 Bad Request` | The package is invalid.                                                |
+| `409 Conflict`    | A package file with the same combination of parameters exists already. |
 
 ### Install a package
 

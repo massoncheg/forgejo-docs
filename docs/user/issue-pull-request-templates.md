@@ -1,12 +1,12 @@
 ---
 title: 'Issue and Pull Request Templates'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f7e0b81a93c5d/docs/content/usage/issue-pull-request-templates.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/usage/issue-pull-request-templates.en-us.md'
 ---
 
 Some projects have a standard list of questions that users need to answer
 when creating an issue or pull request. Forgejo supports adding templates to the
-main branch of the repository so that they can autopopulate the form when users are
+**default branch of the repository** so that they can autopopulate the form when users are
 creating issues and pull requests. This will cut down on the initial back and forth
 of getting some clarifying details.
 

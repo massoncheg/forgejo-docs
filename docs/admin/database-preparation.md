@@ -1,10 +1,10 @@
 ---
 title: 'Database Preparation'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f7e0b81a93c5d/docs/content/installation/database-preparation.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/installation/database-preparation.en-us.md'
 ---
 
-You need a database to use Forgejo. Forgejo supports PostgreSQL (>=12), MySQL (>=8.0) or MariaDB (>=10.0), and SQLite. This page will guide into preparing the database. Only PostgreSQL and MySQL/MariaDB will be covered here since those database engines are widely-used in production. If you plan to use SQLite, you can ignore this chapter.
+You need a database to use Forgejo. Forgejo supports PostgreSQL (>=12), MySQL (>=8.0) or MariaDB (>=10.0), and SQLite (builtin). This page will guide into preparing the database. Only PostgreSQL and MySQL/MariaDB will be covered here since those database engines are widely-used in production. If you plan to use SQLite, you can ignore this chapter.
 
 Database instance can be on same machine as Forgejo (local database setup), or on different machine (remote database).
 
@@ -46,7 +46,11 @@ Note: All steps below requires that the database engine of your choice is instal
 
    Replace username and password above as appropriate.
 
-4. Create database with UTF-8 charset and collation. Make sure to use `utf8mb4` charset instead of `utf8` as the former supports all Unicode characters (including emojis) beyond _Basic Multilingual Plane_. Also, collation chosen depending on your expected content, but make sure that the collation is accent- and case sensitive. When in doubt, use `utf8mb4_bin`.
+4. Create database with UTF-8 charset and case-sensitive collation.
+
+   `utf8mb4_bin` is a common collation for both MySQL/MariaDB.
+   When Forgejo starts, it will try to find a better collation (`utf8mb4_0900_as_cs` or `uca1400_as_cs`) and alter the database if it is possible.
+   If you would like to use another collation, you can set `[database].CHARSET_COLLATION` in the `app.ini` file.
 
    ```sql
    CREATE DATABASE forgejodb CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_bin';

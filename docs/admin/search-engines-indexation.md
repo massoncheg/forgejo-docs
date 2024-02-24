@@ -1,7 +1,7 @@
 ---
 title: 'Search Engines Indexation'
 license: 'Apache-2.0'
-origin_url: 'https://github.com/go-gitea/gitea/blob/abe8fe352711601fbcd24bf4505f7e0b81a93c5d/docs/content/administration/search-engines-indexation.en-us.md'
+origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/administration/search-engines-indexation.en-us.md'
 ---
 
 ## Search engines indexation of your Forgejo installation
@@ -12,7 +12,7 @@ If you don't want your repository to be visible for search engines read further.
 ### Block search engines indexation using robots.txt
 
 To make Forgejo serve a custom `robots.txt` (default: empty 404) for top level installations,
-create a file called `robots.txt` at the root of the `Custom File Root Path` as displayed in the `/admin/config` page.
+create a file with path `public/robots.txt` at the root of the `Custom File Root Path` as displayed in the `/admin/config` page.
 
 Examples on how to configure the `robots.txt` can be found at [https://moz.com/learn/seo/robotstxt](https://moz.com/learn/seo/robotstxt).
 
