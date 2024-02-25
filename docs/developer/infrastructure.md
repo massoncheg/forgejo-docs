@@ -3,20 +3,16 @@ title: Hardware infrastructure
 license: 'CC-BY-SA-4.0'
 ---
 
-## Codeberg
-
-Codeberg provides a LXC container with 48GB RAM, 24 threads and SSD drive to be used for the CI. A Forgejo Runner is installed in `/opt/runner` and registered with a token obtained from https://codeberg.org/forgejo. It does not allow running privileged containers or LXC containers for security reasons. The runner is intended to be used for pull requests, for instance in https://codeberg.org/forgejo/forgejo.
-
 ## Octopuce
 
-[Octopuce provides hardware](https://codeberg.org/forgejo/sustainability) managed by [the devops team](https://codeberg.org/forgejo/governance/src/branch/main/TEAMS.md#devops). It can be accessed via a VPN.
+[Octopuce provides hardware](https://codeberg.org/forgejo/sustainability) managed by [the devops team](https://codeberg.org/forgejo/governance/src/branch/main/TEAMS.md#devops). It can only be accessed via SSH.
 
-The VPN is deployed and upgraded using the following [Enough command line](https://enough-community.readthedocs.io):
+To access the services hosted on the LXC containers, ssh port forwarding to the private IPs can be used. For instance:
 
-```shell
-$ mkdir -p ~/.enough
-$ git clone https://forgejo.octopuce.forgejo.org/forgejo/enough-octopuce ~/.enough/octopuce.forgejo.org
-$ enough --domain octopuce.forgejo.org service create openvpn
+```sh
+echo 127.0.0.1 private.forgejo.org >> /etc/hosts
+sudo ssh -i ~/.ssh/id_rsa -L 80:10.77.0.128:80 debian@forgejo01.octopuce.fr
+firefox http://private.forgejo.org
 ```
 
 ### Containers
@@ -25,7 +21,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
 
 - `fogejo-host`
 
-  Dedicated to https://private.forgejo.org (`ssh -p 2222 debian@private.forgejo.org`)
+  Dedicated to http://private.forgejo.org
 
   - LXC creation
     ```sh
@@ -46,9 +42,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
 
 - `fogejo-runner-host`
 
-  Dedicated to https://private-runner.forgejo.org (`ssh debian@private-runner.forgejo.org`)
-
-  Has runners installed as explained elsewhere in this document.
+  Has runners installed to run against private.forgejo.org
 
   - LXC creation
     ```sh
