@@ -323,7 +323,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
   Dedicated to https://next.forgejo.org
 
   - LXC creation same as code.forgejo.org
-  - `/etc/cron.daily/forgejo-upgrade` runs `/home/debian/run-forgejo.sh > /home/debian/run-forgejo-$(date +%d).log`
+  - `/etc/cron.hourly/forgejo-upgrade` runs `/home/debian/run-forgejo.sh > /home/debian/run-forgejo-$(date +%d).log`
   - When a new major version is published (8.0 for instance) `run-forgejo.sh` must be updated with it
   - Reset everything
     ```sh
