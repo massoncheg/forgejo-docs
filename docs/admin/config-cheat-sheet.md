@@ -464,7 +464,7 @@ relation to port exhaustion.
 - `ISSUE_INDEXER_NAME`: **gitea_issues**: Issue indexer name, available when ISSUE_INDEXER_TYPE is elasticsearch or meilisearch.
 - `ISSUE_INDEXER_PATH`: **indexers/issues.bleve**: Index file used for issue search; available when ISSUE*INDEXER_TYPE is bleve and elasticsearch. Relative paths will be made absolute against *`AppWorkPath`\_.
 
-- `REPO_INDEXER_ENABLED`: **false**: Enables code search (uses a lot of disk space, about 6 times more than the repository size).
+- `REPO_INDEXER_ENABLED`: **false**: Enables code search (uses a lot of disk space, about 6 times more than the repository size). If disabled, code search will be limited within a single repository.
 - `REPO_INDEXER_REPO_TYPES`: **sources,forks,mirrors,templates**: Repo indexer units. The items to index could be `sources`, `forks`, `mirrors`, `templates` or any combination of them separated by a comma. If empty then it defaults to `sources` only, as if you'd like to disable fully please see `REPO_INDEXER_ENABLED`.
 - `REPO_INDEXER_TYPE`: **bleve**: Code search engine type, could be `bleve` or `elasticsearch`.
 - `REPO_INDEXER_PATH`: **indexers/repos.bleve**: Index file used for code search.
