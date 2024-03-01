@@ -7,12 +7,12 @@ license: 'CC-BY-SA-4.0'
 
 The Forgejo release numbers are compliant with [Semantic Versioning](https://semver.org/). They are followed by the Gitea release number with which it is compatible. For instance:
 
-- Forgejo **v7.0.0+1.22.0** is compatible with Gitea **v1.22.0**.
+- Forgejo **v7.0.0+gitea-1.22.0** is compatible with Gitea **v1.22.0**.
 
 The release candidates are composed by adding the `-rc` suffix. For instance:
 
-- Forgejo **v7.0.0-rc0+1.22.0**
-- Forgejo **v7.0.0-rc1+1.22.0**
+- Forgejo **v7.0.0-rc0+gitea-1.22.0**
+- Forgejo **v7.0.0-rc1+gitea-1.22.0**
 - etc.
 
 ## Stable release process
