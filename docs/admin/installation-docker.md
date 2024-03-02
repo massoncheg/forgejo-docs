@@ -6,12 +6,12 @@ license: 'CC-BY-SA-4.0'
 Forgejo provides [container images](https://codeberg.org/forgejo/-/packages/container/forgejo/versions) for use with Docker or other containerization tools.
 
 ```shell
-docker pull codeberg.org/forgejo/forgejo:1.21.5-0
+docker pull codeberg.org/forgejo/forgejo:7.0.0
 ```
 
-The **1.21** tag is set to be the latest patch release, starting with **1.21.1-0**. The **1.21** tag will then be equal to **1.21.2-0** when it is released and so on.
+The **7** tag is set to be the latest minor release, starting with **7.0.0**. The **7** tag will then be equal to **7.0.0** when it is released and so on.
 
-Upgrading from **1.X** to **1.X+1** (for instance from **1.20** to **1.21**) requires a [manual operation and human verification](../upgrade/). However it is possible to use the **X.Y** tag (for instance **1.21**) to get the latest point release automatically.
+Upgrading from **X** to **X+1** (for instance from **7** to **8**) requires a [manual operation and human verification](../upgrade/). However it is possible to use the **X** tag (for instance **7**) to get the latest minor release automatically.
 
 Here is a sample [docker-compose](https://docs.docker.com/compose/install/) file:
 
@@ -24,7 +24,7 @@ networks:
 
 services:
   server:
-    image: codeberg.org/forgejo/forgejo:1.21
+    image: codeberg.org/forgejo/forgejo:7
     container_name: forgejo
     environment:
       - USER_UID=1000
@@ -84,7 +84,7 @@ networks:
 
 services:
   server:
-    image: codeberg.org/forgejo/forgejo:1.21
+    image: codeberg.org/forgejo/forgejo:7
     container_name: forgejo
     environment:
       - USER_UID=1000
@@ -132,7 +132,7 @@ networks:
 
 services:
   server:
-    image: codeberg.org/forgejo/forgejo:1.21
+    image: codeberg.org/forgejo/forgejo:7
     container_name: forgejo
     environment:
       - USER_UID=1000
@@ -232,8 +232,8 @@ networks:
 
 services:
   server:
--    image: codeberg.org/forgejo/forgejo:1.21
-+    image: codeberg.org/forgejo/forgejo:1.21-rootless
+-    image: codeberg.org/forgejo/forgejo:7
++    image: codeberg.org/forgejo/forgejo:7-rootless
     container_name: forgejo
     environment:
 +      - USER_UID=1024

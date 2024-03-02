@@ -41,9 +41,10 @@ involved in running it on their machines.
     - [Access Token scope](./token-scope/)
     - [LDAP, PAM, FreeIPA](./authentication/)
     - [OAuth2, Client Types](./oauth2-provider/)
-  - [Semantic version](./semver/)
-  - [API Usage](./api-usage/)
-  - [API Reference](https://codeberg.org/api/swagger)
+  - API
+    - [Usage](./api-usage/)
+    - [Forgejo versions](./versions/)
+    - [Reference](https://codeberg.org/api/swagger)
   - [Migrating Repositories](https://docs.codeberg.org/advanced/migrating-repos/)
   - [Push to create](./push-to-create/)
   - [AGit Workflow Usage](./agit-support/)

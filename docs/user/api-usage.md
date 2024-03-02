@@ -4,6 +4,13 @@ license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb749b17e413fbd/docs/content/development/api-usage.en-us.md'
 ---
 
+The Forgejo API for all versions that have the same major number
+(e.g. the major number of Forgejo 7.0.0 is 7) are compatible. There
+are breaking changes (e.g. removal of an API endpoint) when the major
+number changes and the release notes of this major version provide
+explanations to help developers upgrade their software
+accordingly. Read more about the [Forgejo numbering scheme](./versions/).
+
 ## Enabling/configuring API access
 
 By default, `ENABLE_SWAGGER` is true, and `MAX_RESPONSE_ITEMS` is set to 50.

@@ -8,7 +8,7 @@ This guide helps Forgejo admins perform upgrades safely and provides guidance to
 
 ## Release life cycle
 
-There are about two major versions published every year. Each version undergoes the following states:
+Each Forgejo version undergoes the following states:
 
 - **Experimental** (current development version): receives new features, should not be used in production
 - **Stable** (latest major version): receives full support, bugfixes and security fixes
@@ -16,9 +16,15 @@ There are about two major versions published every year. Each version undergoes 
 
 To be notified in advance of security releases, watch or subscribe to the RSS feed of the [security-announcements repository](https://codeberg.org/forgejo/security-announcements/issues). The details of the vulnerability will not be revealed, only the expected release date, for administrators to plan ahead and better secure their instance.
 
+## Semantic version compliance
+
+Forgejo is compliant with [semantic versioning](https://semver.org/spec/v2.0.0.html) as of 7.0.0. In a nutshell it means that there is no breaking change unless the first number changes (e.g. when 8.0.0 is published it will contain breaking changes compared to 7.0.0). The release notes document those breaking changes and theey may require manual intervention depending on the Forgejo installation.
+
+In versions prior to 7.0.0, the releases 1.19, 1.20 and 1.21 all contained breaking changes and the versioning scheme was not compliant with semantic versioning.
+
 ## Backup
 
-To be safe, make sure to perform a full backup before upgrading. It is a requirement when upgrading to a new stable release (going from v1.20 to v1.21 for instance) but is also a good precaution when installing a patch release (going from v1.20.4-0 to v1.20.5-1 for instance).
+To be safe, make sure to perform a full backup before upgrading. It is a requirement when upgrading to a new stable release (going from v1.20 to v1.21 for instance) but is also a good precaution when installing a minor or patch release (going from v7.0.0 to v7.0.1 for instance).
 
 The reliable way to perform a backup is with a synchronized point-in-time snapshot of all the storage used by Forgejo.
 
@@ -75,9 +81,9 @@ Note: Forgejo requires [docker >= 20.10.6](https://wiki.alpinelinux.org/wiki/Rel
    [log.file.xorm]
    FILE_NAME=xorm.log
   ```
-- If the upgrade from version x.y to version x.y+2 fails and there is a need to narrow down the problem, try upgrading to the latest minor version of each major version and verify it works. It will show which major version causes the issue and help debug the problem. For instance, if upgrading from Forgejo 1.19.3-0 to Forgejo 1.20.5-1 does not work:
-  - Upgrade from Forgejo 1.19.3-0 to Forgejo 1.19.4-0 (the last minor version of the 1.19 major version) and verify Forgejo works.
-  - Upgrade to Forgejo 1.20.5-1 (the last minor version of the 1.20 major version) and verify Forgejo works.
+- If the upgrade from version x.y to version x.y+2 fails and there is a need to narrow down the problem, try upgrading to the latest version of each series and verify it works. It will show which series causes the issue and help debug the problem. For instance, if upgrading from Forgejo 1.19.3-0 to Forgejo 1.21.6-0 does not work:
+  - Upgrade from Forgejo 1.19.3-0 to Forgejo 1.19.4-0 (the last version of the 1.19 series) and verify Forgejo works.
+  - Upgrade to Forgejo 1.20.6-0 (the last version of the 1.20 series) and verify Forgejo works.
 
 ### Unexpected database version
 
