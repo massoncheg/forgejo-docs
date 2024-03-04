@@ -159,6 +159,10 @@ connect to a S3 compatible server:
 - `MINIO_ACCESS_KEY_ID`: S3 accessKeyID to connect.
 - `MINIO_SECRET_ACCESS_KEY`: S3 secretAccessKey to connect.
 - `MINIO_BUCKET`: **forgejo**: S3 bucket to store the data.
+- `MINIO_BUCKET_LOOKUP`: **auto**: S3 [bucket lookup type](https://min.io/docs/minio/linux/developers/go/API.html#constructor).
+  - `auto` Auto detected
+  - `dns` Virtual Host style
+  - `path` Path Style
 - `MINIO_LOCATION`: **us-east-1**: S3 location to create bucket.
 - `MINIO_USE_SSL`: **false**: S3 enabled ssl.
 - `MINIO_INSECURE_SKIP_VERIFY`: **false**: S3 skip SSL verification.
@@ -176,6 +180,7 @@ MINIO_ENDPOINT = garage:9000
 MINIO_ACCESS_KEY_ID = [redacted]
 MINIO_SECRET_ACCESS_KEY = [redacted]
 MINIO_BUCKET = forgejo
+MINIO_BUCKET_LOOKUP = auto
 MINIO_LOCATION = us-east-1
 MINIO_USE_SSL = false
 MINIO_INSECURE_SKIP_VERIFY = false
@@ -189,6 +194,7 @@ MINIO_ENDPOINT = minio:9000
 MINIO_ACCESS_KEY_ID = [redacted]
 MINIO_SECRET_ACCESS_KEY = [redacted]
 MINIO_BUCKET = forgejo
+MINIO_BUCKET_LOOKUP = auto
 MINIO_LOCATION = us-east-1
 MINIO_USE_SSL = false
 MINIO_INSECURE_SKIP_VERIFY = false
