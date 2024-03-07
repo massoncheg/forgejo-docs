@@ -127,7 +127,7 @@ services:
 To also mount a locally defined `app.ini`, add
 
 ```yaml
-      - ./app.ini:/etc/gitea/app.ini
+- ./app.ini:/etc/gitea/app.ini
 ```
 
 to `volumes`.
