@@ -70,7 +70,7 @@ ENABLE_PUSH_CREATE_USER = true
 ## Rootless
 
 Forgejo also supports a rootless Docker image.
-With this image, the Docker container can run as an unprivileged user, which means that an attacker will not have root privileges on the server even when they break out of the container.
+With this image, the Docker container can run as an unprivileged user, which means that an attacker will not have root privileges on the server even when they gain access to the container.
 
 This configuration is slightly more involved because we need to prepare our data folders.
 To do so, we create a `data` folder with permissions for the user with `UID` and `GID` 1000.
