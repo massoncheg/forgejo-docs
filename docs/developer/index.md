@@ -1,5 +1,5 @@
 ---
-title: 'Forgejo developer guide'
+title: 'Forgejo Developer Guide'
 ---
 
 This area will be targeted to people who want to hack Forgejo and adjust it to

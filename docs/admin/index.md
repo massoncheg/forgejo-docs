@@ -1,5 +1,5 @@
 ---
-title: 'Forgejo administrator guide'
+title: 'Forgejo Administrator Guide'
 ---
 
 These documents are targeted to people who run Forgejo on their machines.

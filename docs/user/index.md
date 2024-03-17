@@ -1,5 +1,5 @@
 ---
-title: 'Forgejo user guide'
+title: 'Forgejo User Guide'
 ---
 
 These documents are targeted to people who are using Forgejo but are not
