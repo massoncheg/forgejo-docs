@@ -10,7 +10,7 @@ This guide helps Forgejo admins perform upgrades safely and provides guidance to
 Each Forgejo release undergoes the following states:
 
 - **Stable** (latest release): receives full support, bugfixes and security fixes for three months.
-- **Long term support (LTS)** (the version published the first quarter of every year): receives only critical bugfixes and security support for one year.
+- **Long term support (LTS)** (the version published the first quarter of every year): receives only critical bugfixes and security support for one year and three months.
 - **Experimental** (current development version): receives new features, should not be used in production.
 
 To be notified in advance of security releases, watch or subscribe to the RSS feed of the [security-announcements repository](https://codeberg.org/forgejo/security-announcements/issues). The details of the vulnerability will not be revealed, only the expected release date, for administrators to plan ahead and better secure their instance.

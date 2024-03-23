@@ -7,18 +7,18 @@ license: 'CC-BY-SA-4.0'
 
 Forgejo stable releases are published on a fixed schedule, every quarter.
 
-| **Date** | **Version**            | **Release date** | **End Of Life**   |
-| -------- | ---------------------- | ---------------- | ----------------- |
-| 2024 Q1  | 7.0.0+LTS-gitea-1.22.0 | 17 April 2024    | **16 April 2025** |
-| 2024 Q2  | X.Y.Z+gitea-A.B.C      | 17 July 2024     | 16 October 2024   |
-| 2024 Q3  | X.Y.Z+gitea-A.B.C      | 16 October 2024  | 15 January 2025   |
-| 2024 Q4  | X.Y.Z+gitea-A.B.C      | 15 January 2025  | 16 April 2025     |
-| 2025 Q1  | X.Y.Z+LTS-gitea-A.B.C  | 16 April 2025    | **15 April 2026** |
-| 2025 Q2  | X.Y.Z+gitea-A.B.C      | 16 July 2025     | 15 October 2025   |
-| 2025 Q3  | X.Y.Z+gitea-A.B.C      | 15 October 2025  | 14 January 2026   |
-| 2025 Q4  | X.Y.Z+gitea-A.B.C      | 14 January 2026  | 15 April 2026     |
-| 2026 Q1  | X.Y.Z+LTS-gitea-A.B.C  | 15 April 2026    | **14 April 2027** |
-| 2026 Q2  | X.Y.Z+gitea-A.B.C      | 15 July 2026     | 14 October 2026   |
+| **Date** | **Version**            | **Release date** | **End Of Life**  |
+| -------- | ---------------------- | ---------------- | ---------------- |
+| 2024 Q1  | 7.0.0+LTS-gitea-1.22.0 | 17 April 2024    | **16 July 2025** |
+| 2024 Q2  | X.Y.Z+gitea-A.B.C      | 17 July 2024     | 16 October 2024  |
+| 2024 Q3  | X.Y.Z+gitea-A.B.C      | 16 October 2024  | 15 January 2025  |
+| 2024 Q4  | X.Y.Z+gitea-A.B.C      | 15 January 2025  | 16 April 2025    |
+| 2025 Q1  | X.Y.Z+LTS-gitea-A.B.C  | 16 April 2025    | **14 July 2026** |
+| 2025 Q2  | X.Y.Z+gitea-A.B.C      | 16 July 2025     | 15 October 2025  |
+| 2025 Q3  | X.Y.Z+gitea-A.B.C      | 15 October 2025  | 14 January 2026  |
+| 2025 Q4  | X.Y.Z+gitea-A.B.C      | 14 January 2026  | 15 April 2026    |
+| 2026 Q1  | X.Y.Z+LTS-gitea-A.B.C  | 15 April 2026    | **14 July 2027** |
+| 2026 Q2  | X.Y.Z+gitea-A.B.C      | 15 July 2026     | 14 October 2026  |
 
 ### Stable release support
 
