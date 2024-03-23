@@ -3,6 +3,11 @@ title: 'Installation'
 license: 'CC-BY-SA-4.0'
 ---
 
+Forgejo publishes a stable release every three months and a long term
+support (LTS) release every year. Patch releases are published more
+frequently and provide fixes for bugs and security
+vulnerabilities. See also how [the Forgejo versioning scheme](../../user/versions) works.
+
 This guide covers the installation of Forgejo [with
 Docker](../installation-docker/) or [from
 binary](../installation-binary/). Both of these methods are created

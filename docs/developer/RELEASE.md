@@ -3,16 +3,53 @@ title: Release management
 license: 'CC-BY-SA-4.0'
 ---
 
+## Release cycle
+
+Forgejo stable releases are published on a fixed schedule, every quarter.
+
+| **Date** | **Version**            | **Release date** | **End Of Life**   |
+| -------- | ---------------------- | ---------------- | ----------------- |
+| 2024 Q1  | 7.0.0+LTS-gitea-1.22.0 | 17 April 2024    | **16 April 2025** |
+| 2024 Q2  | X.Y.Z+gitea-A.B.C      | 17 July 2024     | 16 October 2024   |
+| 2024 Q3  | X.Y.Z+gitea-A.B.C      | 16 October 2024  | 15 January 2025   |
+| 2024 Q4  | X.Y.Z+gitea-A.B.C      | 15 January 2025  | 16 April 2025     |
+| 2025 Q1  | X.Y.Z+LTS-gitea-A.B.C  | 16 April 2025    | **15 April 2026** |
+| 2025 Q2  | X.Y.Z+gitea-A.B.C      | 16 July 2025     | 15 October 2025   |
+| 2025 Q3  | X.Y.Z+gitea-A.B.C      | 15 October 2025  | 14 January 2026   |
+| 2025 Q4  | X.Y.Z+gitea-A.B.C      | 14 January 2026  | 15 April 2026     |
+| 2026 Q1  | X.Y.Z+LTS-gitea-A.B.C  | 15 April 2026    | **14 April 2027** |
+| 2026 Q2  | X.Y.Z+gitea-A.B.C      | 15 July 2026     | 14 October 2026   |
+
+### Stable release support
+
+Bug fixes and security fixes are backported to the latest stable release.
+
+### Long Term Support (LTS)
+
+The first quarter release of the year is LTS. Critical bug fixes and security fixes are backported to the latest LTS release.
+
+### Experimental releases
+
+Experimental releases are published daily in [forgejo-experimental](https://codeberg.org/forgejo-experimental/) organization. They are built from the tip of the branch of each stable release. For instance:
+
+- `forgejo` is `X.Y-test` where `X.Y` is the major and minor number of the next stable release.
+- `v8.0/forgejo` is `8.0-test`
+- `v7.0/forgejo` is `7.0-test`
+
 ## Release numbering
 
 The Forgejo release numbers are compliant with [Semantic Versioning](https://semver.org/). They are followed by the Gitea release number with which it is compatible. For instance:
 
-- Forgejo **v7.0.0+gitea-1.22.0** is compatible with Gitea **v1.22.0**.
+- Forgejo **v7.1.0+gitea-1.22.0** is compatible with Gitea **v1.22.0**.
+
+Long term support releases have the `LTS` string in their metadata. For instance:
+
+- Forgejo **v7.0.0+LTS-gitea-1.22.0** is a long term support release compatible with Gitea **v1.22.0**.
 
 The release candidates are composed by adding the `-rc` suffix. For instance:
 
-- Forgejo **v7.0.0-rc0+gitea-1.22.0**
-- Forgejo **v7.0.0-rc1+gitea-1.22.0**
+- Forgejo **v7.1.0-rc0+gitea-1.22.0**
+- Forgejo **v7.1.0-rc1+gitea-1.22.0**
 - etc.
 
 ## Stable release process
@@ -29,6 +66,10 @@ The TL;DR: to publish a vX.Y.Z release is to:
 - Create an issue named `[RELEASE] Forgejo vX.Y.Z` with a description that includes a list of what needs to be done for the release with links to follow the progress
 - Set the milestone of this issue to `Forgejo vX.Y.Z`
 - Close the milestone when the release is complete
+
+### Feature freeze
+
+- Two weeks before the release date only bug fixes can be merged
 
 ### Cutting a release
 

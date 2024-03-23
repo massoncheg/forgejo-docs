@@ -1,18 +1,17 @@
 ---
 title: 'Upgrade guide'
 license: 'CC-BY-SA-4.0'
-origin_url: 'https://forgejo.gna.org/Hostea/admin-guide/src/branch/master/README.md'
 ---
 
 This guide helps Forgejo admins perform upgrades safely and provides guidance to troubleshoot problems. It also covers upgrades from Gitea back to version 1.2.0.
 
 ## Release life cycle
 
-Each Forgejo version undergoes the following states:
+Each Forgejo release undergoes the following states:
 
-- **Experimental** (current development version): receives new features, should not be used in production
-- **Stable** (latest major version): receives full support, bugfixes and security fixes
-- **Old Stable** (previous major version): receives only critical security support
+- **Stable** (latest release): receives full support, bugfixes and security fixes for three months.
+- **Long term support (LTS)** (the version published the first quarter of every year): receives only critical bugfixes and security support for one year.
+- **Experimental** (current development version): receives new features, should not be used in production.
 
 To be notified in advance of security releases, watch or subscribe to the RSS feed of the [security-announcements repository](https://codeberg.org/forgejo/security-announcements/issues). The details of the vulnerability will not be revealed, only the expected release date, for administrators to plan ahead and better secure their instance.
 
