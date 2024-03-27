@@ -9,6 +9,8 @@ Forgejo provides [container images](https://codeberg.org/forgejo/-/packages/cont
 docker pull codeberg.org/forgejo/forgejo:7.0.0
 ```
 
+If `codeberg.org` can not be accessed you can replace every mention of `codeberg.org` with `code.forgejo.org` to use our mirror.
+
 The **7** tag is set to be the latest minor release, starting with **7.0.0**. The **7** tag will then be equal to **7.0.0** when it is released and so on.
 
 Upgrading from **X** to **X+1** (for instance from **7** to **8**) requires a [manual operation and human verification](../upgrade/). However it is possible to use the **X** tag (for instance **7**) to get the latest minor release automatically.
