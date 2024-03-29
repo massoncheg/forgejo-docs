@@ -142,9 +142,11 @@ Possible values are:
 - `utc` - if date or time is set, use UTC rather than the local time zone.
 - `levelinitial` - initial character of the provided level in brackets eg. `[I]` for info.
 - `level` - level in brackets `[INFO]`.
+- `levelprefix` - journald-style log level prefix, such as `<5>` for "info".
 - `gopid` - the Goroutine-PID of the context.
 - `medfile` - last 20 characters of the filename - equivalent to `shortfile,longfile`.
 - `stdflags` - equivalent to `date,time,medfile,shortfuncname,levelinitial`.
+- `journaldflags` - equivalent to `levelprefix`.
 
 ### Console mode
 
@@ -160,6 +162,26 @@ For loggers in console mode, `COLORIZE` will default to `true` when appropriate:
 Settings:
 
 - `STDERR`: **false**: Whether the logger should print to `stderr` instead of `stdout`.
+
+### journald mode
+
+As an extension to the console mode, if Forgejo detects that stdout and/or stderr
+are connected to systemd-journald (which will happen automatically when Forgejo
+is running under systemd), the defaults will change:
+
+- `STDERR` will default to **true** if stderr is connected to systemd-journald;
+- `FLAGS` will default to `journaldflags` if the chosen stream is connected to
+  systemd-journald.
+
+When `FLAGS = journaldflags` is used, instead of decorating log entries with
+color or a textual representation of severity (e.g. `[INFO]` or `[ERROR]`),
+Forgejo will annotate each log entry with a machine-readable log level prefix
+that is captured by journald, enabling native filtering capabilities
+(e.g. run `journalctl -u forgejo -p err` to only show errors or worse).
+
+In short, if Forgejo is running under systemd, it is recommended to leave the
+logging configuration at their defaults, which will use `MODE = console` and
+adjust formatting to reduce clutter and enable native log level filtering.
 
 ### File mode
 
