@@ -75,10 +75,15 @@ The TL;DR: to publish a vX.Y.Z release is to:
 
 When a new `vX.Y.Z` release is ready to enter the release candidate stages:
 
-- Verify in the Makefile that the variable GITEA_COMPATIBILITY is set to the right version
-- Create a new `vX.Y/forgejo` branch from the `forgejo` branch
-- Set a `vX.(Y+1).Z-dev` tag on the `forgejo` branch
-- Push the `vX.(Y+1).Z-dev` tag to the https://codeberg.org/forgejo-integration/forgejo repository
+- Verify in the Makefile that the variable GITEA_COMPATIBILITY is set to the right version.
+- Create a new `vX.Y/forgejo` branch from the `forgejo` branch.
+- Add a `backport/vX.Y` label in the [issue tracker](https://codeberg.org/forgejo/forgejo/issues).
+- Set a `v(X+1).0.0-dev` tag on the forgejo branch and make sure it is at least one commit ahead of the `vX.Y/forgejo` branch so they do not conflict.
+- Push the `v(X+1).0.0-dev` tag to the https://codeberg.org/forgejo/forgejo repository
+- Push the `v(X+1).0.0-dev` tag to the https://codeberg.org/forgejo-integration/forgejo repository and cancel the build release job
+- Add add a `vX.Y/forgejo` branch protection rule https://codeberg.org/forgejo/forgejo/settings/branches
+- Trigger a mirror workflow in https://codeberg.org/forgejo/forgejo and verify the `X.Y-test` and `(X+1).0-test` releases are published in https://codeberg.org/forgejo-experimental
+- Update end-to-end to [know about the new release](https://code.forgejo.org/forgejo/end-to-end/pulls/139). It must be done after the first `(X+1).0-test` release is available in experimental otherwise it will fail to find it and will block the automated release process in the forgejo-integration repository
 
 ### Release Notes
 
