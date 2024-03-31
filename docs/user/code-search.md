@@ -9,7 +9,7 @@ Forgejo supports code search through an indexer and `git-grep` as a fallback whe
 
 If `REPO_INDEXER_ENABLED` is set to `false`, the code search function will be limited to a single repository and will use [`git-grep`](https://git-scm.com/docs/git-grep).
 
-Currently, only fixed strings are supported and any case differences are ignored. The search results will include the matched line, as well as a single line before and after the match. The search query will be executed on the default branch of the repository.
+Currently, only fixed strings are supported and any case differences are ignored. The search results will include the matched line, along with a context of three lines before and after the match. The search query will be executed on the default branch of the repository.
 
 # Indexer
 
