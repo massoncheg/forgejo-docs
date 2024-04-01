@@ -100,7 +100,6 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
 - `ALLOW_DELETION_OF_UNADOPTED_REPOSITORIES`: **false**: Allow non-admin users to delete unadopted repositories
 - `DISABLE_DOWNLOAD_SOURCE_ARCHIVES`: **false**: Don't allow download source archive files from UI
 - `ALLOW_FORK_WITHOUT_MAXIMUM_LIMIT`: **true**: Allow fork repositories without maximum number limit
-- `DOWNLOAD_OR_CLONE_METHODS`: **download-zip,download-targz,download-bundle,vscode-clone**: Comma separated list of additional clone and download methods offered in a repository's clone widget. These options will be listed on the UI in the same order they're listed in the configuration. Available options are: the defaults, which offer downloading the repository source as a zip archive, a gzip-compressed tarball, or a git bundle, and offer a clone URL for Visual Studio Code; and in addition to that, `vscodium-clone`, which will offer a clone URL to be used with Visual Studio Codium.
 
 ### Repository - Editor (`repository.editor`)
 
