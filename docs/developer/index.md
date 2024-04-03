@@ -23,6 +23,7 @@ their needs.
   - [Localization](./localization/)
   - [Base localization](./localization-english/)
   - [Localization admin duties](./localization-admin/)
+  - [Dependency management](./dependencies/)
 - For maintainers
   - [Hardware infrastructure](./infrastructure/)
   - [Release management](./release/)
