@@ -1107,6 +1107,7 @@ This section only does "set" config, a removed config key from this section won'
 ## Markup (`markup`)
 
 - `MERMAID_MAX_SOURCE_CHARACTERS`: **5000**: Set the maximum size of a Mermaid source. (Set to -1 to disable)
+- `FILEPREVIEW_MAX_LINES`: **50**: Set the maximum number of lines allowed for a filepreview. (Set to -1 to disable limits; set to 0 to disable the feature)
 
 Forgejo can support Markup using external tools. The example below will add a markup named `asciidoc`.
 

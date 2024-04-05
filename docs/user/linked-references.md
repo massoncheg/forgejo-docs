@@ -47,6 +47,29 @@ Example:
 
 > This bug was introduced in [e59ff077](#)
 
+## Code references
+
+It is possible to reference any portion of a file in a repository, by using the permalink feature inside the file viewer:
+
+![Permalinking of a line range](../_images/user/linked-references/permalink-coderange.png)
+
+If used inside a issue or pull request, this is automatically rendered into a inline preview of the portion of that file.
+
+> **NOTE:** Alternatively, you also can use the "Reference in a new issue" action to automatically create an issue with the correct permalink.
+
+Example:
+
+> See the code here: https://next.forgejo.org/Mai-Lapyst/test/src/commit/66719555bd242b9ad7c3fb9eef2b388826d87872/hook.go#L191-L200 It set's all of the options for this.
+
+![Rendered result of an permalink code reference](../_images/user/linked-references/rendered-permalink.png)
+
+There are some restrictions in place:
+
+- Code linked in private repositories will not be displayed if the current viewer has insufficent permissions.
+- It can only ever be a permalink; means linking to files by a branch or tag will not result in a preview.
+- There is a maximum amount of lines that will be rendered. By default this is 50.
+- Only permalinks to the current instance will work.
+
 ## Issues and Pull Requests
 
 A reference to another issue or pull request can be created using the simple
