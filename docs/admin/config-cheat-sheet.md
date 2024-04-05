@@ -1031,6 +1031,13 @@ Additional settings can be included in this section to specify where the data is
 - `NUMBER_TO_CHECK_PER_REPO`: **100**: Minimum number of stale LFSMetaObjects to check per repo. Set to `0` to always check all.
 - `PROPORTION_TO_CHECK_PER_REPO`: **0.6**: Check at least this proportion of LFSMetaObjects per repo. (This may cause all stale LFSMetaObjects to be checked.)
 
+#### Cron -  Delete inactive account (`cron.delete_inactive_accounts`)
+- `ENABLED`: **false**: Enable service.
+- `RUN_AT_START` **false**: Run tasks at start up time (if ENABLED).
+- `NOTICE_ON_SUCCESS`: **false**: Set to true to switch on success notices.
+- `SCHEDULE`: **@annually**: Cron syntax to set how often to check.
+- `OLDER_THAN`: **168h**: Max age for inactive account before deletion. 
+
 ## Git (`git`)
 
 - `PATH`: **""**: The path of Git executable. If empty, Forgejo searches through the PATH environment.
