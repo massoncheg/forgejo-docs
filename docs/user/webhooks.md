@@ -5,20 +5,30 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/d3982bcd814bac93e3cbce1c7eb7
 ---
 
 Forgejo supports webhooks for repository events. This can be configured in the settings
-page `/:username/:reponame/settings/hooks` by a repository admin. Webhooks can also be configured on a per-organization and whole system basis.
-All event pushes are POST requests. The methods currently supported are:
+page `/:username/:reponame/settings/hooks` by a repository admin. Webhooks can also be configured on a per-organization and whole system basis (default webhooks on repository creation or instance-wide webhooks).
+The currently supported webhook types are:
 
-- Forgejo (can also be a GET request)
-- Gitea (can also be a GET request)
-- Gogs
+### Raw event as JSON or FORM payload:
+
+- Forgejo (GET or POST)
+- Gitea (GET or POST)
+- Gogs (POST)
+
+### Dedicated integration:
+
+- Packagist: ask packagist to refresh the given package
+- SourceHut Builds: submit build manifests (only on push)
+
+### Generic notification messages in chosen channel/chat:
+
+- Matrix
 - Slack
 - Discord
 - Dingtalk
 - Telegram
 - Microsoft Teams
-- Feishu
-- Wechatwork
-- Packagist
+- Feishu / Lark Suite
+- WeCom (Wechat Work)
 
 ### Event information
 
