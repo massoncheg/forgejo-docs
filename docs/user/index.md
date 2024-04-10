@@ -12,6 +12,7 @@ involved in running it on their machines.
   - [Email Settings](./email-settings/)
   - [Forgejo Next](./forgejo-next/)
 - Collaborating with Others
+  - [Repository Activity](./repository-activity/)
   - [Pull requests and Git flow](./pull-requests-and-git-flow/)
   - [Invite Collaborators](https://docs.codeberg.org/collaborating/invite-collaborators/)
   - [Labels](./labels/)
