@@ -9,7 +9,7 @@ Forgejo stable releases are published on a fixed schedule, every quarter.
 
 | **Date** | **Version**            | **Release date** | **End Of Life**  |
 | -------- | ---------------------- | ---------------- | ---------------- |
-| 2024 Q1  | 7.0.0+LTS-gitea-1.22.0 | 17 April 2024    | **16 July 2025** |
+| 2024 Q1  | 7.0.0+LTS-gitea-1.22.0 | 23 April 2024    | **16 July 2025** |
 | 2024 Q2  | X.Y.Z+gitea-A.B.C      | 17 July 2024     | 16 October 2024  |
 | 2024 Q3  | X.Y.Z+gitea-A.B.C      | 16 October 2024  | 15 January 2025  |
 | 2024 Q4  | X.Y.Z+gitea-A.B.C      | 15 January 2025  | 16 April 2025    |
