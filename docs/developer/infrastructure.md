@@ -271,6 +271,8 @@ server {
     server_name code.forgejo.org;
 
     location / {
+        deny 47.76.209.138; # crawler that does not obey robots.txt
+        deny 47.76.99.127; # crawler that does not obey robots.txt
         proxy_pass http://10.6.83.195:8080;
         client_max_body_size 2G;
 	#
