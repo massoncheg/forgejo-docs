@@ -153,7 +153,7 @@ services:
   docker-in-docker:
     image: docker:dind
     container_name: 'docker_dind'
-    privileged: true
+    privileged: 'true'
     command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
     restart: 'unless-stopped'
 
@@ -177,7 +177,10 @@ services:
 ```
 
 Here, we're not running the `forgejo-runner daemon` yet because we
-need to register it first. Follow the registration instructions below
+need to register it first. Please note that in a recent install of
+docker `docker-compose`is not a separate command but should be run as
+`docker compose`.
+Follow the registration instructions below
 by starting the `runner` service with `docker-compose up -d` and
 entering it via:
 
