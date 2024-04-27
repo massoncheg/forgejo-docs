@@ -446,7 +446,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `LOG_SQL`: **false**: Log the executed SQL.
 - `DB_RETRIES`: **10**: How many ORM init / DB connect attempts allowed.
 - `DB_RETRY_BACKOFF`: **3s**: time.Duration to wait before trying another ORM init / DB connect attempt, if failure occurred.
-- `MAX_OPEN_CONNS` **0**: Database maximum open connections - default is 0, meaning there is no limit.
+- `MAX_OPEN_CONNS` **100**: Database maximum open connections. Default is 100 which is the lowest default from Postgres (MariaDB + MySQL default to 151). Setting this value higher than your database server can handle will lead to issues. If you require high concurrency, try to increase this value for both Forgejo and your database server.
 - `MAX_IDLE_CONNS` **2**: Max idle database connections on connection pool, default is 2 - this will be capped to `MAX_OPEN_CONNS`.
 - `CONN_MAX_LIFETIME` **0 or 3s**: Sets the maximum amount of time a DB connection may be reused - default is 0, meaning there is no limit (except on MySQL/MariaDB where it is 3s - see #6804 & #7071).
 - `CONN_MAX_IDLETIME` **0**: Sets the maximum amount of time a DB connection may be idle - default is 0, meaning there is no limit.
