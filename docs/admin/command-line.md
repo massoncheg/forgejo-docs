@@ -96,7 +96,7 @@ NAME:
    forgejo forgejo-cli actions generate-runner-token - Generate a new token for a runner to use to register with the server
 
 USAGE:
-   forgejo forgejo-cli actions generate-runner-token [command options] [arguments...]
+   forgejo forgejo-cli actions generate-runner-token [command options]
 
 OPTIONS:
    --scope value, -s value  {owner}[/{repo}] - leave empty for a global runner
@@ -110,7 +110,7 @@ NAME:
    forgejo forgejo-cli actions generate-secret - Generate a secret suitable for input to the register subcommand
 
 USAGE:
-   forgejo forgejo-cli actions generate-secret [command options] [arguments...]
+   forgejo forgejo-cli actions generate-secret [command options]
 
 OPTIONS:
    --help, -h  show help
@@ -123,7 +123,7 @@ NAME:
    forgejo forgejo-cli actions register - Idempotent registration of a runner using a shared secret
 
 USAGE:
-   forgejo forgejo-cli actions register [command options] [arguments...]
+   forgejo forgejo-cli actions register [command options]
 
 OPTIONS:
    --secret value           the secret the runner will use to connect as a 40 character hexadecimal string
@@ -1524,7 +1524,7 @@ NAME:
    forgejo cert - Generate self-signed certificate
 
 USAGE:
-   forgejo cert [command options] [arguments...]
+   forgejo cert [command options]
 
 DESCRIPTION:
    Generate a self-signed X.509 certificate for a TLS server.
