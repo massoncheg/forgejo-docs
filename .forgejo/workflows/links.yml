@@ -1,0 +1,17 @@
+name: Links
+
+on:
+  schedule:
+    - cron: '00 18 * * *'
+
+jobs:
+  linkChecker:
+    runs-on: docker
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Link Checker
+        id: lychee
+        uses: https://github.com/lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress --scheme http --scheme https -E .
