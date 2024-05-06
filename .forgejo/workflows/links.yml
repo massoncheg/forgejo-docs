@@ -7,11 +7,16 @@ jobs:
   linkChecker:
     runs-on: docker
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout next
+        uses: actions/checkout@v4
+
+      - name: Checkout v7
+        uses: actions/checkout@v4
+        with:
+          path: v7
+
       - name: Install lychee
         run: |
-          # Cleanup artifacts from previous run in case it crashed
-          rm -rf "lychee-v0.15.0-x86_64-unknown-linux-gnu.tar.gz" lychee
           curl -sLO "https://github.com/lycheeverse/lychee/releases/download/v0.15.0/lychee-v0.15.0-x86_64-unknown-linux-gnu.tar.gz"
           tar -xvzf "lychee-v0.15.0-x86_64-unknown-linux-gnu.tar.gz"
           rm "lychee-v0.15.0-x86_64-unknown-linux-gnu.tar.gz"
@@ -19,4 +24,12 @@ jobs:
 
       - name: Link Checker
         id: lychee
-        run: ./lychee --verbose --no-progress --scheme http --scheme https -f markdown -E ./docs
+        run: ./lychee docs v7/docs --format markdown
+
+      - name: Update issue
+        if: failure()
+        uses: https://github.com/peter-evans/create-issue-from-file@v5.0.0
+        with:
+          title: Dead links report
+          issue-number: 583
+          content-filepath: ./report.md

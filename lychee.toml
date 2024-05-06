@@ -1,0 +1,9 @@
+no_progress = true
+output = "report.md"
+cache = true
+accept = ["200", "429"]
+scheme = ["https","http"]
+skip_missing = false
+include_verbatim = false
+exclude = ['^https://forgejo\.octopuce\.forgejo\.org','http://private.forgejo.org', 'https://codeberg.org/forgejo/forgejo/vX.Y/forgejo']
+exclude_all_private = true
