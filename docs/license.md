@@ -22,4 +22,4 @@ licensed under [multiple licenses](https://fontawesome.com/license/free).
 
 Codeberg and the Codeberg Logo are trademarks of Codeberg e.V.
 
-"Knut the Polar Bear" has been derived from https://openclipart.org/detail/193243/polar-bear-remix, under CC0 1.0
+"Knut the Polar Bear" has been derived from [Polar bear remix](https://web.archive.org/web/20240318012628if_/https://openclipart.org/detail/193243/polar-bear-remix), under CC0 1.0
