@@ -32,7 +32,7 @@ While some of the categories are rather straightforward, a little explanation ab
 
 **Dotfiles** are files whose name starts with a dot, which by convention, suggests they should be hidden, and as such, they are excluded from language statistics.
 
-**Programming languages** and **Markup languages** are more or less self explanatory. The former category includes languages like C, Go, Rust, JavaScript, and many, many others. Markup languages are CSS, HTML, Jinja templates, Jupyter Notebooks, and numeruous other formats.
+**Programming languages** and **Markup languages** are more or less self explanatory. The former category includes languages like C, Go, Rust, JavaScript, and many, many others. Markup languages are CSS, HTML, Jinja templates, Jupyter Notebooks, and numerous other formats.
 
 Please consult the [enry][enry] or [linguist][linguist] documentation for more details.
 

@@ -15,6 +15,6 @@ Since, the searches are performed in the fly they may be performed on any valid 
 
 # Indexer
 
-For advanced search queries and searching across an entire organisation or instance, `REPO_INDEXER_ENABLED: true` enables code search via bleve/elasticsearch.
+For advanced search queries and searching across an entire organization or instance, `REPO_INDEXER_ENABLED: true` enables code search via bleve/elasticsearch.
 
 However, search results are limited to the HEAD of the repository.

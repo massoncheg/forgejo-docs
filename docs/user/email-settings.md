@@ -27,7 +27,7 @@ In the section “Manage Email Addresses”, you can select one of the following
 When you're finished, press the button “Set Email Preference” to confirm your selection.
 
 > **Note:**
-> Disabling email notifications doesn't mean that you'll stop receiving important messages from the Forgejo organisation.
+> Disabling email notifications doesn't mean that you'll stop receiving important messages from the Forgejo organization.
 
 ## Issue notifications
 

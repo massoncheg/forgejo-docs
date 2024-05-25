@@ -30,7 +30,7 @@ Forgejo token scopes are as follows:
 | &nbsp;&nbsp;&nbsp; **read:notification**  | Grants read access to user notifications, such as which notifications users are subscribed to and read new notifications.                            |
 | &nbsp;&nbsp;&nbsp; **write:notification** | Grants read/write/delete access to user notifications, such as marking notifications as read.                                                        |
 | **organization**                          | `orgs/*` and `teams/*` API routes: Organization and team management operations.                                                                      |
-| &nbsp;&nbsp;&nbsp; **read:organization**  | Grants read access to org and team status, such as listing all orgs a user has visibility to, teams, and team members.                               |
+| &nbsp;&nbsp;&nbsp; **read:organization**  | Grants read access to org and team status, such as listing all organizations a user has visibility to, teams, and team members.                      |
 | &nbsp;&nbsp;&nbsp; **write:organization** | Grants read/write/delete access to org and team status, such as creating and updating teams and updating org settings.                               |
 | **package**                               | `/packages/*` API routes: Packages operations                                                                                                        |
 | &nbsp;&nbsp;&nbsp; **read:package**       | Grants read access to package operations, such as reading and downloading available packages.                                                        |
@@ -39,5 +39,5 @@ Forgejo token scopes are as follows:
 | &nbsp;&nbsp;&nbsp; **read:repository**    | Grants read access to repository operations, such as getting repository files, releases, collaborators.                                              |
 | &nbsp;&nbsp;&nbsp; **write:repository**   | Grants read/write/delete access to repository operations, such as getting updating repository files, creating pull requests, updating collaborators. |
 | **user**                                  | `/user/*` and `/users/*` API routes: User-related operations.                                                                                        |
-| &nbsp;&nbsp;&nbsp; **read:user**          | Grants read access to user operations, such as getting user repo subscriptions and user settings.                                                    |
-| &nbsp;&nbsp;&nbsp; **write:user**         | Grants read/write/delete access to user operations, such as updating user repo subscriptions, followed users, and user settings.                     |
+| &nbsp;&nbsp;&nbsp; **read:user**          | Grants read access to user operations, such as getting user repository subscriptions and user settings.                                              |
+| &nbsp;&nbsp;&nbsp; **write:user**         | Grants read/write/delete access to user operations, such as updating user repository subscriptions, followed users, and user settings.               |
