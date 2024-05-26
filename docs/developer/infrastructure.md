@@ -393,6 +393,18 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
 
   ```
 
+- `static-pages` on hetzner02
+
+  See [the static pages documenation](../static-pages/) for more information.
+
+  - LXC creation
+    ```sh
+    lxc-helpers.sh lxc_container_create --config "unprivileged" static-pages
+    echo "lxc.start.auto = 1" >> /var/lib/lxc/static-pages/config
+    lxc-helpers.sh lxc_container_start static-pages
+    lxc-helpers.sh lxc_container_user_install static-pages $(id -u) $USER
+    ```
+
 - `runner-forgejo-helm` on hetzner03
 
   Dedicated to https://codeberg.org/forgejo-contrib/forgejo-helm and running from an ephemeral disk

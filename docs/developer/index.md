@@ -19,6 +19,7 @@ their needs.
   - [Developer Certificate of Origin (DCO)](./dco/)
   - [code.forgejo.org](./code-forgejo-org/)
   - [next.forgejo.org](./next-forgejo-org/)
+  - [static pages](./static-pages/)
   - [Forgejo runner implementation notes](https://code.forgejo.org/forgejo/runner/#hacking)
   - [Localization](./localization/)
   - [Base localization](./localization-english/)
