@@ -3,6 +3,89 @@ title: Hardware infrastructure
 license: 'CC-BY-SA-4.0'
 ---
 
+## LXC Hosts
+
+All LXC hosts are setup with [lxc-helpers](https://code.forgejo.org/forgejo/lxc-helpers/).
+
+### Unprivileged
+
+```sh
+name=forgejo-host
+lxc-helpers.sh lxc_container_create --config "unprivileged" $name
+echo "lxc.start.auto = 1" >> /var/lib/lxc/$name/config
+lxc-helpers.sh lxc_container_start $name
+lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
+```
+
+### Docker enabled
+
+```sh
+name=forgejo-host
+lxc-helpers.sh lxc_container_create --config "docker" $name
+echo "lxc.start.auto = 1" >> /var/lib/lxc/$name/config
+lxc-helpers.sh lxc_container_start $name
+lxc-helpers.sh lxc_install_docker $name
+lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
+```
+
+### Docker and LXC enabled
+
+```sh
+name=forgejo-host
+ipv4=10.85.12
+ipv6=fc33
+lxc-helpers.sh lxc_container_create --config "docker lxc" $name
+echo "lxc.start.auto = 1" >> /var/lib/lxc/$name/config
+lxc-helpers.sh lxc_container_start $name
+lxc-helpers.sh lxc_install_docker $name
+lxc-helpers.sh lxc_install_lxc forgejo-runner-host $ipv4 $ipv6
+lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
+```
+
+## Forgejo runners
+
+The LXC container in which the runner is installed must have capabilities that support the backend.
+
+- docker:// needs a Docker enabled container
+- lxc:// needs a Docker and LXC enabled container
+
+The runners it contains are not started at boot, it must be done manually. The bash history has the command line to do so.
+
+### Installation
+
+```shell
+version=3.4.1
+sudo wget -O /usr/local/bin/forgejo-runner-$version https://code.forgejo.org/forgejo/runner/releases/download/v$version/forgejo-runner-$version-linux-amd64
+sudo chmod +x /usr/local/bin/forgejo-runner-$version
+echo 'export TERM=xterm-256color' >> .bashrc
+```
+
+### Creating a runner
+
+Multiple runners can co-exist on the same machine. To keep things
+organized they are located in a directory that is the same as the URL
+from which the token is obtained. For instance
+DIR=codeberg.org/forgejo-integration means that the token was obtained from the
+https://codeberg.org/forgejo-integration organization.
+
+If a runner only provides unprivileged docker containers, the labels
+in `config.yml` should be:
+`labels: ['docker:docker://node:20-bookworm']`.
+
+If a runner provides LXC containers and unprivileged docker
+containers, the labels in `config.yml` should be
+`labels: ['self-hosted:lxc://debian:bookworm', 'docker:docker://node:20-bookworm']`.
+
+```shell
+name=myrunner
+mkdir -p $DIR ; cd $DIR
+forgejo-runner generate-config > config-$name.yml
+## edit config-$name.yml and adjust the `labels:`
+## Obtain a $TOKEN from https://$DIR
+forgejo-runner-$version register --no-interactive --token $TOKEN --name runner --instance https://codeberg.org
+forgejo-runner-$version --config config-$name.yml daemon |& cat -v > runner.log &
+```
+
 ## Octopuce
 
 [Octopuce provides hardware](https://codeberg.org/forgejo/sustainability) managed by [the devops team](https://codeberg.org/forgejo/governance/src/branch/main/TEAMS.md#devops). It can only be accessed via SSH.
@@ -23,13 +106,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
 
   Dedicated to http://private.forgejo.org
 
-  - LXC creation
-    ```sh
-    lxc-helpers.sh lxc_container_create --config "docker" forgejo-host
-    lxc-helpers.sh lxc_container_start forgejo-host
-    lxc-helpers.sh lxc_install_docker forgejo-host
-    lxc-helpers.sh lxc_container_user_install forgejo-host $(id -u) $USER
-    ```
+  - Docker enabled
   - upgrades checklist:
     ```sh
     emacs /home/debian/run-forgejo.sh # change the `image=`
@@ -44,66 +121,16 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
 
   Has runners installed to run against private.forgejo.org
 
-  - LXC creation
-    ```sh
-    lxc-helpers.sh lxc_container_create --config "docker" forgejo-runner-host
-    lxc-helpers.sh lxc_container_start forgejo-runner-host
-    lxc-helpers.sh lxc_install_docker forgejo-runner-host
-    lxc-helpers.sh lxc_install_lxc forgejo-runner-host 10.85.12 fc33
-    lxc-helpers.sh lxc_container_user_install forgejo-runner-host $(id -u) $USER
-    ```
+  - Docker and LXC enabled 10.85.12 fc33
 
 ## Hetzner
 
-All hardware is running Debian GNU/linux bookworm.
+All hardware machines are running Debian GNU/linux bookworm. They are LXC hosts
+setup with [lxc-helpers](https://code.forgejo.org/forgejo/lxc-helpers/).
 
-### hetzner01
+### vSwitch
 
-https://hetzner01.forgejo.org runs on an [EX101](https://www.hetzner.com/dedicated-rootserver/ex101) Hetzner hardware.
-
-There is no backup, no redundancy and is dedicated to Forgejo runner instances.
-If the hardware reboots, the runners do not restart automatically, they have to be restarted manually.
-
-It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgejo/lxc-helpers/):
-
-- `forgejo-runners`
-
-  Dedicated to Forgejo runners for the https://codeberg.org/forgejo organization.
-
-  ```sh
-  lxc-helpers.sh lxc_container_run forgejo-runners -- sudo --user debian bash
-  cd codeberg.org/forgejo/
-  forgejo-runner-3.2.0 --config config.yml daemon >& runner.log &
-  ```
-
-- `runner01-lxc`
-
-  Dedicated to Forgejo runners for the https://code.forgejo.org
-  organization with two labels: **docker** and **self-hosted**.
-
-  - https://code.forgejo.org/forgejo
-  - https://code.forgejo.org/actions
-  - https://code.forgejo.org/forgejo-integration
-  - https://code.forgejo.org/forgejo-contrib
-
-  ```sh
-  lxc-helpers.sh lxc_container_run runner01-lxc -- sudo --user debian bash
-  cd code.forgejo.org
-  for runner in forgejo-contrib forgejo forgejo-integration actions ; do ( cd $runner ; HOME=/srv/$runner forgejo-runner-3.2.0 --config config.yml daemon >&runner.log & ) ; done
-  ```
-
-The runners are installed with something like:
-
-```sh
-sudo wget -O /usr/local/bin/forgejo-runner-3.2.0 https://code.forgejo.org/forgejo/runner/releases/download/v3.2.0/forgejo-runner-3.2.0-linux-amd64
-sudo chmod +x /usr/local/bin/forgejo-runner-3.2.0
-```
-
-### hetzner{02,03}
-
-https://hetzner02.forgejo.org & https://hetzner03.forgejo.org run on [EX44](https://www.hetzner.com/dedicated-rootserver/ex44) Hetzner hardware.
-
-A vSwitch is assigned via the Robot console on both servers
+A vSwitch is assigned via the Robot console on all servers for backend communications
 and [configured](https://docs.hetzner.com/robot/dedicated-server/network/vswitch#example-debian-configuration)
 in /etc/network/interfaces for each of them with something like:
 
@@ -116,18 +143,15 @@ iface enp5s0.4000 inet static
   mtu 1400
 ```
 
-#### Root filesystem backups
+The IP address ends with the same number as the hardware (hetzner02 => .2).
 
-- `hetzner03:/etc/cron.daily/backup-hetzner02`
-  `rsync -aHS --delete-excluded --delete --numeric-ids --exclude /proc --exclude /dev --exclude /sys --exclude /srv --exclude /var/lib/lxc 10.53.100.2:/ /srv/backups/hetzner02/`
-- `hetzner02:/etc/cron.daily/backup-hetzner03`
-  `rsync -aHS --delete-excluded --delete --numeric-ids --exclude /proc --exclude /dev --exclude /sys --exclude /srv --exclude /var/lib/lxc 10.53.100.3:/ /srv/backups/hetzner03/`
+### DRBD
 
-#### DRBD
+DRBD is [configured](https://linbit.com/drbd-user-guide/drbd-guide-9_0-en/#p-work) like in the following example with hetzner02 as the primary and hetzner03 as the secondary:
 
-DRBD is configured with hetzner02 as the primary and hetzner03 as the secondary:
-
-```
+```sh
+$ apt-get install drbd-utils
+$ cat /etc/drbd.d/r0.res
 resource r0 {
     net {
         # A : write completion is determined when data is written to the local disk and the local TCP transmission buffer
@@ -162,19 +186,18 @@ resource r0 {
         }
     }
 }
+$ sudo drbdadm create-md r0
+$ sudo drbdadm up r0
 ```
 
-The DRBD device is mounted on `/var/lib/lxc`.
-
-In `/etc/fstab` there is a noauto line:
+The DRBD device is mounted on `/var/lib/lxc` in `/etc/fstab` there is a noauto line:
 
 ```
 /dev/drbd0 /var/lib/lxc ext4 noauto,defaults 0 0
 ```
 
 To prevent split brain situations a manual step is required at boot
-time, on the machine that is going to be the primary, which is
-hetzner02 in a normal situation.
+time, on the machine that is going to be the primary.
 
 ```sh
 sudo drbdsetup status
@@ -185,29 +208,75 @@ sudo lxc-ls -f
 sudo drbdsetup status
 ```
 
-#### Fast storage on /srv
+### hetzner{01,04}
 
-The second disk on each node is mounted on /srv and can be used when
-fast storage is needed and there is no need for backups, such as Forgejo runners.
+https://hetzner{01,04}.forgejo.org run on [EX101](https://www.hetzner.com/dedicated-rootserver/ex101) Hetzner hardware.
 
 #### LXC
 
-LXC is setup with [lxc-helpers](https://code.forgejo.org/forgejo/lxc-helpers/).
-
-The `/etc/default/lxc-net` file is the same on both machines:
-
+```sh
+lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
 ```
-USE_LXC_BRIDGE="true"
-LXC_ADDR="10.6.83.1"
-LXC_NETMASK="255.255.255.0"
-LXC_NETWORK="10.6.83.0/24"
-LXC_DHCP_RANGE="10.6.83.2,10.6.83.254"
-LXC_DHCP_MAX="253"
-LXC_IPV6_ADDR="fc16::216:3eff:fe00:1"
-LXC_IPV6_MASK="64"
-LXC_IPV6_NETWORK="fc16::/64"
-LXC_IPV6_NAT="true"
+
+#### Disk partitioning
+
+- First disk
+  - OS
+  - a partition mounted on /srv where non precious data goes such as the LXC containers with runners.
+- Second disk
+  - configured with DRBD for precious data.
+
+#### Root filesystem backups
+
+- `hetzner01:/etc/cron.daily/backup-hetzner04`
+  `rsync -aHS --delete-excluded --delete --numeric-ids --exclude /proc --exclude /dev --exclude /sys --exclude /srv --exclude /var/lib/lxc 10.53.100.4:/ /srv/backups/hetzner04/`
+- `hetzner04:/etc/cron.daily/backup-hetzner01`
+  `rsync -aHS --delete-excluded --delete --numeric-ids --exclude /proc --exclude /dev --exclude /sys --exclude /srv --exclude /var/lib/lxc 10.53.100.1:/ /srv/backups/hetzner01/`
+
+#### LXC containers
+
+- `forgejo-runners`
+
+  Dedicated to Forgejo runners for the https://codeberg.org/forgejo organization.
+
+  - Docker enabled
+  - codeberg.org/forgejo/config\*.yml
+
+- `runner01-lxc`
+
+  Dedicated to Forgejo runners for https://code.forgejo.org.
+
+  - Docker and LXC enabled 10.194.201 fc35
+  - code.forgejo.org/forgejo/config\*.yml
+  - code.forgejo.org/actions/config\*.yml
+  - code.forgejo.org/forgejo-integration/config\*.yml
+  - code.forgejo.org/forgejo-contrib/config\*.yml
+  - code.forgejo.org/f3/config\*.yml
+
+### hetzner{02,03}
+
+https://hetzner02.forgejo.org & https://hetzner03.forgejo.org run on [EX44](https://www.hetzner.com/dedicated-rootserver/ex44) Hetzner hardware.
+
+#### LXC
+
+```sh
+lxc-helpers.sh lxc_install_lxc_inside 10.6.83 fc16
 ```
+
+#### Disk partitioning
+
+- First disk
+  - OS
+  - a partition configured with DRBD for precious data mounted on /var/lib/lxc
+- Second disk
+  - non precious data such as the LXC containers with runners.
+
+#### Root filesystem backups
+
+- `hetzner03:/etc/cron.daily/backup-hetzner02`
+  `rsync -aHS --delete-excluded --delete --numeric-ids --exclude /proc --exclude /dev --exclude /sys --exclude /srv --exclude /var/lib/lxc 10.53.100.2:/ /srv/backups/hetzner02/`
+- `hetzner02:/etc/cron.daily/backup-hetzner03`
+  `rsync -aHS --delete-excluded --delete --numeric-ids --exclude /proc --exclude /dev --exclude /sys --exclude /srv --exclude /var/lib/lxc 10.53.100.3:/ /srv/backups/hetzner03/`
 
 #### Public IP addresses
 
@@ -215,7 +284,7 @@ The public IP addresses attached to the hosts are not failover IPs that can be m
 The DNS entry needs to be updated if the primary hosts changes.
 
 When additional IP addresses are attached to the server, they are added to `/etc/network/interfaces` like
-65.21.67.71 and 2a01:4f9:3081:51ec::102 below.
+ipv4 65.21.67.71 and ipv6 2a01:4f9:3081:51ec::102 below.
 
 ```
 auto enp5s0
@@ -301,13 +370,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
 
   Dedicated to https://code.forgejo.org
 
-  - LXC creation
-    ```sh
-    lxc-helpers.sh lxc_container_create --config "docker" forgejo-code
-    lxc-helpers.sh lxc_container_start forgejo-code
-    lxc-helpers.sh lxc_install_docker forgejo-code
-    lxc-helpers.sh lxc_container_user_install forgejo-code $(id -u) $USER
-    ```
+  - Docker enabled
   - upgrades checklist:
     - `ssh -t debian@hetzner02.forgejo.org lxc-helpers.sh lxc_container_run forgejo-code -- sudo --user debian bash`
       ```sh
@@ -328,7 +391,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
 
   Dedicated to https://next.forgejo.org
 
-  - LXC creation same as code.forgejo.org
+  - Docker enabled
   - `/etc/cron.hourly/forgejo-upgrade` runs `/home/debian/run-forgejo.sh > /home/debian/run-forgejo-$(date +%d).log`
   - When a new major version is published (8.0 for instance) `run-forgejo.sh` must be updated with it
   - Reset everything
@@ -363,7 +426,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
 
   Dedicated to https://v7.next.forgejo.org
 
-  - LXC creation same as code.forgejo.org
+  - Docker enabled
   - `/etc/cron.hourly/forgejo-upgrade` runs `/home/debian/run-forgejo.sh > /home/debian/run-forgejo-$(date +%d).log`
   - Reset everything
     ```sh
@@ -397,13 +460,7 @@ It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgej
 
   See [the static pages documenation](../static-pages/) for more information.
 
-  - LXC creation
-    ```sh
-    lxc-helpers.sh lxc_container_create --config "unprivileged" static-pages
-    echo "lxc.start.auto = 1" >> /var/lib/lxc/static-pages/config
-    lxc-helpers.sh lxc_container_start static-pages
-    lxc-helpers.sh lxc_container_user_install static-pages $(id -u) $USER
-    ```
+  - Unprivileged
 
 - `runner-forgejo-helm` on hetzner03
 
@@ -430,61 +487,3 @@ Forgejo contributors with SSH access to this machine are:
 
 - https://codeberg.org/popey
 - https://codeberg.org/earl-warren
-
-## Installing Forgejo runners
-
-### Preparing the LXC hypervisor
-
-```shell
-git clone https://code.forgejo.org/forgejo/lxc-helpers/
-
-lxc-helpers.sh lxc_prepare_environment
-sudo lxc-helpers.sh lxc_install_lxc_inside 10.120.13
-```
-
-### Creating an LXC container
-
-```shell
-lxc-helpers.sh lxc_container_create forgejo-runners
-lxc-helpers.sh lxc_container_start forgejo-runners
-lxc-helpers.sh lxc_install_docker forgejo-runner
-lxc-helpers.sh lxc_install_lxc forgejo-runner 10.85.12 fc33
-lxc-helpers.sh lxc_container_user_install forgejo-runners $(id -u) $USER
-lxc-helpers.sh lxc_container_run forgejo-runners -- sudo --user debian bash
-sudo apt-get update
-sudo apt-get install -y wget emacs-nox
-lxc-helpers.sh lxc_prepare_environment
-sudo wget -O /usr/local/bin/forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v3.4.1/forgejo-runner-3.4.1-linux-amd64
-sudo chmod +x /usr/local/bin/forgejo-runner
-echo 'export TERM=vt100' >> .bashrc
-```
-
-### Creating a runner
-
-Multiple runners can co-exist on the same machine. To keep things
-organized they are located in a directory that is the same as the url
-from which the token is obtained. For instance
-DIR=codeberg.org/forgejo-integration means that the token was obtained from the
-https://codeberg.org/forgejo-integration organization.
-
-If a runner only provides unprivileged docker containers, the labels
-in `config.yml` should be:
-`labels: ['docker:docker://node:20-bookworm']`.
-
-If a runner provides LXC containers and unprivileged docker
-containers, the labels in `config.yml` should be
-`labels: ['self-hosted:lxc://debian:bookworm', 'docker:docker://node:20-bookworm']`.
-
-```shell
-mkdir -p $DIR ; cd $DIR
-forgejo-runner generate-config > config.yml
-## edit config.yml and adjust the `labels:`
-## Obtain a $TOKEN from https://$DIR
-forgejo-runner register --no-interactive --token $TOKEN --name runner --instance https://codeberg.org
-forgejo-runner --config config.yml daemon |& cat -v > runner.log &
-```
-
-#### codeberg.org config.yml
-
-- `fetch_timeout: 30s` # because it can be slow at times
-- `fetch_interval: 60s` # because there is throttling and 429 replies will mess up the runner
