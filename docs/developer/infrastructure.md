@@ -252,6 +252,7 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
   - code.forgejo.org/forgejo-integration/config\*.yml
   - code.forgejo.org/forgejo-contrib/config\*.yml
   - code.forgejo.org/f3/config\*.yml
+  - code.forgejo.org/forgefriends/config\*.yml
 
 ### hetzner{02,03}
 
