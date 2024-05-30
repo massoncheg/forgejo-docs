@@ -19,7 +19,7 @@ $ gopass recipients add
 ```
 
 3. [Install gopass](https://www.gopass.pw/#install)
-   > :warning: When installing on Ubuntu or Debian you can either download the deb package, install manually or build from source or use our APT repository ([github comment](https://github.com/gopasspw/gopass/issues/1849#issuecomment-802789285) with more information).
+   > :warning: When installing on Ubuntu or Debian you can either [download the deb package](https://github.com/gopasspw/gopass/tags), install manually or build from source or use our APT repository ([github comment](https://github.com/gopasspw/gopass/issues/1849#issuecomment-802789285) with more information).
 4. Clone this repo using `gopass` (the name and email are for `git config`)
 
 ```
