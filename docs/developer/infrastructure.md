@@ -7,12 +7,17 @@ license: 'CC-BY-SA-4.0'
 
 All LXC hosts are setup with [lxc-helpers](https://code.forgejo.org/forgejo/lxc-helpers/).
 
+```sh
+name=forgejo-host
+lxc-helpers.sh lxc_container_run $name -- sudo --user debian bash
+```
+
 ### Unprivileged
 
 ```sh
 name=forgejo-host
 lxc-helpers.sh lxc_container_create --config "unprivileged" $name
-echo "lxc.start.auto = 1" >> /var/lib/lxc/$name/config
+echo "lxc.start.auto = 1" | sudo tee -a /var/lib/lxc/$name/config
 lxc-helpers.sh lxc_container_start $name
 lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
 ```
@@ -22,7 +27,7 @@ lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
 ```sh
 name=forgejo-host
 lxc-helpers.sh lxc_container_create --config "docker" $name
-echo "lxc.start.auto = 1" >> /var/lib/lxc/$name/config
+echo "lxc.start.auto = 1" | sudo tee -a /var/lib/lxc/$name/config
 lxc-helpers.sh lxc_container_start $name
 lxc-helpers.sh lxc_install_docker $name
 lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
@@ -35,11 +40,72 @@ name=forgejo-host
 ipv4=10.85.12
 ipv6=fc33
 lxc-helpers.sh lxc_container_create --config "docker lxc" $name
-echo "lxc.start.auto = 1" >> /var/lib/lxc/$name/config
+echo "lxc.start.auto = 1" | sudo tee -a /var/lib/lxc/$name/config
 lxc-helpers.sh lxc_container_start $name
 lxc-helpers.sh lxc_install_docker $name
 lxc-helpers.sh lxc_install_lxc forgejo-runner-host $ipv4 $ipv6
 lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
+```
+
+## Host reverse proxy
+
+The reverse proxy on a host forwards to the designated LXC container with
+something like the following in
+`/etc/nginx/sites-available/example.com`, where A.B.C.D is the
+IP allocated to the LXC container running the web service:
+
+The certificate is obtained once and automatically renewed with:
+
+```
+sudo apt-get install certbot python3-certbot-nginx
+sudo certbot -n --agree-tos --email contact@forgejo.org -d example.com --nginx
+```
+
+### Forgejo example
+
+```
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name example.com;
+
+    location / {
+        deny 47.76.209.138; # crawler that does not obey robots.txt
+        deny 47.76.99.127; # crawler that does not obey robots.txt
+        proxy_pass http://A.B.C.D:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+        client_max_body_size 2G;
+	#
+	# http://nginx.org/en/docs/http/websocket.html
+	#
+        proxy_set_header Connection $http_connection;
+        proxy_set_header Upgrade $http_upgrade;
+        include proxy_params;
+    }
+}
+```
+
+### Vanila example
+
+```nginx
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name example.com;
+
+    location / {
+        proxy_pass http://A.B.C.D;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+}
 ```
 
 ## Forgejo runners
@@ -99,8 +165,6 @@ firefox http://private.forgejo.org
 ```
 
 ### Containers
-
-It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgejo/lxc-helpers/).
 
 - `fogejo-host`
 
@@ -254,6 +318,12 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
   - code.forgejo.org/f3/config\*.yml
   - code.forgejo.org/forgefriends/config\*.yml
 
+- `forgefriends-forum`
+
+  Dedicated to https://forum.forgefriends.org
+
+  - Docker enabled
+
 ### hetzner{02,03}
 
 https://hetzner02.forgejo.org & https://hetzner03.forgejo.org run on [EX44](https://www.hetzner.com/dedicated-rootserver/ex44) Hetzner hardware.
@@ -328,44 +398,7 @@ add chain ip code prerouting {
 
 with `nft -f /root/code.nftables`.
 
-#### Reverse proxy
-
-The reverse proxy forwards to the designated LXC container with
-something like the following in
-`/etc/nginx/sites-enabled/code.forgejo.org`, where 10.6.83.195 is the
-IP allocated to the LXC container running the web service:
-
-```
-server {
-    listen 80;
-    listen [::]:80;
-
-    server_name code.forgejo.org;
-
-    location / {
-        deny 47.76.209.138; # crawler that does not obey robots.txt
-        deny 47.76.99.127; # crawler that does not obey robots.txt
-        proxy_pass http://10.6.83.195:8080;
-        client_max_body_size 2G;
-	#
-	# http://nginx.org/en/docs/http/websocket.html
-	#
-        proxy_set_header Connection $http_connection;
-        proxy_set_header Upgrade $http_upgrade;
-        include proxy_params;
-    }
-}
-```
-
-The LE certificate is obtained once and automatically renewed with:
-
-```
-sudo certbot -n --agree-tos --email contact@forgejo.org -d code.forgejo.org --nginx
-```
-
 #### Containers
-
-It hosts LXC containers setup with [lxc-helpers](https://code.forgejo.org/forgejo/lxc-helpers/).
 
 - `fogejo-code` on hetzner02
 
