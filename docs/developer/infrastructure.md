@@ -50,9 +50,15 @@ lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
 ## Host reverse proxy
 
 The reverse proxy on a host forwards to the designated LXC container with
-something like the following in
+something like the following examples in
 `/etc/nginx/sites-available/example.com`, where A.B.C.D is the
-IP allocated to the LXC container running the web service:
+IP allocated to the LXC container running the web service.
+
+And symlink:
+
+```sh
+ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/example.com
+```
 
 The certificate is obtained once and automatically renewed with:
 
@@ -85,6 +91,40 @@ server {
         proxy_set_header Connection $http_connection;
         proxy_set_header Upgrade $http_upgrade;
         include proxy_params;
+    }
+}
+```
+
+### GitLab example
+
+```nginx
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name example.com;
+
+    location / {
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection "upgrade";
+       proxy_set_header Host $http_host;
+       proxy_set_header X-Real-IP $remote_addr;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+       proxy_set_header X-Forwarded-Proto $scheme;
+       proxy_set_header X-Frame-Options SAMEORIGIN;
+
+       client_body_timeout 60;
+       client_max_body_size 200M;
+       send_timeout 1200;
+       lingering_timeout 5;
+
+       proxy_buffering off;
+       proxy_connect_timeout 90;
+       proxy_send_timeout 300;
+       proxy_read_timeout 600s;
+
+       proxy_pass http://example.com;
+       proxy_http_version 1.1;
     }
 }
 ```
@@ -321,6 +361,18 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
 - `forgefriends-forum`
 
   Dedicated to https://forum.forgefriends.org
+
+  - Docker enabled
+
+- `forgefriends-gitlab`
+
+  Dedicated to https://lab.forgefriends.org
+
+  - Docker enabled
+
+- `forgefriends-cloud`
+
+  Dedicated to https://cloud.forgefriends.org
 
   - Docker enabled
 
