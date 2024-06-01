@@ -17,9 +17,9 @@ binary](../installation-binary/). Both of these methods are created
 and extensively tested to work on every release. They consist of three
 steps:
 
-- Download and run the release
-- Connect to the web interface and complete the configuration
-- And finally register the first user which will be granted administrative permissions
+- Download and run the release,
+- connect to the web interface and complete the configuration, and,
+- finally register the first user which will be granted administrative permissions.
 
 If you already have Gitea installed through your package manager, look at the [Gitea
 migration](../gitea-migration/) guide for information on how to install Forgejo, while
