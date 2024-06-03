@@ -294,6 +294,13 @@ $ sudo drbdadm create-md r0
 $ sudo drbdadm up r0
 ```
 
+On hetzner02 (the primary), [pretend all is in sync](https://linbit.com/drbd-user-guide/drbd-guide-9_0-en/#s-skip-initial-resync) to save the initial bitmap sync since
+there is actually no data at all.
+
+```sh
+sudo drbdadm new-current-uuid --clear-bitmap r0/0
+```
+
 The DRBD device is mounted on `/var/lib/lxc` in `/etc/fstab` there is a noauto line:
 
 ```
@@ -333,9 +340,9 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
 #### Root filesystem backups
 
 - `hetzner01:/etc/cron.daily/backup-hetzner04`
-  `rsync -aHS --delete-excluded --delete --numeric-ids --exclude /proc --exclude /dev --exclude /sys --exclude /srv --exclude /var/lib/lxc 10.53.100.4:/ /srv/backups/hetzner04/`
+  `rsync -aHS --delete-excluded --delete --numeric-ids --exclude /proc --exclude /dev --exclude /sys --exclude /precious --exclude /srv --exclude /var/lib/lxc 10.53.100.4:/ /srv/backups/hetzner04/ >& /var/log/$(basename $0).log`
 - `hetzner04:/etc/cron.daily/backup-hetzner01`
-  `rsync -aHS --delete-excluded --delete --numeric-ids --exclude /proc --exclude /dev --exclude /sys --exclude /srv --exclude /var/lib/lxc 10.53.100.1:/ /srv/backups/hetzner01/`
+  `rsync -aHS --delete-excluded --delete --numeric-ids --exclude /proc --exclude /dev --exclude /sys --exclude /precious --exclude /srv --exclude /var/lib/lxc 10.53.100.1:/ /srv/backups/hetzner01/ >& /var/log/$(basename $0).log`
 
 #### LXC containers
 
