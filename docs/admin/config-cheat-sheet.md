@@ -55,6 +55,9 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
 ## Overall (`DEFAULT`)
 
 - `APP_NAME`: **Forgejo: Beyond coding. We forge.**: Application name, used in the page title.
+- `APP_SLOGAN`: Application slogan, used in the page title.
+- `APP_DISPLAY_NAME_FORMAT`: **{APP_NAME}: {APP_SLOGAN}**: defines how the application full name should be presented.
+  It is used only if `APP_SLOGAN` is  set.
 - `RUN_USER`: **_current OS username_/`$USER`/`$USERNAME` e.g. git**: The user Forgejo will run as.
   This should be a dedicated system (non-user) account. Setting this incorrectly will cause Forgejo
   to not start.
