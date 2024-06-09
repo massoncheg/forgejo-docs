@@ -311,6 +311,7 @@ To prevent split brain situations a manual step is required at boot
 time, on the machine that is going to be the primary.
 
 ```sh
+sudo drbdadm up r0
 sudo drbdsetup status
 sudo drbdadm primary r0
 sudo mount /var/lib/lxc
