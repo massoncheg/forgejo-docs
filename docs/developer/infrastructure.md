@@ -384,6 +384,18 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
 
   - Docker enabled
 
+- `gna-forgejo`
+
+  Dedicated to https://forgejo.gna.org
+
+  - Docker enabled
+
+- `gna-forum`
+
+  Dedicated to https://forum.gna.org
+
+  - Docker enabled
+
 ### hetzner{02,03}
 
 https://hetzner02.forgejo.org & https://hetzner03.forgejo.org run on [EX44](https://www.hetzner.com/dedicated-rootserver/ex44) Hetzner hardware.
