@@ -232,6 +232,8 @@ firefox http://private.forgejo.org
 All hardware machines are running Debian GNU/linux bookworm. They are LXC hosts
 setup with [lxc-helpers](https://code.forgejo.org/forgejo/lxc-helpers/).
 
+> **NOTE:** only use [EX101 with a ASRockRack W680D4U-1L motherboard](https://forum.hetzner.com/index.php?thread/31135-all-ex101-with-asustek-w680-crash-on-sequential-read/).
+
 ### vSwitch
 
 A vSwitch is assigned via the Robot console on all servers for backend communications
@@ -347,14 +349,14 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
 
 #### LXC containers
 
-- `forgejo-runners`
+- `forgejo-runners` (hetzner01)
 
   Dedicated to Forgejo runners for the https://codeberg.org/forgejo organization.
 
   - Docker enabled
   - codeberg.org/forgejo/config\*.yml
 
-- `runner01-lxc`
+- `runner01-lxc` (hetzner01)
 
   Dedicated to Forgejo runners for https://code.forgejo.org.
 
@@ -366,31 +368,31 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
   - code.forgejo.org/f3/config\*.yml
   - code.forgejo.org/forgefriends/config\*.yml
 
-- `forgefriends-forum`
+- `forgefriends-forum` (hetzner04)
 
   Dedicated to https://forum.forgefriends.org
 
   - Docker enabled
 
-- `forgefriends-gitlab`
+- `forgefriends-gitlab` (hetzner04)
 
   Dedicated to https://lab.forgefriends.org
 
   - Docker enabled
 
-- `forgefriends-cloud`
+- `forgefriends-cloud` (hetzner04)
 
   Dedicated to https://cloud.forgefriends.org
 
   - Docker enabled
 
-- `gna-forgejo`
+- `gna-forgejo` (hetzner04)
 
   Dedicated to https://forgejo.gna.org
 
   - Docker enabled
 
-- `gna-forum`
+- `gna-forum` (hetzner04)
 
   Dedicated to https://forum.gna.org
 
