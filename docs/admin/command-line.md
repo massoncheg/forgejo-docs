@@ -64,6 +64,7 @@ USAGE:
 
 COMMANDS:
    actions  Commands for managing Forgejo Actions
+   f3       F3
    help, h  Shows a list of commands or help for one command
 
 OPTIONS:
@@ -134,6 +135,23 @@ OPTIONS:
    --name value             name of the runner (default runner) (default: "runner")
    --version value          version of the runner (not required since v1.21)
    --help, -h               show help
+```
+
+### forgejo-cli f3
+
+```
+NAME:
+   forgejo forgejo-cli f3 - F3
+
+USAGE:
+   forgejo forgejo-cli f3 command [command options]
+
+COMMANDS:
+   mirror   Mirror
+   help, h  Shows a list of commands or help for one command
+
+OPTIONS:
+   --help, -h  show help
 ```
 
 ## web

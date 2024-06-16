@@ -79,6 +79,7 @@ function generate() {
     section "###" "forgejo-cli actions generate-runner-token"
     section "###" "forgejo-cli actions generate-secret"
     section "###" "forgejo-cli actions register"
+    section "###" "forgejo-cli f3"
 
     section "##" "web"
 
