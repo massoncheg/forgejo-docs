@@ -3,6 +3,9 @@
 current_branch=$(git branch --show-current)
 repo_path=$(pwd)
 
+# Generate mermaid images
+./scripts/mermaid_image_generate.sh
+
 # Clone the website repo, or make sure the current clone is up to date
 if [ ! -e "./.preview" ];then
 	git clone https://codeberg.org/forgejo/website.git .preview

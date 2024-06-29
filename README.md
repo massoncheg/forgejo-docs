@@ -74,6 +74,23 @@ name of the current branch from which the preview is run.
 
 Modifications can be made to the docs while the dev server is running, and the preview will live-reload.
 
+#### Mermaid image generation
+
+```shell
+pnpm run mermaid
+```
+
+This command generates svg images from [Mermaid](https://github.com/mermaid-js/mermaid) code.
+
+Mermaid code should be stored in `docs/_mermaid/` with their path being relative to the markdown files where the diagrams are used.
+
+The images are generated in `docs/_mermaid/_images/` in their respective relative paths, from where they can be referenced. The mermaid generator generates .svg out of [mermaid].md files. The generated .svg get a -[n].svg postfix, more than one diagram can be described in one [mermaid].md file.
+
+Example:
+
+- [docs/\_mermaid/developer/adr/adr-how-to-trigger-activities.md](docs/_mermaid/developer/adr/adr-how-to-trigger-activities.md) generates
+- [docs/\_mermaid/\_images/developer/adr/adr-how-to-trigger-activities-_n_.svg](docs/_mermaid/_images/developer/adr/)
+
 #### Linting and formatting
 
 We use two linters to check that all content is formatted in a consistent way.

@@ -13,7 +13,8 @@
     "lint:prettier": "prettier --check .",
     "format:remark": "remark . --quiet --frail --output",
     "format:prettier": "prettier -w --cache .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "mermaid": "./scripts/mermaid_image_generate.sh"
   },
   "lint-staged": {
     "*.md": "remark --quiet --frail",
@@ -39,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^10.9.1",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.0",
     "prettier": "^3.0.2",
