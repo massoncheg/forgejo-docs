@@ -33,6 +33,16 @@ lxc-helpers.sh lxc_install_docker $name
 lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
 ```
 
+### K8S enabled
+
+```sh
+name=forgejo-host
+lxc-helpers.sh lxc_container_create --config "k8s" $name
+echo "lxc.start.auto = 1" | sudo tee -a /var/lib/lxc/$name/config
+lxc-helpers.sh lxc_container_start $name
+lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
+```
+
 ### Docker and LXC enabled
 
 ```sh
@@ -378,6 +388,26 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
   - code.forgejo.org/forgejo-contrib/config\*.yml
   - code.forgejo.org/f3/config\*.yml
   - code.forgejo.org/forgefriends/config\*.yml
+
+- `forgejo-v8` (hetzner04)
+
+  Dedicated to https://v8.next.forgejo.org
+
+  - K8S enabled
+  - `/home/debian/v8.nftables`
+    ```
+    add table ip v8;
+    flush table ip v8;
+    add chain ip v8 prerouting {
+      type nat hook prerouting priority 0;
+      policy accept;
+      ip daddr 213.239.194.17 tcp dport { 2080 } dnat to 10.41.13.27;
+    };
+    ```
+  - Add to `iface enp4s0 inet static` in `/etc/network/interfaces`
+    ```
+    up nft -f /home/debian/v8.nftables
+    ```
 
 - `forgefriends-forum` (hetzner04)
 
