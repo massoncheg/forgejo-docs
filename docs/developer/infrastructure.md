@@ -83,20 +83,12 @@ server {
     server_name example.com;
 
     location / {
-        deny 47.76.209.138; # crawler that does not obey robots.txt
-        deny 47.76.99.127; # crawler that does not obey robots.txt
         proxy_pass http://A.B.C.D:8080;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto https;
         client_max_body_size 2G;
-	#
-	# http://nginx.org/en/docs/http/websocket.html
-	#
-        proxy_set_header Connection $http_connection;
-        proxy_set_header Upgrade $http_upgrade;
-        include proxy_params;
     }
 }
 ```
