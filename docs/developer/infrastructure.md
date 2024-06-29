@@ -164,7 +164,7 @@ The runners it contains are not started at boot, it must be done manually. The b
 ### Installation
 
 ```shell
-version=3.4.1
+version=3.5.0
 sudo wget -O /usr/local/bin/forgejo-runner-$version https://code.forgejo.org/forgejo/runner/releases/download/v$version/forgejo-runner-$version-linux-amd64
 sudo chmod +x /usr/local/bin/forgejo-runner-$version
 echo 'export TERM=xterm-256color' >> .bashrc
