@@ -353,6 +353,13 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
 
 #### LXC containers
 
+- `runner-lxc-helpers` (hetzner01)
+
+  Dedicated to Forgejo runners for the https://code.forgejo.org/forgejo/lxc-helpers project.
+
+  - K8S enabled
+  - code.forgejo.org/forgejo/lxc-helpers/config\*.yml
+
 - `forgejo-runners` (hetzner01)
 
   Dedicated to Forgejo runners for the https://codeberg.org/forgejo organization.
