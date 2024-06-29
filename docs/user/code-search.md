@@ -13,7 +13,9 @@ If `REPO_INDEXER_ENABLED` is set to `false`, the code search function will be li
 
 Currently, only fixed strings are supported and any case differences are ignored. The search results will include the matched line, along with a single line before and after the match.
 
-Since, the searches are performed in the fly they may be performed on any valid branch or tag.
+Since, the searches are performed on the fly they may be performed on any valid branch or tag.
+
+The active branch/tag will be displayed as the default value on the dropdown present just above the search bar, which may also be used to easily switch between branches and tags.
 
 # Indexer
 
