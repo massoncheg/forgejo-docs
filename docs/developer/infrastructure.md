@@ -43,7 +43,7 @@ lxc-helpers.sh lxc_container_create --config "docker lxc" $name
 echo "lxc.start.auto = 1" | sudo tee -a /var/lib/lxc/$name/config
 lxc-helpers.sh lxc_container_start $name
 lxc-helpers.sh lxc_install_docker $name
-lxc-helpers.sh lxc_install_lxc forgejo-runner-host $ipv4 $ipv6
+lxc-helpers.sh lxc_install_lxc $name $ipv4 $ipv6
 lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
 ```
 
