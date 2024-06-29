@@ -47,6 +47,12 @@ lxc-helpers.sh lxc_install_lxc forgejo-runner-host $ipv4 $ipv6
 lxc-helpers.sh lxc_container_user_install $name $(id -u) $USER
 ```
 
+## nftables
+
+```sh
+sudo nft list ruleset
+```
+
 ## Host reverse proxy
 
 The reverse proxy on a host forwards to the designated LXC container with
