@@ -429,7 +429,7 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
   - code.forgejo.org/f3/config\*.yml
   - code.forgejo.org/forgefriends/config\*.yml
 
-- `forgejo-v9` (hetzner04) same as v8
+- `forgejo-v9` (hetzner04) same as `forgejo-v8`
 - `forgejo-v8` (hetzner04)
 
   Dedicated to https://v8.next.forgejo.org
