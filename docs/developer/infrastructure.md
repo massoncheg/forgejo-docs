@@ -15,6 +15,14 @@ name=forgejo-host
 lxc-helpers.sh lxc_container_run $name -- sudo --user debian bash
 ```
 
+See https://github.com/mikesart/inotify-info. Running multiple LXC
+containers will quickly use the default limit (128 on bookworm).
+
+```sh
+echo fs.inotify.max_user_instances=8192 | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+```
+
 ### Unprivileged
 
 ```sh
@@ -421,12 +429,13 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
   - code.forgejo.org/f3/config\*.yml
   - code.forgejo.org/forgefriends/config\*.yml
 
+- `forgejo-v9` (hetzner04) same as v8
 - `forgejo-v8` (hetzner04)
 
   Dedicated to https://v8.next.forgejo.org
 
   - K8S enabled
-  - K8S wakeup-on-logs script
+  - K8S wakeup-on-logs script /etc/wakeup-on-logs/forgejo-v8
   - [Values file](https://code.forgejo.org/infrastructure/k8s/src/branch/main/forgejo-v8/values.yml)
   - `/home/debian/v8.nftables`
     ```
