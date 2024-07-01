@@ -3,6 +3,9 @@ title: Hardware infrastructure
 license: 'CC-BY-SA-4.0'
 ---
 
+The resources used by the infrastructure are in the https://code.forgejo.org/infrastructure/ organization.
+There is a [dedicated chatroom](https://matrix.to/#/#forgejo-ci:matrix.org).
+
 ## LXC Hosts
 
 All LXC hosts are setup with [lxc-helpers](https://code.forgejo.org/forgejo/lxc-helpers/).
@@ -87,6 +90,35 @@ When removing a configuration, the certificate can also be removed with:
 
 ```
 sudo certbot delete --cert-name example.com
+```
+
+## Host wakeup-on-logs
+
+https://code.forgejo.org/infrastructure/wakeup-on-logs
+
+### K8S wakeup-on-logs script
+
+```
+$ cat /etc/wakeup-on-logs/forgejo-v8
+#!/bin/bash
+
+set -x
+
+self="${BASH_SOURCE[0]}"
+name=$(basename $self)
+# keep it lower than https://code.forgejo.org/infrastructure/wakeup-on-logs
+# otherwise it will get killed by it
+timeout=4m
+
+function lxc_run() {
+    lxc-attach $name -- sudo --user debian KUBECONFIG=/etc/rancher/k3s/k3s.yaml "$@" |& tee -a /var/log/$name.log
+}
+
+image=codeberg.org/forgejo-experimental/forgejo
+major=${name##*v}
+digest=$(skopeo inspect --format "{{.Digest}}" docker://$image:$major-rootless)
+values=https://code.forgejo.org/infrastructure/k8s/raw/branch/main/forgejo-v$major/values.yml
+lxc_run helm upgrade forgejo -f $values -f /home/debian/secrets.yml oci://code.forgejo.org/forgejo-helm/forgejo --atomic --wait --timeout $timeout --install --set image.digest=$digest
 ```
 
 ### Forgejo example
@@ -394,6 +426,8 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
   Dedicated to https://v8.next.forgejo.org
 
   - K8S enabled
+  - K8S wakeup-on-logs script
+  - [Values file](https://code.forgejo.org/infrastructure/k8s/src/branch/main/forgejo-v8/values.yml)
   - `/home/debian/v8.nftables`
     ```
     add table ip v8;
@@ -401,7 +435,7 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
     add chain ip v8 prerouting {
       type nat hook prerouting priority 0;
       policy accept;
-      ip daddr 213.239.194.17 tcp dport { 2080 } dnat to 10.41.13.27;
+      dnat ip addr . port to tcp dport map { 2080 : 10.41.13.27 . 2222 };
     };
     ```
   - Add to `iface enp4s0 inet static` in `/etc/network/interfaces`
