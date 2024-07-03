@@ -16,7 +16,7 @@ accurately recorded in [app.example.ini](https://codeberg.org/forgejo/forgejo/sr
 (s/main/\<tag|release\>). Any string in the format `%(X)s` is a feature powered
 by [ini](https://github.com/go-ini/ini/#recursive-values), for reading values recursively.
 
-In the default values below, a value in the form `$XYZ` refers to an environment variable. (However, see `environment-to-ini`.) Values in the form _`XxYyZz`_ refer to values listed as part of the default configuration. These notation forms will not work in your own `app.ini` file and are only listed here as documentation.
+In the default values below, a value in the form `$XYZ` refers to an environment variable. See [environment-to-ini](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/contrib/environment-to-ini) for information on how environment variables are translated to `app.ini` variables. Values in the form _`XxYyZz`_ refer to values listed as part of the default configuration. These notation forms will not work in your own `app.ini` file and are only listed here as documentation.
 
 Values containing `#` or `;` must be quoted using `` ` `` or `"""`.
 
