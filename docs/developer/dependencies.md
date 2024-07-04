@@ -11,12 +11,24 @@ Software referenced by a release (even if such a release is the hash of a commit
 
 ## Decision to upgrade
 
+### Development branch
+
 An upgrade is justified if:
 
 - it is beneficial to Forgejo
 - the risk of regression is low compared to the benefit
 
 There is no need to upgrade if there is no indication that it is beneficial to Forgejo.
+
+### Stable branch
+
+The [dependency
+dashboard](https://codeberg.org/forgejo/forgejo/issues/2779) can be
+used to create a pull request for an upgrade on a stable branch. It is
+not done automatically.
+
+An upgrade is justified if it follows the restrictions that apply to
+stable branches (not backporting features for instance).
 
 ## Reviewing renovate pull requests
 
