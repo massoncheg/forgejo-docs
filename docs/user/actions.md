@@ -615,6 +615,58 @@ on:
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-cron/.forgejo/workflows/test.yml).
 
+### `on.workflow_dispatch`
+
+The `workflow_dispatch` events allows for manual triggering a workflow by either using the Forgejo UI, or the API with the `POST /repos/{owner}/{repo}/actions/workflows/{workflowname}/dispatches` endpoint. This event allows for inputs to be defined, which will get rendered in the Forgejo UI or read from the body of the API request.
+
+Inputs are declared in the `inputs` sub-key, where each sub-key itself is an input. Each of those inputs need to have an `type`. These types can be:
+
+- `choice`: A dropdown where the available options are defined as a list of strings with `options`
+- `boolean`: A checkbox with the values of `true` or `false`
+- `number`
+- `string`
+
+Additionally, every input can be made `required`, given an human-readable `description`, and an `default` value.
+
+```yaml
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log Level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      boolean:
+        description: 'Boolean'
+        required: false
+        type: boolean
+      number:
+        description: 'Number'
+        default: '100'
+        type: number
+      string:
+        description: 'String'
+        required: true
+        type: string
+```
+
+Inputs then can be used inside the jobs with the `inputs` context:
+
+```yaml
+jobs:
+  test:
+    runs-on: docker
+    steps:
+      - run: echo ${{ inputs.logLevel }}
+```
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-dispatch/.forgejo/workflows/test.yml).
+
 ### `env`
 
 Set environment variables that are available in the workflow in the `env` `context` and as regular environment variables.
