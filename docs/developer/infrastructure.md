@@ -202,6 +202,18 @@ server {
 }
 ```
 
+### 302 redirection
+
+```nginx
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name example.com;
+    return 302 https://other.example.com$request_uri;
+}
+```
+
 ## Forgejo runners
 
 The LXC container in which the runner is installed must have capabilities that support the backend.
@@ -555,6 +567,12 @@ add chain ip code prerouting {
 ```
 
 with `nft -f /root/code.nftables`.
+
+#### 302 redirects
+
+- On hetzner02
+  - try.next.forgejo.org redirects to v(latest stable).next.forgejo.org
+  - dev.next.forgejo.org redirects to v(latest dev).next.forgejo.org
 
 #### Containers
 
