@@ -69,15 +69,7 @@ forgejo-runner exec --workflows .forgejo/workflows/testing.yml
 ## Manual testing
 
 When the change to be tested lacks the proper framework, the manual
-test procedure must be documented and referenced in the
-[manual testing repository](https://codeberg.org/forgejo/forgejo-manual-testing).
-The tests it contains should be run on a regular basis to verify they keep working.
+test steps must be documented in the description of the pull request.
 
-Changes that are associated with a manual test procedure should be
-labeled ["manual test"](https://codeberg.org/forgejo/forgejo/pulls?labels=181437).
-
-## No test
-
-When a change is not tested, it should be labeled
-["untested"](https://codeberg.org/forgejo/forgejo/pulls?labels=167348). The
-rationale for the absence of test should be explained.
+Changes that are associated with manual tests must be labeled
+labeled ["test/manual"](https://codeberg.org/forgejo/forgejo/issues?labels=201028).
