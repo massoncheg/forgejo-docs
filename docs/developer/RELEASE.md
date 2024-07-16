@@ -38,7 +38,7 @@ Experimental releases are published daily in [forgejo-experimental](https://code
 
 ## Release numbering
 
-The Forgejo release numbers are compliant with [Semantic Versioning](https://semver.org/). They are followed by the Gitea release number with which it is compatible. For instance:
+The Forgejo release numbers are compliant with [Semantic Versioning](https://semver.org/). They are followed by the Gitea release number with which they compatible. For instance:
 
 - Forgejo **v7.0.5+gitea-1.21.0** is compatible with Gitea **v1.21.0**.
 
@@ -51,26 +51,8 @@ The release candidates are built of the stable branch and published with the **-
 
 ## Stable release process
 
-The TL;DR: to publish a vX.Y.Z release is to:
-
-- Push the vX.Y.Z tag to https://codeberg.org/forgejo-integration/forgejo to trigger a workflow that will publish the release in https://codeberg.org/forgejo-experimental/forgejo
-- Give it some time for people to try it out
-- Push the vX.Y.Z tag to https://forgejo.octopuce.forgejo.org/forgejo-release/forgejo to trigger a workflow that will sign the release from https://codeberg.org/forgejo-experimental/forgejo and publish it in https://codeberg.org/forgejo-release/forgejo
-
-### Create a milestone and a check list
-
-- Create a `Forgejo vX.Y.Z` milestone set to the date of the release
-- Create an issue named `[RELEASE] Forgejo vX.Y.Z` with a description that includes a list of what needs to be done for the release with links to follow the progress
-- Set the milestone of this issue to `Forgejo vX.Y.Z`
-- Close the milestone when the release is complete
-
-### Feature freeze
-
-- Three weeks before the release date only bug fixes can be merged
-
-### Cutting a release
-
-Create a new issue based on the checklist of the previous release ([for instance v8.0.0](https://codeberg.org/forgejo/forgejo/issues/4153)).
+- Three weeks before the release date announce a feature freeze during which only bug fixes can be merged
+- Create a new issue based on the checklist of the previous release ([for instance v8.0.0](https://codeberg.org/forgejo/forgejo/issues/4153)) and follow the same steps
 
 ### Forgejo release building and testing
 
@@ -97,26 +79,6 @@ It will trigger a [publish workflow](https://codeberg.org/forgejo/forgejo/src/br
 To verify the container images, the [end-to-end](https://code.forgejo.org/forgejo/end-to-end) integration tests can be used. Push a branch with [the location of the release under test](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/.forgejo/workflows/actions.yml) to run a collection of test workflows.
 
 Reach out to packagers and users to manually verify the release works as expected.
-
-### Forgejo release publication
-
-- Push the vX.Y.Z tag to https://forgejo.octopuce.forgejo.org/forgejo-release/forgejo
-
-It will trigger a workflow to:
-
-- Push the vX.Y.Z tag to https://codeberg.org/forgejo/forgejo
-- Download Binaries from https://codeberg.org/forgejo-experimental, sign them and copy them to https://codeberg.org/forgejo
-- Copy container images from https://codeberg.org/forgejo-experimental to https://codeberg.org/forgejo
-
-### Website update
-
-- Restart the last CI build at https://codeberg.org/forgejo/website/src/branch/main/
-- Verify [https://forgejo.org/download/](/download/) points to the expected release
-- Manually try the instructions to work
-
-### DNS update
-
-- Update the `release.forgejo.org` TXT record that starts with `forgejo_versions=` to be `forgejo_versions=vX.Y.Z`
 
 ## LTS toolchain upgrades
 
