@@ -16,45 +16,7 @@ make test
 
 ## Frontend tests
 
-The [e2e](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/tests/e2e/README.md) frontend tests are run with:
-
-```sh
-make 'test-e2e-sqlite'
-# or, for individual tests
-make 'test-e2e-sqlite#example.test'
-```
-
-They are based on [playwright](https://playwright.dev/) and will:
-
-- Launch a Forgejo instance
-- Populate it with data found in the `models/fixtures` directory
-- Launch a browser (e.g. Firefox)
-- Run JavaScript tests (e.g. tests/e2e/example.test.e2e.js)
-
-> **NOTE:** make sure to [use a version of Node >= 20.11.1](https://github.com/microsoft/playwright/issues/29253)
-
-### With VSCodium or VSCode
-
-To debug a test, you can use "Playwright Test" for
-[VScodium](https://open-vsx.org/extension/ms-playwright/playwright)
-or [VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright).
-Before doing that you will need to manually start a Forgejo instance and populate it
-with data from `models/fixtures` by running:
-
-```sh
-make TAGS='sqlite sqlite_unlock_notify' 'test-e2e-debugserver'
-```
-
-### CLI
-
-Tests can also be individually run on an existing server as follows:
-
-```sh
-GITEA_URL=http://0.0.0.0:3000 npx playwright test tests/e2e/release.test.e2e.js
-```
-
-In this case the Forgejo instance must be manually prepared with a minimal
-subset of the data found in the `models/fixtures` directory.
+See [the e2e README](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/tests/e2e/README.md).
 
 ## Interactive testing
 
