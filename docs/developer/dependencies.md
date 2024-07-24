@@ -30,6 +30,19 @@ not done automatically.
 An upgrade is justified if it follows the restrictions that apply to
 stable branches (not backporting features for instance).
 
+## Release notes
+
+When an upgrade has a user facing impact on Forgejo, it should be included in the release notes.
+
+- Label the pull request with [worth a release note](https://codeberg.org/forgejo/forgejo/issues?labels=209916)
+- Add a `release-notes/<pr number>.md` file that contains one line for each feature or bug fix. For instance:
+  - `feat!: [new feature](https://example.com/pull_request) with breaking changes`
+  - `feat: [new feature](https://example.com/pull_request)`
+  - `fix!: [bug fix](https://example.com/pull_request) with breaking changes`
+  - `fix: [bug fix](https://example.com/pull_request)`
+
+See [this pull request for an example](https://codeberg.org/forgejo/forgejo/pulls/4607#issuecomment-2109794).
+
 ## Reviewing renovate pull requests
 
 Pull [requests are opened](https://codeberg.org/forgejo/forgejo/pulls?poster=165503) when an upgrade is available and the decision to merge (positive review) or not (request for change review) depends on what the upgrade offers. The history of past upgrades can be browsed by looking for PR with the same title (e.g. [happy-dom upgrades](https://codeberg.org/forgejo/forgejo/pulls?q=Update+dependency+happy-dom)).
