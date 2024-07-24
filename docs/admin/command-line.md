@@ -132,6 +132,7 @@ OPTIONS:
    --secret-file value      path to the file containing the secret the runner will use to connect as a 40 character hexadecimal string
    --scope value, -s value  {owner}[/{repo}] - leave empty for a global runner
    --labels value           comma separated list of labels supported by the runner (e.g. docker,ubuntu-latest,self-hosted)  (not required since v1.21)
+   --keep-labels            do not affect the labels when updating an existing runner (default: false)
    --name value             name of the runner (default runner) (default: "runner")
    --version value          version of the runner (not required since v1.21)
    --help, -h               show help
