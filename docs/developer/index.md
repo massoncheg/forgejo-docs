@@ -21,7 +21,7 @@ their needs.
   - [Threat Analysis](./threat-analysis/)
   - [Developer Certificate of Origin (DCO)](./dco/)
   - [code.forgejo.org](./code-forgejo-org/)
-  - [next.forgejo.org](./next-forgejo-org/)
+  - [next.forgejo.org](https://code.forgejo.org/infrastructure/k8s)
   - [static pages](./static-pages/)
   - [Forgejo runner implementation notes](https://code.forgejo.org/forgejo/runner/#hacking)
   - [Localization](./localization/)
