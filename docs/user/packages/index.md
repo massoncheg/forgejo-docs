@@ -11,6 +11,7 @@ The following package managers are currently supported:
 | Name                      | Language   | Package client             |
 | ------------------------- | ---------- | -------------------------- |
 | [Alpine](./alpine/)       | -          | `apk`                      |
+| [Arch](./arch/)           | -          | `pacman`                   |
 | [Cargo](./cargo/)         | Rust       | `cargo`                    |
 | [Chef](./chef/)           | -          | `knife`                    |
 | [Composer](./composer/)   | PHP        | `composer`                 |
