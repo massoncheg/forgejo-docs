@@ -1095,6 +1095,37 @@ This section only does "set" config, a removed config key from this section won'
 - `ENABLED_ISSUE_BY_REPOSITORY`: **false**: Enable issue by repository metrics with format `gitea_issues_by_repository{repository="org/repo"} 5`.
 - `TOKEN`: **\<empty\>**: You need to specify the token, if you want to include in the authorization the metrics . The same token need to be used in prometheus parameters `bearer_token` or `bearer_token_file`.
 
+## OpenTelemetry (`opentelemetry`)
+
+- `ENABLED`: **false**: Feature flag toggle.
+- `SERVICE_NAME`: **forgejo**: Service name for the application
+- `RESOURCE_ATTRIBUTES`: **\<empty\>**: Comma separated custom attributes for the application
+- `RESOURCE_DETECTORS`: **\<empty\>**: Active decoders for attributes, available values:
+  - `sdk` - adds information about opentelemetry sdk used by Forgejo
+  - `process` - adds information about the process
+  - `os` - adds information about the OS Forgejo is running on
+  - `host` - adds information about the host Forgejo is running on
+- `TRACES_SAMPLER` **parentbased_always_on**: Set sampler used by trace exporter, accepted values are:
+  - `always_off` - never samples spans
+  - `always_on` - always samples spans
+  - `traceidratio` - samples based on given ratio given in SAMPLER_ARG
+  - `parentbased_always_off` - samples based on parent span, never samples spans without parent spans
+  - `parentbased_always_on` - samples based on parent span, always samples spans without parent spans
+  - `parentbased_traceidratio` - samples based on parent span, samples spans without parent spans on given ratio given in SAMPLER_ARG
+- `TRACER_SAMPLER_ARG`: **\<empty\>**: Argument for the sampler, only applies to traceidratio based samplers. `traceidratio` expects a value between 0-1, based on which it samples (`0` it acts like `always_off`, `1` like `always_on`).
+- `TRACES_EXPORTER`: **otlp**: Controls which exporter should traces use, setting it to `none` disablses traces.
+
+## OpenTelemetry Traces (`opentelemetry.exporter.otlp`)
+
+- `ENDPOINT`: **http://localhost:4318**: Endpoint for OTLP trace exporter, accepts URLs in format `http://localhost:4318`. Setting `unix://` or `http://` disables secure transport.
+- `PROTOCOL`: **http/protobuf**: Controls which protocol is used for exports. Supports `http/protobuf` and `grpc`.
+- `COMPRESSION`: **\<empty\>**: Enable compression, accepted values are `gzip` and ``, defaults to no compression
+- `TIMEOUT`: **10s**: Sets timeout on the trace exporter
+- `HEADERS`: **\<empty\>**: Comma separated additional headers for the trace exporter, accepts headers in `key=value` format. Overwrites general `opentelemetry.HEADERS` on conflicts.
+- `CERTIFICATE`: **\<empty\>**: Path to certificate for TLS
+- `CLIENT_CERTIFICATE`: **\<empty\>**: Path to client certificate for TLS
+- `CLIENT_KEY`: **\<empty\>**: Path to client key for TLS
+
 ## API (`api`)
 
 - `ENABLE_SWAGGER`: **true**: Enables the API documentation endpoints (`/api/swagger`, `/api/v1/swagger`, …). True or false.
