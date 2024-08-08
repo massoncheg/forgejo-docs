@@ -23,7 +23,6 @@ These documents are targeted to people who run Forgejo on their machines.
 - [Recommended Settings and Tips](./recommendations/)
 - [GPG Commit Signatures](./signing/)
 - [Moderation tools](./moderation/)
-- [OpenTelemetry](./otel/)
 - [Adopt existing git directories](./adopt/)
 - [Interface customization](./customization/)
 - [OAuth2 provider](./oauth2-provider/)
