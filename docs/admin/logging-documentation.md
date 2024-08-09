@@ -111,7 +111,8 @@ Certain configuration is common to all modes of log output:
 - `MODE` is the mode of the log output writer. It will default to the mode name in the ini section. Thus `[log.console]` will default to `MODE = console`.
 - `LEVEL` is the lowest level that this output will log.
 - `STACKTRACE_LEVEL` is the lowest level that this output will print a stacktrace.
-- `COLORIZE` will default to `true` for `console` as described, otherwise it will default to `false`.
+- `COLORIZE` will default to `true` for `console` if writing to the terminal
+  (see below), otherwise it will default to `false`.
 
 #### `EXPRESSION`
 
@@ -150,9 +151,11 @@ Possible values are:
 In this mode the logger will forward log messages to the stdout and
 stderr streams attached to the Forgejo process.
 
-For loggers in console mode, `COLORIZE` will default to `true` if not
-on windows, or the Windows terminal can be set into ANSI mode or is a
-cygwin or Msys pipe.
+For loggers in console mode, `COLORIZE` will default to `true` when appropriate:
+
+- not on Windows, if the output is connected to a tty;
+- on Windows, if the output is connected to either a Windows terminal
+  that can be switched into ANSI mode (Windows 10+), or a Cygwin/MSYS terminal.
 
 Settings:
 
