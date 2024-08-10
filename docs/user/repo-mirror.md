@@ -4,8 +4,6 @@ license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8e705d2a86030/docs/content/usage/repo-mirror.en-us.md'
 ---
 
-# Repository Mirror
-
 Repository mirroring allows for the mirroring of repositories to and from external sources. You can use it to mirror branches, tags, and commits between repositories.
 
 ## Use cases
@@ -78,15 +76,21 @@ To set up a mirror from Forgejo to Bitbucket, you need to follow these steps:
 
 The repository pushes shortly thereafter. To force a push, select the **Synchronize Now** button.
 
-### Mirror an existing ssh repository
+### Mirror via SSH
 
-Currently Forgejo supports no ssh push mirrors. You can work around this by adding a `post-receive` hook to your Forgejo repository that pushes manually.
+Forgejo supports the use of SSH as an authentication method for push mirrors.
+You can enable this when adding a new push mirror, existing push mirrors cannot be configured to use SSH.
+This feature is only available if Forgejo is able to find the `ssh` executable.
 
-1. Make sure the user running Forgejo has access to the git repo you are trying to mirror to from shell.
-2. On the web interface at the repository settings > git hooks add a post-receive hook for the mirror. I.e.
+To use SSH as authentication method, select the **Use SSH authentication** option in the authorization tab when adding a new push mirror.
+Make sure to not fill in the **Username** or **Password** input.
+Forgejo generates an Ed25519 SSH key pair and saves it for you.
 
-```
-#!/usr/bin/env bash
-git push --mirror --quiet git@github.com:username/repository.git &>/dev/null &
-echo "GitHub mirror initiated .."
-```
+![The mirror settings is being shown and the SSH checkbox is ticked](../_images/user/repo-mirror/ssh_option.png)
+
+After adding the push mirror, you can click the **Copy public key** link to copy the public key to your clipboard.
+
+![The push mirror entry is shown](../_images/user/repo-mirror/push_mirror_with_ssh.png)
+
+This public key can then be added as a deploy key on the target repository, how to add one varies by platform but generally it should be an option in the repository's settings.
+After adding the public key as the deploy key, you can go back to Forgejo and click the **Syncronize now** button and see that it works.
