@@ -1078,6 +1078,7 @@ Additional settings can be included in this section to specify where the data is
 - `CLONE`: **300**: Git clone from internal repositories timeout seconds.
 - `PULL`: **300**: Git pull from internal repositories timeout seconds.
 - `GC`: **60**: Git repository GC timeout seconds.
+- `GREP`: **2**: Git repository grep (search) timeout seconds.
 
 ### Git - Config options (`git.config`)
 
