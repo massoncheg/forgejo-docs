@@ -63,29 +63,16 @@ git config branch.local-branch.merge refs/for/main/topic-branch
 After doing so, you can now simply run `git push` to push commits to your pull request, without having to specify the refspec.
 This also will allow you to pull, fetch, rebase, etc. from the AGit pull request by default.
 
-#### A More Complex Example
+#### Pushing a non-checked-out reference (non-HEAD)
 
-Suppose that the currently checked out branch in your local repository is `main`, yet you would like to submit a Pull Request meant for a remote branch called `remote-branch`.
+While most users will likely be pushing HEAD most of the time, it is worth noting that AGit flow supports pushing any local reference (just like `push` in general).
 
-However, the changes that you want to submit reside in a local branch called `local-branch`. In order to submit the changes residing in the `local-branch` branch **without** checking it out, you can supply the name of the local branch (`local-branch`) using the `<session>` parameter:
-
-```shell
-git push origin HEAD:refs/for/remote-branch/local-branch \
-  -o title="My First Pull Request!"
-```
-
-This syntax may be a bit disorienting for users that are accustomed to commands such as `git push origin remote-branch` or `git push origin local-branch:remote-branch`.
-
-Just like when using `git push origin remote-branch`, supplying the local branch name is optional, as long as you checkout `local-branch` using `git checkout local-branch` beforehand and **use the `topic` push option**:
+Suppose you would like to submit a Pull Request meant for a remote branch called `remote-branch` using topic `topic`.
+However, the changes that you want to submit reside in a local branch called `local-branch` that you have not checked out. In order to submit the changes residing in the `local-branch` branch **without** checking it out, you can supply the name of the local branch (`local-branch`) as follows:
 
 ```shell
-git checkout local-branch
-git push origin HEAD:refs/for/remote-branch \
-  -o topic="my-first-agit-pr" \
-  -o title="My First Pull Request!"
+git push origin local-branch:refs/for/remote-branch/topic
 ```
-
-**If you do not use the `topic` push option,** `<session>` will be used as the topic instead.
 
 ### Parameters
 
