@@ -37,8 +37,7 @@ like Fedora, CentOS etc.), run this instead:
 
 ```
 # groupadd --system git
-
-# adduser --system --shell /bin/bash --comment 'Git Version Control' \
+# useradd --system --shell /bin/bash --comment 'Git Version Control' \
    --gid git --home-dir /home/git --create-home git
 ```
 
@@ -77,15 +76,21 @@ setup instructions.
 Forgejo provides a
 [systemd service script](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/contrib/systemd/forgejo.service).
 Download it to the correct location:
-`# wget -O /etc/systemd/system/forgejo.service https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/contrib/systemd/forgejo.service`
+
+```
+# wget -O /etc/systemd/system/forgejo.service https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/contrib/systemd/forgejo.service
+```
 
 If you're _not_ using sqlite, but MySQL or MariaDB or PostgreSQL, you'll have to edit that file
 (`/etc/systemd/system/forgejo.service`) and uncomment the corresponding `Wants=` and `After=` lines.
 Otherwise it _should_ work as it is.
 
 Now enable and start the Forgejo service, so you can go on with the installation:
-`# systemctl enable forgejo.service`
-`# systemctl start forgejo.service`
+
+```
+# systemctl enable forgejo.service
+# systemctl start forgejo.service
+```
 
 ## Forgejo's web-based configuration
 
