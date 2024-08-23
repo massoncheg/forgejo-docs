@@ -955,6 +955,16 @@ jobs:
       - run: echo using sh here
 ```
 
+Available values:
+
+- `bash`
+- `pwsh`
+- `python`
+- `sh`
+- `cmd`
+- `powershell`
+- A custom commandline, where `{0}` is replaced with the path to a (temporary) file, containing the content of `jobs.<job_id>.steps[*].run`.
+
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-pull-request/.forgejo/workflows/test.yml)
 
 ### `jobs.<job_id>.steps[*].id`
