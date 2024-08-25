@@ -7,5 +7,5 @@ title: 'Forgejo prerelease documentation'
 - [FAQ](/faq/)
 - [Administrator guide](./admin/)
 - [User guide](./user/)
-- [Developer guide](./developer/)
+- [Contributor guide](./contributor/)
 - [License](./license/)
