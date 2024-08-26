@@ -963,7 +963,7 @@ Available values:
 - `sh`
 - `cmd`
 - `powershell`
-- A custom commandline, where `{0}` is replaced with the path to a (temporary) file, containing the content of `jobs.<job_id>.steps[*].run`.
+- A custom commandline, where the literal string `{0}` is replaced with the path to a (temporary) file, containing the content of `jobs.<job_id>.steps[*].run`. For example `bash -v {0}` would become `bash -v /tmp/xxx`.
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-pull-request/.forgejo/workflows/test.yml)
 
