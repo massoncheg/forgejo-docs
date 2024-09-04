@@ -18,8 +18,6 @@ Upgrading from **X** to **X+1** (for instance from **7** to **8**) requires a [m
 Here is a sample [docker-compose](https://docs.docker.com/compose/install/) file:
 
 ```yaml
-version: '3'
-
 networks:
   forgejo:
     external: false
@@ -78,8 +76,6 @@ If no database is configured, it will default to using SQLite.
 ### MySQL database
 
 ```yaml
-version: "3"
-
 networks:
   forgejo:
     external: false
@@ -126,8 +122,6 @@ services:
 ### PostgreSQL database
 
 ```yaml
-version: "3"
-
 networks:
   forgejo:
     external: false
@@ -226,8 +220,6 @@ We will use the `rootless` image, which hosts the `ssh` server for Forgejo embed
 would look like this (shown as a `diff like` view to the example shown [in our initial example](#installation-with-docker)):
 
 ```yaml
-version: "3"
-
 networks:
   forgejo:
     external: false
