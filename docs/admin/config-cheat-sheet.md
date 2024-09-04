@@ -834,6 +834,8 @@ Additional settings can be included in this section to specify where the data is
 
 ## Log (`log`)
 
+When configuring logging, also consult the detailed [logging documentation](../logging-documentation/).
+
 - `ROOT_PATH`: **\<empty\>**: Root path for log files.
 - `MODE`: **console**: Logging mode. For multiple modes, use a comma to separate values. You can configure each mode in per mode log subsections `[log.writer-mode-name]`.
 - `LEVEL`: **Info**: General log level. \[Trace, Debug, Info, Warn, Error, Critical, Fatal, None\]
@@ -865,14 +867,17 @@ Additional settings can be included in this section to specify where the data is
 - `LEVEL`: **log.LEVEL**: Sets the log-level of this writer. Defaults to the `LEVEL` set in the global `[log]` section.
 - `STACKTRACE_LEVEL`: **log.STACKTRACE_LEVEL**: Sets the log level at which to log stack traces.
 - `EXPRESSION`: **""**: A regular expression to match either the function name, file or message. Defaults to empty. Only log messages that match the expression will be saved in the logger.
-- `FLAGS`: **stdflags**: A comma separated string representing the log flags. Defaults to `stdflags` which represents the prefix: `2009/01/23 01:23:23 ...a/b/c/d.go:23:runtime.Caller() [I]: message`. `none` means don't prefix log lines. See `modules/log/flags.go` for more information.
+- `FLAGS`: **stdflags**: A comma separated string representing the log flags. Defaults to `stdflags` which represents the prefix: `2009/01/23 01:23:23 ...a/b/c/d.go:23:runtime.Caller() [I]: message`. `none` means don't prefix log lines. See [the FLAGS section of the logging documentation](../logging-documentation/#flags) for more information.
 - `PREFIX`: **""**: An additional prefix for every log line in this logger. Defaults to empty.
 - `COLORIZE`: **false**: Whether to colorize the log lines
 
 ### Console log mode (`log.console`, or `MODE=console`)
 
+The defaults of the console change if Forgejo detects that stdout and/or stderr are connected to systemd-journald (which will happen automatically when Forgejo is running under systemd). See the [journald section in the logging documentation](../logging-documentation/#journald-mode).
+
 - For the console logger `COLORIZE` will default to `true` if not on windows or the terminal is determined to be able to color.
-- `STDERR`: **false**: Use Stderr instead of Stdout.
+- `STDERR`: **false** (journald: **true**): Use Stderr instead of Stdout.
+- `FLAGS`: **stdflags** (journald: **journaldflags**): Instead of colour or text annotations, machine-readable prefixes are used that can be parsed by sytemd-journald.
 
 ### File log mode (`log.file`, or `MODE=file`)
 
