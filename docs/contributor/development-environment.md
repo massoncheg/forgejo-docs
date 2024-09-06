@@ -22,8 +22,111 @@ Go code is formatted automatically when saved.
 
 ## Emacs
 
-Emacs has [a Go mode](https://github.com/golang/tools/blob/master/gopls/doc/emacs.md) that can likely be used to work on Forgejo's code base.
-Do you know how to configure it properly? Why not document that here?
+[GNU Emacs](https://www.gnu.org/software/emacs/) is an open source implementation of the Emacs text editor.
+The [Emacs Go-mode](https://github.com/dominikh/go-mode.el), in combination with the [Go language-server](https://github.com/golang/tools/blob/master/gopls/doc/emacs.md) and a LSP client can be used to work on Forgejo's code base.
+
+A prejequisite for working with the language server is [installing gopls](https://github.com/golang/tools/blob/master/gopls/README.md#installation).
+After this, you'll want to install the necessary packages in Emacs using `M-x package-install` followed by `go-mode` and your preferred LSP client, so _either_ `lsp-mode` _or_ `eglot`.
+
+After the installation, you'll need to activate the packages in your [initialization file](https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html).
+Regardless of your choice of LSP client, you'll need to add:
+
+```elisp
+(require 'go-mode)
+(require 'go-mode-load)
+```
+
+Then, for lsp-mode, add:
+
+```elisp
+(use-package lsp-mode
+  :ensure
+  :commands lsp
+  :custom
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode) ;; Optional, see below
+  (add-hook 'go-mode-hook #'lsp-deferred))
+
+;; lsp-ui mode is optional. It shows inline hints.
+(use-package lsp-ui
+  :ensure
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
+
+;; Set up before-save hooks to format buffer and add/delete imports.
+;; Make sure you don't have other gofmt/goimports hooks enabled.
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+```
+
+Or for eglot:
+
+```elisp
+(require 'project)
+
+(defun project-find-go-module (dir)
+  (when-let ((root (locate-dominating-file dir "go.mod")))
+    (cons 'go-module root)))
+
+(cl-defmethod project-root ((project (head go-module)))
+  (cdr project))
+
+(add-hook 'project-find-functions #'project-find-go-module)
+
+(require 'eglot)
+(add-hook 'go-mode-hook 'eglot-ensure)
+
+;; Optional: install eglot-format-buffer as a save hook.
+;; The depth of -10 places this before eglot's willSave notification,
+;; so that that notification reports the actual contents that will be saved.
+(defun eglot-format-buffer-before-save ()
+  (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
+(add-hook 'go-mode-hook #'eglot-format-buffer-before-save)
+```
+
+As additional quality of life inprovements, you might consider installing [company](https://company-mode.github.io/), [flycheck](https://www.flycheck.org/en/latest/) and/or [magit](https://magit.vc/). Consider the package website for a complete explanation and installation instructions.
+
+<details>
+<summary> Here is an init example if you just want to use all three packages </summary>
+
+```elisp
+;; company
+(use-package company
+  :ensure
+  :custom
+  (company-idle-delay 0) ;; how long to wait until popup
+  (company-minimum-prefix-length 1)
+  ;; (company-begin-commands nil) ;; uncomment to disable popup
+  :bind
+  (:map company-active-map
+	("C-n". company-select-next)
+	("C-p". company-select-previous)
+	("M-<". company-select-first)
+	("M->". company-select-last)
+	)
+  ;; Tab-override
+  (:map company-mode-map
+	("<tab>". tab-indent-or-complete)
+	("TAB". tab-indent-or-complete)
+	)
+  )
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+
+;; flycheck
+(use-package flycheck :ensure)
+
+
+;; magit
+(use-package magit :ensure)
+```
+
+</details>
 
 ## Vim
 
