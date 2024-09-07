@@ -26,7 +26,7 @@ involved in running it on their machines.
   - [Profile customization](./profile/)
 - Working with Git Repositories
   - [Clone & Commit via Web](https://docs.codeberg.org/git/clone-commit-via-web/)
-  - [Tags and Releases](https://docs.codeberg.org/git/using-tags/)
+  - [Tags and Releases](./releases/)
   - [Branch and tag protection](./protection/)
   - [Git blame](./blame/)
   - [README badges](./readme-badges/)
