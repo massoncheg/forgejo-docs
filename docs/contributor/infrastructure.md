@@ -100,6 +100,12 @@ When removing a configuration, the certificate can also be removed with:
 sudo certbot delete --cert-name example.com
 ```
 
+Forwarding TCP streams (useful for ssh) requires installing the module:
+
+```sh
+sudo apt-get install libnginx-mod-stream
+```
+
 ## Host wakeup-on-logs
 
 https://code.forgejo.org/infrastructure/wakeup-on-logs
@@ -272,7 +278,7 @@ firefox http://private.forgejo.org
 
 ### Containers
 
-- `fogejo-host`
+- `forgejo-host`
 
   Dedicated to http://private.forgejo.org
 
@@ -287,7 +293,7 @@ firefox http://private.forgejo.org
     docker logs -n 200 -f forgejo
     ```
 
-- `fogejo-runner-host`
+- `forgejo-runner-host`
 
   Has runners installed to run against private.forgejo.org
 
@@ -449,19 +455,26 @@ lxc-helpers.sh lxc_install_lxc_inside 10.41.13 fc29
   - K8S enabled
   - K8S wakeup-on-logs script /etc/wakeup-on-logs/forgejo-v8
   - [Values file](https://code.forgejo.org/infrastructure/k8s/src/branch/main/forgejo-v8/values.yml)
-  - `/home/debian/v8.nftables`
+  - nginx forwarding of SSH streams in `/etc/nginx/modules-enabled/next.forgejo.org.conf`
+
     ```
-    add table ip v8;
-    flush table ip v8;
-    add chain ip v8 prerouting {
-      type nat hook prerouting priority 0;
-      policy accept;
-      dnat ip addr . port to tcp dport map { 2080 : 10.41.13.27 . 2222 };
-    };
-    ```
-  - Add to `iface enp4s0 inet static` in `/etc/network/interfaces`
-    ```
-    up nft -f /home/debian/v8.nftables
+    stream {
+
+      # v8 ip's
+      upstream v8 {
+        least_conn;
+        server 10.41.13.27:2222;
+      }
+
+      # v8 definition
+      server {
+        listen 2080; # the port to listen on this server
+        listen [::]:2080;
+        proxy_pass v8; # forward traffic to this upstream group
+        proxy_timeout 3s;
+        proxy_connect_timeout 3s;
+      }
+    }
     ```
 
 - `forgefriends-forum` (hetzner04)
@@ -576,7 +589,7 @@ with `nft -f /root/code.nftables`.
 
 #### Containers
 
-- `fogejo-code` on hetzner02
+- `forgejo-code` on hetzner02
 
   Dedicated to https://code.forgejo.org
 
