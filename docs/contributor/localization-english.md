@@ -17,7 +17,11 @@ When an unused string needs to be deleted, it should be only deleted for the bas
 
 ## Localization style
 
+### Capitalization
+
 All strings should have regular capitalization. Headers, labels, buttons and such should start with a capital letter. Only names, product names and such should be capitalized after that. Forgejo-specific measurement units should not be capitalized.
+
+Follow these examples for string capitalization:
 
 | Context | ❌ Bad                                 | ✅ Good                                |
 | ------- | -------------------------------------- | -------------------------------------- |
@@ -27,6 +31,17 @@ All strings should have regular capitalization. Headers, labels, buttons and suc
 | Button  | Add Cleanup Rule                       | Add cleanup rule                       |
 | Label   | Integrate matrix into your repository. | Integrate Matrix into your repository. |
 | Label   | %s Commits                             | %s commits                             |
+
+### Other stylistic choices
+
+Form labels should not end with any punctuation marks.
+
+Follow these examples:
+
+| Context    | ❌ Bad    | ✅ Good  |
+| ---------- | --------- | -------- |
+| Form label | Username. | Username |
+| Form label | Username: | Username |
 
 ## Contributing
 
