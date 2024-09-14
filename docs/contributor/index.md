@@ -36,7 +36,7 @@ We encourage you to [read our warm welcome first](./welcome/), then get involved
   - [Forgejo runner implementation notes](https://code.forgejo.org/forgejo/runner/#hacking)
   - [Dependency management](./dependencies/)
 - For maintainers
-  - [Hardware infrastructure](./infrastructure/)
+  - [Hardware infrastructure](https://code.forgejo.org/infrastructure/documentation#readme)
   - [Release management](./release/)
   - [Managing dependencies between repositories](./repositories-dependencies/)
   - [Secrets](./secrets/)
