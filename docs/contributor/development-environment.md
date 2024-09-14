@@ -36,6 +36,8 @@ Regardless of your choice of LSP client, you'll need to add:
 (require 'go-mode-load)
 ```
 
+If you would like a full list of the features of go-mode, have a look at [this blogpost by it's creator](https://honnef.co/articles/writing-go-in-emacs/).
+
 Then, for lsp-mode, add:
 
 ```elisp
