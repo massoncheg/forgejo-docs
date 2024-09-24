@@ -54,12 +54,8 @@ Note: Forgejo requires [docker >= 20.10.6](https://wiki.alpinelinux.org/wiki/Rel
 
 ## Performing the upgrade
 
-- If the upgrade is from a Gitea version [lower than 1.6](https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/models/migrations/migrations.go#L63) and greater or equal to 1.2.0, proceed as follows:
-  - Upgrade to 1.2.3 and manually verify it runs
-  - Upgrade to 1.4.3 and manually verify it runs
-  - Upgrade to 1.5.3 and manually verify it runs
-  - Upgrade to 1.6.4 and manually verify it runs
-- If the upgrade is from a Gitea version greater or equal to 1.6.4 that is not mentioned to be problematic [below](#when-upgrading-from-a-specific-version), upgrade directly to the latest stable Forgejo version; there is no need to upgrade to intermediate versions.
+- read the [list of things to know when upgrading from a specific version](#when-upgrading-from--known-problematic-versions-or-upgrade-paths) and either verify that your current version is not affected; or apply the notes appropriately
+- otherwise, upgrade straight to the latest released Forgejo version (the upgrade procedure will take care of migrations)
 - Verify Forgejo works
 
 ## Troubleshooting
@@ -87,48 +83,46 @@ Note: Forgejo requires [docker >= 20.10.6](https://wiki.alpinelinux.org/wiki/Rel
 
 The database version is stored in the database and used to prevent an accidental downgrade. For instance, if a running `Forgejo v1.20` instance is downgraded to `Forgejo v1.19`, it will refuse to start because it would damage the content of the database.
 
-### When upgrading from a specific version...
-
-- Any version before Forgejo v1.20.3-0
-  - verify the `app.ini` file does not problematic `[storage*]` sections [as explained in the v1.20.3-0 blog post](https://forgejo.org/2023-08-release-v1-20-3-0/)
-- Any version before [Gitea 1.17](https://github.com/go-gitea/gitea/releases/tag/v1.17.4)
-  - preserve a custom gitconfig: [episode 1](https://web.archive.org/web/20240313092747/https://gna.org/blog/1-17-breaking-episode-1/), [episode 2](https://web.archive.org/web/20240313092759/https://gna.org/blog/1-17-breaking-episode-2/)
-- [Gitea 1.13.0](https://blog.gitea.io/2020/12/gitea-1.13.0-is-released/)
-
-  - The Webhook shared secret inside the webhook payload has been deprecated and will be removed in 1.14.0: https://github.com/go-gitea/gitea/issues/11755 please use the secret header that uses an hmac signature to validate the webhook payload.
-  - Git hooks now default to `off`! ([#13058](https://github.com/go-gitea/gitea/pull/13058))
-    In your config, you can check the security section for `DISABLE_GIT_HOOKS`. To enable them again, you must set the setting to `false`.
-
-- From an instance originally installed with gogs, even if migrated later to Gitea or Forgejo because database columns are not automatically removed by migrations.
-  - Drop the `created` column from the `issue` table while Forgejo is not running. It will be re-created:
-    - SQLite `ALTER TABLE `issue`DROP`created``
-    - MySQL/MariaDB/PostgreSQL `ALTER TABLE `issue`DROP COLUMN`created``
-
-### Only when upgrading to a specific version
-
-- From [v1.19] to a version greater or equal to than [1.20](https://forgejo.org/2023-07-release-v1/)
-
-  - The [tokens](https://forgejo.org/docs/v1.20/user/oauth2-provider/#scoped-tokens) were refactored in a way that does not guarantee their scope will be preserved. They may be larger or narrower and the only way to be sure that the intended scope is preserved is to re-create the token.
-
-- [1.15.2](https://blog.gitea.io/2021/09/gitea-1.15.2-is-released/)
-
-  - Unfortunately following the release of 1.15.1 it has become apparent that there is an issue with upgrading from 1.15.0 to 1.15.1 due to problem with a table constraint that was unexpectedly automatically dropped. Users who upgraded straight from 1.14.x to 1.15.1 are not affected and users who upgraded from 1.15.0 to 1.15.1 can fix the problem using `gitea doctor recreate-table issue_index` or upgrade to 1.15.2.
-
-- Between [1.13.0](https://blog.gitea.io/2020/12/gitea-1.13.0-is-released/) [1.13.3](https://blog.gitea.io/2021/03/gitea-1.13.3-is-released/)
-  - Password hashing algorithm default has changed back to pbkdf2 from argon2. ([#14673](https://github.com/go-gitea/gitea/pull/14673))
-
 ### Unexplained upgrade failures & workarounds
 
 - All versions
   - Symptom: [blank / 500 page after login when running SQLite](https://github.com/go-gitea/gitea/issues/18650)
   - Workaround: upgrade to [Forgejo 1.19.3-0 or greater](https://codeberg.org/forgejo/forgejo/commit/443675d18072d2a345bc4644d3f52dee42f58b44) and run `gitea doctor check --all --fix`
 
-### Versions with known issues
+## When upgrading from ... (known problematic versions or upgrade paths)
 
+A list of things to be aware depending on which version you have installed.
+The list is sorted by Forgejo and Gitea versions.
+Upgrades from Gogs have [an extra section below](#known-problems-when-upgrading-from-gogs). Please read them if you originally installed Gogs,
+even if you already migrated to Gitea.
+
+- Any version before Forgejo v1.20.3-0
+  - verify the `app.ini` file does not contain problematic `[storage*]` sections [as explained in the v1.20.3-0 blog post](https://forgejo.org/2023-08-release-v1-20-3-0/)
+- From v1.19.x to a version greater or equal to than [1.20](https://forgejo.org/2023-07-release-v1/)
+  - The [tokens](https://forgejo.org/docs/v1.20/user/oauth2-provider/#scoped-tokens) were refactored in a way that does not guarantee their scope will be preserved. They may be larger or narrower and the only way to be sure that the intended scope is preserved is to re-create the token.
+- Any version before [Gitea 1.17](https://github.com/go-gitea/gitea/releases/tag/v1.17.4)
+  - preserve a custom gitconfig: [episode 1](https://web.archive.org/web/20240313092747/https://gna.org/blog/1-17-breaking-episode-1/), [episode 2](https://web.archive.org/web/20240313092759/https://gna.org/blog/1-17-breaking-episode-2/)
+- From Gitea 1.15.0: [Also see the release notes of 1.15.2](https://blog.gitea.io/2021/09/gitea-1.15.2-is-released/)
+  - Unfortunately following the release of 1.15.1 it has become apparent that there is an issue with upgrading from 1.15.0 to 1.15.1 due to problem with a table constraint that was unexpectedly automatically dropped. Users who upgraded straight from 1.14.x to 1.15.1 are not affected and users who upgraded from 1.15.0 to 1.15.1 can fix the problem using `gitea doctor recreate-table issue_index` or upgrade to 1.15.2.
+- Between [1.13.0](https://blog.gitea.io/2020/12/gitea-1.13.0-is-released/) and [1.13.3](https://blog.gitea.io/2021/03/gitea-1.13.3-is-released/)
+  - Password hashing algorithm default has changed back to pbkdf2 from argon2. ([#14673](https://github.com/go-gitea/gitea/pull/14673))
+- [Gitea 1.13.0](https://blog.gitea.io/2020/12/gitea-1.13.0-is-released/)
+  - The Webhook shared secret inside the webhook payload has been deprecated and will be removed in 1.14.0: https://github.com/go-gitea/gitea/issues/11755 please use the secret header that uses an hmac signature to validate the webhook payload.
+  - Git hooks now default to `off`! ([#13058](https://github.com/go-gitea/gitea/pull/13058))
+    In your config, you can check the security section for `DISABLE_GIT_HOOKS`. To enable them again, you must set the setting to `false`.
+- Do not use / skip on upgrade: Gitea v1.11.2 (now replaced by 1.11.3) was mistakenly compiled with Go 1.14, which Gitea is not currently fully tested with and it’s known to cause [a few issues](https://github.com/go-gitea/gitea/issues/10661).
+- Do not use / skip on upgrade: Gitea v1.10.5 (replaced by 1.10.6 if you need to keep using the 1.10 branch) was incorrectly tagged, and was in fact a snapshot of the development branch (1.12-dev). It was also compiled with Go 1.14.
+- Do not use / skip on upgrade: Gitea v1.10.0, v1.10.1, v1.10.2, v1.10.3, v1.10.4, v1.11.0, and v1.11.1 **do not use** any of these versions, as a bug in the upgrade process will delete attachments from the releases on your repositories.
+- From a Gitea version [lower than 1.6](https://github.com/go-gitea/gitea/blob/faa28b5a44912f1c63afddab9396bae9e6fe061c/models/migrations/migrations.go#L63) and greater or equal to 1.2.0, proceed as follows:
+  - Upgrade to 1.2.3 and manually verify it runs
+  - Upgrade to 1.4.3 and manually verify it runs
+  - Upgrade to 1.5.3 and manually verify it runs
+  - Upgrade to 1.6.4 and manually verify it runs
+
+### Known problems when upgrading from Gogs:
+
+- From an instance originally installed with Gogs, even if migrated later to Gitea or Forgejo because database columns are not automatically removed by migrations.
+  - Drop the `created` column from the `issue` table while Forgejo is not running. It will be re-created:
+    - SQLite ``ALTER TABLE `issue` DROP `created` ``
+    - MySQL/MariaDB/PostgreSQL ``ALTER TABLE `issue` DROP COLUMN `created` ``
 - Gogs from before September 2015 migrated to Forgejo v1.18 may have a [dangling `pull_repo` table](https://web.archive.org/web/20230207122019/https://forum.gna.org/t/gitea-upgrade-from-gogs-to-1-16-8-unmigrated-pull-repo-table/73) and the corresponding pull requests will be removed by `gitea doctor check --fix --all`.
-
-[From the 1.11.3 release notes](https://blog.gitea.com/release-of-1.11.3/):
-
-- v1.10.0, v1.10.1, v1.10.2, v1.10.3, v1.10.4, v1.11.0, and v1.11.1 **do not use** any of these versions, as a bug in the upgrade process will delete attachments from the releases on your repositories.
-- v1.11.2 (now replaced by 1.11.3) was mistakenly compiled with Go 1.14, which Gitea is not currently fully tested with and it’s known to cause [a few issues](https://github.com/go-gitea/gitea/issues/10661).
-- v1.10.5 (replaced by 1.10.6 if you need to keep using the 1.10 branch) was incorrectly tagged, and was in fact a snapshot of our development branch (1.12-dev). It was also compiled with Go 1.14.
