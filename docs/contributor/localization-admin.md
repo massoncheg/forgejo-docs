@@ -45,7 +45,7 @@ are merged as explained above. Only the end of the sequence changes:
   - on the pull request page, find the merge button
   - use the button with an arrow to change it to **Create squash commit**
   - click **Create squash commit**
-  - click **Clear merge message** button to remove noise from the commit message
+  - remove PR description from the commit message, only keep metadata like co-authors and reviewers, like in [this example](https://codeberg.org/forgejo/forgejo/commit/e40554f89baa79d12a1ff89b434041b297afff02)
   - click **Create squash commit** again
 - merge the PR (after resolving conflicts due to the merge of the Weblate changes)
 - click **Reset**
