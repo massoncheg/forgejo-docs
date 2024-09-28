@@ -7,9 +7,9 @@ Forgejo has a Arch Linux package registry, which can act as a fully working [Arc
 
 ## Upload packages
 
-When uploading the package to Forgejo, you have to prepare package file with the `.pkg.tar.zst` extension. You can use [curl](https://curl.se/) or any other HTTP client, Forgejo supports multiple [authentication schemes](https://docs.Forgejo.com/usage/authentication). The upload command will create 3 files: package, signature and desc file for the pacman database (which will be created automatically on request).
+When uploading the package to Forgejo, you have to prepare package file with the `.pkg.tar.zst` extension. You can use [curl](https://curl.se/) or any other HTTP client, Forgejo supports multiple [authentication schemes](../../authentication). The upload command will create 3 files: package, signature and desc file for the pacman database (which will be created automatically on request).
 
-The following command will upload arch package and related signature to Forgejo with basic authentification:
+The following command will upload arch package and related signature to Forgejo with basic authentication:
 
 ```sh
 curl -X PUT \
