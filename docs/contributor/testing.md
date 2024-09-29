@@ -172,3 +172,20 @@ The exact test steps must be documented in the description of the pull request.
 
 Changes that are associated with manual tests must be labeled
 ["test/manual"](https://codeberg.org/forgejo/forgejo/issues?labels=201028).
+
+## Using gotestsum for summaries
+
+By default, the `make` targets use the built-in `go test` command.
+However, it does not produce clear summaries of test results
+which are useful for understanding quickly the extent of failures.
+The provided `Makefile` supports switching to [`gotestsum`](https://github.com/gotestyourself/gotestsum)
+using `USE_GOTESTSUM=yes` while running tests, for example:
+
+```sh
+USE_GOTESTSUM=yes make test
+```
+
+`gotestsum` behaves like the default `go test` except it reformats the test results
+so that they are clearer for human interpreation and include a helpful summary.
+
+You need to have `gotestsum` installed (see the link above) to use it as it does not come built-in unlike `go test`.
