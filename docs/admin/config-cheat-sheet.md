@@ -1011,7 +1011,7 @@ The defaults of the console change if Forgejo detects that stdout and/or stderr 
 - `NOTICE_ON_SUCCESS`: **false**: Set to true to switch on success notices.
 - `SCHEDULE`: **@every 72h**: Cron syntax for scheduling generated repository avatars cleanup, e.g. `@every 1h`.
 
-#### Cron - Delete all old actions from database (`cron.delete_old_actions`)
+#### Cron - Delete all old activities from database (`cron.delete_old_actions`)
 
 - `ENABLED`: **false**: Enable service.
 - `RUN_AT_START`: **false**: Run tasks at start up time (if ENABLED).
