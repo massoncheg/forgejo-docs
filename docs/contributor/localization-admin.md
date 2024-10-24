@@ -13,17 +13,21 @@ Weblate is [configured to propose pull requests](https://translate.codeberg.org/
 to the Forgejo repository with new translations. These pull requests should be **squash merged** into the Forgejo
 development branch as follows:
 
+- go to the [history](https://translate.codeberg.org/projects/forgejo/forgejo/#history) of the main component and make sure there's no active translation work happening
 - announce in the chatroom: `@room the translations will be locked for maintenance in about 15 minutes. Make sure you don't try to save a translation when that happens as it will be lost.`
-- go to the [Weblate repository admin page](https://translate.codeberg.org/projects/forgejo/forgejo/#repository)
+- post a "Warning" [announcement in Weblate](https://translate.codeberg.org/projects/forgejo/forgejo/#announcement): `The translations will be locked for maintenance soon. Make sure you don't try to save a translation when that happens as it will be lost.`. Make sure to unckeck the notification option
+- If the PR is prefixed with **[skip ci]**:
+- - remove the prefix from the title
+- - change some translation(s). You can modify `[translation_meta]test` in some language
+- go to the [repository management](https://translate.codeberg.org/projects/forgejo/forgejo/#repository) of the main component
 - click **Commit**. This is done optionally to make tests run before interrupting anyone, to reduce the total maintenance time
-- post a "Warning" [announcement in Weblate](https://translate.codeberg.org/projects/forgejo/forgejo/#announcement): `The translations will be locked for maintenance soon. Make sure you don't try to save a translation when that happens as it will be lost.`. Make sure to unckeck the notification option.
-- wait 15 minutes
+- wait until the 15 minutes from the announcement pass
 - click **Lock**
 - reload the page
   - check the number of commits
   - verify there are 0 pending changes
 - go to the pull request and wait until it is rebased and has the same number of commits
-- squash-merge the pending `[I18N]` pull request ([similar to this example](https://codeberg.org/forgejo/forgejo/pulls/2317)).
+- squash-merge the pending **i18n:** pull request ([similar to this example](https://codeberg.org/forgejo/forgejo/pulls/2317)).
   - on the pull request page, find the merge button
   - use the button with an arrow to change it to **Create squash commit**
   - click **Create squash commit**
