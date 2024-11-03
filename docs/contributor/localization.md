@@ -47,6 +47,16 @@ To add a new language, go to the [page for starting new translation](https://tra
 
 By default, Weblate will use an accounts primary e-mail address for all contributions. If you want to adjust this behavior go to [Weblate settings - Account](https://translate.codeberg.org/accounts/profile/#account) and select a different e-mail under "Commit e-mail" section. Select `@users.noreply.translate.codeberg.org` address to avoid using a unmasked e-mail address.
 
+## Tips
+
+You can see the current translations in live on a dev instance: https://dev.next.forgejo.org. Usually strings would lag behind Weblate up to 9 days here, but it's good enough for a quick overview.
+
+### Finding strings
+
+To locate a string on Weblate quickly, you can open a page including the string, append `?lang=dummy` query parameter to URL (if there is already a `?`, append `&lang=dummy` to it), and all strings will be replaced with their keys.
+
+When searching on Weblate, the first part of keys ("section") may need to be wrapped with `[]`. For example, on Weblate, `settings.enable_custom_avatar` should be searched with `[settings]enable_custom_avatar`, `issues` -> `[common]issues`, and `filter.public` -> `[common]filter.public`. If you are getting no results, wrap the section and search again.
+
 ## Discussing the translation
 
 To ask questions, clarify string meaning, report vandalism or suggest changes to source strings post in [Matrix room](https://matrix.to/#/#forgejo-localization:matrix.org) or [issues](https://codeberg.org/forgejo/forgejo/issues). Doing this is not restricted to members of the **Localization Team**.
