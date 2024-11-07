@@ -50,12 +50,12 @@ It is **critical** to verify that Forgejo works very carefully. Restoring the ba
 - Do not use `forgejo help` to figure out the location of `CustomPath`, look at the configuration tab of the `Site administration` panel when logged in as an admin.
 - `forgejo manager flush-queues`. If it times out, run it again with a more generous `--timeout` argument. It is important because the queues contain serialized data that is not guaranteed to be backward compatible between versions.
 
-Note: Forgejo requires [docker >= 20.10.6](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0) otherwise mysterious problems will happen (mysterious in the sense that the problem will about something unrelated to the Docker version").
+Note: Forgejo installations using Docker requires [docker >= 20.10.6](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0) otherwise mysterious problems will happen (mysterious in the sense that the problem will about something unrelated to the Docker version").
 
 ## Performing the upgrade
 
-- read the [list of things to know when upgrading from a specific version](#when-upgrading-from--known-problematic-versions-or-upgrade-paths) and either verify that your current version is not affected; or apply the notes appropriately
-- otherwise, upgrade straight to the latest released Forgejo version (the upgrade procedure will take care of migrations)
+- Read the [list of things to know when upgrading from a specific version](#when-upgrading-from--known-problematic-versions-or-upgrade-paths) and either verify that your current version is not affected; or apply the notes appropriately
+- Otherwise, upgrade straight to the latest released Forgejo version (the upgrade procedure will take care of migrations)
 - Verify Forgejo works
 
 ## Troubleshooting
