@@ -228,6 +228,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
   A repo is considered irrelevant if it's a fork or if it has no metadata (no description, no icon, no topic).
 - `AMBIGUOUS_UNICODE_DETECTION`: **true**: Detect ambiguous unicode characters in files and show warnings for it.
 - `SKIP_ESCAPE_CONTEXTS`: **\<empty\>**: \[diff, file-view, wiki\]: Comma separated list of which escape context the ambiguous unicode detection shouldn't be run in. `wiki` is for content on the wiki pages, `file-view` is for (rendered) file content and `diff` is for the diff of an commit and pull request.
+- `PREFERRED_TIMESTAMP_TENSE`: **mixed**: The tense all timestamps should be rendered in. Possible values are `absolute` time (i.e. 1970-01-01, 11:59) and `mixed`. `mixed` means most timestamps are rendered in relative time (i.e. 2 days ago).
 
 ### UI - Admin (`ui.admin`)
 
