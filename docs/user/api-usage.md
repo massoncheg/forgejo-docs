@@ -33,9 +33,11 @@ Note that `/users/:name/tokens` is a special endpoint and requires you
 to authenticate using `BasicAuth` and a password, as follows:
 
 ```sh
-$ curl -H "Content-Type: application/json" -d '{"name":"test"}' -u username:password https://forgejo.your.host/api/v1/users/<username>/tokens
-{"id":1,"name":"test","sha1":"9fcb1158165773dd010fca5f0cf7174316c3e37d","token_last_eight":"16c3e37d"}
+$ curl -H "Content-Type: application/json" -d '{"name":"test","scopes":["write:package"]}' -u username:password https://forgejo.your.host/api/v1/users/<username>/tokens
+{"id":1,"name":"test","sha1":"9fcb1158165773dd010fca5f0cf7174316c3e37d","token_last_eight":"16c3e37d","scopes":["write:package"]}
 ```
+
+The keys of the JSON data object are `name` (the display name for the token) and `scopes` (list of [Access Token scope](../token-scope/) names).
 
 The `sha1` (the token) is only returned once and is not stored in
 plain-text. It will not be displayed when listing tokens with a `GET`
