@@ -23,7 +23,10 @@ jobs:
         run: |
           scripts/cli-docs.sh run ${{ env.GITHUB_BASE_REF }} > docs/admin/command-line.md
           git diff --exit-code
-      - run: pnpm run update-schedule
+      - name: release-schedule
+        run: |
+          pnpm run update-schedule
+          git diff --exit-code
       - name: get forgejo.org and move the docs
         run: |
           git clone --recursive --depth 1 https://codeberg.org/forgejo/website/ /tmp/website
