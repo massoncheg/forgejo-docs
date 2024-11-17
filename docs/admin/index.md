@@ -10,6 +10,7 @@ These documents are targeted to people who run Forgejo on their machines.
   - [With Docker](./installation-docker/)
   - [From binary](./installation-binary/)
   - [Database Preparation](./database-preparation/)
+- [Release schedule](./release-schedule/)
 - [Configuration Cheat Sheet](./config-cheat-sheet/)
 - [Storage settings](./storage/)
 - [Upgrade guide](./upgrade/)
