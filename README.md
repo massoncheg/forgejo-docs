@@ -10,15 +10,6 @@ which documents the version that is currently being developed.
 Each time a new major version of Forgejo is released,
 a new branch will be created in this repo to document the stable release.
 
-Current release branches are as follows:
-
-- [`next`](https://codeberg.org/forgejo/docs/src/branch/next)
-- [`v8.0`](https://codeberg.org/forgejo/docs/src/branch/v8.0)
-- [`v7.0`](https://codeberg.org/forgejo/docs/src/branch/v7.0)
-- [`v1.21`](https://codeberg.org/forgejo/docs/src/branch/v1.21)
-- [`v1.20`](https://codeberg.org/forgejo/docs/src/branch/v1.20)
-- [`v1.19`](https://codeberg.org/forgejo/docs/src/branch/v1.19)
-
 Documentation content lives in the `docs` directory, and images in the `docs/_images` subdirectory.
 
 ## Contributing

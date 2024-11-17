@@ -14,7 +14,8 @@
     "format:remark": "remark . --quiet --frail --output",
     "format:prettier": "prettier -w --cache .",
     "prepare": "husky install",
-    "mermaid": "./scripts/mermaid_image_generate.sh"
+    "mermaid": "./scripts/mermaid_image_generate.sh",
+    "update-schedule": "./scripts/release-schedule.sh && prettier -w --cache docs/admin/release-schedule.md"
   },
   "lint-staged": {
     "*.md": "remark --quiet --frail",

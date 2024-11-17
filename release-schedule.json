@@ -1,0 +1,12 @@
+[
+  { "major": "7", "minor": "0", "cut": "01-04-2024", "release": "23-04-2024", "eol": "16-07-2024", "lts": true },
+  { "major": "8", "minor": "0", "cut": "01-07-2024", "release": "30-07-2024", "eol": "16-10-2024", "lts": false },
+  { "major": "9", "minor": "0", "cut": "25-09-2024", "release": "16-10-2024", "eol": "15-01-2025", "lts": false },
+  { "major": "10", "minor": "0", "cut": "25-12-2024", "release": "15-01-2025", "eol": "16-04-2025", "lts": false },
+  { "major": "11", "minor": "0", "cut": "26-03-2025", "release": "16-04-2025", "eol": "14-07-2026", "lts": true },
+  { "major": "12", "minor": "0", "cut": "25-06-2025", "release": "16-07-2025", "eol": "15-10-2025", "lts": false },
+  { "major": "13", "minor": "0", "cut": "24-09-2025", "release": "15-10-2025", "eol": "14-01-2026", "lts": false },
+  { "major": "14", "minor": "0", "cut": "24-12-2025", "release": "14-01-2026", "eol": "15-04-2026", "lts": false },
+  { "major": "15", "minor": "0", "cut": "25-03-2026", "release": "15-04-2026", "eol": "14-07-2027", "lts": true },
+  { "major": "16", "minor": "0", "cut": "24-06-2026", "release": "15-07-2026", "eol": "14-10-2026", "lts": false }
+]
