@@ -26,7 +26,7 @@ jobs:
       - name: release-schedule
         run: |
           pnpm run update-schedule
-          git diff --exit-code
+          git diff --exit-code || (echo "Error: Run 'pnpm run update-schedule' to generate the markdown release schedule and commit it" && false)
       - name: get forgejo.org and move the docs
         run: |
           git clone --recursive --depth 1 https://codeberg.org/forgejo/website/ /tmp/website

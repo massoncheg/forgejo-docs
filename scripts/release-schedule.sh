@@ -16,8 +16,17 @@ schedule="$(sed -e "/$tag/,20000d" <$dir/release-schedule.md)"
 $schedule
 $tag
 
-| **LTS** | **Version** | **Cut branch** | **Release date** | **End Of Life** |
-| ------- | ----------- | -------------- | ---------------- | --------------- |
+| **Version** | **Cut branch** | **Release date** | **End Of Life** |
+| ----------- | -------------- | ---------------- | --------------- |
 EOF
-	jq --raw-output '.[] | "| \(.lts) | \(.major).\(.minor) | \(.cut) | \(.release) | \(.eol) |"' <release-schedule.json
+	jq --raw-output '
+def date: .|strptime("%Y-%m-%d")|strftime("%e %B %Y");
+def bold: "**\(.)**";
+
+.[] | "| "
++ "\(.major).\(.minor)\(if .lts then " (LTS)" else "" end) |"
++ "\(.cut|date) |"
++ "\(.release|date) |"
++ "\(if .lts then .eol|date|bold else .eol|date end) |"
+' release-schedule.json
 ) >$dir/release-schedule.md
