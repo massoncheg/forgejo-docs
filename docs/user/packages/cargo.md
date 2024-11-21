@@ -50,8 +50,14 @@ index = "sparse+https://forgejo.example.com/api/packages/{owner}/cargo/" # Spars
 | --------- | ------------------------- |
 | `owner`   | The owner of the package. |
 
-If the registry is private or you want to publish new packages, you have to configure your credentials.
-Add the credentials section to the credentials file located in the current users home directory (for example `~/.cargo/credentials.toml`):
+## Credentials
+
+If the registry is private or you want to publish new packages, you must use your credentials to access it.
+
+The Cargo registry requires an [API token](https://codeberg.org/user/settings/applications) with the "write:packages" permission.
+To obtain a token useable by Cargo, prepend the string "Bearer " to your API token.
+
+To store the token in your configuration, add the credentials section to the credentials file located in the current users home directory (for example `~/.cargo/credentials.toml`):
 
 ```
 [registries.forgejo]
@@ -70,7 +76,7 @@ Since Rust 1.68, sparse is the default method for crates.io.
 
 ## Publish a package
 
-Publish a package by running the following command in your project:
+Publish a package by obtaining an [API token](#Credentials) and running the following command in your project:
 
 ```shell
 cargo publish
