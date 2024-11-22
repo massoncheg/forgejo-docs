@@ -1,0 +1,35 @@
+# Copyright The Forgejo Authors
+# SPDX-License-Identifier: MIT
+
+#
+# Keep the docs repository up to date based on the Forgejo schedule release
+# found at https://codeberg.org/forgejo/docs/raw/branch/next/release-schedule.json
+#
+# * cut documentation branches at the same time as the Forgejo main repository
+# * create and archive the backport labels
+# * ...
+#
+
+name: forgejo-release
+
+on:
+  #  schedule:
+  #    - cron: '15 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    if: secrets.WEBSITETOKEN != ''
+    runs-on: docker
+    container:
+      image: 'code.forgejo.org/oci/node:20-bookworm'
+    steps:
+      - uses: https://code.forgejo.org/forgejo/release-scheduler@v1.0.0
+        with:
+          forgejo: https://codeberg.org
+          repository: forgejo/docs
+          token: ${{ secrets.WEBSITETOKEN }}
+          backport-label-template: 'backport/v$version'
+          backport-label-pattern: "backport/v([0-9\\.]+).*"
+          backport-label-color: '#bfe5bf'
+          dry-run: ${{ vars.FORGEJO_RELEASE_DRY_RUN }}
