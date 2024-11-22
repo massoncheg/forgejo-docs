@@ -781,12 +781,12 @@ steps:
 ### `jobs.<job_id>.container.image`
 
 - **Docker or Podman:**
-  If the default image is unsuitable, a job can specify an alternate container image with `container:`, [as shown in this example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-container/.forgejo/workflows/test.yml). If not specified, the shell defaults to `sh`. For instance the following will ensure the job is run using [Alpine 3.18](https://hub.docker.com/_/alpine/tags?name=3.18).
+  If the default image is unsuitable, a job can specify an alternate container image with `container:`, [as shown in this example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-container/.forgejo/workflows/test.yml). If not specified, the shell defaults to `sh`. For instance the following will ensure the job is run using [Alpine 3.20](https://hub.docker.com/_/alpine/tags?name=3.20).
 
   ```yaml
   runs-on: docker
   container:
-    image: alpine:3.19
+    image: alpine:3.20
   ```
 
 - **LXC:**
@@ -812,7 +812,7 @@ The credentials are the same values that you would provide to the docker login c
 ```yaml
 runs-on: docker
 container:
-  image: alpine:3.18
+  image: alpine:3.20
   credentials:
     username: 'root'
     password: 'admin1234'
@@ -898,7 +898,7 @@ jobs:
   test:
     runs-on: docker
     container:
-      image: alpine:3.19
+      image: alpine:3.20
     steps:
       - run: |
           grep Alpine /etc/os-release
@@ -1145,7 +1145,7 @@ test "KEY2=$KEY2" = "KEY2=value2"
 - [Local actions](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-local-action/.forgejo) - using an action found in a directory instead of a remote repository.
 - [PostgreSQL service](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/test.yml) - a PostgreSQL service and a connection to display the (empty) list of tables of the default database.
 - [Using services](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/test.yml) - illustrates how to configure and use services.
-- [Choosing the image with `container`](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.18` image using `container:`.
+- [Choosing the image with `container`](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-container/.forgejo/workflows/test.yml) - replacing the `runs-on: docker` image with the `alpine:3.20` image using `container:`.
 - [Docker action](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-docker-action/.forgejo/workflows/test.yml) - using a action implemented as a `Dockerfile`.
 - [`on.pull_request` and `on.pull_request_target` events](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-pull-request/.forgejo/workflows/test.yml).
 - [`on.schedule` event](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-cron/.forgejo/workflows/test.yml).

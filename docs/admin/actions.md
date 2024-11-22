@@ -111,7 +111,7 @@ The default container container image can be overridden by a workflow:
 ```yaml
 runs-on: docker
 container:
-  image: alpine:3.18
+  image: alpine:3.20
 ```
 
 See the user documentation for `jobs.<job_id>.container` for more information.
@@ -119,7 +119,7 @@ See the user documentation for `jobs.<job_id>.container` for more information.
 Label examples:
 
 - `node20:docker://node:20-bookworm` == `node20:docker://docker.io/node:20-bookworm` defines `node20` to be the `node:20-bookworm` image from hub.docker.com
-- `docker:docker://code.forgejo.org/oci/alpine:3.18` defines `docker` to be the `alpine:3.18` image from https://code.forgejo.org/oci/-/packages/container/alpine/3.18
+- `docker:docker://code.forgejo.org/oci/alpine:3.20` defines `docker` to be the `alpine:3.20` image from https://code.forgejo.org/oci/-/packages/container/alpine/3.20
 
 ### LXC
 

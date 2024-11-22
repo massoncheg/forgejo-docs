@@ -55,7 +55,7 @@ PUT https://forgejo.example.com/api/packages/{owner}/alpine/{branch}/{repository
 | Parameter    | Description                                                                                                               |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------- |
 | `owner`      | The owner of the package.                                                                                                 |
-| `branch`     | The branch may match the release version of the OS, ex: `v3.17`.                                                          |
+| `branch`     | The branch may match the release version of the OS, ex: `v3.20`.                                                          |
 | `repository` | The repository can be used [to group packages](https://wiki.alpinelinux.org/wiki/Repositories) or just `main` or similar. |
 
 Example request using HTTP Basic authentication:
@@ -63,7 +63,7 @@ Example request using HTTP Basic authentication:
 ```shell
 curl --user your_username:your_password_or_token \
      --upload-file path/to/file.apk \
-     https://forgejo.example.com/api/packages/testuser/alpine/v3.17/main
+     https://forgejo.example.com/api/packages/testuser/alpine/v3.20/main
 ```
 
 If you are using 2FA or OAuth use a [personal access token](../../api-usage/#authentication) instead of the password.
@@ -98,7 +98,7 @@ Example request using HTTP Basic authentication:
 
 ```shell
 curl --user your_username:your_token_or_password -X DELETE \
-     https://forgejo.example.com/api/packages/testuser/alpine/v3.17/main/test-package-1.0.0.apk
+     https://forgejo.example.com/api/packages/testuser/alpine/v3.20/main/test-package-1.0.0.apk
 ```
 
 The server responds with the following HTTP Status codes.
