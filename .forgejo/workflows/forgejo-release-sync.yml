@@ -33,3 +33,4 @@ jobs:
           backport-label-pattern: "backport/v([0-9\\.]+).*"
           backport-label-color: '#bfe5bf'
           dry-run: ${{ vars.FORGEJO_RELEASE_DRY_RUN }}
+          verbose: ${{ vars.FORGEJO_RELEASE_VERBOSE }}
