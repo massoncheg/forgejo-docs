@@ -110,3 +110,17 @@ Very basic example for a sidebar:
 
 > These files starting with `_` are hidden, so in the web UI you need to manually browse for the files. E.g. for our user _knut_ and his _foobar_ repo:  
 > `https://codeberg.org/knut/foobar/wiki/_Sidebar`
+
+## Embedding LaTeX-style equations
+
+The wiki also supports embedding LaTeX-style equations in Markdown files, using [KaTeX](https://katex.org).
+
+Such equations go between two `$` characters, for example like this:
+
+```markdown
+$ \frac{1}{2} = 0.5 $
+```
+
+This will then result in the following properly rendered equation:
+
+![The $\frac{1}{2} = 0.5$ equation properly rendered by KaTeX](../_images/user/wiki/katex_example.png)
