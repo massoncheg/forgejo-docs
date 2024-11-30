@@ -711,7 +711,7 @@ and its content defines the sequential `step`s to be run.
 
 Each job runs in a different container and shares nothing with other jobs.
 
-All jobs run in parallel, unless they depend on each other as specified with `needs`.
+All jobs run in parallel, unless they depend on each other as specified with [`jobs.<job_id>.needs`](#jobsjob_idneeds).
 
 ### `jobs.<job_id>`
 
@@ -739,6 +739,27 @@ By default the `docker` label will create a container from a [Node.js 16 Debian 
 The `runs-on: lxc` label will run the jobs in a [LXC](https://linuxcontainers.org/lxc/) container where software that rely on `systemd` can be installed. Nested containers can also be created recursively (see [the `end-to-end` tests](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/.forgejo/workflows/integration.yml) for an example). `Services` are not supported for jobs that run on LXC.
 
 The `runs-on: self-hosted` label will run the jobs directly on the host, in a shell spawned from the runner. It provides no isolation at all.
+
+### `jobs.<job_id>.needs`
+
+Can be used to introduce ordering between different jobs by listing their respective `<job_id>`. All jobs listed here must complete successfully before this job is considered for execution.
+
+`needs` can either be a single string, naming a single job as pre-requisite, or an array for specifying multiple jobs to run before this one.
+
+For instance:
+
+```yaml
+---
+jobs:
+  lint:
+    steps:
+      - run: echo linting the code
+  build:
+    needs:
+      - job1
+    steps:
+      - run: echo only run after linting
+```
 
 ### `jobs.<job_id>.strategy.matrix`
 
