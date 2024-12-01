@@ -82,7 +82,8 @@ Forgejo supports the use of SSH as an authentication method for push mirrors.
 You can enable this when adding a new push mirror, existing push mirrors cannot be configured to use SSH.
 This feature is only available if Forgejo is able to find the `ssh` executable.
 
-To use SSH as authentication method, select the **Use SSH authentication** option in the authorization tab when adding a new push mirror. Make sure to use ssh conform URLs for **Git Remote Repository URL**, which is e.g. `git@github.com:<your_github_group>/<your_github_project>.git` for GitHub (differs to the default authorization approach as mentioned above).
+To use SSH as authentication method, select the **Use SSH authentication** option in the authorization tab when adding a new push mirror. 
+Make sure to use ssh conform URLs for **Git Remote Repository URL**, which is e.g. `git@github.com:<your_github_group>/<your_github_project>.git` for GitHub (differs to the default authorization approach as mentioned above).
 Make sure to not fill in the **Username** or **Password** input.
 Forgejo generates an Ed25519 SSH key pair and saves it for you.
 
