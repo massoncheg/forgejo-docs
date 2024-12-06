@@ -370,6 +370,7 @@ The following configuration set `Content-Type: application/vnd.android.package-a
 - `LFS_HTTP_AUTH_EXPIRY`: **24h**: LFS authentication validity period in time.Duration, pushes taking longer than this may fail.
 - `LFS_MAX_FILE_SIZE`: **0**: Maximum allowed LFS file size in bytes (Set to 0 for no limit).
 - `LFS_LOCKS_PAGING_NUM`: **50**: Maximum number of LFS Locks returned per page.
+- `LFS_MAX_BATCH_SIZE`: **0:** When clients make lfs batch requests, reject them if there are more pointers than this number. '0' means 'unlimited'
 
 - `REDIRECT_OTHER_PORT`: **false**: If true and `PROTOCOL` is https, allows redirecting http requests on `PORT_TO_REDIRECT` to the https port Forgejo listens on.
 - `REDIRECTOR_USE_PROXY_PROTOCOL`: **%(USE_PROXY_PROTOCOL)s**: expect PROXY protocol header on connections to https redirector.
@@ -833,6 +834,11 @@ Default templates for project boards:
 - `MAX_FILES`: **5**: Maximum number of attachments that can be uploaded at once.
 
 Additional settings can be included in this section to specify where the data is stored, as [explained in detail in the storage documentation](../storage/).
+
+## LFS client (`lfs_client`)
+
+- `BATCH_SIZE`: **20**: When mirroring an upstream lfs endpoint, limit the number of pointers in each batch request to this number.
+- `BATCH_OPERATION_CONCURRENCY`: **8**: Limit the number of concurrent upload/download operations within a batch.
 
 ## Log (`log`)
 
