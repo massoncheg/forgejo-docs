@@ -104,6 +104,14 @@ In a `workflow` file strings that look like `${{ ... }}` are evaluated by the `F
 
 > **NOTE:** String comparisons are case insensitive.
 
+### Conditionals
+
+Can be used in `if:` conditionals on jobs and steps.
+
+- `success()`. returns true when none of the previous jobs/steps have failed or been canceled.
+- `always()`. causes the job/step to always execute, and returns true, even when canceled. If you want to run a job/step regardless of its success or failure, use the recommended alternative: **!cancelled()**.
+- `failure()`. returns true when any previous step/job has failed.
+
 ### Functions
 
 - `contains( search, item )`. Returns `true` if `search` contains `item`. If `search` is an array, this function returns `true` if the `item` is an element in the array. If `search` is a string, this function returns `true` if the `item` is a substring of `search`. This function is not case sensitive. Casts values to a string.
@@ -740,6 +748,21 @@ The `runs-on: lxc` label will run the jobs in a [LXC](https://linuxcontainers.or
 
 The `runs-on: self-hosted` label will run the jobs directly on the host, in a shell spawned from the runner. It provides no isolation at all.
 
+### `jobs.<job_id>.if`
+
+If specified, the job is only run if the **expression** evaluates to true.
+
+For instance:
+
+```yaml
+---
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - run: echo only run on main branch
+```
+
 ### `jobs.<job_id>.needs`
 
 Can be used to introduce ordering between different jobs by listing their respective `<job_id>`. All jobs listed here must complete successfully before this job is considered for execution.
@@ -994,11 +1017,7 @@ A unique identifier for the step.
 
 ### `jobs.<job_id>.steps[*].if`
 
-The step is run if the **expression** evaluates to true. The following additional boolean functions are supported:
-
-- `success()`. returns true when none of the previous steps have failed or been canceled.
-- `always()`. causes the step to always execute, and returns true, even when canceled. If you want to run a job or step regardless of its success or failure, use the recommended alternative: **!cancelled()**.
-- `failure()`. returns true when any previous step of a job fails.
+The step is run if the **expression** evaluates to true.
 
 Check out the workflows in [example-if](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-if/) and [example-if-fail](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-if-fail/).
 
