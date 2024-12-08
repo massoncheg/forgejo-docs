@@ -36,36 +36,9 @@ The release candidates are built of the stable branch and published with the **-
 - Forgejo **v8.1-test**
 - etc.
 
-## Stable release process
+## Stable release management
 
-- Three weeks before the release date announce a feature freeze during which only bug fixes can be merged
-- Create a new issue based on the checklist of the previous release ([for instance v8.0.0](https://codeberg.org/forgejo/forgejo/issues/4153)) and follow the same steps
-
-### Forgejo release building and testing
-
-When Forgejo is released, artefacts (packages, binaries, etc.) are first published by the CI/CD pipelines in the https://codeberg.org/forgejo-experimental organization, to be downloaded and verified to work.
-
-- Locally set the vX.Y.Z tag to the tip of the https://codeberg.org/forgejo/forgejo/vX.Y/forgejo branch
-- Push the vX.Y.Z tag to https://codeberg.org/forgejo-integration/forgejo
-
-It will trigger a [build workflow](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows/build-release.yml) that:
-
-- Builds binaries and uploaded them to https://codeberg.org/forgejo-integration/forgejo/releases
-- Builds container images and uploaded them to https://codeberg.org/forgejo-integration/-/packages/container/forgejo/versions
-
-If the build fails, the logs of the workflow can be found in https://codeberg.org/forgejo-integration/forgejo/actions for debugging.
-Once the build is successful, it must be copied to https://codeberg.org/forgejo-experimental.
-
-- Push the vX.Y.Z tag to https://codeberg.org/forgejo-experimental/forgejo
-
-It will trigger a [publish workflow](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows/publish-release.yml) that:
-
-- Copies the binaries from https://codeberg.org/forgejo-integration/forgejo/releases to https://codeberg.org/forgejo-experimental/forgejo/releases
-- Copies the container images from https://codeberg.org/forgejo-integration/-/packages/container/forgejo/versions to https://codeberg.org/forgejo-experimental/-/packages/container/forgejo/versions
-
-To verify the container images, the [end-to-end](https://code.forgejo.org/forgejo/end-to-end) integration tests can be used. Push a branch with [the location of the release under test](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/.forgejo/workflows/actions.yml) to run a collection of test workflows.
-
-Reach out to packagers and users to manually verify the release works as expected.
+Major and patch releases are published with the help of the [release-manager](https://code.forgejo.org/forgejo/release-manager).
 
 ## LTS toolchain upgrades
 
@@ -128,7 +101,7 @@ A GPG master key with no expiration date is created and shared with members of t
 
 ### Securing the release token and cryptographic keys
 
-For both the Forgejo runner and Forgejo itself, copying and signing the release artifacts (container images and binaries) happen on a Forgejo instance [not publicly accessible](../infrastructure/#octopuce) to safeguard the token that has write access to the Forgejo repository as well as the cryptographic key used to sign the releases.
+For both the Forgejo runner and Forgejo itself, copying and signing the release artifacts (container images and binaries) happen on a Forgejo instance not publicly accessible to safeguard the token that has write access to the Forgejo repository as well as the cryptographic key used to sign the releases.
 
 ### Master key creation
 
