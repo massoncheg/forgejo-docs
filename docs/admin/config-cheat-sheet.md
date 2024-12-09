@@ -1122,7 +1122,7 @@ This section only does "set" config, a removed config key from this section won'
 - `ENABLED`: **true**: Enables OAuth2 provider.
 - `ACCESS_TOKEN_EXPIRATION_TIME`: **3600**: Lifetime of an OAuth2 access token in seconds
 - `REFRESH_TOKEN_EXPIRATION_TIME`: **730**: Lifetime of an OAuth2 refresh token in hours
-- `INVALIDATE_REFRESH_TOKENS`: **false**: Check if refresh token has already been used
+- `INVALIDATE_REFRESH_TOKENS`: **true**: Check if refresh token has already been used
 - `JWT_SIGNING_ALGORITHM`: **RS256**: Algorithm used to sign OAuth2 tokens. Valid values: \[`HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`, `ES256`, `ES384`, `ES512`\]
 - `JWT_SECRET`: **\<empty\>**: OAuth2 authentication secret for access and refresh tokens, change this to a unique string. This setting is only needed if `JWT_SIGNING_ALGORITHM` is set to `HS256`, `HS384` or `HS512`.
 - `JWT_SECRET_URI`: **\<empty\>**: Instead of defining JWT_SECRET in the configuration, this configuration option can be used to give Forgejo a path to a file that contains the secret (example value: `file:/etc/forgejo/oauth2_jwt_secret`)
