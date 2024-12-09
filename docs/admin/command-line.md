@@ -862,7 +862,7 @@ USAGE:
    forgejo migrate command [command options]
 
 DESCRIPTION:
-   This is a command for migrating the database, so that you can run gitea admin user create before starting the server.
+   This is a command for migrating the database, so that you can run 'forgejo admin user create' before starting the server.
 
 COMMANDS:
    help, h  Shows a list of commands or help for one command
