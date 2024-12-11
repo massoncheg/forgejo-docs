@@ -80,7 +80,7 @@ created release is now listed there:
 
 ![](../_images/user/releases/3.png)
 
-Here, you can edit the release if needed `(1)`. You will also see optiuons to
+Here, you can edit the release if needed `(1)`. You will also see options to
 download the source code of the repository at the commit the release was created
 at as `.zip` or `.tar.gz` files `(2)`. Finally, if on the previous page you
 added assets like an attached file or an external link, they will also show up
