@@ -354,7 +354,7 @@ command: '/bin/sh -c "sleep 5; forgejo-runner daemon"'
 
 Here, the sleep allows the `docker-in-docker` service to start up before the `forgejo-runner daemon` is started.
 
-More [docker compose](https://docs.docker.com/compose/) examples [are provided](https://codeberg.org/forgejo/runner/src/branch/main/examples/docker-compose) to demonstrate how to install the OCI image to successfully run a workflow.
+More [docker compose](https://docs.docker.com/compose/) examples [are provided](https://code.forgejo.org/forgejo/runner/src/branch/main/examples/docker-compose) to demonstrate how to install the OCI image to successfully run a workflow.
 
 ## Standard registration
 
