@@ -51,14 +51,14 @@ Now create the directories Forgejo will use and set access permissions appropria
 
 ```sh
 sudo mkdir /var/lib/forgejo
-sudo chown git:git /var/lib/forgejo && chmod 750 /var/lib/forgejo
+sudo chown git:git /var/lib/forgejo && sudo chmod 750 /var/lib/forgejo
 ```
 
 This is the directory Forgejo will store its data in, including your Git repositories.
 
 ```sh
 sudo mkdir /etc/forgejo
-sudo chown root:git /etc/forgejo && chmod 770 /etc/forgejo
+sudo chown root:git /etc/forgejo && sudo chmod 770 /etc/forgejo
 ```
 
 This is the directory Forgejo's config, called `app.ini`, is stored in. **Initially it needs to
@@ -143,7 +143,7 @@ While at it, make `/etc/forgejo/` and the `app.ini` read-only for the git user (
 write to it after the initial configuration):
 
 ```sh
-sudo chmod 750 /etc/forgejo && chmod 640 /etc/forgejo/app.ini
+sudo chmod 750 /etc/forgejo && sudo chmod 640 /etc/forgejo/app.ini
 ```
 
 Now (as root) edit `/etc/forgejo/app.ini`
