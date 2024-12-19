@@ -9,7 +9,7 @@ Forgejo provides [container images](https://codeberg.org/forgejo/-/packages/cont
 docker pull codeberg.org/forgejo/forgejo:9
 ```
 
-If `codeberg.org` can not be accessed you can replace every mention of `codeberg.org` with `code.forgejo.org` to use our mirror.
+If `codeberg.org` can not be accessed you can replace every mention of `codeberg.org` with `data.forgejo.org` to use our mirror.
 
 The **9** tag is set to be the latest minor release, starting with **9.0.x**. The **9** tag will then be equal to **9.0.4** when it is released and so on. The **9.0** tag is also set to be the latest patch version release.
 

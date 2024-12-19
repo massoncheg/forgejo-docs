@@ -15,18 +15,18 @@ value of `DEFAULT_ACTIONS_URL` is prepended to it.
 ```yaml
 [actions]
 ENABLED = true
-DEFAULT_ACTIONS_URL = https://code.forgejo.org
+DEFAULT_ACTIONS_URL = https://data.forgejo.org
 ```
 
-The actions published at https://code.forgejo.org are:
+The actions published at https://data.forgejo.org are:
 
 - known to work with Forgejo Actions
 - published under a Free Software license
 
-They can be found in the following organizations:
-
-- [General purpose actions](https://code.forgejo.org/actions)
-- [Docker actions](https://code.forgejo.org/docker)
+They can be found in organizations such as
+[actions](https://data.forgejo.org/actions) for general purpose
+actions, [docker](https://data.forgejo.org/docker) for those related
+to Docker and so on.
 
 When setting `DEFAULT_ACTIONS_URL` to a Forgejo instance with an open
 registration, **care must be taken to avoid name conflicts**. For
@@ -119,7 +119,7 @@ See the user documentation for `jobs.<job_id>.container` for more information.
 Label examples:
 
 - `node20:docker://node:20-bookworm` == `node20:docker://docker.io/node:20-bookworm` defines `node20` to be the `node:20-bookworm` image from hub.docker.com
-- `docker:docker://code.forgejo.org/oci/alpine:3.20` defines `docker` to be the `alpine:3.20` image from https://code.forgejo.org/oci/-/packages/container/alpine/3.20
+- `docker:docker://data.forgejo.org/oci/alpine:3.20` defines `docker` to be the `alpine:3.20` image from https://data.forgejo.org/oci/-/packages/container/alpine/3.20
 
 ### LXC
 

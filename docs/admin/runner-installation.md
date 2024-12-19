@@ -9,21 +9,21 @@ It needs to be installed separately from the main Forgejo instance. For security
 
 Each `Forgejo Runner` release is published for all supported architectures as:
 
-- [binaries](https://code.forgejo.org/forgejo/runner/releases)
-- [OCI images](https://code.forgejo.org/forgejo/-/packages/container/runner/versions)
+- [binaries](https://data.forgejo.org/forgejo/runner/releases)
+- [OCI images](https://data.forgejo.org/forgejo/-/packages/container/runner/versions)
 
 ## Binary installation
 
 ### Downloading and installing the binary
 
-Download the latest [binary release](https://code.forgejo.org/forgejo/runner/releases) and verify its signature:
+Download the latest [binary release](https://data.forgejo.org/forgejo/runner/releases) and verify its signature:
 
 ```shell
 
-$ export RUNNER_VERSION=$(curl -X 'GET' https://code.forgejo.org/api/v1/repos/forgejo/runner/releases/latest | jq .name -r | cut -c 2-)
-$ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-amd64
+$ export RUNNER_VERSION=$(curl -X 'GET' https://data.forgejo.org/api/v1/repos/forgejo/runner/releases/latest | jq .name -r | cut -c 2-)
+$ wget -O forgejo-runner https://data.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-amd64
 $ chmod +x forgejo-runner
-$ wget -O forgejo-runner.asc https://code.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-amd64.asc
+$ wget -O forgejo-runner.asc https://data.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-amd64.asc
 $ gpg --keyserver keys.openpgp.org --recv EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
 $ gpg --verify forgejo-runner.asc forgejo-runner
 Good signature from "Forgejo <contact@forgejo.org>"
@@ -94,7 +94,7 @@ The `Forgejo runner` relies on application containers (Docker, Podman, etc.) or 
   ```shell
   $ lxc-helpers.sh lxc_container_run forgejo-runners -- sudo --user debian bash
   $ sudo apt-get install docker.io wget gnupg2
-  $ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v4.0.0/forgejo-runner-amd64
+  $ wget -O forgejo-runner https://data.forgejo.org/forgejo/runner/releases/download/v4.0.0/forgejo-runner-amd64
   ...
   ```
 
@@ -235,8 +235,8 @@ host:
 
 #### Cache configuration
 
-Some actions such as https://code.forgejo.org/actions/cache or
-https://code.forgejo.org/actions/setup-go can communicate with the
+Some actions such as https://data.forgejo.org/actions/cache or
+https://data.forgejo.org/actions/setup-go can communicate with the
 `Forgejo runner` to save and restore commonly used files such as
 compilation dependencies. They are stored as compressed tar archives,
 fetched when a job starts and saved when it completes.
@@ -272,18 +272,18 @@ Use `journalctl -u forgejo-runner.service` to read the runner logs.
 
 ## OCI image installation
 
-The [OCI images](https://code.forgejo.org/forgejo/-/packages/container/runner/versions)
+The [OCI images](https://data.forgejo.org/forgejo/-/packages/container/runner/versions)
 are built from the Dockerfile which is [found in the source directory](https://code.forgejo.org/forgejo/runner/src/branch/main/Dockerfile). It contains the `forgejo-runner` binary.
 
 ```shell
-$ docker run --rm code.forgejo.org/forgejo/runner:4.0.0 forgejo-runner --version
+$ docker run --rm data.forgejo.org/forgejo/runner:4.0.0 forgejo-runner --version
 forgejo-runner version v4.0.0
 ```
 
 It does not run as root:
 
 ```shell
-$ docker run --rm code.forgejo.org/forgejo/runner:4.0.0 id
+$ docker run --rm data.forgejo.org/forgejo/runner:4.0.0 id
 uid=1000 gid=1000 groups=1000
 ```
 
@@ -320,7 +320,7 @@ services:
     restart: 'unless-stopped'
 
   gitea:
-    image: 'code.forgejo.org/forgejo/runner:4.0.0'
+    image: 'data.forgejo.org/forgejo/runner:4.0.0'
     links:
       - docker-in-docker
     depends_on:

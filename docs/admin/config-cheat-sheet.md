@@ -1351,7 +1351,7 @@ Note that you may need to set `[migrations].ALLOW_LOCALNETWORKS` option to `true
 ## Actions (`actions`)
 
 - `ENABLED`: **true**: Enable/Disable actions
-- `DEFAULT_ACTIONS_URL`: **https://code.forgejo.org**: Default address to get action plugins, e.g. the default value means downloading from "https://code.forgejo.org/actions/checkout" for "uses: actions/checkout@v3"
+- `DEFAULT_ACTIONS_URL`: **https://data.forgejo.org**: Default address to get action plugins, e.g. the default value means downloading from "https://code.forgejo.org/actions/checkout" for "uses: actions/checkout@v3"
 - `ARTIFACT_RETENTION_DAYS`: **90**: Default number of days to keep artifacts. Artifacts could have their own retention periods by setting the `retention-days` option in `actions/upload-artifact` step.
 - `ZOMBIE_TASK_TIMEOUT`: **10m**: Timeout to stop the task which have running status, but haven't been updated for a long time.
 - `ENDLESS_TASK_TIMEOUT`: **3h**: Timeout to stop the tasks which have running status and continuous updates, but don't end for a long time.
