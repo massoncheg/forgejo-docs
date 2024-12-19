@@ -22,9 +22,9 @@ jobs:
     if: secrets.WEBSITETOKEN != ''
     runs-on: docker
     container:
-      image: 'code.forgejo.org/oci/node:20-bookworm'
+      image: 'data.forgejo.org/oci/node:20-bookworm'
     steps:
-      - uses: https://code.forgejo.org/forgejo/release-scheduler@v1.0.0
+      - uses: https://data.forgejo.org/forgejo/release-scheduler@v1.0.0
         with:
           forgejo: https://codeberg.org
           repository: forgejo/docs
