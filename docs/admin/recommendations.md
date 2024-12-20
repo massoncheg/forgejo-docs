@@ -65,7 +65,7 @@ If your instance does not need to adhere to a security policy that mandates a di
 
 In recent years, spam bots have gotten smarter and have automated more than ever. A simple register form such as in Forgejo is a simple task for bots to register a new user and comment wherever they can about their favorite scam website. Forgejo provides the option to enable captcha on the register form.
 
-If your instance has an open registration, it is recommended to change this value to **true**. You also need to choose which captcha you want to use, you can find more about that in the [service configuration](../config-cheat-sheet#service-service/). Keep in mind that certain types of captcha limit the accessibility of registering new users because they often use images that are difficult to see.
+If your instance has an open registration, it is recommended to change this value to **true**. You also need to choose which captcha you want to use, you can find more about that in the [service configuration](../config-cheat-sheet#service-service). Keep in mind that certain types of captcha limit the accessibility of registering new users because they often use images that are difficult to see.
 
 ### `[ui].ONLY_SHOW_RELEVANT_REPOS`
 
