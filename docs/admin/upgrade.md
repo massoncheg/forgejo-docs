@@ -44,6 +44,13 @@ It is **critical** to verify that Forgejo works very carefully. Restoring the ba
 - Manually verify via the web interface. Making a checklist of a typical use case is a good way to not miss anything.
 - If there is a problem of any kind, increase the log level and take a look at the logs. If you cannot figure out what the problem is, ask for help [in the Forgejo chatroom](https://matrix.to/#/#forgejo-chat:matrix.org) before trying to fix it.
 
+## Preparing an upgrade from Gitea
+
+Upgrades to Forgejo are transparently supported [up to Gitea v1.22 included](https://forgejo.org/2024-12-gitea-compatibility/), in two steps:
+
+- Upgrade from any Gitea version up to and including v1.22.x to Forgejo v10.0.x
+- Upgrade from Forgejo v10.0.x to any Forgejo version greater than v10.
+
 ## Preparing the Forgejo upgrade
 
 - Manually analyze (reading the patches to the sources of the template directory) and update the customized CSS / content.

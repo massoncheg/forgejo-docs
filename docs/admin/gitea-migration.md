@@ -5,6 +5,11 @@ license: 'CC-BY-SA-4.0'
 
 This guide describes how to go from Gitea to Forgejo if Gitea is installed via a package manager.
 
+Upgrades are supported [up to Gitea v1.22 included](https://forgejo.org/2024-12-gitea-compatibility/), in two steps:
+
+- Upgrade from any Gitea version up to and including v1.22.x to Forgejo v10.0.x
+- Upgrade from Forgejo v10.0.x to any Forgejo version greater than v10.
+
 ## Arch Linux
 
 Arch Linux provides package for both Gitea and Forgejo,

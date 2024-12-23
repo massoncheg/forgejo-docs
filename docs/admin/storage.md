@@ -249,10 +249,6 @@ for instance (the plural is not a typo, it is a unification problem) -
 because their behavior is not thoroughly tested and may lead to
 unexpected results.
 
-There are no safeguards preventing the use of undocumented features
-because it may not be backward compatible when upgrading from Gitea to
-Forgejo.
-
 ## Legacy settings
 
 Some settings are deprecated but still supported in the interest of
