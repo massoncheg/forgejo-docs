@@ -1200,7 +1200,7 @@ If the rule is defined above the renderer ini section or the name does not match
 
 ## Time (`time`)
 
-- `DEFAULT_UI_LOCATION`: Default location of time on the UI, so that we can display correct user's time on UI. i.e. Asia/Shanghai
+- `DEFAULT_UI_LOCATION` **Local**: Default timezone for displaying the current time on the user interface. Takes a name corresponding to a file in the IANA Time Zone database, i.e. `Asia/Shanghai`. For UTC, an empty string or `UTC` can be given, and `Local` for the local time of the machine.
 
 ## Migrations (`migrations`)
 
