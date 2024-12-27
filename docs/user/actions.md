@@ -218,7 +218,10 @@ A list of command and arguments, equivalent to [[COMMAND] [ARG...]](https://docs
 
 ### options
 
-A string of additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/). For instance: "--workdir /myworkdir --ulimit nofile=1024:1024".
+A string of the following additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/).
+
+- `--volume`
+- `--tmpfs`
 
 > **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
 
@@ -880,7 +883,10 @@ Set the volumes for the container to use, as if provided with the `--volume` arg
 
 ### `jobs.<job_id>.container.options`
 
-A string of additional options, as documented in [docker run](https://docs.docker.com/engine/reference/commandline/run/). For instance: "--workdir /myworkdir --ulimit nofile=1024:1024".
+A string of the following additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/).
+
+- `--volume`
+- `--tmpfs`
 
 > **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
 
