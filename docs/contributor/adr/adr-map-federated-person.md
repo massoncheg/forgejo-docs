@@ -66,7 +66,7 @@ Discussion can be found here: https://codeberg.org/forgejo/discussions/issues/10
    1. generating email having the source fqdn is impacted by email whitelists.
    2. loginName is used for mapping, but e.g. @ is not allowed.
    3. password is generated headless.
-2. Maybe the large User table gets even larger (see https://git.exozy.me/a/gitea/issues/2)
+2. Maybe the large User table gets even larger (see https://web.archive.org/web/20241013162344if_/https://git.exozy.me/a/gitea/issues/2)
 3. Occasional contributors may not understand the difference in level of trust implied by federated user. This may promote errors with security impact.
 4. Understanding federated users entries being kind of cache would conflict with user table entries.
 5. LoginNames may be occupied by federated users. This may leak information and increase attack surface.
