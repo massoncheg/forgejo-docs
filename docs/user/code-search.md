@@ -16,8 +16,8 @@ When `REPO_INDEXER_ENABLED` is set to `false`, code search is restricted to a si
 The following options are currently available for code search while using `git-grep`.
 
 - **Match**: Perform an exact match on the provided expression.
-- **Union**: Conduct a union match, returning results that contain atleast one of the specified keywords. For example, a search query containing `hello world` will yeild results with either `hello` or `world`.
-- **RegExp**: Utilize the provided regular expression to perform a pettern-based match (matches will not be highlighted).
+- **Union**: Conduct a union match, returning results that contain at least one of the specified keywords. For example, a search query containing `hello world` will yield results with either `hello` or `world`.
+- **RegExp**: Utilize the provided regular expression to perform a pattern-based match (matches will not be highlighted).
 
 ## Scope
 
@@ -27,14 +27,14 @@ Since `git-grep` is performed on the fly, they can be executed on any valid bran
 
 ![Code search results page using indexer](../_images/user/code-search/indexer.png)
 
-For complex searches or cross-repository queries across an entire organisation or instance, `REPO_INDEXER_ENABLED` must be set to `true`. This enables code search via the selected indexer ([`REPO_INDEXER_TYPE`](../../admin/config-cheat-sheet#indexer-indexer)).
+For complex searches or cross-repository queries across an entire organization or instance, `REPO_INDEXER_ENABLED` must be set to `true`. This enables code search via the selected indexer ([`REPO_INDEXER_TYPE`](../../admin/config-cheat-sheet#indexer-indexer)).
 
 ## Supported Options
 
 The following options are currently available for code search while using an indexer.
 
 - **Match**: Perform an exact match on the provided expression.
-- **Fuzzy**: Conduct a fuzzy search, returning results that contain the keyword within a maximum edit-distance of 2. For example, a search query containing `hello` will yeild results with
+- **Fuzzy**: Conduct a fuzzy search, returning results that contain the keyword within a maximum edit-distance of 2. For example, a search query containing `hello` will yield results with
   - **edit distance of 0**: `hello`
   - **edit distance of 1**: For example, `hllo` (delete), `helloo` (add), `hallo` (modify).
 
