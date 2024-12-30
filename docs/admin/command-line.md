@@ -209,13 +209,14 @@ OPTIONS:
    --quiet, -q                    Only display warnings and errors (default: false)
    --tempdir value, -t value      Temporary dir path (default: "/tmp")
    --database value, -d value     Specify the database SQL syntax: sqlite3, mysql, postgres
-   --skip-repository, -R          Skip the repository dumping (default: false)
-   --skip-log, -L                 Skip the log dumping (default: false)
+   --skip-repository, -R          Skip repositories (default: false)
+   --skip-log, -L                 Skip logs (default: false)
    --skip-custom-dir              Skip custom directory (default: false)
    --skip-lfs-data                Skip LFS data (default: false)
    --skip-attachment-data         Skip attachment data (default: false)
    --skip-package-data            Skip package data (default: false)
    --skip-index                   Skip bleve index data (default: false)
+   --skip-repo-archives           Skip repository archives (default: false)
    --type value                   Dump output format: zip, tar, tar.sz, tar.gz, tar.xz, tar.bz2, tar.br, tar.lz4, tar.zst (default: zip)
 ```
 
