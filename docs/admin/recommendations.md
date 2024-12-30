@@ -73,6 +73,14 @@ The explore page is a good way to quickly check what is happening with an instan
 
 If you have an instance with a lot of activity, it is recommended to change this value to **true**. In that situation, the explore page will filter out repositories that are likely to be less relevant in order to see what interesting projects are available on that instance.
 
+### `[service].USERNAME_COOLDOWN_PERIOD`
+
+If a user or an organization is renamed, each old username, until it is claimed, will redirect to the latest username. In the context of public forges, to prevent namesquatting and allow users to reverse their username change within a certain period of time, a cooldown period can be configured to ensure that no user can claim the username within the cooldown period (with the exception of the original user and administrators).
+
+If your instance has an open registration, it is recommended to change this value to **7**. This means that there is a seven-day cooldown period for old usernames before they can be claimed by anyone, and that users can revert to their old username within seven days.
+
+There is a closely related configuration option `[service].MAX_USER_REDIRECTS` for which the default value is **5** when a cooldown period is specified. This controls the number of user redirects a user can have (and therefore how many usernames are subject to a cooldown period). The intention of this option is to prevent abuse of the cooldown feature by limiting the amount of usernames that one user can keep on cooldown.
+
 ## Tips
 
 ### Git over SSH

@@ -690,6 +690,8 @@ And the following unique queues:
   The user's email will be replaced with a concatenation of the user name in lower case, "@" and NO_REPLY_ADDRESS.
 - `USER_DELETE_WITH_COMMENTS_MAX_TIME`: **0** Minimum amount of time a user must exist before comments are kept when the user is deleted.
 - `VALID_SITE_URL_SCHEMES`: **http, https**: Valid site url schemes for user profiles
+- `USERNAME_COOLDOWN_PERIOD`: **0**: The cooldown period in days before a username previously used by another user can be claimed by someone other than the original user. If you enter a non-positive number here, the cooldown period is deactivated and previously used usernames can be claimed immediately.
+- `MAX_USER_REDIRECTS`: **0**: The number of user redirects that a user can keep. The oldest entry is removed when a new user redirection is created. The default value is **5** if `USERNAME_COOLDOWN_PERIOD` is set to a positive value.
 
 ### Service - Explore (`service.explore`)
 
