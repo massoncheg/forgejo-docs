@@ -59,6 +59,6 @@ Integration tests ensure that the behavior of the entire program is correct, whi
 
 ### Unit tests
 
-Unit tests are implemented in `<filename>_test.go_` for the corresponding `<filename>.go` code. Not all files will have unit tests.
+Unit tests are implemented in `<filename>_test.go` for the corresponding `<filename>.go` code. Not all files will have unit tests.
 
 They test the expected result and behavior of the function.
