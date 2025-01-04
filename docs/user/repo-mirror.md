@@ -94,4 +94,4 @@ After adding the push mirror, you can click the **Copy public key** link to copy
 ![The push mirror entry is shown](../_images/user/repo-mirror/push_mirror_with_ssh.png)
 
 This public key can then be added as a deploy key on the target repository, how to add one varies by platform but generally it should be an option in the repository's settings.
-After adding the public key as the deploy key, you can go back to Forgejo and click the **Syncronize now** button and see that it works.
+After adding the public key as the deploy key, you can go back to Forgejo and click the **Synchronize now** button and see that it works.

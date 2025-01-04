@@ -66,14 +66,14 @@ license: 'CC-BY-SA-4.0'
 1. **Knock foreign http server**: Script Kiddi sends a Like Activity containing an attack actor url `http://attacked.target/very/special/path` in place of actor. Our repository server sends a `get Person Actor` request to this url. The target receives a DenialdOfService attack. We loose CPU & instance reputation.
 2. **Sql injection**: Experienced hacker sends a Like Activity containing an actor url pointing to an evil forgejo instance. Our repository server sends an `get Person Actor` request to this instance and gets a person having sth. like `; drop database;` in its name. If our server tries to create a new user out of this person, the db might be dropped.
 3. **Malicious Activities**: Malicious Fediverse Member sends Star Activities containing non authorized Person Actors. The Actors listed as stargazer might get angry about this. The project may loose project reputation.
-4. **DOS by Rate**: Experienced Hacker records activities sent and replays some of them. Without order of activities (i.e. timestamp) we can not decide wether we should execute the activity again. If the replayed activities are UnLike Activity we might loose stars.
+4. **DOS by Rate**: Experienced Hacker records activities sent and replays some of them. Without order of activities (i.e. timestamp) we can not decide whether we should execute the activity again. If the replayed activities are UnLike Activity we might loose stars.
 5. **Replay**: Experienced Hacker records activities sends a massive amount of activities which leads to new user creation & storage loss. Our instance might fall out of service. See also [replay attack@wikipedia][2].
 6. **Replay out of Order**: Experienced Hacker records activities sends again Unlike Activities happened but was succeeded by an Like. Our instance accept the Unlike and removes a star. Our repository gets rated unintended bad.
 7. **DOS by Slowlories**: Experienced Hacker may craft their malicious server to keep connections open. Then they send a Like Activity with the actor URL pointing to that malicious server, and your background job keeps waiting for data. Then they send more such requests, until you exhaust your limit of file descriptors openable for your system and cause a DoS (by causing cascading failures all over the system, given file descriptors are used for about everything, from files, to sockets, to pipes). See also [Slowloris@wikipedia][1].
 8. **Saturate by future StartTime**: Hacker sends an Activity having `startTime` in far future. Our Instance does no longer accept Activities till they have far far future `startTime` from the actors instance.
 9. **Malicious Forge**: If a "Malicious Fediverse Member" deploys an 'federated' forge that sends the right amount of Like activities to not hit the rate limiter, an malicious user can modify the code of any 'federated' forge to ensure that if an foreign server tries to verify and activity, it will always succeed (such as creating users on demand, or simply mocking the data).
 10. **Malicious Controlled Forge**: A "Malicious Forge Admin" of a good reputation instance may impersonate users on his instance and trigger federated activities.
-11. **Side Chanel Malicious Activities**: A Owner of a good reputation instance may craft malicious activities with the hope not to get moderated.
+11. **Side Channel Malicious Activities**: A Owner of a good reputation instance may craft malicious activities with the hope not to get moderated.
 
 ### Mitigations
 
@@ -84,7 +84,7 @@ license: 'CC-BY-SA-4.0'
 5. We introduce (or have) rate limiting per IP.
 6. We ensure, that outgoing HTTP requests have a reasonable timeout (if you didn't get that 500b JSON response after 10 seconds, you probably won't get it).
 7. **Instance Level Moderation** (such as blocking other federated forges) can mitigate "Malicious Forge"
-8. **User Level Moderation** (such as blocking other federated users) can mitigate "Side Chanel Malicious Activities"
+8. **User Level Moderation** (such as blocking other federated users) can mitigate "Side Channel Malicious Activities"
 
 ### DREAD-Score
 

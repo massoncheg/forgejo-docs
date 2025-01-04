@@ -89,7 +89,7 @@ Or for eglot:
 (add-hook 'go-mode-hook #'eglot-format-buffer-before-save)
 ```
 
-As additional quality of life inprovements, you might consider installing [company](https://company-mode.github.io/), [flycheck](https://www.flycheck.org/en/latest/) and/or [magit](https://magit.vc/). Consider the package website for a complete explanation and installation instructions.
+As additional quality of life improvements, you might consider installing [company](https://company-mode.github.io/), [flycheck](https://www.flycheck.org/en/latest/) and/or [magit](https://magit.vc/). Consider the package website for a complete explanation and installation instructions.
 
 <details>
 <summary> Here is an init example if you just want to use all three packages </summary>
@@ -176,7 +176,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 local on_attach = function(client, bufno)
-	-- depricated since neovim 0.10
+	-- deprecated since neovim 0.10
 	-- vim.api.nvim_buf_set_option(bufno, "omnifunc", "v:lua.vim.lsp.omnifunc")
 	vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufno })
 

@@ -86,7 +86,7 @@ This way of expressing stars will have the following features:
 3. With NodeInfo given it would be more easy to distinguish the uri layout for object and actor id's and make implementation more straight forward
    1. The NodeInfo field reflects the software & version sending an activity. Values of may be gitea, forgejo, gitlab, ...
    2. Knowing the sending system will it make easier to interact with:
-      1. We know exactly how the actor can be derefernced - names maybe filled & used different (see: https://codeberg.org/meissa/forgejo/src/commit/7cac9806f8247963b1cdce3f2c5f5d1bc3763fbe/routers/api/v1/activitypub/repository.go#L180)
+      1. We know exactly how the actor can be dereferenced - names maybe filled & used different (see: https://codeberg.org/meissa/forgejo/src/commit/7cac9806f8247963b1cdce3f2c5f5d1bc3763fbe/routers/api/v1/activitypub/repository.go#L180)
       2. We know how we can validate the given references - valid uris will be different in details (see: https://codeberg.org/meissa/forgejo/src/commit/7cac9806f8247963b1cdce3f2c5f5d1bc3763fbe/models/forgefed/actor.go#L121)
 4. startTime protects against The Reply Attack discussed in [threat-analysis][threat-analysis]
 

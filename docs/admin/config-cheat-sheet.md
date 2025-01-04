@@ -588,7 +588,7 @@ And the following unique queues:
 - `ENABLED`: **false**: Enable media proxy, we support images only at the moment.
 - `SERVER_URL`: **\<empty\>**: URL of camo server, it **is required** if camo is enabled.
 - `HMAC_KEY`: **\<empty\>**: Provide the HMAC key for encoding URLs, it **is required** if camo is enabled.
-- `ALLWAYS`: **false**: Set to true to use camo for both HTTP and HTTPS content, otherwise only non-HTTPS URLs are proxied
+- `ALWAYS`: **false**: Set to true to use camo for both HTTP and HTTPS content, otherwise only non-HTTPS URLs are proxied
 
 ## OpenID (`openid`)
 
@@ -887,7 +887,7 @@ The defaults of the console change if Forgejo detects that stdout and/or stderr 
 
 - For the console logger `COLORIZE` will default to `true` if not on windows or the terminal is determined to be able to color.
 - `STDERR`: **false** (journald: **true**): Use Stderr instead of Stdout.
-- `FLAGS`: **stdflags** (journald: **journaldflags**): Instead of colour or text annotations, machine-readable prefixes are used that can be parsed by sytemd-journald.
+- `FLAGS`: **stdflags** (journald: **journaldflags**): Instead of colour or text annotations, machine-readable prefixes are used that can be parsed by systemd-journald.
 
 ### File log mode (`log.file`, or `MODE=file`)
 

@@ -185,7 +185,8 @@ using `USE_GOTESTSUM=yes` while running tests, for example:
 USE_GOTESTSUM=yes make test
 ```
 
-`gotestsum` behaves like the default `go test` except it reformats the test results
-so that they are clearer for human interpreation and include a helpful summary.
+`gotestsum` behaves like the default `go test` except it reformats the test
+results so that they are clearer for human interpretation and include a helpful
+summary.
 
 You need to have `gotestsum` installed (see the link above) to use it as it does not come built-in unlike `go test`.

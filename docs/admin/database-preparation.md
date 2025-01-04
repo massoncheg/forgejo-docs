@@ -4,7 +4,7 @@ license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8e705d2a86030/docs/content/installation/database-preparation.en-us.md'
 ---
 
-You need a database to use Forgejo. The easiest option is SQLite which managed files next to Forgejo and does not require setting up a database server. However, if you plan to use Forgejo with several hundreds of users, or if you already run a databse server, you might want to choose another option.
+You need a database to use Forgejo. The easiest option is SQLite which managed files next to Forgejo and does not require setting up a database server. However, if you plan to use Forgejo with several hundreds of users, or if you already run a database server, you might want to choose another option.
 
 Forgejo supports:
 

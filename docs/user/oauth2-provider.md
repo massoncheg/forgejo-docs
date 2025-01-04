@@ -87,7 +87,7 @@ In this example https://v7.next.forgejo.org will be configured to add the option
 - Choose an arbitrary but distinctive name for the OAuth2 provider: (e.g. **Codeberg**).
 - Choose an existing Codeberg user to create the OAuth2 application. It does not need to be a user with elevated privileges. (e.g. **user-for-oauth-application**)
 - On https://codeberg.org, login as **user-for-oauth-application**
-  - Visit https://codeberg.org/user/settings/applications and create a new OAuth2 application. There needs to be only one redirect URI, composed with the abitrary name that was chosen above: https://v7.next.forgejo.org/user/oauth2/Codeberg/callback.
+  - Visit https://codeberg.org/user/settings/applications and create a new OAuth2 application. There needs to be only one redirect URI, composed with the arbitrary name that was chosen above: https://v7.next.forgejo.org/user/oauth2/Codeberg/callback.
     ![Create a new OAuth2 application](../_images/user/oauth2-provider/authsource-provider-create.png)
   - When created, the OAuth2 application is given a **Client ID** and a **Client secret** that https://v7.next.forgejo.org will need to let https://codeberg.org know it is an authorized OAuth2 client.
     ![Client ID and secret of a new OAuth2 application](../_images/user/oauth2-provider/authsource-provider-show.png)
@@ -95,16 +95,16 @@ In this example https://v7.next.forgejo.org will be configured to add the option
   - Create a new authentication source on https://v7.next.forgejo.org, the Forgejo instance that is going to act as the OAuth2 client, allowing its users to register using the account they have on https://codeberg.org.
     - Visit https://v7.next.forgejo.org/admin/auths/new to create the authentication source with:
       - **Authentication type:** OAuth2
-      - **Authentication name:** the abitrary name that was chosen above (e.g. **Codeberg**)
+      - **Authentication name:** the arbitrary name that was chosen above (e.g. **Codeberg**)
       - **OAuth2 provider:** OpenID Connect
       - **Client ID:** copy/pasted from the OAuth2 application created on Codebeg
       - **Client Secret:** copy/pasted from the OAuth2 application created on Codebeg
       - **Icon URL:** https://design.codeberg.org/logo-kit/icon.svg
       - **OpenID Connect Auto Discovery URL:** https://codeberg.org/.well-known/openid-configuration
       - Leave all other fields to their default values
-        ![Create a new OAuth2 authentication soure](../_images/user/oauth2-provider/authsource-client-create.png)
+        ![Create a new OAuth2 authentication source](../_images/user/oauth2-provider/authsource-client-create.png)
     - It will show in the list of authentication sources at https://v7.next.forgejo.org/admin/auths.
-      ![List of OAuth2 authentication soure](../_images/user/oauth2-provider/authsource-client-list.png)
+      ![List of OAuth2 authentication source](../_images/user/oauth2-provider/authsource-client-list.png)
 - On https://v7.next.forgejo.org, not logged in
   - Visit https://v7.next.forgejo.org/user/login
     ![Login page with Codeberg authentication source](../_images/user/oauth2-provider/authsource-intro-login-page.png)

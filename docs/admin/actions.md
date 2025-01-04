@@ -98,7 +98,7 @@ A label has the following structure:
 <label-name>:<label-type>://<default-image>
 ```
 
-The `label name` is a unique string that identifies the label. It is the part that is specified in the `runs-on` field of workflows to choose which runners the workflow can be excecuted on.
+The `label name` is a unique string that identifies the label. It is the part that is specified in the `runs-on` field of workflows to choose which runners the workflow can be executed on.
 
 The `label type` determines what containerization system will be used to run the workflow. There are three options:
 
@@ -153,7 +153,7 @@ Label example:
 
 ### Special labels
 
-Runner labels can also be used to define other special features a runner has. For example, you could use `gpu:docker://node:20-bullseye` to define a runner that has a GPU installed. Workflows which need a GPU could then specify `runs-on: gpu` to be excecuted on this runner.
+Runner labels can also be used to define other special features a runner has. For example, you could use `gpu:docker://node:20-bullseye` to define a runner that has a GPU installed. Workflows which need a GPU could then specify `runs-on: gpu` to be executed on this runner.
 
 ### Mimicking GitHub runners
 

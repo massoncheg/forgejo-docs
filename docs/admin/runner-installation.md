@@ -369,7 +369,7 @@ A special kind of token is needed and can be obtained from the `Create new runne
 
 ![Screenshot showing runner registration popup](../_images/user/actions/runners-add.png)
 
-To register the runner, excecute `forgejo-runner register` and fill in the prompts. For example:
+To register the runner, execute `forgejo-runner register` and fill in the prompts. For example:
 
 ```shell
 $ forgejo-runner register
