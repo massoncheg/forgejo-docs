@@ -1,0 +1,20 @@
+# https://github.com/crate-ci/typos/blob/master/docs/reference.md
+
+# mask some false positives
+[default.extend-words]
+# ./docs/admin/recommendations.md
+Redict = "Redict"
+# ./docs/admin/command-line.md
+HELO = "HELO"
+TABL = "TABL" # weird false-positive
+# ./docs/admin/config-cheat-sheet.md
+odf = "odf"
+# ./docs/contributor/adr/adr-activity-for-like.md
+edn = "edn"
+
+[default]
+extend-ignore-identifiers-re = [
+	# ./docs/admin/config-cheat-sheet.md
+	"\\b(ecdhe_)?rsa_with_.*\\b",
+]
+
