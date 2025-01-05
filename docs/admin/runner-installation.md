@@ -220,8 +220,8 @@ container:
   #   - '**'
   valid_volumes: []
   # overrides the docker client host with the specified one.
-  # If "-", an available docker host will automatically be found.
-  # If empty, an available docker host will automatically be found and mounted in the job container (e.g. /var/run/docker.sock).
+  # If "-" or "", an available docker host will automatically be found.
+  # If "automount", an available docker host will automatically be found and mounted in the job container (e.g. /var/run/docker.sock).
   # Otherwise the specified docker host will be used and an error will be returned if it doesn't work.
   docker_host: "-"
   # Pull docker image(s) even if already present
@@ -232,6 +232,10 @@ host:
   # If it's empty, $HOME/.cache/act/ will be used.
   workdir_parent:
 ```
+
+Note: `container.docker_host = "automount"` is only available for
+forgejo-runner >= 5.0.3. For forgejo-runner < 5.0.3, it must be explicitly
+set to an empty string.
 
 #### Cache configuration
 
