@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+if hash xdg-open 2>/dev/null; then
+	open_cmd=xdg-open
+else
+	open_cmd=open
+fi
+
 current_branch=$(git branch --show-current)
 repo_path=$(pwd)
 
@@ -32,7 +38,7 @@ mkdir -p $(dirname ./src/content/images/$current_branch)  # in case of branch na
 ln -s $repo_path/images/ ./public/images/$current_branch
 
 # once the dev server is running, open the current docs branch in the browser
-sleep 3 && open http://localhost:4321/docs/$current_branch/ &
+sleep 3 && $open_cmd http://localhost:4321/docs/$current_branch/ &
 
 # start the dev server
 pnpm run dev
