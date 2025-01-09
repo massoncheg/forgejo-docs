@@ -693,8 +693,10 @@ And the following unique queues:
 
 ### Service - Explore (`service.explore`)
 
-- `REQUIRE_SIGNIN_VIEW`: **false**: Only allow signed in users to view the explore pages.
-- `DISABLE_USERS_PAGE`: **false**: Disable the users explore page.
+- `REQUIRE_SIGNIN_VIEW`: **false**: Only allow signed in users to view the explore section.
+- `DISABLE_USERS_PAGE`: **false**: Disable user listing in the explore section.
+- `DISABLE_ORGANIZATIONS_PAGE`: **false**: Disable organization listing in the explore section.
+- `DISABLE_CODE_PAGE`: **false**: Disable the code search page in the explore section.
 
 ## SSH Minimum Key Sizes (`ssh.minimum_key_sizes`)
 
