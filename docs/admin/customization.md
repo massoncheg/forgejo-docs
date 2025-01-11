@@ -32,6 +32,6 @@ Before deploying your changes to production or upgrading a modified Forgejo inst
 
 ### Instructions
 
-For the reasons mentioned above, the instructions on performing such tasks can be found in the [developer section on interface customization](../../developer/customization/).
+For the reasons mentioned above, the instructions on performing such tasks can be found in the [developer section on interface customization](../../contributor/customization/).
 
-At this stage, it is also worth mentioning that it is possible to customize Forgejo by [modifying its source code and compiling the changes](../../developer/from-source), or by extracting and modifying the files of your choice using the command `forgejo embedded extract`. However, these methods are, for the same reasons as mentioned above, also **unsupported**.
+At this stage, it is also worth mentioning that it is possible to customize Forgejo by [modifying its source code and compiling the changes](../../contributor/from-source), or by extracting and modifying the files of your choice using the command `forgejo embedded extract`. However, these methods are, for the same reasons as mentioned above, also **unsupported**.
