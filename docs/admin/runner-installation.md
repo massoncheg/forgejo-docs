@@ -226,6 +226,8 @@ container:
   docker_host: "-"
   # Pull docker image(s) even if already present
   force_pull: false
+  # Rebuild local docker image(s) even if already present
+  force_rebuild: false
 
 host:
   # The parent directory of a job's working directory.
@@ -235,7 +237,9 @@ host:
 
 Note: `container.docker_host = "automount"` is only available for
 forgejo-runner >= 5.0.3. For forgejo-runner < 5.0.3, it must be explicitly
-set to an empty string.
+set to an empty string. \
+Note: `container.force_rebuild` is only available for
+forgejo-runner >= 6.0.2. For forgejo-runner < 6.0.2, it defaults to `false`
 
 #### Cache configuration
 
