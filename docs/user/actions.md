@@ -223,7 +223,7 @@ A string of the following additional options, as documented [docker run](https:/
 - `--volume`
 - `--tmpfs`
 
-> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
+> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../admin/runner-installation/#configuration) for more information.
 
 ### username
 
@@ -875,7 +875,7 @@ container:
 
 Set the volumes for the container to use, as if provided with the `--volume` argument of the `docker run` command.
 
-> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
+> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../admin/runner-installation/#configuration) for more information.
 
 > **NOTE:** ignored if `jobs.<job_id>.runs-on` is an LXC container.
 
