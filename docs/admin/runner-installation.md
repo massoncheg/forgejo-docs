@@ -239,7 +239,7 @@ Note: `container.docker_host = "automount"` is only available for
 forgejo-runner >= 5.0.3. For forgejo-runner < 5.0.3, it must be explicitly
 set to an empty string. \
 Note: `container.force_rebuild` is only available for
-forgejo-runner >= 6.0.2. For forgejo-runner < 6.0.2, it defaults to `false`
+forgejo-runner >= 6.1.0. For forgejo-runner < 6.1.0, it defaults to `false`
 
 #### Cache configuration
 
