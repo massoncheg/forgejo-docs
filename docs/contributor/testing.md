@@ -171,7 +171,7 @@ we sometimes add manual testing instructions as a last resort.
 The exact test steps must be documented in the description of the pull request.
 
 Changes that are associated with manual tests must be labeled
-["test/manual"](https://codeberg.org/forgejo/forgejo/issues?labels=201028).
+["test/manual"](https://codeberg.org/forgejo/forgejo/pulls?labels=201028).
 
 ## Using gotestsum for summaries
 
