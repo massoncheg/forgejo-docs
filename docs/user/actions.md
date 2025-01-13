@@ -110,8 +110,8 @@ In a `workflow` file strings that look like `${{ ... }}` are evaluated by the `F
 
 Can be used in `if:` conditionals on jobs and steps.
 
-- `success()`. returns true when none of the previous jobs/steps have failed or been canceled.
-- `always()`. causes the job/step to always execute, and returns true, even when canceled. If you want to run a job/step regardless of its success or failure, use the recommended alternative: **!cancelled()**.
+- `success()`. returns true when none of the previous jobs/steps have failed or been cancelled.
+- `always()`. causes the job/step to always execute, and returns true, even when cancelled. If you want to run a job/step regardless of its success or failure, use the recommended alternative: `'!cancelled()'` (the expression must be enclosed by quotes to not be interpreted as YAML tag).
 - `failure()`. returns true when any previous step/job has failed.
 
 ### Functions
