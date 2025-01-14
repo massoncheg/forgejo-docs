@@ -47,10 +47,12 @@ and shows a link to the repository on the package site (as well as a link to the
 
 ## Access Restrictions
 
-| Package owner type | User                                                        | Organization                                             |
-| ------------------ | ----------------------------------------------------------- | -------------------------------------------------------- |
-| **read** access    | public, if user is public too; otherwise for this user only | public, if org is public, otherwise for org members only |
-| **write** access   | owner only                                                  | org members with admin or write access to the org        |
+| Package owner type | User                                                    | Organization                                             |
+| ------------------ | ------------------------------------------------------- | -------------------------------------------------------- |
+| **read** access    | public, if user is public, otherwise for this user only | public, if org is public, otherwise for org members only |
+| **write** access   | owner only                                              | org members with admin or write access to the org        |
+
+Additionally, public access can be restricted instance-wide by the setting of [`service.REQUIRE_SIGNIN_VIEW`](../../admin/config-cheat-sheet/#service-service).
 
 N.B.: These access restrictions are subject to change, where more finegrained control will be added via a dedicated organization team permission.
 
