@@ -1108,6 +1108,17 @@ the path to the executable file to run.
 
 Set environment variables like it's [top-level variant `env`](#env-2), but only for the current step.
 
+### `jobs.<job_id>.steps[*].continue-on-error`
+
+If it is set to `true` for a step the following steps continue to run independent of its failure or success. Also, the job has successful state.
+
+```yaml
+steps:
+  - run: echo "failing step" && false
+    continue-on-error: true
+  - run: echo "this step runs and job is successful"
+```
+
 ## Debugging workflows
 
 ### Errors in the YAML file
