@@ -24,7 +24,7 @@ jobs:
         with:
           write_changes: true
       - name: check typos result
-        run: git diff --exit-code
+        run: 'git diff --exit-code --word-diff || ( echo "Hint: Fix misspelled words or add false positives in .typos.toml" && false )'
       - name: scripts/cli-docs.sh
         run: |
           scripts/cli-docs.sh run ${{ env.GITHUB_BASE_REF }} > docs/admin/command-line.md

@@ -121,7 +121,7 @@ In this example https://v7.next.forgejo.org will be configured to add the option
 
 1. Redirect the user to the authorization endpoint in order to get their consent for accessing the resources:
 
-   ```curl
+   ```http
    https://[YOUR-FORGEJO-URL]/login/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&response_type=code&state=STATE
    ```
 
@@ -129,13 +129,13 @@ In this example https://v7.next.forgejo.org will be configured to add the option
 
    The user will now be asked to authorize your application. If they authorize it, the user will be redirected to the `REDIRECT_URL`, for example:
 
-   ```curl
+   ```http
    https://[REDIRECT_URI]?code=RETURNED_CODE&state=STATE
    ```
 
 2. Using the provided `code` from the redirect, you can request a new application and refresh token. The access token endpoint accepts POST requests with `application/json` and `application/x-www-form-urlencoded` body, for example:
 
-   ```curl
+   ```http
    POST https://[YOUR-FORGEJO-URL]/login/oauth/access_token
    ```
 
@@ -183,7 +183,7 @@ After you have generated this values, you can continue with your request.
 
 1. Redirect the user to the authorization endpoint in order to get their consent for accessing the resources:
 
-   ```curl
+   ```http
    https://[YOUR-FORGEJO-URL]/login/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&response_type=code&code_challenge_method=CODE_CHALLENGE_METHOD&code_challenge=CODE_CHALLENGE&state=STATE
    ```
 
@@ -193,13 +193,13 @@ After you have generated this values, you can continue with your request.
 
    The user will now be asked to authorize your application. If they authorize it, the user will be redirected to the `REDIRECT_URL`, for example:
 
-   ```curl
+   ```http
    https://[REDIRECT_URI]?code=RETURNED_CODE&state=STATE
    ```
 
 2. Using the provided `code` from the redirect, you can request a new application and refresh token. The access token endpoint accepts POST requests with `application/json` and `application/x-www-form-urlencoded` body, for example:
 
-   ```curl
+   ```http
    POST https://[YOUR-FORGEJO-URL]/login/oauth/access_token
    ```
 

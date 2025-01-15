@@ -28,7 +28,7 @@ curl -X PUT \
 
 First, you need to update your pacman configuration, adding following lines :
 
-```conf
+```ini
 [{owner}.{group}.{domain}]
 SigLevel = Required
 Server = https://{domain}/api/packages/{owner}/arch/{group}/{architecture}

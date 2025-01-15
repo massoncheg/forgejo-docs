@@ -501,7 +501,7 @@ curl -s -o /dev/null http://ipv6.google.com
 
 To actually enable IPv6 with `forgejo-runner exec`, the flag `--enable-ipv6` must be provided. If you run this again with `forgejo-runner exec --enable-ipv6`, the job should succeed:
 
-```shell-session
+```shellsession
 $ forgejo-runner exec --enable-ipv6
 ...
 [ipv6.yml/ipv6]   ✅  Success - Main apt update; apt install --yes curl

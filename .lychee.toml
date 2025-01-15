@@ -1,4 +1,5 @@
 no_progress = true
+format = "markdown"
 output = "report.md"
 accept = ["200", "429"]
 scheme = ["https", "http"]
