@@ -1,8 +1,8 @@
 [
   { "major": "7", "minor": "0", "cut": "2024-04-01", "release": "2024-04-23", "eol": "2025-07-16", "lts": true },
   { "major": "8", "minor": "0", "cut": "2024-07-01", "release": "2024-07-30", "eol": "2024-10-16", "lts": false },
-  { "major": "9", "minor": "0", "cut": "2024-09-25", "release": "2024-10-16", "eol": "2025-01-15", "lts": false },
-  { "major": "10", "minor": "0", "cut": "2024-12-25", "release": "2025-01-15", "eol": "2025-04-16", "lts": false },
+  { "major": "9", "minor": "0", "cut": "2024-09-25", "release": "2024-10-16", "eol": "2025-01-16", "lts": false },
+  { "major": "10", "minor": "0", "cut": "2024-12-25", "release": "2025-01-16", "eol": "2025-04-16", "lts": false },
   { "major": "11", "minor": "0", "cut": "2025-03-26", "release": "2025-04-16", "eol": "2026-07-15", "lts": true },
   { "major": "12", "minor": "0", "cut": "2025-06-25", "release": "2025-07-16", "eol": "2025-10-15", "lts": false },
   { "major": "13", "minor": "0", "cut": "2025-09-24", "release": "2025-10-15", "eol": "2026-01-14", "lts": false },
