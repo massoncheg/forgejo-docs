@@ -19,12 +19,12 @@ Most goroutines[^0], whether short-lived or long-lived, are tracked by Forgejo a
 [^0]: This can be conceptually seen as lightweight thread that are managed by the Go runtime.
 
 In the admin settings navigate to the "Stacktrace" item in the "Monitoring" menu; this is also the page where the other profiling will take place.
-The two buttons on above the segment determine what type of proccesses you want to see, "Running proccesses" show all non-system proccesses and "Stacktrace" shows all proccesses.
-It is good to note that the information of the proccesses are only a snapshot of what the process was doing at the time of you loading this page, it is not continously being updated; they could no longer exist or kept running and no longer be at this particular point in the codepath.
+The two buttons on above the segment determine what type of processes you want to see, "Running processes" show all non-system processes and "Stacktrace" shows all processes.
+It is good to note that the information of the processes are only a snapshot of what the process was doing at the time of you loading this page, it is not continuously being updated; they could no longer exist or kept running and no longer be at this particular point in the codepath.
 
 Each process in the list has a few key details:
 
-- Title: this is the description that was given to the proccess, this should identify why it was created and what the purpose is.
+- Title: this is the description that was given to the process, this should identify why it was created and what the purpose is.
 - Date: this indicates when the process was created.
 
 And a stacktrace, it is possible that a process has more than one stacktrace, in that case the first stacktrace can be seen as the _main_ stacktrace of that process and the others are children of that process that were not marked as new processes. The stacktrace is read from top to bottom, where each entry in the stacktrace represents a stack frame[^1]. The top entry is where the deepest stack frame and the bottom entry is the outer stack frame and where this process started its lifecycle.
@@ -39,7 +39,7 @@ This type of diagnosis can be helpful if there are many requests that are not be
 
 ## Memory profiling
 
-Before starting a memory profiling it is good to know what the **actual** memory usage of Forgejo is. Using `top` and similair tools might give a unrealistic picture, because of [how unused memory](https://www.linuxatemyram.com/) by applications is represented by Linux and other operating systems. Go's runtime keep track of [a lot of](https://pkg.go.dev/runtime#MemStats) memory statistics which can give a precise and up to date picture[^3] of the memory usage of Forgejo.
+Before starting a memory profiling it is good to know what the **actual** memory usage of Forgejo is. Using `top` and similar tools might give a unrealistic picture, because of [how unused memory](https://www.linuxatemyram.com/) by applications is represented by Linux and other operating systems. Go's runtime keep track of [a lot of](https://pkg.go.dev/runtime#MemStats) memory statistics which can give a precise and up to date picture[^3] of the memory usage of Forgejo.
 
 [^3]: These memory statistics are not collected during garbage collection, but are instead calculated or fetched on demand, see documentation of [runtime.ReadMemStats](https://pkg.go.dev/runtime#ReadMemStats).
 
@@ -59,7 +59,7 @@ Go provides tooling to analyze the `heap.dat` file, make sure to have this file 
 - `web`: Opens up a visual goldmine to show which function uses how much memory and which functions called those functions. A good way to learn how a function was called. This does not show individual calls to function, for that the `traces <regex>` (works similar to the `list` option) can be used.
 - `list <regex>`: Replace `<regex>` with a function name or a file name (case sensitive) and it will show exactly which line of source code was responsible for which amount of memory. Note that this requires the source code of Forgejo on a specific path (mainly the path where the Forgejo binary was built), so this option is usually only possible if Forgejo was built from source.
 
-To take an example of how to effectively memory profile, in Forgejo a lot of regexps are compiled on startup and that means that they will show up in the heap, but e.g. via `topN` it will only show that `regexp.makeOnePass` and `regexp/syntax.(*compiler).inst` allocated memory and it does not show which regexps are actually taking the most memory (and how much). First we can consult the visualization of traces with `web`, we find `regexp.Compile` (this is where a bit of Go knowledges comes in handy to know what the main entry to compiling regexp is which would ultimately called by Forgejo) and in this case it's possible that only two traces are shown, one from the inserting routes in `go-chi` package and one `data.init` via `MustCompile`. For simplicitly we will explore the `go-chi` trace. Executing `traces InsertRoute` shows indeed some traces to `regexp.Compile` and they actually come from the `addChild` function. You either can search this function on Github or use `list addChild` and see the following:
+To take an example of how to effectively memory profile, in Forgejo a lot of regexps are compiled on startup and that means that they will show up in the heap, but e.g. via `topN` it will only show that `regexp.makeOnePass` and `regexp/syntax.(*compiler).inst` allocated memory and it does not show which regexps are actually taking the most memory (and how much). First we can consult the visualization of traces with `web`, we find `regexp.Compile` (this is where a bit of Go knowledges comes in handy to know what the main entry to compiling regexp is which would ultimately called by Forgejo) and in this case it's possible that only two traces are shown, one from the inserting routes in `go-chi` package and one `data.init` via `MustCompile`. For simplicity we will explore the `go-chi` trace. Executing `traces InsertRoute` shows indeed some traces to `regexp.Compile` and they actually come from the `addChild` function. You either can search this function on Github or use `list addChild` and see the following:
 
 ```go
 .          .    253:           if segTyp == ntRegexp {
