@@ -133,7 +133,7 @@ version branches into which it will potentially be merged.
 #### Backports
 
 If a PR is meant to be backported to a stable branch, it must be
-labelled with `backport/v8.0`, `backport/v7.0`, etc.
+labelled with `backport/v10.0`, `backport/v7.0`, etc.
 
 ### Content guidelines
 
