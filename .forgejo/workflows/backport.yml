@@ -22,6 +22,7 @@ jobs:
           ${{ toJSON(github) }}
           EOF
       - uses: https://data.forgejo.org/actions/git-backporting@v4.8.4
+        if: secrets.WEBSITETOKEN != ''
         with:
           target-branch-pattern: '^backport/(?<target>(v.*))$'
           strategy: ort
