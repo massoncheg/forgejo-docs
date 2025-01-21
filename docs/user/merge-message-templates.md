@@ -8,12 +8,14 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
 
 Possible file names for PR default merge message templates:
 
-- `.gitea/default_merge_message/MERGE_TEMPLATE.md`
-- `.gitea/default_merge_message/REBASE_TEMPLATE.md`
-- `.gitea/default_merge_message/REBASE-MERGE_TEMPLATE.md`
-- `.gitea/default_merge_message/SQUASH_TEMPLATE.md`
-- `.gitea/default_merge_message/MANUALLY-MERGED_TEMPLATE.md`
-- `.gitea/default_merge_message/REBASE-UPDATE-ONLY_TEMPLATE.md`
+- `.forgejo/default_merge_message/MERGE_TEMPLATE.md`
+- `.forgejo/default_merge_message/REBASE_TEMPLATE.md`
+- `.forgejo/default_merge_message/REBASE-MERGE_TEMPLATE.md`
+- `.forgejo/default_merge_message/SQUASH_TEMPLATE.md`
+- `.forgejo/default_merge_message/MANUALLY-MERGED_TEMPLATE.md`
+- `.forgejo/default_merge_message/REBASE-UPDATE-ONLY_TEMPLATE.md`
+
+Note: `.gitea` as the root directory is also recognised and kept only for compatibility reasons.
 
 ## Variables
 
