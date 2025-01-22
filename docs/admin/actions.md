@@ -123,23 +123,19 @@ Label examples:
 
 ### LXC
 
-If a label specifies `lxc` as its `label type`, the rest of it is interpreted as the default [template and release](https://images.linuxcontainers.org/) to use if no other is specified. The runner will execute all the steps, as root, within a [LXC container](https://linuxcontainers.org/) created from that template and release. The default template is `debian` and the default release is `bullseye`.
+If a label specifies `lxc` as its `label type`, the rest of it is interpreted as `template[:release[:lxc-helper config]]` where:
+
+- `template[:release]` is the [template and release](https://images.linuxcontainers.org/) to use.
+- `lxc-helper config` is the value of the [--config option of lxc-helper](https://code.forgejo.org/forgejo/lxc-helpers/) used when creating a container.
+
+The runner will execute all the steps, as root, within a [LXC container](https://linuxcontainers.org/) created from that template and release. The default template is `debian` and the default release is `bullseye`.
 
 [nodejs](https://nodejs.org/en/download/) version 20 is installed.
 
-The default template and release can be overridden by a workflow:
+Label examples:
 
-```yaml
-runs-on: lxc
-container:
-  image: debian:bookworm
-```
-
-See the user documentation for `jobs.<job_id>.container` for more information.
-
-Label example:
-
-- `bookworm:lxc://debian:bookworm` defines `bookworm` to be an LXC container running Debian GNU/Linux bookworm.
+- `bookworm:lxc://debian:bookworm:lxc docker` defines `bookworm` to be an LXC container running Debian GNU/Linux bookworm. It has the necessary capabilities to run a nested LXC container and a docker engine.
+- `bookworm:lxc://debian:bookworm` defines `bookworm` to be an LXC container running Debian GNU/Linux bookworm. It has the necessary capabilities to run a nested LXC container, kvm virtual machines and a docker engine.
 
 ### Host
 
