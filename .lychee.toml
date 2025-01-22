@@ -6,8 +6,7 @@ scheme = ["https", "http"]
 skip_missing = false
 include_verbatim = false
 exclude = [
-    'https://forgejo\.octopuce\.forgejo\.org',
-    'http://private.forgejo.org',
+    'https://invisible.forgejo.org/forgejo/runner',
     'https://code.forgejo.org/api/v1',
     'https://codeberg.org/forgejo/forgejo/vX.Y/forgejo',
     'https://dash\.cloudflare\.com/\?to\=/\:account/turnstile',
