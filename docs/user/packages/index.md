@@ -11,6 +11,7 @@ The following package managers are currently supported:
 | Name                      | Language   | Package client             |
 | ------------------------- | ---------- | -------------------------- |
 | [Alpine](./alpine/)       | -          | `apk`                      |
+| [Alt-Linux](./alt/)       | -          | `apt-rpm`                  |
 | [Arch](./arch/)           | -          | `pacman`                   |
 | [Cargo](./cargo/)         | Rust       | `cargo`                    |
 | [Chef](./chef/)           | -          | `knife`                    |
