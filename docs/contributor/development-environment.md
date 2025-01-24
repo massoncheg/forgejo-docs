@@ -25,7 +25,7 @@ Go code is formatted automatically when saved.
 [GNU Emacs](https://www.gnu.org/software/emacs/) is an open source implementation of the Emacs text editor.
 The [Emacs Go-mode](https://github.com/dominikh/go-mode.el), in combination with the [Go language-server](https://github.com/golang/tools/blob/master/gopls/doc/emacs.md) and a LSP client can be used to work on Forgejo's code base.
 
-A prejequisite for working with the language server is [installing gopls](https://github.com/golang/tools/blob/master/gopls/README.md#installation).
+A prerequisite for working with the language server is [installing gopls](https://github.com/golang/tools/blob/master/gopls/README.md#installation).
 After this, you'll want to install the necessary packages in Emacs using `M-x package-install` followed by `go-mode` and your preferred LSP client, so _either_ `lsp-mode` _or_ `eglot`.
 
 After the installation, you'll need to activate the packages in your [initialization file](https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html).
