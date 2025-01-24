@@ -2,6 +2,8 @@
 title: 'The Basics of Issue Tracking'
 license: 'CC-BY-SA-4.0'
 origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/85d333f48badb27f8e4371263db3354f70836dfd/content/getting-started/issue-tracking-basics.md'
+origin_author: 'Codeberg Docs Contributors'
+origin_title: 'The Basics of Issue Tracking'
 ---
 
 Issues are an important mean of communication on Forgejo.

@@ -2,6 +2,8 @@
 title: 'Integrated Wiki'
 license: 'CC-BY-SA-4.0'
 origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/85d333f48badb27f8e4371263db3354f70836dfd/content/getting-started/wiki.md'
+origin_author: 'Codeberg Docs Contributors'
+origin_title: 'Integrated Wiki'
 ---
 
 A [wiki](https://en.wikipedia.org/wiki/Wiki) is a collaborative space on the web. It is a common practice to use wikis to collect knowledge and share information.  

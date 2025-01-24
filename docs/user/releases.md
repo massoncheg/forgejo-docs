@@ -2,6 +2,8 @@
 title: 'Tags and Releases'
 license: 'CC-BY-SA-4.0'
 origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/3bd7c665c7b0121a6b14cb5ef567c54b42b5698d/content/git/using-tags.md'
+origin_author: 'Codeberg Docs Contributors'
+origin_title: 'Tags and Releases'
 ---
 
 ## What are tags?

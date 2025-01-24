@@ -2,6 +2,8 @@
 title: 'Installation from binary'
 license: 'CC-BY-SA-4.0'
 origin_url: 'https://github.com/DanielGibson/DanielGibson.github.io/blob/58362695f743a545d2530508ce42d5fe1eea84a9/content/post/setup-vps-with-wireguard-and-forgejo.md'
+origin_author: 'Daniel Gibson'
+origin_title: 'How to set up a Linux server to host git with LFS behind a VPN'
 ---
 
 ## Install Forgejo and Git, create git user

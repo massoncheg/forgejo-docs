@@ -1,7 +1,9 @@
 ---
-title: Your First Repository
+title: 'Your First Repository'
 license: 'CC-BY-SA-4.0'
 origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/85d333f48badb27f8e4371263db3354f70836dfd/content/getting-started/first-repository.md'
+origin_author: 'Codeberg Docs Contributors'
+origin_title: 'Your First Repository'
 ---
 
 Almost everything on Forgejo happens in a repository. Think of a repository as a home for your project, where all of its source code can be organized using Git, as well as where you can track issues and read and write wikis.

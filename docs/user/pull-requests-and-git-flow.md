@@ -1,7 +1,9 @@
 ---
-title: Pull requests and Git flow
+title: 'Pull requests and Git flow'
 license: 'CC-BY-SA-4.0'
 origin_url: 'https://codeberg.org/Codeberg/Documentation/src/commit/85d333f48badb27f8e4371263db3354f70836dfd/content/collaborating/pull-requests-and-git-flow.md'
+origin_author: 'Codeberg Docs Contributors'
+origin_title: 'Pull requests and Git flow'
 ---
 
 ## Benefits of a pull request based workflow
