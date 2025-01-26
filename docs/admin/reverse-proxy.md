@@ -114,8 +114,9 @@ listen [::]:80;
 to
 
 ```nginx
-listen 443 ssl http2;
-listen [::]:443 ssl http2;
+listen 443 ssl;
+listen [::]:443 ssl;
+http2 on;
 ```
 
 **Add the SSL certificate information**
