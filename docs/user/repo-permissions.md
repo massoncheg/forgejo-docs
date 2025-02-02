@@ -30,95 +30,19 @@ By default, the person who creates a repository is an **_Owner_**.
 
 The table below gives an overview of what collaborators are allowed to do when granted each of these permission levels:
 
-<table class="table">
- <thead>
-  <tr>
-   <th scope="col"> Task </th>
-   <th scope="col"> Read </th>
-   <th scope="col"> Write</th>
-   <th scope="col"> Admin </th>
-   <th scope="col"> Owner </th>
- </thead>
- <tbody>
-  <tr>
-   <td scope="row"> View, clone and pull repository </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
-  <tr>
-   <td scope="row"> Contribute pull requests </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
-  <tr>
-   <td scope="row"> Push to/update contributed pull requests </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
-  <tr>
-   <td scope="row"> Push directly to repository </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
-  <tr>
-   <td scope="row"> Merge pull requests </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
-  <tr>
-   <td scope="row"> Moderate/delete issues and comments </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
-  <tr>
-   <td scope="row"> Force-push/rewrite history (if enabled) </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
-  <tr>
-   <td scope="row"> Add/remove collaborators to repository </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
-  <tr>
-   <td scope="row"> Configure branch settings (protect/unprotect, enable force-push) </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
-  <tr>
-   <td scope="row"> Configure repository settings (enable wiki, issues, PRs, releases, update profile) </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
-  <tr>
-   <td scope="row"> Configure repository settings in the danger zone (transfer ownership, delete wiki data / repository, archive repository) </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: red">❌</span> </td>
-   <td> <span style="color: green">✅</span> </td>
-  </tr>
- </tbody>
-</table>
+| Task                                                                                                                     | Read | Write | Admin | Owner |
+| ------------------------------------------------------------------------------------------------------------------------ | ---- | ----- | ----- | ----- |
+| View, clone and pull repository                                                                                          | ✅   | ✅    | ✅    | ✅    |
+| Contribute pull requests                                                                                                 | ✅   | ✅    | ✅    | ✅    |
+| Push to/update contributed pull requests                                                                                 | ✅   | ✅    | ✅    | ✅    |
+| Push directly to repository                                                                                              | ❌   | ✅    | ✅    | ✅    |
+| Merge pull requests                                                                                                      | ❌   | ✅    | ✅    | ✅    |
+| Moderate/delete issues and comments                                                                                      | ❌   | ✅    | ✅    | ✅    |
+| Force-push/rewrite history (if enabled)                                                                                  | ❌   | ✅    | ✅    | ✅    |
+| Add/remove collaborators to repository                                                                                   | ❌   | ❌    | ✅    | ✅    |
+| Configure branch settings (protect/unprotect, enable force-push)                                                         | ❌   | ❌    | ✅    | ✅    |
+| Configure repository settings (enable wiki, issues, PRs, releases, update profile)                                       | ❌   | ❌    | ✅    | ✅    |
+| Configure repository settings in the danger zone (transfer ownership, delete wiki data / repository, archive repository) | ❌   | ❌    | ❌    | ✅    |
 
 ## Teams
 

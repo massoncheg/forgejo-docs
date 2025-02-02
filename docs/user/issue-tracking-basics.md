@@ -11,7 +11,7 @@ Besides their original purpose - reporting bugs to a project's maintainer -
 they can be used to suggest enhancements, ask for new features, discuss a project's
 direction, ask questions and much more.
 
-### The Issue Tracker
+## The Issue Tracker
 
 ![Issues list](../_images/user/issue-tracking-basics/issues-list.png)
 
@@ -35,7 +35,7 @@ An issue can have an assignee, meaning someone responsible for resolving or mode
 the issue. Their profile picture, with a link to their profile, can be seen in the issue
 list.
 
-### Life of an Issue
+## Life of an Issue
 
 Once an issue in the Issue Tracker has been created, it will usually pass through a
 process of review, discussion and closure, which can be more or less strictly defined,
@@ -59,9 +59,9 @@ something to them).
 > If you encounter an abandoned project and there's no way of contacting the maintainer(s),
 > consider forking it, if you want to assume responsibility for it (or, rather, your fork).
 
-### Things to consider
+## Things to consider
 
-#### Security bugs
+### Security bugs
 
 If the bug you have found has security implications, **do not create
 an issue right away!** Instead try contacting the project's maintainers privately.
@@ -73,7 +73,7 @@ maintainer or ask for the address in the issue tracker.
 > fixed _and_ the fixes are deployed**, because **otherwise, you might put the users of that
 > project at severe risk**.
 
-#### Existing issues
+### Existing issues
 
 Before creating a new issue, please make sure that there isn't already an existing
 issue about, i.e., the bug you want to report or the feature you want to request.
@@ -84,7 +84,7 @@ if there is something more that you can contribute to it.
 You should also make sure that the issue has not already been solved by having a look
 at the closed issues **(3)** as well.
 
-#### Try to be precise and helpful
+### Try to be precise and helpful
 
 Project maintainers love precise information about why, i.e., a bug is happening.
 
@@ -95,7 +95,7 @@ If you can provide that information, it will be easier for the project maintaine
 to quickly resolve your issue. And if you want it resolved even quicker,
 consider writing a Pull Request solving the issue (if possible).
 
-#### Be (reasonably) patient
+### Be (reasonably) patient
 
 Please remember that many project maintainers work on their free software projects
 in their free time. Some maintainers may answer you within minutes, others within days.
