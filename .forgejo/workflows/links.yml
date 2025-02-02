@@ -2,7 +2,7 @@ name: Links
 
 on:
   schedule:
-    - cron: '00 18 * * *'
+    - cron: '0 18 * * *'
 jobs:
   linkChecker:
     runs-on: docker
@@ -23,9 +23,9 @@ jobs:
       - name: Link Checker
         id: lychee
         run: ./lychee --config .lychee.toml docs v7/docs
+        continue-on-error: true
 
       - name: Update issue
-        if: '!cancelled()'
         uses: https://github.com/peter-evans/create-issue-from-file@v5.0.0
         with:
           title: Dead links report
