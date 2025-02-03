@@ -14,6 +14,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: lint
         run: |
+          npm install -g corepack@latest
           corepack enable
           pnpm install --frozen-lockfile
           pnpm run lint:remark
