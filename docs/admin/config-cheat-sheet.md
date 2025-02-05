@@ -722,6 +722,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
   - Wildcard hosts: `*.example.com`, `192.168.100.*`
 - `SKIP_TLS_VERIFY`: **false**: Allow insecure certification.
 - `PAGING_NUM`: **10**: Number of webhook history events that are shown in one page.
+- `PAYLOAD_COMMIT_LIMIT`: **15**: The maximum number of commits sent in the payload for a `push` webhook event, if there are more commits only the most recent ones are sent.
 - `PROXY_URL`: **\<empty\>**: Proxy server URL, support http://, https//, socks5://, blank will follow environment http_proxy/https_proxy. If not given, will use global proxy setting.
 - `PROXY_HOSTS`: **\<empty\>`**: Comma separated list of host names requiring proxy. Glob patterns (\*) are accepted; use \*\* to match all hosts. If not given, will use global proxy setting.
 
