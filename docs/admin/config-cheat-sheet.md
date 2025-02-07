@@ -82,8 +82,7 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
   the top of the list. Name must match file name in options/license or custom/options/license.
 - `DISABLE_HTTP_GIT`: **false**: Disable the ability to interact with repositories over the
   HTTP protocol.
-- `USE_COMPAT_SSH_URI`: **false**: Force ssh:// clone url instead of scp-style uri when
-  default SSH port is used.
+- `USE_COMPAT_SSH_URI`: **true**: Always use ssh:// clone url instead of scp-style uri.
 - `GO_GET_CLONE_URL_PROTOCOL`: **https**: Value for the "go get" request returns the repository url as https or ssh
   default is https.
 - `ACCESS_CONTROL_ALLOW_ORIGIN`: **\<empty\>**: Value for Access-Control-Allow-Origin header,
