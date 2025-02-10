@@ -426,7 +426,10 @@ If you want to serve Forgejo on a subpath, e.g. on https://example.com/code, use
 
 ```Caddyfile
 example.com {
-  reverse_proxy /code* 127.0.0.1:3000
+  route /code/* {
+    uri strip_prefix /code
+    reverse_proxy 127.0.0.1:3000
+  }
 }
 ```
 
