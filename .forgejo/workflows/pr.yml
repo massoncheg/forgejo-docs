@@ -7,7 +7,7 @@ jobs:
   preview:
     runs-on: docker
     container:
-      image: node:20
+      image: data.forgejo.org/oci/ci:1
     steps:
       - uses: https://data.forgejo.org/actions/checkout@v3
         with:
