@@ -3,12 +3,22 @@ title: 'Gitea migration'
 license: 'CC-BY-SA-4.0'
 ---
 
-This guide describes how to go from Gitea to Forgejo if Gitea is installed via a package manager.
+This guide describes how to go from Gitea to Forgejo.
 
 Upgrades are supported [up to Gitea v1.22 included](https://forgejo.org/2024-12-gitea-compatibility/), in two steps:
 
 - Upgrade from any Gitea version up to and including v1.22.x to Forgejo v10.0.x
 - Upgrade from Forgejo v10.0.x to any Forgejo version greater than v10.
+
+Here's what to expect, and some helpful tips:
+
+- First of all, ensure you have good backups. Ideally, shut down Gitea and do a backup of your database and files (Git repositories, attachments etc), or ideally of the whole server. This will make it a lot more relaxed to fiddle with the setup.
+- Forgejo will run automatic migrations in the database to convert some structures.
+- There should be no automatic modification of the app.ini related to this upgrade, but it is generally recommended to let Forgejo write to the config file because it is used to store some secrets.
+
+# Native (Package Manager) installation
+
+If Gitea is installed via a package manager:
 
 ## Arch Linux
 
@@ -68,3 +78,72 @@ Check to see that the service has started with no issues.
 Finally, if you're happy with everything, you can uninstall Gitea.
 
     $ pacman -R gitea
+
+# Containerized (docker, podman, etc) installation
+
+If gitea was running as a container, it makes sense to run forgejo the same way.
+If all goes well, forgejo 10.x should act as a drop-in replacement for gitea 1.22.x.
+Pay special attention to paths and environment variables.
+
+If you were running a rootless gitea container, a rootless forgejo container should
+work similarly. The data should be owned by user 1000 and group 1000.
+
+## Configuring paths
+
+The main configuration file is `app.ini`. This file controls the locations of all
+other data. If your app.ini specifies the locations of things, those things should
+continue to work. For unspecified things, pay close attention to the
+[configuration cheat-sheet](https://forgejo.org/docs/latest/admin/config-cheat-sheet/#default-configuration-non-appini-configuration)
+as the defaults may have changed.
+
+## Environment variables
+
+The location of `app.ini` is currently specified by the `GITEA_APP_INI`
+environment variable. If unset, the default is `/var/lib/gitea/custom/conf/app.ini`.
+If the file is not present, `/etc/gitea/app.ini` is used as a fallback.
+
+These variables are named with a "GITEA*" prefix for compatibility reasons.
+They may change in the future. It is recommended to pass two copies of
+these variables to your container: one with the prefix "GITEA*", and again
+with the prefix "FORGEJO\_", to remain compatible with future versions of
+Forgejo.
+
+# Troubleshooting
+
+Here are some common problems and how to solve them. Contributions are welcome.
+
+## missing favicon or logo
+
+The `public/assets/img/` stuff needs to live under custom/ now, it will
+have no effect otherwise.
+
+See [here](https://forgejo.org/docs/next/contributor/customization/#changing-the-logo)
+for details of where these things should live.
+Also see [here](https://forgejo.org/docs/next/admin/customization/#a-word-of-warning-here-be-dragons)
+for the necessary warnings and disclaimers.
+
+The browser caches images, so after changing it, it may take some refreshes or cache-clears to see the change.
+
+## 404 error when downloading a package
+
+Check (and double-check) your configured paths. Refer to the [storage documentation](https://forgejo.org/docs/latest/admin/storage/), and double-check what the configured path is relative to.
+
+## action fails to run with "repository not found"
+
+If the "Set up job" section fails with "repository not found", it's probably trying to pull the action from the wrong place.
+
+Workflow tasks defined with `uses:` and a relative URL are pulled from
+a mirror. Gitea and Forgejo have their own mirrors. Gitea mirrors some
+things that Forgejo does not, and vice versa.
+
+To solve this, you can change the default mirror, as described
+[here](https://forgejo.org/docs/latest/admin/actions/#default-actions-url),
+or you can change the `uses:` field to specify a full URL.
+
+For example, if you trust that the upstream github project will remain compatible and sane:
+
+    uses: sammcj/dotenv-output-action@main
+
+might become:
+
+    uses: https://github.com/sammcj/dotenv-output-action@main
