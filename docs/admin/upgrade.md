@@ -62,7 +62,7 @@ Note: Forgejo installations using Docker requires [docker >= 20.10.6](https://wi
 ## Performing the upgrade
 
 - Read the [list of things to know when upgrading from a specific version](#when-upgrading-from--known-problematic-versions-or-upgrade-paths) and either verify that your current version is not affected; or apply the notes appropriately
-- Otherwise, upgrade straight to the latest released Forgejo version (the upgrade procedure will take care of migrations)
+- Otherwise, upgrade straight to the latest released Forgejo version by replacing the binary or container image (the upgrade procedure will take care of migrations)
 - Verify Forgejo works
 
 ## Troubleshooting
