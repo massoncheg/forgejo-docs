@@ -26,7 +26,7 @@ git push origin HEAD:refs/for/main -o topic="agit-typo-fixes"
 
 The topic will be visible in the Pull Request and it will be used to associate further commits to the same Pull Request. Under the hood, it is essentially just a branch.
 
-It can also be supplied directly using the `<session>` parameter in the **Refspec**, which will set the topic as `topic-branch` **and** push the **local branch** `topic-branch` instead:
+It can also be supplied directly using the `<session>` parameter in the **Refspec**, which will set the topic as `topic-branch` and push the **currently checked out branch**:
 
 ```shell
 # topic-branch is the session parameter and the topic
