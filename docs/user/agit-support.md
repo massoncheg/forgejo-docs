@@ -35,10 +35,10 @@ git push origin HEAD:refs/for/main/topic-branch
 
 A detailed explanation illustrating the difference between using `-o topic` and `<session>` will follow shortly.
 
-It is also possible to use some additional parameters, such as `title` and `description`. Here's another example targeting the `master` branch:
+It is also possible to use some additional parameters, such as `title` and `description`. Here's another example targeting the `main` branch:
 
 ```shell
-git push origin HEAD:refs/for/master -o topic="topic-branch" \
+git push origin HEAD:refs/for/main -o topic="topic-branch" \
   -o title="Title of the PR" \
   -o description="# The PR Description
 This can be **any** markdown content.\n
