@@ -127,14 +127,14 @@ This will then result in the following properly rendered equation:
 
 ![The $\frac{1}{2} = 0.5$ equation properly rendered by KaTeX](../_images/user/wiki/katex_example.png)
 
-It is also possible to have LaTeX render in display mode, using, `$$` or `\[` with `\]`:
+It is also possible to have LaTeX render in display mode, using `$$` or `\[` with `\]`:
 
 ```markdown
 \[ \mathbf{R} = \frac 1M \iiint_Q \rho(\mathbf{r}) \mathbf{r} \mathrm dV \]
 $$ (p \implies q) \iff (\neg q \implies \neg p) $$
 ```
 
-It is however not possible to use this when the equation spans multiple lines, in that case codeblock with the language `math` should be used, for example:
+It is however not supported to use either of these syntaxes when the equation spans multiple lines; in that case, a code block with the language `math` should be used, for example:
 
 ````markdown
 ```math
