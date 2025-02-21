@@ -37,6 +37,9 @@ rm -rf ./public/images/$current_branch
 mkdir -p $(dirname ./src/content/images/$current_branch)  # in case of branch names with slashes
 ln -s $repo_path/images/ ./public/images/$current_branch
 
+rm -rf ./forgejo-docs/next/release-schedule.json
+ln -s $repo_path/release-schedule.json ./forgejo-docs/next/release-schedule.json
+
 # once the dev server is running, open the current docs branch in the browser
 sleep 3 && $open_cmd http://localhost:4321/docs/$current_branch/ &
 
