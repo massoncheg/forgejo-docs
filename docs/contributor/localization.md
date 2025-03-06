@@ -45,7 +45,7 @@ To add a new language, go to the [page for starting new translation](https://tra
 
 ### E-mail privacy
 
-By default, Weblate will use an accounts primary e-mail address for all contributions. If you want to adjust this behavior go to [Weblate settings - Account](https://translate.codeberg.org/accounts/profile/#account) and select a different e-mail under "Commit e-mail" section. Select `@users.noreply.translate.codeberg.org` address to avoid using a unmasked e-mail address.
+By default, Weblate will use your primary e-mail address for all contributions. If you want to adjust this behavior, go to [Weblate settings - Account](https://translate.codeberg.org/accounts/profile/#account) and select a different e-mail under the "Commit e-mail" section. Select a `noreply` address to avoid using a real one.
 
 ## Tips
 
