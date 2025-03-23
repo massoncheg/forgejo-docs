@@ -38,6 +38,7 @@ involved in running it on their machines.
   - [Webhooks](./webhooks/)
   - [Programming language detection](./language-detection/)
   - [Code Search](./code-search/)
+  - [Issue Search](./issue-search/)
   - Authentication
     - [Generating an Access Token](https://docs.codeberg.org/advanced/access-token/)
     - [Access Token scope](./token-scope/)
