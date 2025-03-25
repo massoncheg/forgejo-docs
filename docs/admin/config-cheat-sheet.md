@@ -1220,12 +1220,11 @@ If the rule is defined above the renderer ini section or the name does not match
 
 - `ENABLED`: **false**: Enable/Disable federation capabilities
 - `SHARE_USER_STATISTICS`: **true**: Enable/Disable user statistics for nodeinfo if federation is enabled
-- `MAX_SIZE`: **4**: Maximum federation request and response size in MB
-- `SIGNATURE_ENFORCED`: **true**: Enable/Disable validation of HTTP signatures. This is similar to Mastodon's `AUTHORIZED_FETCH`, also called "secure mode". This setting requires all incoming requests to be signed by the originating server. It is recommended to keep this setting enabled.
+- `MAX_SIZE`: **4**: Maximum federation request and response size (MB)
 
 WARNING: Changing the settings below can break federation.
 
-- `SIGNATURE_ALGORITHMS`: **rsa-sha256, rsa-sha512, ed25519**: HTTP signature algorithms
+- `ALGORITHMS`: **rsa-sha256, rsa-sha512, ed25519**: HTTP signature algorithms
 - `DIGEST_ALGORITHM`: **SHA-256**: HTTP signature digest algorithm
 - `GET_HEADERS`: **(request-target), Date**: GET headers for federation requests
 - `POST_HEADERS`: **(request-target), Date, Digest**: POST headers for federation requests
