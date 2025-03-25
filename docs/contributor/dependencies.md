@@ -136,3 +136,9 @@ Injects itself via [a workflow](https://code.forgejo.org/forgejo/lxc-helpers/src
 ## Gitea
 
 Cherry-picked in the Forgejo codebase [on a regular basis](https://codeberg.org/forgejo/forgejo/pulls?q=week&labels=116080) using a [dedicated CLI tool](https://codeberg.org/forgejo/tools/src/branch/main/scripts/weekly-cherry-pick.sh).
+
+# Web browser support
+
+For changes that would affect the usability of Forgejo, use browser features and APIs that are compatible with the latest version of Firefox ESR.
+
+For changes that do not affect usability, using features up to [Baseline <PREVIOUS-YEAR>](https://web.dev/baseline) is acceptable.
