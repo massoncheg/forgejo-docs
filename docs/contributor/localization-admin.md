@@ -10,50 +10,37 @@ repository and resolve conflicts when they arise.
 ## Merging translations in Forgejo
 
 Weblate is [configured to propose pull requests](https://translate.codeberg.org/settings/forgejo/forgejo/#vcs)
-to the Forgejo repository with new translations. These pull requests should be **squash merged** into the Forgejo
-development branch as follows:
+to the Forgejo repository with new translations. These pull requests are normally
+merged with a **merge commit** into the Forgejo development branch as follows:
 
-- go to the [history](https://translate.codeberg.org/projects/forgejo/forgejo/#history) of the main component and make sure there's no active translation work happening
-- announce in the chatroom: `@room the translations will be locked for maintenance in about 15 minutes. Make sure you don't try to save a translation when that happens as it will be lost.`
-- post a "Warning" [announcement in Weblate](https://translate.codeberg.org/projects/forgejo/forgejo/#announcement): `The translations will be locked for maintenance soon. Make sure you don't try to save a translation when that happens as it will be lost.`. Make sure to unckeck the notification option
-- If the PR is prefixed with **[skip ci]**:
-- - remove the prefix from the title
-- - change some translation(s). You can modify `[translation_meta]test` in some language
-- go to the [repository management](https://translate.codeberg.org/projects/forgejo/forgejo/#repository) of the main component
-- click **Commit**. This is done optionally to make tests run before interrupting anyone, to reduce the total maintenance time
-- wait until the 15 minutes from the announcement pass
-- click **Lock**
-- reload the page
-  - check the number of commits
-  - verify there are 0 pending changes
-- go to the pull request and wait until it is rebased and has the same number of commits
-- squash-merge the pending **i18n:** pull request ([similar to this example](https://codeberg.org/forgejo/forgejo/pulls/2317)).
-  - on the pull request page, find the merge button
-  - use the button with an arrow to change it to **Create squash commit**
-  - click **Create squash commit**
-  - remove PR description from the commit message, only keep metadata like co-authors and reviewers, like in [this example](https://codeberg.org/forgejo/forgejo/commit/e40554f89baa79d12a1ff89b434041b297afff02)
-  - click **Create squash commit** again
-- click **Reset**
-- click **Unlock**
-- remove Weblate announcement
+- If the PR title has prefix **[skip ci]**, remove it
+- If no translation activity is expected before the merge, update the PR to
+  trigger a CI run:
+  - Change some translation(s). You can modify `[translation_meta]test` in some language
+  - **Commit** changes in the [repository management](https://translate.codeberg.org/projects/forgejo/forgejo/#repository)
+    of the main component
+- Wait for a moment when there are no uncommitted translation changes and the CI
+  checks are passed. **Commit** button will be disabled in [repository management](https://translate.codeberg.org/projects/forgejo/forgejo/#repository)
+  when there are no such changes.
+- **Merge** the pending **i18n:** pull request with a **commit message**
+  similar to this example:
+  - [Pull request](https://codeberg.org/forgejo/forgejo/pulls/7240)
+  - [Merge commit](https://codeberg.org/forgejo/forgejo/commit/0b73a1da00ba92aabf5782ff62264a96bcbd1638)
+  - [The actual commit](https://codeberg.org/forgejo/forgejo/commit/5a7af0dae2ef1c7d18ea5ac53ae8682d9d0c28df)
+- Visit [Weblate history](https://translate.codeberg.org/changes/browse/forgejo/)
+  and make sure there's a message about succsessful rebase
 
 ## Merging a pull request that changes translations
 
-When a [Forgejo pull
-request](https://codeberg.org/forgejo/forgejo/pulls) modifies files in
-`options/locale` other than `locale_en-US.ini` for which it is
-authoritative, it must be merged after all pending changes in Weblate
-are merged as explained above. Only the end of the sequence changes:
+When a [Forgejo pull request](https://codeberg.org/forgejo/forgejo/pulls)
+modifies locale files other than base which is en-US, it must be merged after
+all pending changes in Weblate are merged, while the impacted components are locked.
 
-- squash-merge the pending `[I18N]` pull request ([similar to this example](https://codeberg.org/forgejo/forgejo/pulls/2317)).
-  - on the pull request page, find the merge button
-  - use the button with an arrow to change it to **Create squash commit**
-  - click **Create squash commit**
-  - remove PR description from the commit message, only keep metadata like co-authors and reviewers, like in [this example](https://codeberg.org/forgejo/forgejo/commit/e40554f89baa79d12a1ff89b434041b297afff02)
-  - click **Create squash commit** again
-- merge the PR (after resolving conflicts due to the merge of the Weblate changes)
-- click **Reset**
-- click **Unlock**
+- lock Weblate component(s)
+- merge the pending `i18n:` pull request based on the instructions above
+- rebase the other PR if needed, merge it
+- unlock component(s)
+- make sure Weblate rebased successfully, you can use `Update` button in main component to trigget that
 
 ## Resolving failures
 
@@ -73,33 +60,36 @@ and the repository exists.
 
 Weblate will retry connection attempts but it takes hours before it does that. If Codeberg is currently [available](https://status.codeberg.eu/) and working, the project can simply be unlocked manually to allow the translators to keep working.
 
-### Weblate was not reset before unlocking
-
-If Weblate was not reset after a translation squash-merge was performed, and it already has new edits, the following steps must be taken to resolve failing rebase and save the new edits:
-
-1. Lock Weblate if it didn't lock itself yet due to a rebase error
-2. Make sure there are no [pending changes](https://translate.codeberg.org/projects/forgejo/forgejo/#repository). If there are, click `Commit`
-3. Download current [translation files](https://translate.codeberg.org/download/forgejo/forgejo/?format=zip) just in case something goes wrong
-4. Add internal Weblate git repository to your remotes and fetch it: `git remote add weblate https://translate.codeberg.org/git/forgejo/forgejo`, `git fetch -u weblate`
-5. Checkout into it's branch to see which commits it contains: `git checkout weblate/forgejo`. Identify the new commits that were not squash-merged into the Forgejo repository yet
-6. Checkout a new branch from `forgejo` branch: `git switch forgejo`, `git checkout -b i18n-weblate-recovery`
-7. Cherry-pick the new commits into this new branch: `git cherry-pick <commit>`
-8. Publish this branch and open a PR
-9. Wait for the PR to be merged
-10. Click `Reset`
-11. Click `Update`
-12. Click unlock
-
 ### Commit changing non-base locales was merged before Weblate
 
 If a commit changing translation files other than `en_US.ini` was merged before all changes from Weblate were merged, it could have caused Weblate to lock itself due to failed rebase.
 If the rebase did succeed, everything is ok and no steps need to be taken, just be more cautious with merges next time.
-If Weblate failed to rebase, the following steps must be taken:
+If Weblate failed to rebase, there are two ways to solve this issue.
+
+#### Revert and merge in correct sequence
 
 1. Make a PR that reverts the commit that caused the breakage
 2. Merge this PR
 3. Make Weblate commit and push all changes
 4. Merge the Weblate PR
-5. Rebase the commit(s) of the PR that caused the breakage on top of the new Weblate commit, open a new PR
+5. Rebase the commit(s) of the PR that caused the breakage on top of the merged Weblate commit, open a new PR
 
-Alternatively the same steps as in `Weblate was not reset before unlocking` can be taken, except that the conflicts must be resolved with Weblate commits instead of the breaking PR commits.
+#### Merge translations manually
+
+1. Fetch the branch that Weblate uses:
+   `git remote add weblate https://translate.codeberg.org/git/forgejo/forgejo`
+   `git fetch -u weblate`
+   `git checkout weblate/forgejo`
+2. Checkout into a new branch:
+   `git checkout -b i18n-weblate-recovery`
+3. Rebase it on top of latest commit in main Forgejo branch
+   `git rebase -i <latest-commit>`
+4. Propose a new PR with fixed commit and merge it
+5. Close PR created by Weblate, reset Weblate
+
+Alternatively to rebase you can also interactively cherry-pick the commit on top of a new branch based on latest.
+
+## Other merge strategies
+
+Forgejo used to have different merge workflows based on squashing the PR. The
+old instructions are available in [older version of the documentation](/docs/v10.0/contributor/localization-admin/).
