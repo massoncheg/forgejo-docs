@@ -807,6 +807,8 @@ jobs:
         node: ['18', '20']
 ```
 
+> **NOTE:** dynamic matrix objects, e.g. using `fromJSON`, are not supported - this is a [known caveat](https://code.forgejo.org/forgejo/runner/issues/525).
+
 Will create four jobs where:
 
 - `matrix.variant` = "bookworm" & `matrix.node` = "18"
