@@ -23,7 +23,7 @@ These documents are targeted to people who run Forgejo on their machines.
 - [Forgejo CLI](./command-line/)
 - [Search Engines and robots.txt](./search-engines-indexation/)
 - [Recommended Settings and Tips](./recommendations/)
-- [GPG Commit Signatures](./signing/)
+- [Instance Commit Signing](./signing/)
 - [Moderation tools](./moderation/)
 - [Adopt existing git directories](./adopt/)
 - [Interface customization](./customization/)

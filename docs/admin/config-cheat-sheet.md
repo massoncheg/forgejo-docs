@@ -149,7 +149,8 @@ In addition, there is _`StaticRootPath`_ which can be set as a built-in at build
 
 ### Repository - Signing (`repository.signing`)
 
-- `SIGNING_KEY`: **default**: \[none, KEYID, default \]: Key to sign with.
+- `FORMAT`: **openpgp**: \[openpgp, ssh\]: Signing format that Forgejo should use, openpgp uses GPG and ssh uses OpenSSH.
+- `SIGNING_KEY`: **default**: \[none, KEYID, default, path/to/ssh/key\]: Key to sign with. If `FORMAT` is set to **ssh** this should be set to an absolute path to an public OpenSSH key.
 - `SIGNING_NAME` &amp; `SIGNING_EMAIL`: if a KEYID is provided as the `SIGNING_KEY`, use these as the Name and Email address of the signer. These should match publicized name and email address for the key.
 - `INITIAL_COMMIT`: **always**: \[never, pubkey, twofa, always\]: Sign initial commit.
   - `never`: Never sign
