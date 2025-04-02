@@ -641,7 +641,8 @@ requests are ignored.
 
 The scheduled time is specified using
 the [POSIX cron syntax](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07).
-See also the [crontab(5)](https://man.archlinux.org/man/crontab.5) manual page for a more information and some examples. The scheduled time will use the UTC timezone.
+See also the [crontab(5)](https://man.archlinux.org/man/crontab.5) manual page for a more information and some examples.
+The scheduled time will use the UTC timezone.
 
 ```yaml
 on:
