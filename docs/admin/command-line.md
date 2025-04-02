@@ -207,7 +207,7 @@ OPTIONS:
    --file value, -f value         Name of the dump file which will be created. Supply '-' for stdout. See type for available types. (default: "forgejo-dump-<timestamp>.zip")
    --verbose, -V                  Show process details (default: false)
    --quiet, -q                    Only display warnings and errors (default: false)
-   --tempdir value, -t value      Temporary dir path (default: "/tmp")
+   --tempdir value, -t value      Temporary dir path
    --database value, -d value     Specify the database SQL syntax: sqlite3, mysql, postgres
    --skip-repository, -R          Skip repositories (default: false)
    --skip-log, -L                 Skip logs (default: false)
