@@ -10,7 +10,7 @@ The following guide explains key **concepts** to help understand how `workflows`
 
 ## Quick start
 
-- Verify that `Enable Repository Actions` is checked in the `Repository` tab of the `/{owner}/{repository}/settings` page. If the checkbox does not show it means the administrator of the Forgejo instance did not activate the feature.
+- Verify that `Enable Repository Actions` is checked in the `Repository` tab of the `/{owner}/{repository}/settings/units#overview` page. If the checkbox does not show it means the administrator of the Forgejo instance did not activate the feature.
   ![enable actions](../_images/user/actions/enable-repository.png)
 - Add the following to the `.forgejo/workflows/demo.yaml` file in the repository.
   ```yaml
