@@ -10,7 +10,7 @@ It needs to be installed separately from the main Forgejo instance. For security
 Each `Forgejo Runner` release is published for all supported architectures as:
 
 - [binaries](https://data.forgejo.org/forgejo/runner/releases)
-- [OCI images](https://data.forgejo.org/forgejo/-/packages/container/runner/versions)
+- [OCI images](https://code.forgejo.org/forgejo/-/packages/container/runner/)
 
 ## Binary installation
 
