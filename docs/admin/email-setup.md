@@ -25,6 +25,8 @@ Restart Forgejo for the configuration changes to take effect.
 
 To send a test email to validate the settings, go to Forgejo > Site Administration > Configuration > SMTP Mailer Configuration.
 
+To enable users to receive email notifications for pull requests or issues, you can set `ENABLE_NOTIFY_MAIL=true` in the configuration.
+
 For the full list of options check the [Config Cheat Sheet](../config-cheat-sheet/#mailer-mailer).
 
 > **NOTE:** authentication is only supported when the SMTP server communication is encrypted with TLS or `HOST=localhost`. This is due to protections imposed by the Go internal libraries against STRIPTLS attacks. TLS encryption can be through:
