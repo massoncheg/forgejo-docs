@@ -16,14 +16,14 @@ Each `Forgejo Runner` release is published for all supported architectures as:
 
 ### Downloading and installing the binary
 
-Download the latest [binary release](https://data.forgejo.org/forgejo/runner/releases) and verify its signature:
+Download the latest [binary release](https://code.forgejo.org/forgejo/runner/releases) and verify its signature:
 
 ```shell
 
 $ export RUNNER_VERSION=$(curl -X 'GET' https://data.forgejo.org/api/v1/repos/forgejo/runner/releases/latest | jq .name -r | cut -c 2-)
-$ wget -O forgejo-runner https://data.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-amd64
+$ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-amd64
 $ chmod +x forgejo-runner
-$ wget -O forgejo-runner.asc https://data.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-amd64.asc
+$ wget -O forgejo-runner.asc https://code.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-amd64.asc
 $ gpg --keyserver keys.openpgp.org --recv EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
 $ gpg --verify forgejo-runner.asc forgejo-runner
 Good signature from "Forgejo <contact@forgejo.org>"
@@ -94,7 +94,7 @@ The `Forgejo runner` relies on application containers (Docker, Podman, etc.) or 
   ```shell
   $ lxc-helpers.sh lxc_container_run forgejo-runners -- sudo --user debian bash
   $ sudo apt-get install docker.io wget gnupg2
-  $ wget -O forgejo-runner https://data.forgejo.org/forgejo/runner/releases/download/v4.0.0/forgejo-runner-amd64
+  $ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v6.3.1/forgejo-runner-6.3.1-linux-amd64
   ...
   ```
 
@@ -280,7 +280,7 @@ Use `journalctl -u forgejo-runner.service` to read the runner logs.
 
 ## OCI image installation
 
-The [OCI images](https://data.forgejo.org/forgejo/-/packages/container/runner/versions)
+The [OCI images](https://code.forgejo.org/forgejo/-/packages/container/runner/)
 are built from the Dockerfile which is [found in the source directory](https://code.forgejo.org/forgejo/runner/src/branch/main/Dockerfile). It contains the `forgejo-runner` binary.
 
 ```shell
