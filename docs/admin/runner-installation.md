@@ -34,14 +34,13 @@ Next, copy the downloaded binary to `/usr/local/bin` and make it executable:
 
 ```shell
 $ cp forgejo-runner /usr/local/bin/forgejo-runner
-$ chmod +x /usr/local/bin/forgejo-runner
 ```
 
 You should now be able to test the runner by running `forgejo-runner -v`:
 
 ```
 $ forgejo-runner -v
-forgejo-runner version v4.0.0
+forgejo-runner version v6.3.1
 ```
 
 ### Setting up the runner user
