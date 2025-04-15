@@ -295,6 +295,8 @@ OPTIONS:
    --must-change-password          Set this option to false to prevent forcing the user to change their password after initial login
    --random-password-length value  Length of the random password to be generated (default: 12)
    --access-token                  Generate access token for the user (default: false)
+   --access-token-name value       Name of the generated access token (default: "gitea-admin")
+   --access-token-scopes value     Scopes of the generated access token, comma separated. Examples: "all", "public-only,read:issue", "write:repository,write:user" (default: "all")
    --restricted                    Make a restricted user account (default: false)
 ```
 
@@ -383,7 +385,7 @@ OPTIONS:
    --username value, -u value     Username
    --token-name value, -t value   Token name (default: "gitea-admin")
    --raw                          Display only the token value (default: false)
-   --scopes value                 Comma separated list of scopes to apply to access token
+   --scopes value                 Comma separated list of scopes to apply to access token, examples: "all", "public-only,read:issue", "write:repository,write:user" (default: "all")
 ```
 
 ### admin user must-change-password
