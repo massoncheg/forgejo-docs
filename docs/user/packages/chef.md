@@ -14,7 +14,7 @@ To work with the Chef package registry, you have to use [`knife`](https://docs.c
 
 The Chef package registry does not use an username:password authentication but signed requests with a private:public key pair.
 Visit the package owner settings page to create the necessary key pair.
-Only the public key is stored inside Forgejo. if you loose access to the private key you must re-generate the key pair.
+Only the public key is stored inside Forgejo. If you lose access to the private key you must re-generate the key pair.
 [Configure `knife`](https://docs.chef.io/workstation/knife_setup/) to use the downloaded private key with your Forgejo username as `client_name`.
 
 ## Configure the package registry
