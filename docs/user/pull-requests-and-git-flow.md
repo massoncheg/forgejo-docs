@@ -69,6 +69,36 @@ When a pull request contains multiple commits, the button to the left of the `Re
 
 ![Review a single commit](../_images/user/pull-request/pull-request-review-commit.png)
 
+## Review requests and code owners
+
+On the right-hand sidebar of the pull request page there is a `Reviewers` section. Clicking its title will open a dropdown menu using which you may request a review from one or more repository collaborators.
+
+![Reviewers panel](../_images/user/pull-request/pull-request-reviewers.png)
+
+Review requests may additionally be automated by adding a `CODEOWNERS` file either to the root of the repository, or the `docs` or `.forgejo` directories.
+
+Lines in this file represent rules. Each rule consists of a [Go-formatted regular expression](https://pkg.go.dev/regexp/syntax) matching paths to changed files, followed by the names of one or more users and/or organization teams, all separated by whitespaces. The regular expression may also be prepended with an exclamation mark (`!`) to create a negative rule.
+
+Users are referenced by their usernames. Teams are referenced by the name of the organization, followed by a slash (`/`) and the name of the team. Both may optionally be prepended with an `@` sign.
+
+When a pull request is submitted, the changes are checked against the rules in the `CODEOWNERS` file. When the path to any of the changed files matches the regular expression of a non-negative rule, a review of the pull request is automatically requested from all users and/or teams referenced by the rule. Negative rules do the opposite – reviews are requested when any of the changed files _do not match_ the regular expression.
+
+A `CODEOWNERS` file may contain empty lines and comments, which begin with a hash (`#`) character.
+
+An example `CODEOWNERS` file may look like this:
+
+```
+# Request review from User001 whenever anything in `src` changes
+src/.* @User001
+
+# Request review from the editors team in MyOrg whenever anything
+# in `docs` changes
+docs/.* @MyOrg/editors
+
+# Request review from User002 whenever anything but `README.md` changes
+!README\.md User002
+```
+
 ## Keep it up-to-date: rebase pull requests to upstream
 
 Sometimes the upstream project repository is evolving while we are working on a feature branch, and we need to rebase and resolve merge conflicts for upstream changes into our feature branch. This is not hard:
