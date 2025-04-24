@@ -6,12 +6,12 @@ license: 'CC-BY-SA-4.0'
 Forgejo provides [container images](https://codeberg.org/forgejo/-/packages/container/forgejo/versions) for use with Docker or other containerization tools.
 
 ```shell
-docker pull codeberg.org/forgejo/forgejo:10
+docker pull codeberg.org/forgejo/forgejo:11
 ```
 
 If `codeberg.org` can not be accessed you can replace every mention of `codeberg.org` with `data.forgejo.org` to use our mirror.
 
-The **10** tag is set to be the latest minor release, starting with **10.0.x**. The **10** tag will then be equal to **10.0.4** when it is released and so on. The **10.0** tag is also set to be the latest patch version release.
+The **11** tag is set to be the latest minor release, starting with **11.0.x**. The **11** tag will then be equal to **11.0.4** when it is released and so on. The **11.0** tag is also set to be the latest patch version release.
 
 Upgrading from **X** to **X+1** (for instance from **9** to **10**) requires a [manual operation and human verification](../upgrade/). However it is possible to use the **X** tag (for instance **10**) to get the latest minor release automatically.
 
@@ -26,7 +26,7 @@ networks:
 
 services:
   server:
-    image: codeberg.org/forgejo/forgejo:10
+    image: codeberg.org/forgejo/forgejo:11
     container_name: forgejo
     environment:
       - USER_UID=1000
@@ -61,7 +61,7 @@ Save the following files in /etc/containers/systemd, as port 222 requires elevat
 ContainerName=forgejo
 Environment=USER_UID=1000
 Environment=USER_GID=1000
-Image=codeberg.org/forgejo/forgejo:10
+Image=codeberg.org/forgejo/forgejo:11
 Network=forgejo.network
 PublishPort=3000:3000
 PublishPort=222:22
@@ -140,7 +140,7 @@ networks:
 
 services:
   server:
-    image: codeberg.org/forgejo/forgejo:10
+    image: codeberg.org/forgejo/forgejo:11
     container_name: forgejo
     environment:
       - USER_UID=1000
@@ -186,7 +186,7 @@ networks:
 
 services:
   server:
-    image: codeberg.org/forgejo/forgejo:10
+    image: codeberg.org/forgejo/forgejo:11
     container_name: forgejo
     environment:
       - USER_UID=1000
@@ -284,8 +284,8 @@ networks:
 
 services:
   server:
--    image: codeberg.org/forgejo/forgejo:10
-+    image: codeberg.org/forgejo/forgejo:10-rootless
+-    image: codeberg.org/forgejo/forgejo:11
++    image: codeberg.org/forgejo/forgejo:11-rootless
     container_name: forgejo
 +   user: "1024:100"
 -    environment:
