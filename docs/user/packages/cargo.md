@@ -17,13 +17,13 @@ The following section describes how to create it.
 ## Index Repository
 
 Cargo stores information about the available packages in a package index stored in a git repository.
-In Forgejo this repository has the special name `_cargo-index`.
+In Forgejo, this repository has the special name `_cargo-index`.
 After a package was uploaded, its metadata is automatically written to the index.
 The content of this repository should not be manually modified.
 
 The user or organization package settings page allows to create the index repository along with the configuration file.
-If needed this action will rewrite the configuration file.
-This can be useful if for example the Forgejo instance domain was changed.
+If needed, this action will rewrite the configuration file.
+This can be useful if, for example, the Forgejo instance domain was changed.
 
 If the case arises where the packages stored in Forgejo and the information in the index repository are out of sync, the settings page allows to rebuild the index repository.
 This action iterates all packages in the registry and writes their information to the index.
@@ -32,7 +32,7 @@ If there are lot of packages this process may take some time.
 ## Configuring the package registry
 
 To register the package registry the Cargo configuration must be updated.
-Add the following text to the configuration file located in the current users home directory (for example `~/.cargo/config.toml`):
+Add the following text to the configuration file located in the current users home directory (for example: `~/.cargo/config.toml`):
 
 ```
 [registry]

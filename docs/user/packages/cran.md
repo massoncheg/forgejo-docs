@@ -58,7 +58,7 @@ curl --user your_username:your_password_or_token \
      https://forgejo.example.com/api/packages/testuser/cran/bin?platform=windows&rversion=4.2
 ```
 
-If you are using 2FA or OAuth use a personal access token instead of the password.
+If you are using 2FA or OAuth, use a personal access token instead of the password.
 
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
 

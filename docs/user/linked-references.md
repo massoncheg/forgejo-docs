@@ -1,11 +1,11 @@
 ---
-title: 'Automatically Linked References in Issues, Pull Requests and Commit Messages'
+title: 'Automatically Linked References in Issues, Pull Requests, and Commit Messages'
 license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8e705d2a86030/docs/content/usage/linked-references.en-us.md'
 ---
 
-When an issue, pull request or comment is posted, the text description is parsed
-in search for references. These references will be shown as links in the Issue View
+When an issue, pull request, or comment is posted, the text description is parsed
+in search of references. These references will be shown as links in the Issue View
 and, in some cases, produce certain _actions_.
 
 Likewise, commit messages are parsed when they are listed, and _actions_
@@ -13,14 +13,13 @@ can be triggered when they are pushed.
 
 To prevent the creation of unintended references, there are certain rules
 for them to be recognized. For example, they should not be included inside code
-text. They should also be reasonably cleared from their surrounding text
-(for example, using spaces).
+text. They should also be separated from the surrounding text with spaces.
 
-## User, Team and Organization Mentions
+## User, Team, and Organization Mentions
 
-When a text in the form `@username` is found and `username` matches the name
+When text in the form `@username` is found and `username` matches the name
 of an existing user, a _mention_ reference is created. This will be shown
-by changing the text into a link to said user's profile, and possibly create
+by changing the text into a link to said user's profile, and possibly creating
 a notification for the mentioned user depending on whether they have
 the necessary permission to access the contents.
 
@@ -33,7 +32,7 @@ This is also valid for teams and organizations:
 > [@Documenters](#), we need to plan for this.
 > [@CoolCompanyInc](#), this issue concerns us all!
 
-Teams will receive mail notifications when appropriate, but whole organizations won't.
+Teams will receive email notifications when appropriate, but whole organizations won't.
 
 Commit messages do not produce user notifications.
 
@@ -47,27 +46,27 @@ Example:
 
 > This bug was introduced in [e59ff077](#)
 
-## Code references
+## Code References
 
-It is possible to reference any portion of a file in a repository, by using the permalink feature inside the file viewer:
+It is possible to reference any portion of a file in a repository by using the permalink feature inside the file viewer:
 
 ![Permalinking of a line range](../_images/user/linked-references/permalink-coderange.png)
 
-If used inside a issue or pull request, this is automatically rendered into a inline preview of the portion of that file.
+If used inside an issue or pull request, this is automatically rendered into an inline preview of the portion of that file.
 
-> **NOTE:** Alternatively, you also can use the "Reference in a new issue" action to automatically create an issue with the correct permalink.
+> **NOTE:** Alternatively, you can also use the "Reference in a new issue" action to automatically create an issue with the correct permalink.
 
 Example:
 
-> See the code here: https://next.forgejo.org/Mai-Lapyst/test/src/commit/66719555bd242b9ad7c3fb9eef2b388826d87872/hook.go#L191-L200 It set's all of the options for this.
+> See the code here: https://next.forgejo.org/Mai-Lapyst/test/src/commit/66719555bd242b9ad7c3fb9eef2b388826d87872/hook.go#L191-L200 It sets all of the options for this.
 
-![Rendered result of an permalink code reference](../_images/user/linked-references/rendered-permalink.png)
+![Rendered result of a permalink code reference](../_images/user/linked-references/rendered-permalink.png)
 
 There are some restrictions in place:
 
 - Code linked in private repositories will not be displayed if the current viewer has insufficient permissions.
-- It can only ever be a permalink; means linking to files by a branch or tag will not result in a preview.
-- There is a maximum amount of lines that will be rendered. By default this is 50.
+- It can only ever be a permalink; linking to files by a branch or tag will not result in a preview.
+- There is a maximum amount of lines that will be rendered. By default, this is 50.
 - Only permalinks to the current instance will work.
 
 ## Issues and Pull Requests
@@ -134,13 +133,13 @@ The default _keywords_ are:
 - **Closing**: close, closes, closed, fix, fixes, fixed, resolve, resolves, resolved
 - **Reopening**: reopen, reopens, reopened
 
-## Time tracking in Pull Requests and Commit Messages
+## Time Tracking in Pull Requests and Commit Messages
 
-When commit or merging of pull request results in automatic closing of issue
-it is possible to also add spent time resolving this issue through commit message.
+When a commit or merging of a pull request results in automatic closing of an issue,
+it is possible to also add the spent time resolving this issue through the commit message.
 
-To specify spent time on resolving issue you need to specify time in format
-`@<number><time-unit>` after issue number. In one commit message you can specify
+To specify spent time on resolving an issue, you need to specify time in the format
+`@<number><time-unit>` after the issue number. In one commit message, you can specify
 multiple fixed issues and spent time for each of them.
 
 Supported time units (`<time-unit>`):
@@ -151,15 +150,15 @@ Supported time units (`<time-unit>`):
 - `w` - weeks (equals to 5 days)
 - `mo` - months (equals to 4 weeks)
 
-Numbers to specify time (`<number>`) can be also decimal numbers, ex. `@1.5h` would
-result in one and half hours. Multiple time units can be combined, ex. `@1h10m` would
+Numbers to specify time (`<number>`) can be also decimal numbers, e.g., `@1.5h` would
+result in one and a half hours. Multiple time units can be combined, e.g., `@1h10m` would
 mean 1 hour and 10 minutes.
 
 Example of commit message:
 
 > Fixed #123 spent @1h, refs #102, fixes #124 @1.5h
 
-This would result in 1 hour added to issue #123 and 1 and half hours added to issue #124.
+This would result in 1 hour added to issue #123 and 1 and a half hours added to issue #124.
 
 ## External Trackers
 
@@ -172,9 +171,9 @@ the `!` marker to identify pull requests. For example:
 > This is issue [#1234](#), and links to the external tracker.
 > This is pull request [!1234](#), and links to a pull request in Forgejo.
 
-The `!` and `#` can be used interchangeably for issues and pull request _except_
-for this case, where a distinction is required. If the repository uses external
-tracker, commit message for squash merge will use `!` as reference by default.
+The `!` and `#` can be used interchangeably for issues and pull requests _except_
+for the case, where a distinction is required. If the repository uses an external
+tracker, the commit message for a squash merge will use `!` as a reference marker by default.
 
 ## Issues and Pull Requests References Summary
 
@@ -203,7 +202,7 @@ In the examples, `User1/Repo1` refers to the repository where the reference is u
 | _Not supported_             |             -             |            yes            | A link to _external issue_ `AAA-1234` for `UserZ/RepoZ` |
 | `UserZ/RepoZ!1234`          |             -             |            yes            | A link to _PR_ 1234 in `UserZ/RepoZ`                    |
 
-_The last section is for repositories with external issue trackers that use alphanumeric format._
+_The last section is for repositories with external issue trackers that use an alphanumeric format._
 
 _**-**: not applicable._
 

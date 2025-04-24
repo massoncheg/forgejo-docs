@@ -4,8 +4,8 @@ license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8e705d2a86030/docs/content/usage/webhooks.en-us.md'
 ---
 
-Forgejo supports webhooks for repository events. This can be configured in the settings
-page `/:username/:reponame/settings/hooks` by a repository admin. Webhooks can also be configured on a per-organization and whole system basis (default webhooks on repository creation or instance-wide webhooks).
+Forgejo supports webhooks for repository events. This can be configured on the settings
+page `/:username/:reponame/settings/hooks` by a repository admin. Webhooks can also be configured on a per-organization and whole-system basis (default webhooks on repository creation or instance-wide webhooks).
 The currently supported webhook types are:
 
 ### Raw event as JSON or FORM payload:
@@ -16,7 +16,7 @@ The currently supported webhook types are:
 
 ### Dedicated integration:
 
-- Packagist: ask packagist to refresh the given package
+- Packagist: ask Packagist to refresh the given package
 - SourceHut Builds: submit build manifests (only on push)
 
 ### Generic notification messages in chosen channel/chat:
@@ -120,7 +120,7 @@ X-Gitea-Event: push
 ### Example
 
 This is an example of how to use webhooks to run a PHP script upon push requests to the repository.
-In your repository Settings, under Webhooks, Setup a Forgejo webhook as follows:
+In your repository Settings, under Webhooks, set up a Forgejo webhook as follows:
 
 - Target URL: http://example.com/webhook.php
 - HTTP Method: POST
@@ -129,7 +129,7 @@ In your repository Settings, under Webhooks, Setup a Forgejo webhook as follows:
 - Trigger On: Push Events
 - Active: Checked
 
-Now on your server create the PHP file webhook.php
+Now, on your server, create the PHP file `webhook.php`.
 
 ```
 <?php
@@ -187,7 +187,7 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 // success, do something
 ```
 
-There is a Test Delivery button in the webhook settings that allows to test the configuration as well as a list of the most Recent Deliveries.
+There is a Test Delivery button in the webhook settings that allows testing the configuration as well as a list of the most Recent Deliveries.
 
 ### Authorization header
 

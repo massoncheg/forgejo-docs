@@ -182,7 +182,7 @@ connect to a S3 compatible server:
 - `MINIO_LOCATION`: **us-east-1**: S3 location to create bucket.
 - `MINIO_USE_SSL`: **false**: S3 enabled ssl.
 - `MINIO_INSECURE_SKIP_VERIFY`: **false**: S3 skip SSL verification.
-- `MINIO_CHECKSUM_ALGORITHM`: Minio checksum algorithm: **default** (for MinIO, garage or AWS S3) or **md5** (for Cloudflare or Backblaze)
+- `MINIO_CHECKSUM_ALGORITHM`: Minio checksum algorithm: **default** (for MinIO, garage or AWS S3) or **md5** (for Cloudflare or Backblaze).
 
 When used in the `[storage]` section they apply to all
 subsystems. When used in the section specific to a subsystem (see the table in the introduction), they

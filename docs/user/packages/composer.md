@@ -59,7 +59,7 @@ The server responds with the following HTTP Status codes.
 
 ## Configuring the package registry
 
-To register the package registry you need to add it to the Composer `config.json` file (which can usually be found under `<user-home-dir>/.composer/config.json`):
+To register the package registry you need to add it to the Composer `config.json` file (which can usually be found under `~/.composer/config.json`):
 
 ```json
 {

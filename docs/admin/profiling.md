@@ -27,7 +27,7 @@ Each process in the list has a few key details:
 - Title: this is the description that was given to the process, this should identify why it was created and what the purpose is.
 - Date: this indicates when the process was created.
 
-And a stacktrace, it is possible that a process has more than one stacktrace, in that case the first stacktrace can be seen as the _main_ stacktrace of that process and the others are children of that process that were not marked as new processes. The stacktrace is read from top to bottom, where each entry in the stacktrace represents a stack frame[^1]. The top entry is where the deepest stack frame and the bottom entry is the outer stack frame and where this process started its lifecycle.
+And a stacktrace, it is possible that a process has more than one stacktrace, in which case the first stacktrace can be seen as the _main_ stacktrace of that process and the others are children of that process that were not marked as new processes. The stacktrace is read from top to bottom, where each entry in the stacktrace represents a stack frame[^1]. The top entry is where the deepest stack frame and the bottom entry is the outer stack frame and where this process started its lifecycle.
 
 [^1]: This can be conceptually seen as where the program made a function call.
 

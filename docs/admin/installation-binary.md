@@ -100,7 +100,7 @@ sudo systemctl start forgejo.service
 
 ## Forgejo's web-based configuration
 
-You should now be able to access Forgejo in your local web browser, so open http://git.example.com:3000/.
+Access the Forgejo web UI by opening `http://localhost:3000/` in your local web browser. Replace `localhost` with the server's local IP address if necessary.
 
 If it doesn't work:
 
@@ -148,7 +148,7 @@ write to it after the initial configuration):
 sudo chmod 750 /etc/forgejo && sudo chmod 640 /etc/forgejo/app.ini
 ```
 
-Now (as root) edit `/etc/forgejo/app.ini`
+Now, (as root), edit `/etc/forgejo/app.ini`.
 
 > **NOTE:** You'll probably find the
 > [Configuration Cheat Sheet](../config-cheat-sheet/) and the
@@ -162,7 +162,7 @@ The following changes are recommended if dealing with many large files:
   is limited to 3MB per file, and 5 files at once. To increase it, under the `[repository]` section,
   add a `[repository.upload]` section with a line like `FILE_MAX_SIZE = 4095`
   (that would be 4095MB, about 4GB) and `MAX FILES = 20`
-  It'll look somehow like this:
+  It'll look somewhat like this:
 
   ```ini
   ...
@@ -187,9 +187,9 @@ The following changes are recommended if dealing with many large files:
 - By default **LFS data uploads expire** after 20 minutes - this can be too short for big files,
   slow connections or slow LFS storage (git-lfs seems to automatically restart the upload then -
   which means that it can take forever and use lots of traffic)..
-  If you're going to use LFS with big uploads, increase thus limit, by adding a line
+  If you're going to use LFS with big uploads, increase thus limit, by adding the line
   `LFS_HTTP_AUTH_EXPIRY = 180m` (for 180 minutes) to the `[server]` section.
-- Similarly there are timeouts for all kinds of git operations, that can be too short.
+- Similarly, there are timeouts for all kinds of git operations, that can be too short.
   Increasing all those git timeouts by adding a `[git.timeout]` section
   below the `[server]` section:
   ```ini
@@ -204,8 +204,9 @@ The following changes are recommended if dealing with many large files:
   PULL    = 3000 ; Git pull from internal repositories timeout seconds
   GC      = 600  ; Git repository GC timeout seconds
   ```
-  They are increased by a factor 10 (by adding a 0 at the end); probably not all these timeouts
-  need to be increased (and if, then maybe not this much)... use your own judgement.
+  The example values are increased by a factor of 10 for illustration. Increasing
+  all timeouts, particularly by this magnitude, may not be necessary. Evaluate
+  your specific performance requirements and adjust values accordingly.
 - By default LFS files are stored in the filesystem, in `/var/lib/forgejo/data/lfs`.
   In the `[lfs]` section you can change the `PATH = ...` line to store elsewhere, but you can also
   configure Forgejo to store the files in an S3-like Object-Storage.
@@ -217,13 +218,13 @@ The following changes are recommended if dealing with many large files:
   PROTOCOL = sendmail
   FROM = "Forgejo Git" <noreply@yourdomain.com>
   ```
-- By default Forgejo will listen to the port 3000 but that can be [changed to 80 with `HTTP_PORT`](../config-cheat-sheet/) like this:
+- By default, Forgejo will listen on the port 3000, but that can be [changed to 80 with `HTTP_PORT`](../config-cheat-sheet/) like this:
   ```ini
   [server]
   HTTP_PORT = 80
   ```
 
-When you're done editing the app.ini, save it and start the forgejo service again:
+When you're done editing the app.ini, save it and start the Forgejo service again:
 
 ```sh
 sudo systemctl start forgejo.service
@@ -248,8 +249,8 @@ Keep in mind that:
   ```sh
   $ export FORGEJO_WORK_DIR=/var/lib/forgejo
   ```
-- You need to specify the path to the config (app.ini) with `--config /etc/forgejo/app.ini`
-  (or `-c /etc/forgejo/app.ini`).
+- You need to specify the path to the config (app.ini) with either `--config /etc/forgejo/app.ini`
+  or `-c /etc/forgejo/app.ini`.
 
 So all in all your command might look like:
 

@@ -3,7 +3,7 @@ title: Issue Search
 license: 'CC-BY-SA-4.0'
 ---
 
-Since v11, Issue search on Forgejo replaced it's previously dropdown defined behaviour of searches with a query syntax defined by operators.
+Since v11, Issue search on Forgejo replaced its previously dropdown-defined behavior of searches with a query syntax defined by operators.
 
 ## Query Syntax
 
@@ -15,8 +15,8 @@ Performs a fuzzy match search of each term in the query.
 
 For example,
 
-- `foo` will return results that contain `foo`, or any of it's derivatives (such as `for` or `food`)
-- `foo bar` will return results that contain `foo` and/or `bar` or any of it's derivatives
+- `foo` will return results that contain `foo`, or any of its derivatives (such as `for` or `food`)
+- `foo bar` will return results that contain `foo` and/or `bar` or any of their derivatives
 
 2. Phrase
 
@@ -31,16 +31,16 @@ For example,
 
 1. Negation
 
-Negates the keyword by returning results that does not contain the keyword. This is done by prefixing the keyword with a minus symbol.
+Negates the keyword by returning results that do not contain the keyword. This is done by prefixing the keyword with a minus symbol.
 
 For example,
 
-- `-foo` will return results that does not contain `foo` or it's derivatives
-- `-"foo bar"` will return results that does not contain `foo bar`
+- `-foo` will return results that do not contain `foo` or its derivatives
+- `-"foo bar"` will return results that do not contain `foo bar`
 
 2. Required
 
-Denotes that the provided keyword MUST be present. This is done by prefixing the keyword with with a plus symbol.
+Denotes that the provided keyword MUST be present. This is done by prefixing the keyword with a plus symbol.
 
 For example,
 

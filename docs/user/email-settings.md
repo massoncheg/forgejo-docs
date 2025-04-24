@@ -8,7 +8,7 @@ origin_title: 'Email Settings'
 
 By default, Forgejo will send notifications to your registered email addresses.
 
-This section only concerns your Forgejo account and will not affect the commits you do not make on the website.
+This section only concerns your Forgejo account and will not affect the commits you make outside the website.
 If you don't know how to **configure your name and email in Git**, take a look at the ["Configuring Git" man page](https://git-scm.com/docs/git-config).
 
 ## Configuring all notifications
@@ -33,7 +33,7 @@ When you're finished, press the button “Set Email Preference” to confirm you
 
 ## Issue notifications
 
-As soon as you make a comment on an issue, you automatically subscribe to it. Unless you disabled email notifications for all your email addresses, you will get an email for every change and comment on that issue.
+As soon as you make a comment on an issue, you automatically subscribe to it. Unless you have disabled email notifications for all your email addresses, you will get an email for every change and comment on that issue.
 
 You can check and modify your issue subscription status under the “Notifications” section on the menu on the right side of the issue screen.
 
@@ -43,4 +43,4 @@ When you watch a repository (by clicking on the “Watch” button in a reposito
 
 To stop watching a repository, simply click on “Unwatch” in a repository.
 
-To list all of your watched repositories, click on `/notifications/watching`. Alternatively you can click the menu button “Profile and Settings...” in the top-right corner of Forgejo and click on "Subscriptions" in the dropdown.
+To list all of your watched repositories, click on `/notifications/watching`. Alternatively, you can click the menu button “Profile and Settings...” in the top-right corner of Forgejo and click on "Subscriptions" in the dropdown.

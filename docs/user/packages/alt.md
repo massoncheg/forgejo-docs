@@ -36,13 +36,13 @@ rpm https://forgejo.example.com/api/packages/testuser/alt/alt.repo x86_64 classi
 rpm https://forgejo.example.com/api/packages/testuser/alt/group/example1.repo noarch classic
 ```
 
-If the registry is private, provide credentials in the url. You can use a password or a personal access token:
+If the registry is private, provide credentials in the URL. You can use a password or a personal access token:
 
 ```shell
 rpm https://{username}:{your_password_or_token}@forgejo.example.com/api/packages/{owner}/alt/{group}.repo {arch} classic
 ```
 
-You have to add the credentials to the urls in the created `.repo` file in `/etc/apt/sources.list.d/` too.
+You have to add the credentials to the URLs in the created `.repo` file in `/etc/apt/sources.list.d/` too.
 
 ## Publish a package
 

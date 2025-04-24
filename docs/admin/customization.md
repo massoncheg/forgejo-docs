@@ -12,7 +12,7 @@ Some settings are provided to customize the look and feel of the Forgejo user in
 This includes the default theme, the name of your Forgejo instance, as well as the description that appears in Forgejo's homepage. A complete list of those settings can be found in the config cheat sheet:
 
 - In the [UI section](../config-cheat-sheet/#ui-ui) and below.
-- The `APP_NAME` setting in the [Overall section](../config-cheat-sheet/#overall-default)
+- The `APP_NAME` setting in the [Overall section](../config-cheat-sheet/#overall-default).
 
 They are documented and supported to be backward compatible between versions.
 

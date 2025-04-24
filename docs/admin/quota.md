@@ -127,12 +127,12 @@ they won't apply to users.
 
 However, you can create quota groups and assign users to them:
 
-```sh
+```shell
 api_helper "/admin/quota/groups/<GROUPNAME>/users/<USERNAME>" -XPUT
 ```
 
 Or remove them:
 
-```sh
+```shell
 api_helper "/admin/quota/groups/<GROUPNAME>/users/<USERNAME>" -XDELETE
 ```

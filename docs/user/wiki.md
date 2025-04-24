@@ -6,33 +6,33 @@ origin_author: 'Codeberg Docs Contributors'
 origin_title: 'Integrated Wiki'
 ---
 
-A [wiki](https://en.wikipedia.org/wiki/Wiki) is a collaborative space on the web. It is a common practice to use wikis to collect knowledge and share information.  
+A [wiki](https://en.wikipedia.org/wiki/Wiki) is a collaborative space on the web. It is a common practice to use wikis to collect knowledge and share information.
 Codeberg allows you to add a wiki to a repository for additional documentation.
 
-The user in these examples is `knut`, the polar bear and its repository is `foobar`.
+The user in these examples is `knut`, the polar bear, and its repository is `foobar`.
 
 ## Activation and Permissions
 
-To enable the wiki for a repository, visit the `Settings` page and activate `Enable Repository Wiki` in the `Advanced Section`. It will default to the built-in wiki which is described here, but you can add an URI to an external site the "Wiki" tab should link to.
+To enable the wiki for a repository, visit the `Settings` page and activate `Enable Repository Wiki` in the `Advanced Section`. It will default to the built-in wiki which is described here, but you can add a URI to an external site the "Wiki" tab should link to.
 
-> **Warning**  
-> Be aware that the wiki, once enabled, is accessible for _everyone_ who has `read` access to your repository - on public repositories even unauthenticated guests can access the wiki.  
+> **Warning**
+> Be aware that the wiki, once enabled, is accessible to _everyone_ who has `read` access to your repository - on public repositories even unauthenticated guests can access the wiki.
 > The wiki is _not_ a suitable place for storing private information or secrets (like passwords).
 >
 > Activating the `Allow anyone to edit the Wiki` option in `Settings` will give everyone with an account write access to the wiki.
 
-To edit the wiki `write` permission to the repository is required, unless the `Allow anyone to edit the Wiki` setting is activated on the `Settings` page, in the `Advanced Settings` section.
+To edit the wiki, `write` permission to the repository is required, unless the `Allow anyone to edit the Wiki` setting is activated on the `Settings` page, in the `Advanced Settings` section.
 
 ## Wiki structure
 
 The wiki is essentially a separate Git repository in your repository with a predefined name in the form of `<your-repository-name>.wiki.git`.
 
-It consists of [Markdown](https://en.wikipedia.org/wiki/Markdown) files (file extension `.md`) and additional assets like images.  
+It consists of [Markdown](https://en.wikipedia.org/wiki/Markdown) files (file extension `.md`) and additional assets like images.
 No further stylesheets are needed. The Markdown files are automatically rendered according to the selected Forgejo theme.
 
 ## Adding content via web
 
-After you have enabled the wiki you are prompted to create the initial page `Home.md`.
+After you have enabled the wiki, you are prompted to create the initial page `Home.md`.
 
 The web UI in your browser is currently limited to adding, updating, and deleting pages; you can't manage assets like images this way.
 
@@ -93,9 +93,9 @@ After saving your changes, the image should be visible.
 
 ## Adding a sidebar and a footer
 
-To enhance the usability of your wiki you can add a custom sidebar and a footer that are shown on every page. The sidebar will be displayed to the right of the main content and the footer below.
+To enhance the usability of your wiki, you can add a custom sidebar and a footer that are shown on every page. The sidebar will be displayed to the right of the main content and the footer below.
 
-To enable the sidebar, just add a file named `_Sidebar.md` to your wiki. For a footer the file must be named `_Footer.md`.
+To enable the sidebar, just add a file named `_Sidebar.md` to your wiki. For a footer, the file must be named `_Footer.md`.
 Both file types allow common Markdown syntax to adjust the presentation to your needs.
 
 Very basic example for a sidebar:
@@ -110,14 +110,14 @@ Very basic example for a sidebar:
 > knuts wiki
 ```
 
-> These files starting with `_` are hidden, so in the web UI you need to manually browse for the files. E.g. for our user _knut_ and his _foobar_ repo:  
+> These files starting with `_` are hidden, so in the web UI you need to manually browse for the files. E.g. for our user _knut_ and his _foobar_ repo:
 > `https://codeberg.org/knut/foobar/wiki/_Sidebar`
 
 ## Embedding LaTeX-style equations
 
 The wiki also supports embedding LaTeX-style equations in Markdown files, using [KaTeX](https://katex.org).
 
-Such equations go between two `$` characters, for example like this:
+Such equations go between two `$` characters, for example, like this:
 
 ```markdown
 $ \frac{1}{2} = 0.5 $

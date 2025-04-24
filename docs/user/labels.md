@@ -4,7 +4,7 @@ license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8e705d2a86030/docs/content/usage/labels.en-us.md'
 ---
 
-You can use labels to classify issues and pull requests and to improve your overview over them.
+You can use labels to classify issues and pull requests and to improve your overview of them.
 
 Labels can be created by going to the `Issues` page of a repository and clicking on `Labels` to show the labels management page.
 
@@ -20,7 +20,7 @@ From the labels management page, click on the `New Label` button.
 
 ![create a label](../_images/user/labels/label-new.png)
 
-Labels have a mandatory name, a mandatory color, an optional description, and must either be exclusive or not (see `Scoped labels` below).
+Labels have a mandatory name, a mandatory color, an optional description, and must either be exclusive or not (see [Scoped Labels](#scoped-labels) below).
 
 When you create a repository (or an organization), you can ensure certain labels exist by using the `Issue Labels` option. This option lists a number of available label sets that are configured globally on your instance.
 
@@ -30,7 +30,7 @@ When a label is no longer useful but needs to be kept around because
 it is still associated with existing pull requests or issues, it can be archived.
 
 - The label won't show up as a suggestion when you're adding/editing labels.
-- The label cannot be assigned to a new issues or pull requests.
+- The label cannot be assigned to new issues or pull requests.
 
 To archive a label, edit the label and click the `Archive` checkbox.
 
@@ -44,7 +44,7 @@ Scoped labels are used to ensure at most a single label with the same scope is a
 
 A scoped label must contain `/` in its name (not at either end of the name). The scope of a label is determined based on the **last** `/`, so for example the scope of label `scope/subscope/item` is `scope/subscope`.
 
-## Applying labels
+## Applying Labels
 
 Labels can be applied to issues or pull requests on their pages by clicking on `Labels`. In the dropdown menu, labels can be added or removed. Of a set of scoped labels with the same scope, only one can be selected. Archived labels are disabled for addition.
 
@@ -54,4 +54,4 @@ Labels can be applied to issues or pull requests on their pages by clicking on `
 
 Issue and pull request lists can be filtered by label. Selecting multiple labels shows issues and pull requests that have all selected labels assigned.
 
-By holding alt to click the label, issues and pull requests with the chosen label are excluded from the list.
+By holding alt and clicking the label, issues and pull requests with the chosen label are excluded from the list.

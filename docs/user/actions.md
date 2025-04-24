@@ -166,7 +166,7 @@ the [download-artifact](https://code.forgejo.org/actions/download-artifact) acti
 
 When a `job` starts, it can communicate with the `Forgejo runner` to
 fetch commonly used files that were saved by previous runs. For
-instance the https://code.forgejo.org/actions/setup-go action will do
+instance, the https://code.forgejo.org/actions/setup-go action will do
 that by default to save downloading and compiling packages found in
 `go.mod`.
 

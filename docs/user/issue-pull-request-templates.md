@@ -7,7 +7,7 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
 Some projects have a standard list of questions that users need to answer
 when creating an issue or pull request. Forgejo supports adding templates to the
 **default branch of the repository** so that they can autopopulate the form when users are
-creating issues and pull requests. This will cut down on the initial back and forth
+creating issues and pull requests. This will cut down on the initial back-and-forth
 of getting some clarifying details.
 It is currently not possible to provide generic issue/pull-request templates globally.
 

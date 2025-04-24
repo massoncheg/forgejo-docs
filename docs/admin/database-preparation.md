@@ -19,7 +19,7 @@ Database instance can be on same machine as Forgejo (local database setup), or o
 
 ## SQLite
 
-Forgejo distributes binaries that come with SQLite support and you don't need to install additional dependencies on your system.
+Forgejo distributes binaries that come with SQLite support, meaning you don't have to install additional dependencies on your system.
 
 > **Note:** If you build Forgejo from source, build with `make TAGS="sqlite sqlite_unlock_notify" build` to include SQLite support.
 
@@ -33,7 +33,7 @@ DB_TYPE = sqlite3
 PATH = data/forgejo.db
 ```
 
-If you want to maximize performance, you might want to take a look at the `[database].SQLITE_JOURNAL_MODE` setting and consider using the [WAL mode](https://www.sqlite.org/wal.html).
+If you want to maximize performance, you might want to take a look at the `[database].SQLITE_JOURNAL_MODE` setting, and consider using the [WAL mode](https://www.sqlite.org/wal.html).
 
 ## MySQL/MariaDB
 
@@ -81,7 +81,7 @@ If you want to maximize performance, you might want to take a look at the `[data
 
    Replace database name as appropriate.
 
-   **Using an accent- and case sensitive collation such as `utf8mb4_bin` is important**, because Forgejo often relies on these sensitivities, and if those assumptions are broken, that may lead to internal server errors or other unexpected results.
+   **Using an accent and case sensitive collation such as `utf8mb4_bin` is important**, because Forgejo often relies on these sensitivities, and if those assumptions are broken, that may lead to internal server errors or other unexpected results.
 
 6. Grant all privileges on the database to the database user created above.
 
@@ -103,7 +103,7 @@ If you want to maximize performance, you might want to take a look at the `[data
 
 8. Optional: On your Forgejo server, test connection to the database (requires that you have a client library installed. The client is not necessary for Forgejo itself):
 
-   ```
+   ```shell
    mysql -u forgejo -h 203.0.113.3 -p forgejodb
    ```
 
@@ -117,7 +117,7 @@ If you want to maximize performance, you might want to take a look at the `[data
 
 2. Protect the `root` user with a secure password or disable the login.
 
-3. If you use a PostgreSQL version lower than 14, the `md5` challenge-response encryption scheme for password authentication is used by default. Nowadays this scheme is not considered secure anymore. Use SCRAM-SHA-256 scheme instead by editing the `postgresql.conf` configuration file on the database server to:
+3. If you use a PostgreSQL version lower than 14, the `md5` challenge-response encryption scheme for password authentication is used by default. Nowadays this scheme is not considered secure anymore. Use the SCRAM-SHA-256 scheme instead by editing the `postgresql.conf` configuration file on the database server to:
 
    ```ini
    password_encryption = scram-sha-256
@@ -127,11 +127,11 @@ If you want to maximize performance, you might want to take a look at the `[data
 
 4. On the database server, login to the database console as superuser:
 
-   ```
+   ```shell
    su -c "psql" - postgres
    ```
 
-5. Create database user (role in PostgreSQL terms) with login privilege and password. _Please use a secure, strong password instead of `'passw0rd'` below:_
+5. Create database user (role in PostgreSQL terms) with login privilege and password. **Please use a secure, strong password instead of `'passw0rd'` below:**
 
    ```sql
    CREATE ROLE forgejo WITH LOGIN PASSWORD 'passw0rd';
@@ -173,13 +173,13 @@ If you want to maximize performance, you might want to take a look at the `[data
 
    For local database:
 
-   ```
+   ```shell
    psql -U forgejo -d forgejodb -h localhost
    ```
 
    For remote database:
 
-   ```
+   ```shell
    psql "postgres://forgejo@203.0.113.3/forgejodb"
    ```
 
@@ -220,7 +220,7 @@ The PostgreSQL driver used by Forgejo supports two-way TLS. In two-way TLS, both
 
 3. Adjust credentials ownership and permission, as required by PostgreSQL:
 
-   ```
+   ```shell
    chown postgres:postgres /path/to/root.crt /path/to/postgresql.crt /path/to/postgresql.key
    chmod 0600 /path/to/root.crt /path/to/postgresql.crt /path/to/postgresql.key
    ```
@@ -253,14 +253,14 @@ The PostgreSQL driver used by Forgejo supports two-way TLS. In two-way TLS, both
 
 7. Adjust credentials, ownership and permission as required:
 
-   ```
+   ```shell
    chown git:git ~/.postgresql/postgresql.crt ~/.postgresql/postgresql.key ~/.postgresql/root.crt
    chown 0600 ~/.postgresql/postgresql.crt ~/.postgresql/postgresql.key ~/.postgresql/root.crt
    ```
 
 8. Test the connection to the database:
 
-   ```
+   ```shell
    psql "postgres://forgejo@example.db/forgejodb?sslmode=verify-full"
    ```
 
@@ -268,7 +268,7 @@ The PostgreSQL driver used by Forgejo supports two-way TLS. In two-way TLS, both
 
 ### MySQL/MariaDB
 
-While the MySQL/MariaDB driver used by Forgejo also supports two-way TLS, Forgejo currently supports only one-way TLS. See the "Add TLS File Path Options for MySQL/MariaDB Database Connection](https://github.com/go-gitea/gitea/issues/10828)" issue for details.
+While the MySQL/MariaDB driver used by Forgejo also supports two-way TLS, Forgejo currently supports only one-way TLS. See the "[Add TLS File Path Options for MySQL/MariaDB Database Connection](https://github.com/go-gitea/gitea/issues/10828)" issue for details.
 
 In one-way TLS, the database client verifies the certificate sent from server during the connection handshake, and the server assumes that the connected client is legitimate, since client certificate verification doesn't take place.
 
@@ -290,7 +290,7 @@ In one-way TLS, the database client verifies the certificate sent from server du
 
 3. Adjust credentials ownership and permission:
 
-   ```
+   ```shell
    chown mysql:mysql /path/to/ca.crt /path/to/mysql.crt /path/to/mysql.key
    chmod 0600 /path/to/ca.crt /path/to/mysql.crt /path/to/mysql.key
    ```
@@ -312,7 +312,7 @@ In one-way TLS, the database client verifies the certificate sent from server du
 
 7. On the server running Forgejo, test connection to the database:
 
-   ```
+   ```shell
    mysql -u forgejo -h example.db -p --ssl
    ```
 

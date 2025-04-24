@@ -42,7 +42,7 @@ You can also copy content from the Forgejo package page.
 | `group`        | [Repository](https://wiki.archlinux.org/title/Official_repositories), e.g. `os`, `extras` |
 | `architecture` | System architecture, such as `x86_64`, `aarch64`                                          |
 
-Then, Import the server's public key.
+Then, import the server's public key.
 
 ```bash
 # Download the public key from the remote server.

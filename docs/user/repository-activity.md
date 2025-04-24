@@ -3,19 +3,19 @@ title: Repository Activity
 license: 'CC-BY-SA-4.0'
 ---
 
-For each repository, the activity tab displays insights about the recent changes. It helps figure out how lively it is and which contributors are the most active at a given moment in time.
+For each repository, the Activity tab displays insights about the recent changes. It helps figure out how lively it is and which contributors are the most active at a given moment in time.
 
 ## Contributors
 
 ![screenshot showing the contributors graph](../_images/user/repository-activity/contributors.png)
 
-The overall graph shows all commits over time and allows to select a range of dates to get a more detailed view. The contributors are also displayed with their individual graph. The contributor with the most commits is shown first.
+The overall graph shows all commits over time and allows you to select a range of dates to get a more detailed view. The contributors are also displayed with their individual graphs. The contributor with the most commits is shown first.
 
 ## Pulse
 
 ![screenshot showing the pulse graph](../_images/user/repository-activity/pulse.png)
 
-A high level view of of the most recent commits and pull requests.
+A high-level view of the most recent commits and pull requests.
 
 ## Code frequency
 

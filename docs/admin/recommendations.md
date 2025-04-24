@@ -36,7 +36,12 @@ If your instances see a high amount of activity, it is recommended to change thi
 
 ### `[cache].ADAPTER`
 
-Forgejo uses caching to avoid doing expensive work multiple times in multiple places. The default cache is a simple cache mechanism that deletes items after x time, regardless of whether they are used often or not used at all and not deleted if there are many items in the cache, this is clearly not a good cache. To give you an idea if your instance relies heavily on the caching code, a few examples where it is used: commit count of a repository, branch or only where x file was modified (requires a lot of IO work), user settings (frequent database lookup) and avatar hash (hash computation) are the most common usage of the caching code.
+Forgejo uses caching to avoid repeating expensive operations. The default cache implementation is basic: items expire after a fixed duration (time-to-live) regardless of usage frequency, and it lacks eviction strategies based on memory pressure or access patterns (like LRU). This simplicity means it may not be optimal for all workloads. To illustrate the potential impact of caching, consider these common use cases:
+
+- Calculating commit counts for repositories or branches (reducing potentially expensive Git operations).
+- Retrieving specific file or commit history (reducing Git I/O).
+- Fetching user settings (minimizing database lookups).
+- Computing avatar hashes (saving CPU time).
 
 If your instance does not see much activity, it is recommended to change this value to **twoqueue**. This will use a size-limited [LRU cache](<https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)>), which will keep frequently used items and remove the ones that are not used often. It is also recommended to change `[cache].HOST` to `{"size":100, "recent_ratio":0.25, "ghost_ratio":0.5}` because the default value has a limit of 50,000 items and since by default it will keep items for 16 hours, it is not memory efficient to possibly keep so many items for a small instance.
 

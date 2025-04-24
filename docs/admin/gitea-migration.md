@@ -7,7 +7,7 @@ This guide describes how to go from Gitea to Forgejo.
 
 Upgrades are supported [up to Gitea v1.22 included](https://forgejo.org/2024-12-gitea-compatibility/), in two steps:
 
-- Upgrade from any Gitea version up to and including v1.22.x to Forgejo v10.0.x
+- Upgrade from any Gitea version up to and including v1.22.x to Forgejo v10.0.x.
 - Upgrade from Forgejo v10.0.x to any Forgejo version greater than v10.
 
 Here's what to expect, and some helpful tips:
@@ -44,7 +44,7 @@ We need to set the group owner and group write permission so Forgejo can write t
 
 If we want to leave a copy of the Gitea data untouched (recommend in case of mistakes)
 the next step is to copy the existing data to the Forgejo user's home directory.
-We need to change the ownership of the files to the `forgejo` user and group too.
+We need to change the ownership of the files to the `forgejo` user and group too:
 
     $ cp -r /var/lib/gitea/* /var/lib/forgejo
     $ chown -R forgejo: /var/lib/forgejo/*
@@ -112,10 +112,9 @@ Forgejo.
 
 Here are some common problems and how to solve them. Contributions are welcome.
 
-## missing favicon or logo
+## Missing favicon or logo
 
-The `public/assets/img/` stuff needs to live under custom/ now, it will
-have no effect otherwise.
+Files from `public/assets/img/` must live in `custom/` now; otherwise, they will have no effect.
 
 See [here](https://forgejo.org/docs/next/contributor/customization/#changing-the-logo)
 for details of where these things should live.
@@ -128,7 +127,7 @@ The browser caches images, so after changing it, it may take some refreshes or c
 
 Check (and double-check) your configured paths. Refer to the [storage documentation](https://forgejo.org/docs/latest/admin/storage/), and double-check what the configured path is relative to.
 
-## action fails to run with "repository not found"
+## Action fails to run with "repository not found"
 
 If the "Set up job" section fails with "repository not found", it's probably trying to pull the action from the wrong place.
 

@@ -3,8 +3,8 @@ title: 'Moderation tools'
 license: 'CC-BY-SA-4.0'
 ---
 
-Moderation tools are meant to help the Forgejo users and admins cope
-with spam bots and undesirable interactions.
+Moderation tools are meant to help the Forgejo users and admins handle
+spam bots and undesirable interactions.
 
 `[admin].SEND_NOTIFICATION_EMAIL_ON_NEW_USER` can be set to `true` on
 small Forgejo instances with an open registration. Such instances are

@@ -7,7 +7,7 @@ Forgejo tries to detect the languages used in a repository, for each file, to us
 
 ![Repository language statistics](../_images/user/language-detection/repo-languages.png)
 
-This comes with sensible defaults that should work for most cases, but it is not without faults or compromises, and there are scenarios where the detection needs a little guidance. Further below, we will explain how it can be influenced, but lets look at the defaults first!
+This comes with sensible defaults that should work for most cases, but it is not without faults or compromises, and there are scenarios where the detection needs a little guidance. Further below, we will explain how it can be influenced, but let's look at the defaults first!
 
 ## Built-in language detection
 
@@ -32,7 +32,7 @@ While some of the categories are rather straightforward, a little explanation ab
 
 **Dotfiles** are files whose name starts with a dot, which by convention, suggests they should be hidden, and as such, they are excluded from language statistics.
 
-**Programming languages** and **Markup languages** are more or less self explanatory. The former category includes languages like C, Go, Rust, JavaScript, and many, many others. Markup languages are CSS, HTML, Jinja templates, Jupyter Notebooks, and numerous other formats.
+**Programming languages** and **Markup languages** are more or less self-explanatory. The former category includes languages like C, Go, Rust, JavaScript, and many, many others. Markup languages are CSS, HTML, Jinja templates, Jupyter Notebooks, and numerous other formats.
 
 Please consult the [enry][enry] or [linguist][linguist] documentation for more details.
 

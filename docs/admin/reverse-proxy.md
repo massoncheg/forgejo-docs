@@ -100,7 +100,7 @@ You may wish to change the `ROOT_URL` configuration key to the HTTPS protocol so
 
 #### HTTPS with manually installed certificates
 
-If you have obtained certificates from elsewhere or have chosen not to let certbot automatically install them, make the following changes to the configuration file:
+If you have obtained certificates from elsewhere or have chosen not to let Certbot automatically install them, make the following changes to the configuration file:
 
 **Change the listening ports**
 
@@ -157,7 +157,7 @@ To set up a basic HTTP proxy in Apache, create a file `100-forgejo.conf` in `/et
 </VirtualHost>
 ```
 
-Next, enable the site with `a2ensite 100-forgejo.conf` and enable the proxy modules with `a2enmod proxy proxy_http`. Finally, restart the apache server.
+Next, enable the site with `a2ensite 100-forgejo.conf` and enable the proxy modules with `a2enmod proxy proxy_http`. Finally, restart the Apache server.
 
 ### HTTP with a subpath
 
@@ -178,7 +178,7 @@ Make sure to set the Forgejo `ROOT_URL` configuration key to the URL _with_ the 
 
 ### HTTPS
 
-When using a reverse proxy, it's usually easier to let the proxy handle HTTPS. It's easy to set up HTTPS on apache.
+When using a reverse proxy, it's usually easier to let the proxy handle HTTPS. It's easy to set up HTTPS on Apache.
 
 #### HTTPS with Certbot
 
@@ -277,9 +277,9 @@ A Unix socket has lower latency compared to TCP. When combined with HAProxy, it 
 
 We assume that:
 
-- Redirection to SSL and the SSL frontend configuration remain unchanged from the TCP setup
-- you are running Forgejo as `git` user and HAProxy as `haproxy` user
-- the chroot environment is set to the directory `/var/lib/haproxy`
+- Redirection to SSL and the SSL frontend configuration remain unchanged from the TCP setup.
+- you are running Forgejo as `git` user and HAProxy as `haproxy` user.
+- the chroot environment is set to the directory `/var/lib/haproxy`.
 - you have included the following settings in the `server` stanza of Forgejo:
 
 ```ini
@@ -296,7 +296,7 @@ Now you need to create a directory which can be acceessed either by the chroot e
 install -o git -g haproxy -m 0770 -d /var/lib/haproxy/forgejo
 ```
 
-Finally you can add these blocks into your `haproxy.cfg`
+Finally, you can add these blocks into your `haproxy.cfg`.
 
 #### chroot
 

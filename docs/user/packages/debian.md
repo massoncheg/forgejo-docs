@@ -26,7 +26,7 @@ echo "deb [signed-by=/etc/apt/keyrings/forgejo-{owner}.asc] https://forgejo.exam
 | `distribution` | The distribution to use.  |
 | `component`    | The component to use.     |
 
-If the registry is private, provide credentials in the url. You can use a password or a [personal access token](../../api-usage/#authentication):
+If the registry is private, provide credentials in the URL. You can use a password or a [personal access token](../../api-usage/#authentication):
 
 ```shell
 echo "deb [signed-by=/etc/apt/keyrings/forgejo-{owner}.asc] https://{username}:{your_password_or_token}@forgejo.example.com/api/packages/{owner}/debian {distribution} {component}" | sudo tee -a /etc/apt/sources.list.d/forgejo.list

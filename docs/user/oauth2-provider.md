@@ -6,11 +6,11 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
 
 Forgejo supports acting as an OAuth2 provider to allow third party applications to access its resources with the user's consent.
 
-> **NOTE:** scoped tokens or personal access tokens are entirely different from OAuth2, see the [Access Token scope](../token-scope/) section for more information.
+> **NOTE:** Scoped tokens or personal access tokens are entirely different from OAuth2; see the [Access Token scope](../token-scope/) section for more information.
 
-Forgejo can act as an instance wide OAuth2 provider. To achieve that, OAuth2 applications must be created in the `/admin/applications` page.
+Forgejo can act as an instance-wide OAuth2 provider. To achieve that, OAuth2 applications must be created on the `/admin/applications` page.
 
-> **NOTE:** Third party applications obtaining a token for a user via such an application will have administrative rights. OAuth2 scopes are not yet implemented.
+> **NOTE:** Third-party applications obtaining a token for a user via such an application will have administrative rights. OAuth2 scopes are not yet implemented.
 
 ## Endpoints
 
@@ -24,12 +24,12 @@ Forgejo can act as an instance wide OAuth2 provider. To achieve that, OAuth2 app
 
 ## Supported OAuth2 Grants
 
-At the moment Forgejo only supports the [**Authorization Code Grant**](https://tools.ietf.org/html/rfc6749#section-1.3.1) standard with additional support of the following extensions:
+At the moment, Forgejo only supports the [**Authorization Code Grant**](https://tools.ietf.org/html/rfc6749#section-1.3.1) standard with additional support for the following extensions:
 
 - [Proof Key for Code Exchange (PKCE)](https://tools.ietf.org/html/rfc7636)
 - [OpenID Connect (OIDC)](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth)
 
-To use the Authorization Code Grant as a third party application it is required to register a new application via the "Settings" (`/user/settings/applications`) section of the settings. To test or debug you can use the web-tool https://oauthdebugger.com/.
+To use the Authorization Code Grant as a third-party application, it is required to register a new application via the "Settings" (`/user/settings/applications`) section. To test or debug, you can use the web tool https://oauthdebugger.com/.
 
 ## Client types
 
@@ -40,7 +40,7 @@ For public clients, a redirect URI of a loopback IP address such as `http://127.
 ## Git authentication
 
 OAuth2 can be used as an alternative to a public SSH key or basic authentication (user/password) to obtain the required
-read or write access permissions. It relies on a Git [credential helpers](https://git-scm.com/docs/gitcredentials#_custom_helpers)
+read or write access permissions. It relies on Git [credential helpers](https://git-scm.com/docs/gitcredentials#_custom_helpers)
 such as:
 
 - [Git Credential Manager](https://github.com/git-ecosystem/git-credential-manager)
@@ -66,49 +66,49 @@ to authenticate on https://code.forgejo.org:
     oauthTokenURL = /login/oauth/access_token
   ```
 - `git clone https://code.forgejo.org/earl-warren/test`
-- `git push` will open new page on the default browser, looking like this:
+- `git push` will open a new page on the default browser, looking like this:
   ![git-credential-oauth OAuth2 grant page](../_images/user/oauth2-provider/oauth-git-credential-client.png)
-- subsequent `git push` will reuse the token obtained from OAuth2 as long as it remains in the [git credential-cache](https://git-scm.com/docs/git-credential-cache) (i.e. 2h / 7200s)
+- subsequent `git push` will reuse the token obtained from OAuth2 as long as it remains in the [git credential-cache](https://git-scm.com/docs/git-credential-cache) (i.e., 2h / 7200s)
 
-> **NOTE:** Scopes are not implemented for OAuth2 tokens and they can be used to execute any actions on behalf the user, not just git related actions. Scoped applications tokens or SSH keys limited to interactions with the repository should be preferred in environments where security is a concern.
+> **NOTE:** Scopes are not implemented for OAuth2 tokens and they can be used to execute any actions on behalf of the user, not just Git-related actions. Scoped application tokens or SSH keys limited to interactions with the repository should be preferred in environments where security is a concern.
 
-It is possible for any user to manually register a new OAuth2 application in the `/user/settings/applications` page for the purpose of using a Git [credential helpers](https://git-scm.com/docs/gitcredentials#_custom_helpers) different from the pre-registered ones. In that case the `~/.gitconfig` setting (`oauthClientId` etc.) needs to be adapted accordingly
+It is possible for any user to manually register a new OAuth2 application on the `/user/settings/applications` page for the purpose of using Git [credential helpers](https://git-scm.com/docs/gitcredentials#_custom_helpers) different from the pre-registered ones. In that case, the `~/.gitconfig` setting (`oauthClientId`, etc.) needs to be adapted accordingly.
 
 ## Examples
 
 ### Using Codeberg as an authentication source
 
-In this example https://v7.next.forgejo.org will be configured to add the option to delegate user registration to https://codeberg.org.
+In this example, https://v7.next.forgejo.org will be configured to add the option to delegate user registration to https://codeberg.org.
 
 ![Login page with Codeberg authentication source](../_images/user/oauth2-provider/authsource-intro-login-page.png)
 
-> **NOTE:** in the OAuth2 jargon, https://v7.next.forgejo.org is the OAuth2 client and Codeberg is the OAuth2 provider
+> **NOTE:** In OAuth2 jargon, https://v7.next.forgejo.org is the OAuth2 client and Codeberg is the OAuth2 provider.
 
-- Choose an arbitrary but distinctive name for the OAuth2 provider: (e.g. **Codeberg**).
-- Choose an existing Codeberg user to create the OAuth2 application. It does not need to be a user with elevated privileges. (e.g. **user-for-oauth-application**)
-- On https://codeberg.org, login as **user-for-oauth-application**
+- Choose an arbitrary but distinctive name for the OAuth2 provider (e.g., **Codeberg**).
+- Choose an existing Codeberg user to create the OAuth2 application. It does not need to be a user with elevated privileges (e.g., **user-for-oauth-application**).
+- On https://codeberg.org, log in as **user-for-oauth-application**.
   - Visit https://codeberg.org/user/settings/applications and create a new OAuth2 application. There needs to be only one redirect URI, composed with the arbitrary name that was chosen above: https://v7.next.forgejo.org/user/oauth2/Codeberg/callback.
     ![Create a new OAuth2 application](../_images/user/oauth2-provider/authsource-provider-create.png)
   - When created, the OAuth2 application is given a **Client ID** and a **Client secret** that https://v7.next.forgejo.org will need to let https://codeberg.org know it is an authorized OAuth2 client.
     ![Client ID and secret of a new OAuth2 application](../_images/user/oauth2-provider/authsource-provider-show.png)
-- On https://v7.next.forgejo.org, login as a user with admin privileges
+- On https://v7.next.forgejo.org, log in as a user with admin privileges.
   - Create a new authentication source on https://v7.next.forgejo.org, the Forgejo instance that is going to act as the OAuth2 client, allowing its users to register using the account they have on https://codeberg.org.
     - Visit https://v7.next.forgejo.org/admin/auths/new to create the authentication source with:
       - **Authentication type:** OAuth2
-      - **Authentication name:** the arbitrary name that was chosen above (e.g. **Codeberg**)
+      - **Authentication name:** the arbitrary name that was chosen above (e.g., **Codeberg**)
       - **OAuth2 provider:** OpenID Connect
-      - **Client ID:** copy/pasted from the OAuth2 application created on Codebeg
-      - **Client Secret:** copy/pasted from the OAuth2 application created on Codebeg
+      - **Client ID:** copy/pasted from the OAuth2 application created on Codeberg
+      - **Client Secret:** copy/pasted from the OAuth2 application created on Codeberg
       - **Icon URL:** https://design.codeberg.org/logo-kit/icon.svg
       - **OpenID Connect Auto Discovery URL:** https://codeberg.org/.well-known/openid-configuration
-      - Leave all other fields to their default values
+      - Leave all other fields at their default values.
         ![Create a new OAuth2 authentication source](../_images/user/oauth2-provider/authsource-client-create.png)
     - It will show in the list of authentication sources at https://v7.next.forgejo.org/admin/auths.
       ![List of OAuth2 authentication source](../_images/user/oauth2-provider/authsource-client-list.png)
-- On https://v7.next.forgejo.org, not logged in
-  - Visit https://v7.next.forgejo.org/user/login
+- On https://v7.next.forgejo.org, not logged in.
+  - Visit https://v7.next.forgejo.org/user/login.
     ![Login page with Codeberg authentication source](../_images/user/oauth2-provider/authsource-intro-login-page.png)
-  - Click on **Sign in with Codeberg** to be redirected to Codeberg and authorize https://v7.next.forgejo.org to obtain the details of your account (user name, email, etc.). If you are not already logged in Codeberg, you will need to before this authorization request is presented to you.
+  - Click on **Sign in with Codeberg** to be redirected to Codeberg and authorize https://v7.next.forgejo.org to obtain the details of your account (user name, email, etc.). If you are not already logged in to Codeberg, you will need to before this authorization request is presented to you.
     ![Authorizing v7.next.forgejo.org](../_images/user/oauth2-provider/authsource-intro-login-confirm.png)
   - Review the pre-filled information that will be used to create your account on https://v7.next.forgejo.org.
     ![Filling account information](../_images/user/oauth2-provider/authsource-intro-login-create.png)
@@ -170,16 +170,16 @@ In this example https://v7.next.forgejo.org will be configured to add the option
 
 PKCE (Proof Key for Code Exchange) is an extension to the OAuth flow which allows for a secure credential exchange without the requirement to provide a client secret.
 
-**Note**: Please ensure you have registered your OAuth application as a public client.
+**Note:** Please ensure you have registered your OAuth application as a public client.
 
-To achieve this, you have to provide a `code_verifier` for every authorization request. A `code_verifier` has to be a random string with a minimum length of 43 characters and a maximum length of 128 characters. It can contain alphanumeric characters as well as the characters `-`, `.`, `_` and `~`.
+To achieve this, you have to provide a `code_verifier` for every authorization request. A `code_verifier` has to be a random string with a minimum length of 43 characters and a maximum length of 128 characters. It can contain alphanumeric characters as well as the characters `-`, `.`, `_`, and `~`.
 
 Using this `code_verifier` string, a new one called `code_challenge` is created by using one of two methods:
 
 - If you have the required functionality on your client, set `code_challenge` to be a URL-safe base64-encoded string of the SHA256 hash of `code_verifier`. In that case, your `code_challenge_method` becomes `S256`.
 - If you are unable to do so, you can provide your `code_verifier` as a plain string to `code_challenge`. Then you have to set your `code_challenge_method` as `plain`.
 
-After you have generated this values, you can continue with your request.
+After you have generated these values, you can continue with your request.
 
 1. Redirect the user to the authorization endpoint in order to get their consent for accessing the resources:
 

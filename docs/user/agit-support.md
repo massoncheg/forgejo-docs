@@ -12,9 +12,9 @@ Using Push Options (`-o`) and a [Refspec](https://git-scm.com/book/en/v2/Git-Int
 
 ## Creating Pull Requests
 
-For clarity reasons, this document will lead with some examples first.
+For clarity, this document will start with some examples.
 
-A full list of the parameters, as well as information on avoiding duplicate Pull Requests when rebasing or amending a commit, will follow.
+A full list of the parameters, as well as information on avoiding duplicate Pull Requests when rebasing or amending commits, will follow.
 
 ### Usage Examples
 
@@ -24,7 +24,7 @@ Suppose that you cloned a repository and created a new commit on top of the `mai
 git push origin HEAD:refs/for/main -o topic="agit-typo-fixes"
 ```
 
-The topic will be visible in the Pull Request and it will be used to associate further commits to the same Pull Request. Under the hood, it is essentially just a branch.
+The topic will be visible in the Pull Request and it will be used to associate further commits with the same Pull Request. Under the hood, it is essentially just a branch.
 
 It can also be supplied directly using the `<session>` parameter in the **Refspec**, which will set the topic as `topic-branch` and push the **currently checked out branch**:
 
@@ -61,7 +61,7 @@ git config branch.local-branch.merge refs/for/main/topic-branch
 ```
 
 After doing so, you can now simply run `git push` to push commits to your pull request, without having to specify the refspec.
-This also will allow you to pull, fetch, rebase, etc. from the AGit pull request by default.
+This will also allow you to pull, fetch, rebase, etc., from the AGit pull request by default.
 
 #### Pushing a non-checked-out reference (non-HEAD)
 
@@ -76,18 +76,23 @@ git push origin local-branch:refs/for/remote-branch/topic
 
 ### Parameters
 
+```sh
+git push <remote-name> <local-ref>:refs/for[draft|for-review]/<branch>/<session> [-o <topic|title|description|force-push>]
+```
+
 The following parameters are available:
 
-- `HEAD`: The target branch **(required)**
+- `<remote-name>`: The name of the remote repository (e.g., `origin`) **(required)**
+- `<local-ref>`: The local reference being pushed (e.g., `HEAD`, `my-branch`, a commit hash) **(required)**
 - `refs/<for|draft|for-review>/<branch>/<session>`: Refspec **(required)**
   - `for`/`draft`/`for-review`: This parameter describes the Pull Request type. **for** opens a normal Pull Request. **draft** and **for-review** are currently silently ignored.
   - `<branch>`: The target branch that a Pull Request should be merged against **(required)**
-  - `<session>`: The local branch that should be submitted remotely. **If left empty,** the currently checked out branch will be submitted by default, however, you **must** use `topic`.
+  - `<session>`: The session identifier or topic for the remote pull request. **If left empty,** the topic must be supplied using the `-o topic` option.
 - `-o <topic|title|description|force-push>`: Push options
-  - `topic`: Essentially an identifier. **If left empty,** the value of `<session>`, if present, will also be used for the topic. Otherwise, Forgejo will return an error. If you want to push additional commits to a Pull Request that was created using AGit, you **must** use the same topic.
+  - `topic`: Essentially an identifier. **If left empty,** the value of `<session>`, if present, will be used for the topic. Otherwise, Forgejo will return an error. If you want to push additional commits to a Pull Request that was created using AGit, you **must** use the same topic.
   - `title`: Title of the Pull Request. **If left empty,** the first line of the first new Git commit will be used instead.
   - `description`: Description of the Pull Request.
-  - `force-push`: Necessary when rebasing, amending or [retroactively modifying](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) your previous commits. Otherwise, a new Pull Request will be opened, **even if you use the same topic**. If used, the value of this parameter should be set to `true`.
+  - `force-push`: Necessary when rebasing, amending, or [retroactively modifying](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) your previous commits. Otherwise, a new Pull Request will be opened, **even if you use the same topic**. If used, the value of this parameter should be set to `true`.
 
 Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing Pull Request.
 

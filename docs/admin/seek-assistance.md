@@ -43,6 +43,6 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
       ENABLE_PPROF = true
       ```
 
-   2. Trigger the bug, when Forgejo gets stuck, use curl or browser to visit: `http://127.0.0.1:6060/debug/pprof/goroutine?debug=1` (IP must be `127.0.0.1` and port must be `6060`).
+   2. Trigger the bug, and when Forgejo gets stuck, use curl or browser to visit: `http://127.0.0.1:6060/debug/pprof/goroutine?debug=1` (IP must be `127.0.0.1` and port must be `6060`).
    3. If you are using Docker, please use `docker exec -it <container-name> curl "http://127.0.0.1:6060/debug/pprof/goroutine?debug=1"`.
    4. Report the output (the stack trace doesn't contain sensitive data).

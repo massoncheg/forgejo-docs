@@ -99,7 +99,7 @@ npm install @test/test_package
 
 ## Tag a package
 
-The registry supports [version tags](https://docs.npmjs.com/adding-dist-tags-to-packages/) which can be managed by `npm dist-tag`:
+The registry supports [version tags](https://docs.npmjs.com/adding-dist-tags-to-packages/), which can be managed by `npm dist-tag`:
 
 ```shell
 npm dist-tag add {package_name}@{version} {tag}

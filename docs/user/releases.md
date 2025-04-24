@@ -9,31 +9,31 @@ origin_title: 'Tags and Releases'
 ## What are tags?
 
 Tags are a feature in Git that can be used to make a snapshot of a repository
-from a point in time. It is generally used to mark releases (e.g. v1.2.4), and
-it functions as a shortcut to see what the repo looked like at the time.
+from a point in time. It is generally used to mark releases (e.g., v1.2.4), and
+it functions as a shortcut to see what the repo looked like at that time.
 
 ## What are releases?
 
-Releases are a feature in Forgejo, independent of Git that allows you to attach
+Releases are a feature in Forgejo, independent of Git, that allows you to attach
 files and release notes along with the source code at the time, and share it in
 Forgejo, linking to a Git tag.
 
 ### Wait, what is the difference between tags and releases?
 
-They are very similar, the difference being that tags are just the repository
+They are very similar. The difference is that tags are just the repository
 frozen in time and are part of Git (you can make a tag inside of Git), but
-releases are tags accompanied with a binary file and are not part of Git (you
+releases are tags accompanied by a binary file and are not part of Git (you
 need to go to your repository page in the web interface to create a release).
 
 ## Creating tags and releases
 
 If you only want to create tags, using Git is recommended. If you want to create
 a full release, this is only possible through Forgejo's web interface, or
-through it's API.
+through its API.
 
 ### Creating a Tag with Git
 
-To create a tag using Git, use the following command in your local repository.
+To create a tag using Git, use the following command in your local repository:
 
 ```bash
 git tag -a <tag name> -m "<my tag message>"
@@ -42,8 +42,8 @@ git tag -a <tag name> -m "<my tag message>"
 You can omit `"<my tag message>"` to write a longer tag message in an editor
 window.
 
-**Tip:** Tags are generally labelled by version numbers. It is good practice to
-prefix a version number with a `v` (e.g. `v1.2.3`) and to use the [Semantic
+**Tip:** Tags are generally labeled by version numbers. It is good practice to
+prefix a version number with a `v` (e.g., `v1.2.3`) and to use the [Semantic
 Versioning](https://semver.org/) specification for assigning and incrementing
 version numbers.
 
@@ -77,7 +77,7 @@ the form of attaching files `(5)` or adding external links `(6)`:
 
 You can now either save it as a draft, or publish the release outright.
 
-You are then re-directed to the `Releases` tab of your repository. The newly
+You are then redirected to the `Releases` tab of your repository. The newly
 created release is now listed there:
 
 ![](../_images/user/releases/3.png)

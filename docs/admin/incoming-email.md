@@ -25,7 +25,11 @@ This placeholder must only appear once in the address and must be in the user pa
 
 An example using email sub-addressing may look like this: `incoming+%{token}@example.com`
 
-If a catch-all mailbox is used, the placeholder may be used anywhere in the user part of the address: `incoming+%{token}@example.com`, `incoming_%{token}@example.com`, `%{token}@example.com`
+If a catch-all mailbox is used, the placeholder may be used anywhere in the user part of the address, for example:
+
+- `incoming+%{token}@example.com`
+- `incoming_%{token}@example.com`
+- `%{token}@example.com`
 
 ## Security
 

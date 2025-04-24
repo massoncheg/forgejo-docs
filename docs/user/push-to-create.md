@@ -6,15 +6,15 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
 
 ## Push To Create
 
-Push to create is a feature that allows you to push to a repository that does not exist yet in Forgejo. This is useful for automation and for allowing users to create repositories without having to go through the web interface. This feature is disabled by default.
+Push to create is a feature that allows you to push to a repository that does not yet exist in Forgejo. This is useful for automation and for allowing users to create repositories without having to go through the web interface. This feature is disabled by default.
 
 ### Enabling Push To Create
 
-In the `app.ini` file, under the section `[repository]`, set `ENABLE_PUSH_CREATE_USER` to `true` and `ENABLE_PUSH_CREATE_ORG` to `true` if you want to allow users to create repositories in their own user account and in organizations they are a member of respectively. Restart Forgejo for the changes to take effect. You can read more about these two options in the Configuration Cheat Sheet.
+In the `app.ini` file, under the section `[repository]`, set `ENABLE_PUSH_CREATE_USER` to `true` and `ENABLE_PUSH_CREATE_ORG` to `true` if you want to allow users to create repositories in their own user account and in organizations they are members of, respectively. Restart Forgejo for the changes to take effect. You can read more about these two options in the Configuration Cheat Sheet.
 
 ### Using Push To Create
 
-Assuming you have a git repository in the current directory, you can push to a repository that does not exist yet in Forgejo by running the following command:
+Assuming you have a git repository in the current directory, you can push to a repository that does not yet exist in Forgejo by running the following command:
 
 ```shell
 # Add the remote you want to push to
@@ -28,7 +28,7 @@ This assumes you are using an SSH remote, but you can also use HTTPS remotes as 
 
 ### Push options
 
-Push-to-create will default to the visibility defined by `DEFAULT_PUSH_CREATE_PRIVATE` in `app.ini`. To explicitly set the visibility there is support for some [push options](https://git-scm.com/docs/git-push#Documentation/git-push.txt--oltoptiongt).
+Push-to-create will default to the visibility defined by `DEFAULT_PUSH_CREATE_PRIVATE` in `app.ini`. To explicitly set the visibility, there is support for some [push options](https://git-scm.com/docs/git-push#Documentation/git-push.txt--oltoptiongt).
 
 - `repo.private` (true|false) - Change the repository's visibility.
 

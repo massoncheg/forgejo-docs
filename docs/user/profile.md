@@ -4,7 +4,7 @@ license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8e705d2a86030/docs/content/usage/profile-readme.en-us.md'
 ---
 
-By default the profile page of a user (or an organization) is the list of repositories they
+By default, the profile page of a user (or an organization) is the list of repositories they
 own. It is possible to customize it with a short description that
 shows to the left, under their avatar. It can now be fully
 personalized with a markdown file that is displayed instead of the

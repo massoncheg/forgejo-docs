@@ -9,7 +9,7 @@ Forgejo provides [container images](https://codeberg.org/forgejo/-/packages/cont
 docker pull codeberg.org/forgejo/forgejo:11
 ```
 
-If `codeberg.org` can not be accessed you can replace every mention of `codeberg.org` with `data.forgejo.org` to use our mirror.
+If `codeberg.org` cannot be accessed, you can replace every mention of `codeberg.org` with `data.forgejo.org` to use our mirror.
 
 The **11** tag is set to be the latest minor release, starting with **11.0.x**. The **11** tag will then be equal to **11.0.4** when it is released and so on. The **11.0** tag is also set to be the latest patch version release.
 
@@ -17,7 +17,7 @@ Upgrading from **X** to **X+1** (for instance from **9** to **10**) requires a [
 
 ### Docker:
 
-Here is a sample [docker-compose](https://docs.docker.com/compose/install/) file:
+Here is an example [docker-compose](https://docs.docker.com/compose/install/) file:
 
 ```yaml
 networks:
@@ -44,7 +44,7 @@ services:
 ```
 
 Note that the volume should be owned by the user/group with the UID/GID specified in the config file.
-If you don't give the volume correct permissions, the container may not start.
+If you don't set the volume correct permissions, the container may not start.
 
 ### Podman:
 
@@ -53,7 +53,7 @@ Currently tested on the following specifications:
 - Podman v5.2.1
 - Fedora 40, Alma Linux 9.4, Rocky Linux 9
 
-Save the following files in /etc/containers/systemd, as port 222 requires elevated privileges:
+Save the following files in `/etc/containers/systemd`, as port 222 requires elevated privileges:
 
 ```
 # forgejo.container
@@ -90,7 +90,6 @@ Once saved, run:
 
 ```bash
 sudo systemctl daemon-reload
-
 sudo systemctl start forgejo
 ```
 
@@ -127,7 +126,7 @@ ENABLE_PUSH_CREATE_USER = true
 
 ## Databases
 
-In the following each database is shown as part of a `docker-compose` example file, with a `diff like` presentation that highlights additions to the example above.
+In the following each database is shown as part of a `docker-compose` example file, with a diff-like presentation that highlights additions to the example above.
 
 If no database is configured, it will default to using SQLite.
 
@@ -261,21 +260,21 @@ important behaviour.
 We now mount this folder on the `client` which will host Forgejo to a folder `/mnt/repositories`...
 
 ```shell
-# mount -o hard,timeo=10,retry=10,vers=4.1 server:/repositories /mnt/repositories/
+sudo mount -o hard,timeo=10,retry=10,vers=4.1 server:/repositories /mnt/repositories/
 ```
 
 ... and create two folders
 
 ```shell
-$ mkdir conf
-$ mkdir data
+mkdir conf
+mkdir data
 ```
 
 To consider in the NFS client setup is the `hard` setting, blocking all file operations if the share is not available.
 This prevents state changes in the repository which could potentially corrupt the repository data and is an NFS-specific setting.
 
 We will use the `rootless` image, which hosts the `ssh` server for Forgejo embedded. A possible entry for a `docker-compose` file
-would look like this (shown as a `diff like` view to the example shown [in our initial example](#installation-with-docker)):
+would look like this (shown as a diff-like view to the example shown [in our initial example](#installation-with-docker)):
 
 ```yaml
 networks:
@@ -318,4 +317,4 @@ It is important for all involved tools that these files not be writable by just 
 Changing permissions will also not succeed through the chosen `all_squash` setup, which was necessary to allow a correct ownership
 mechanic on the server. To resolve this, we consider the `rootless` image, which embeds the `ssh` server, circumventing the problem entirely.
 
-Note this setup is simple and does not necessarily reflect the reality of your network. User mapping and ownership could be streamlined better with Kerberos, but that is out of the scope of this guide.
+Note, that this setup is simple and does not necessarily reflect the reality of your network. User mapping and ownership could be streamlined better with Kerberos, but that is out of the scope of this guide.

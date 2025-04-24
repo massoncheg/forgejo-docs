@@ -19,7 +19,7 @@ Only the public key is stored inside Forgejo. If you lose access to the private 
 
 ## Configure the package registry
 
-To [configure `knife`](https://docs.chef.io/workstation/knife_setup/) to use the Forgejo package registry add the url to the `~/.chef/config.rb` file.
+To [configure `knife`](https://docs.chef.io/workstation/knife_setup/) to use the Forgejo package registry, add this URL to the `~/.chef/config.rb` file:
 
 ```
 knife[:supermarket_site] = 'https://forgejo.example.com/api/packages/{owner}/chef'
@@ -51,7 +51,7 @@ To install a package from the package registry, execute the following command:
 knife supermarket install {package_name}
 ```
 
-Optional you can specify the package version:
+Optionally, you can specify the package version:
 
 ```shell
 knife supermarket install {package_name} {package_version}
@@ -70,7 +70,7 @@ If you want to remove a package from the registry, execute the following command
 knife supermarket unshare {package_name}
 ```
 
-Optional you can specify the package version:
+Optionally, you can specify the package version:
 
 ```shell
 knife supermarket unshare {package_name}/versions/{package_version}

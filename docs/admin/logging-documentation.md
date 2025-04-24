@@ -6,9 +6,9 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
 
 The logging configuration of Forgejo mainly consists of 3 types of components:
 
-- The `[log]` section for general configuration
+- The `[log]` section for general configuration.
 - `[log.<mode-name>]` sections for the configuration of different log writers to output logs, aka: "writer mode", the mode name is also used as "writer name".
-- The `[log]` section can also contain sub-logger configurations following the key schema `logger.<logger-name>.<CONFIG-KEY>`
+- The `[log]` section can also contain sub-logger configurations following the key schema `logger.<logger-name>.<CONFIG-KEY>`.
 
 There is a fully functional log output by default, so it is not necessary to define one.
 
@@ -18,7 +18,7 @@ Configuration of logging facilities in Forgejo happen in the `[log]` section and
 
 In the top level `[log]` section the following configurations can be placed:
 
-- `ROOT_PATH`: (Default: **%(GITEA_WORK_DIR)/log**): Base path for log files
+- `ROOT_PATH`: (Default: **%(GITEA_WORK_DIR)/log**): Base path for log files.
 - `MODE`: (Default: **console**) List of log outputs to use for the Default logger.
 - `LEVEL`: (Default: **Info**) Least severe log events to persist, case-insensitive. Possible values are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`.
 - `STACKTRACE_LEVEL`: (Default: **None**) For this and more severe events the stacktrace will be printed upon getting logged.
@@ -100,9 +100,9 @@ FILE_NAME = file-error.log
 
 Forgejo provides the following log output writers:
 
-- `console` - Log to `stdout` (or `stderr` if it is set in the config)
-- `file` - Log to a file
-- `conn` - Log to a socket (network or unix)
+- `console` - Log to `stdout` (or `stderr` if it is set in the config).
+- `file` - Log to a file.
+- `conn` - Log to a socket (network or unix).
 
 ### Common configuration
 
@@ -218,10 +218,10 @@ Settings:
 
 The Router logger logs the following message types when Forgejo's route handlers work:
 
-- `started` messages will be logged at TRACE level
+- `started` messages will be logged at TRACE level.
 - `polling`/`completed` routers will be logged at INFO. Exception: "/assets" static resource requests are also logged at TRACE.
-- `slow` routers will be logged at WARN
-- `failed` routers will be logged at WARN
+- `slow` routers will be logged at WARN.
+- `failed` routers will be logged at WARN.
 
 ### The "XORM" logger
 
@@ -253,19 +253,19 @@ This value represents a go template. Its default value is
 
 The template is passed following options:
 
-- `Ctx` is the `context.Context`
-- `Identity` is the `SignedUserName` or `"-"` if the user is not logged in
-- `Start` is the start time of the request
-- `ResponseWriter` is the `http.ResponseWriter`
+- `Ctx` is the `context.Context`.
+- `Identity` is the `SignedUserName` or `"-"` if the user is not logged in.
+- `Start` is the start time of the request.
+- `ResponseWriter` is the `http.ResponseWriter`.
 
 Caution must be taken when changing this template as it runs outside of
 the standard panic recovery trap. The template should also be as simple
-as it runs for every request.
+as it runs for every request..
 
 ## Releasing-and-Reopening, Pausing and Resuming logging
 
 If you are running on Unix you may wish to release-and-reopen logs in order to use `logrotate` or other tools.
-It is possible force Forgejo to release and reopen it's logging files and connections by sending `SIGUSR1` to the
+It is possible force Forgejo to release and reopen its logging files and connections by sending `SIGUSR1` to the
 running process, or running `forgejo manager logging release-and-reopen`.
 
 Alternatively, you may wish to pause and resume logging - this can be accomplished through the use of the

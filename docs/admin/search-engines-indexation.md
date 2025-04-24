@@ -6,7 +6,7 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
 
 ## Search engines indexation of your Forgejo installation
 
-By default your Forgejo installation will be indexed by search engines.
+By default, your Forgejo installation will be indexed by search engines.
 If you don't want your repository to be visible for search engines read further.
 
 ### Block search engines indexation using robots.txt

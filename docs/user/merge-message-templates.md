@@ -1,10 +1,10 @@
 ---
-title: 'Merge Message templates'
+title: 'Merge Message Templates'
 license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8e705d2a86030/docs/content/usage/merge-message-templates.en-us.md'
 ---
 
-## File names
+## File Names
 
 Possible file names for PR default merge message templates:
 
@@ -15,11 +15,11 @@ Possible file names for PR default merge message templates:
 - `.forgejo/default_merge_message/MANUALLY-MERGED_TEMPLATE.md`
 - `.forgejo/default_merge_message/REBASE-UPDATE-ONLY_TEMPLATE.md`
 
-Note: `.gitea` as the root directory is also recognised and kept only for compatibility reasons.
+Note: `.gitea` as the root directory is also recognized and kept only for compatibility reasons.
 
 ## Variables
 
-You can use the following variables enclosed in `${}` inside these templates which follow [os.Expand](https://pkg.go.dev/os#Expand) syntax:
+You can use the following variables enclosed in `${}` inside these templates, which follow [os.Expand](https://pkg.go.dev/os#Expand) syntax:
 
 - BaseRepoOwnerName: Base repository owner name of this pull request
 - BaseRepoName: Base repository name of this pull request
@@ -31,8 +31,8 @@ You can use the following variables enclosed in `${}` inside these templates whi
 - PullRequestDescription: Pull request's description
 - PullRequestPosterName: Pull request's poster name
 - PullRequestIndex: Pull request's index number
-- PullRequestReference: Pull request's reference char with index number. i.e. #1, !2
-- ClosingIssues: return a string contains all issues which will be closed by this pull request i.e. `close #1, close #2`
+- PullRequestReference: Pull request's reference character with index number, i.e., #1, !2
+- ClosingIssues: A string containing all issues that will be closed by this pull request, i.e., `close #1, close #2`
 
 ## Rebase
 

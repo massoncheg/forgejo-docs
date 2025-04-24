@@ -33,7 +33,7 @@ curl --user your_username:your_password_or_token \
      https://forgejo.example.com/api/packages/testuser/vagrant/test_system/1.0.0/hyperv.box
 ```
 
-If you are using 2FA or OAuth use a personal access token instead of the password.
+If you are using 2FA or OAuth, use a personal access token instead of the password.
 
 You cannot publish a box if a box of the same name, version and provider already exists. You must delete the existing package first.
 

@@ -118,8 +118,8 @@ See the user documentation for `jobs.<job_id>.container` for more information.
 
 Label examples:
 
-- `node20:docker://node:20-bookworm` == `node20:docker://docker.io/node:20-bookworm` defines `node20` to be the `node:20-bookworm` image from hub.docker.com
-- `docker:docker://data.forgejo.org/oci/alpine:3.20` defines `docker` to be the `alpine:3.20` image from https://data.forgejo.org/oci/-/packages/container/alpine/3.20
+- `node20:docker://node:20-bookworm` == `node20:docker://docker.io/node:20-bookworm` defines `node20` to be the `node:20-bookworm` image from hub.docker.com.
+- `docker:docker://data.forgejo.org/oci/alpine:3.20` defines `docker` to be the `alpine:3.20` image from https://data.forgejo.org/oci/-/packages/container/alpine/3.20.
 
 ### LXC
 
@@ -134,8 +134,8 @@ The runner will execute all the steps, as root, within a [LXC container](https:/
 
 Label examples:
 
-- `bookworm:lxc://debian:bookworm:lxc docker` defines `bookworm` to be an LXC container running Debian GNU/Linux bookworm. It has the necessary capabilities to run a nested LXC container and a docker engine.
-- `bookworm:lxc://debian:bookworm` defines `bookworm` to be an LXC container running Debian GNU/Linux bookworm. It has the necessary capabilities to run a nested LXC container, kvm virtual machines and a docker engine.
+- `bookworm:lxc://debian:bookworm:lxc docker` defines `bookworm` to be an LXC container running Debian GNU/Linux bookworm. It has the necessary capabilities to run a nested LXC container and a Docker engine.
+- `bookworm:lxc://debian:bookworm` defines `bookworm` to be an LXC container running Debian GNU/Linux bookworm. It has the necessary capabilities to run a nested LXC container, KVM virtual machines and a Docker engine.
 
 ### Host
 
@@ -145,7 +145,7 @@ If a label specifies `host` as its `label type`, the runner will execute all the
 
 Label example:
 
-- `self-hosted:host://-self-hosted` defines `self-hosted` to be a shell
+- `self-hosted:host://-self-hosted` defines `self-hosted` to be a shell.
 
 ### Special labels
 

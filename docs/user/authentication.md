@@ -37,11 +37,11 @@ Both the LDAP via BindDN and the simple auth LDAP share the following fields:
 - Username attribute (optional)
 
   - The attribute of the user's LDAP record containing the user name. Given
-    attribute value will be used for new Forgejo account user name after first
-    successful sign-in. Leave empty to use login name given on sign-in form.
-  - This is useful when supplied login name is matched against multiple
-    attributes, but only single specific attribute should be used for Forgejo
-    account name, see "User Filter".
+    attribute value will be used for the new Forgejo account username after the first
+    successful sign-in. Leave empty to use the login name given on the sign-in form.
+  - This is useful when the supplied login name is matched against multiple
+    attributes, but only a single specific attribute should be used for the Forgejo
+    account name; see "User Filter".
   - Example: `uid`
   - Example for Microsoft Active Directory (AD): `sAMAccountName`
 
@@ -85,24 +85,24 @@ Adds the following fields:
 
 - User Filter **(required)**
   - An LDAP filter declaring how to find the user record that is attempting to
-    authenticate. The `%[1]s` matching parameter will be substituted with login
-    name given on sign-in form.
+    authenticate. The `%[1]s` matching parameter will be substituted with the login
+    name given on the sign-in form.
   - Example: `(&(objectClass=posixAccount)(|(uid=%[1]s)(mail=%[1]s)))`
   - Example for Microsoft Active Directory (AD): `(&(objectCategory=Person)(memberOf=CN=user-group,OU=example,DC=example,DC=org)(sAMAccountName=%s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))`
-  - To substitute more than once, `%[1]s` should be used instead, e.g. when
-    matching supplied login name against multiple attributes such as user
-    identifier, email or even phone number.
+  - To substitute more than once, `%[1]s` should be used instead, e.g., when
+    matching the supplied login name against multiple attributes such as a user
+    identifier, email, or even phone number.
   - Example: `(&(objectClass=Person)(|(uid=%[1]s)(mail=%[1]s)(mobile=%[1]s)))`
 - Enable user synchronization
   - This option enables a periodic task that synchronizes the Forgejo users with
-    the LDAP server. The default period is every 24 hours but that can be
-    changed in the app.ini file. See the _cron.sync_external_users_ section in
+    the LDAP server. The default period is every 24 hours, but that can be
+    changed in the app.ini file. See the `[cron.sync_external_users]` section in
     the [sample
     app.ini](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/custom/conf/app.example.ini)
     for detailed comments about that section. The _User Search Base_ and _User
     Filter_ settings described above will limit which users can use Forgejo and
-    which users will be synchronized. When initially run the task will create
-    all LDAP users that match the given settings so take care if working with
+    which users will be synchronized. When initially run, the task will create
+    all LDAP users that match the given settings, so take care if working with
     large Enterprise LDAP directories.
 
 ### LDAP using simple auth
@@ -112,7 +112,7 @@ Adds the following fields:
 - User DN **(required)**
 
   - A template to use as the user's DN. The `%s` matching parameter will be
-    substituted with login name given on sign-in form.
+    substituted with the login name given on the sign-in form.
   - Example: `cn=%s,ou=Users,dc=example,dc=com`
   - Example: `uid=%s,ou=Users,dc=example,dc=com`
 
@@ -123,7 +123,7 @@ Adds the following fields:
 
 - User Filter **(required)**
   - An LDAP filter declaring when a user should be allowed to log in. The `%s`
-    matching parameter will be substituted with login name given on sign-in
+    matching parameter will be substituted with the login name given on the sign-in
     form.
   - Example: `(&(objectClass=posixAccount)(|(cn=%[1]s)(mail=%[1]s)))`
   - Example: `(&(objectClass=posixAccount)(|(uid=%[1]s)(mail=%[1]s)))`
@@ -145,7 +145,7 @@ Uses the following fields:
 - User Attribute in Group (optional)
 
   - The user attribute that is used to reference a user in the group object.
-  - Example: `uid` if the group objects contains a `member: bender` and the user object contains a `uid: bender`.
+  - Example: `uid` if the group object contains a `member: bender` and the user object contains a `uid: bender`.
   - Example: `dn` if the group object contains a `member: uid=bender,ou=users,dc=planetexpress,dc=com`.
 
 - Group Attribute for User (optional)
@@ -171,33 +171,33 @@ built-in user manager.
    - Deselecting automatic sign-up may also be desired.
 1. Once the database has been initialized, log in as the newly created
    administrative user.
-1. Navigate to the user setting (icon in top-right corner), and select
+1. Navigate to the user settings (icon in the top-right corner), and select
    `Site Administration` -> `Authentication Sources`, and select
    `Add Authentication Source`.
-1. Fill out the field as follows:
-   - `Authentication Type` : `PAM`
-   - `Name` : Any value should be valid here, use "System Authentication" if
+1. Fill out the fields as follows:
+   - `Authentication Type`: `PAM`
+   - `Name`: Any value should be valid here; use "System Authentication" if
      you'd like.
-   - `PAM Service Name` : Select the appropriate file listed under `/etc/pam.d/`
+   - `PAM Service Name`: Select the appropriate file listed under `/etc/pam.d/`
      that performs the authentication desired.[^1]
-   - `PAM Email Domain` : The e-mail suffix to append to user authentication.
+   - `PAM Email Domain`: The e-mail suffix to append to user authentication.
      For example, if the login system expects a user called `gituser`, and this
      field is set to `mail.com`, then Forgejo will expect the `user email` field
      for an authenticated GIT instance to be `gituser@mail.com`.[^2]
 
-**Note**: PAM support is added via build-time flags (TAGS="pam" make build),
+**Note**: PAM support is added via build-time flags (`TAGS="pam" make build`),
 and the official binaries provided do not have this enabled. PAM requires that
-the necessary libpam dynamic library be available and the necessary PAM
+the necessary `libpam` dynamic library be available and the necessary PAM
 development headers be accessible to the compiler.
 
 [^1]:
     For example, using standard Linux log-in on Debian "Bullseye" use
     `common-session-noninteractive` - this value may be valid for other flavors of
-    Debian including Ubuntu and Mint, consult your distribution's documentation.
+    Debian including Ubuntu and Mint; consult your distribution's documentation.
 
 [^2]:
     **This is a required field for PAM**. Be aware: In the above example, the
-    user will log into the Forgejo web interface as `gituser` and not `gituser@mail.com`
+    user will log into the Forgejo web interface as `gituser` and not `gituser@mail.com`.
 
 ## FreeIPA
 
@@ -218,7 +218,7 @@ development headers be accessible to the compiler.
   nsIdleTimeout: 0
   ```
 
-- Import the LDIF (change localhost to an IPA server if needed). A prompt for
+- Import the LDIF (change localhost to an IPA server if needed). A prompt for the
   Directory Manager password will be presented:
 
   ```sh
@@ -226,7 +226,7 @@ development headers be accessible to the compiler.
   "cn=Directory Manager" -W -f forgejo.ldif
   ```
 
-- Add an IPA group for forgejo_users :
+- Add an IPA group for forgejo_users:
 
   ```sh
   ipa group-add --desc="Forgejo Users" forgejo_users
@@ -235,5 +235,5 @@ development headers be accessible to the compiler.
 - Note: For errors about IPA credentials, run `kinit admin` and provide the
   domain admin account password.
 
-- Log in to Forgejo as an Administrator and click on "Authentication" under Admin Panel.
+- Log in to Forgejo as an Administrator and click on "Authentication" under the Admin Panel.
   Then click `Add New Source` and fill in the details, changing all where appropriate.

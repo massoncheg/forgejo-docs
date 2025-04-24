@@ -10,8 +10,8 @@ Repository mirroring allows for the mirroring of repositories to and from extern
 
 The following are some possible use cases for repository mirroring:
 
-- You migrated to Forgejo but still need to keep your project in another source. In that case, you can simply set it up to mirror to Forgejo (pull) and all the essential history of commits, tags, and branches are available in your Forgejo instance.
-- You have old projects in another source that you don’t use actively anymore, but don’t want to remove for archiving purposes. In that case, you can create a push mirror so that your active Forgejo repository can push its changes to the old location.
+- You migrated to Forgejo but still need to keep your project in another source. In that case, you can simply set it up to mirror to Forgejo (pull), and all the essential history of commits, tags, and branches are available in your Forgejo instance.
+- You have old projects in another source that you don't use actively anymore but don't want to remove for archiving purposes. In that case, you can create a push mirror so that your active Forgejo repository can push its changes to the old location.
 
 ## Pulling from a remote repository
 
@@ -20,7 +20,7 @@ For an existing remote repository, you can set up pull mirroring as follows:
 1. Select **New Migration** in the **Create...** menu on the top right.
 2. Select the remote repository service.
 3. Enter a repository URL.
-4. If the repository needs authentication fill in your authentication information.
+4. If the repository needs authentication, fill in your authentication information.
 5. Check the box **This repository will be a mirror**.
 6. Select **Migrate repository** to save the configuration.
 
@@ -34,10 +34,10 @@ For an existing repository, you can set up push mirroring as follows:
 
 1. In your repository, go to **Settings** > **Repository**, and then the **Mirror Settings** section.
 2. Enter a repository URL.
-3. If the repository needs authentication expand the **Authorization** section and fill in your authentication information. Note that the requested **password** can also be your access token.
+3. If the repository needs authentication, expand the **Authorization** section and fill in your authentication information. Note that the requested **password** can also be your access token.
 4. Select **Add Push Mirror** to save the configuration.
 
-The repository now gets mirrored periodically to the remote repository. You can force a sync by selecting **Synchronize Now**. In case of an error a message displayed to help you resolve it.
+The repository now gets mirrored periodically to the remote repository. You can force a sync by selecting **Synchronize Now**. In case of an error, a message is displayed to help you resolve it.
 
 :exclamation::exclamation: **NOTE:** This will force push to the remote repository. This will overwrite any changes in the remote repository! :exclamation::exclamation:
 
@@ -49,7 +49,7 @@ To set up a mirror from Forgejo to GitHub, you need to follow these steps:
 2. Create a repository with that name on GitHub. Unlike Forgejo, GitHub does not support creating repositories by pushing to the remote. You can also use an existing remote repo if it has the same commit history as your Forgejo repo.
 3. In the settings of your Forgejo repo, fill in the **Git Remote Repository URL**: `https://github.com/<your_github_group>/<your_github_project>.git`.
 4. Fill in the **Authorization** fields with your GitHub username and the personal access token as **Password**.
-5. (Optional, available on Forgejo 1.18+) Select `Sync when new commits are pushed` so that the mirror will be updated as well as soon as there are changes. You can also disable the periodic sync if you like.
+5. (Optional, available on Forgejo 1.18+) Select `Sync when new commits are pushed` so that the mirror will be updated as soon as there are changes. You can also disable the periodic sync if you like.
 6. Select **Add Push Mirror** to save the configuration.
 
 The repository pushes shortly thereafter. To force a push, select the **Synchronize Now** button.
@@ -79,11 +79,11 @@ The repository pushes shortly thereafter. To force a push, select the **Synchron
 ### Mirror via SSH
 
 Forgejo supports the use of SSH as an authentication method for push mirrors.
-You can enable this when adding a new push mirror, existing push mirrors cannot be configured to use SSH.
+You can enable this when adding a new push mirror; existing push mirrors cannot be configured to use SSH.
 This feature is only available if Forgejo is able to find the `ssh` executable.
 
-To use SSH as authentication method, select the **Use SSH authentication** option in the authorization tab when adding a new push mirror.
-Make sure to use ssh conform URLs for **Git Remote Repository URL**, which is e.g. `git@forgejo.org:<your_forgejo_group>/<your_forgejo_project>.git` for Forgejo (differs to the default authorization approach as mentioned above).
+To use SSH as an authentication method, select the **Use SSH authentication** option in the authorization tab when adding a new push mirror.
+Make sure to use SSH-conform URLs for **Git Remote Repository URL**, which is e.g. `git@forgejo.org:<your_forgejo_group>/<your_forgejo_project>.git` for Forgejo (differs from the default authorization approach as mentioned above).
 Make sure to not fill in the **Username** or **Password** input.
 Forgejo generates an Ed25519 SSH key pair and saves it for you.
 
@@ -93,5 +93,5 @@ After adding the push mirror, you can click the **Copy public key** link to copy
 
 ![The push mirror entry is shown](../_images/user/repo-mirror/push_mirror_with_ssh.png)
 
-This public key can then be added as a deploy key on the target repository, how to add one varies by platform but generally it should be an option in the repository's settings.
+This public key can then be added as a deploy key on the target repository. How to add one varies by platform, but generally it should be an option in the repository's settings.
 After adding the public key as the deploy key, you can go back to Forgejo and click the **Synchronize now** button and see that it works.

@@ -7,7 +7,7 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
 ## Protected branches
 
 Protected branches enforce restrictions such as force pushing or
-merging unless a given number of approval are obtained on a pull
+merging unless a given number of approvals are obtained on a pull
 request.
 
 To protect a branch, you need to go to the repository’s **Settings** >
@@ -30,13 +30,13 @@ Protected tags allow control over who has permission to create or update Git tag
 To protect a tag, you need to follow these steps:
 
 1. Go to the repository’s **Settings** > **Tags** page.
-1. Type a pattern to match a name. You can use a single name, a [glob pattern](https://pkg.go.dev/github.com/gobwas/glob#Compile) or a regular expression.
-1. Choose the allowed users and/or teams. If you leave these fields empty no one is allowed to create or modify this tag.
-1. Select **Save** to save the configuration.
+2. Type a pattern to match a name. You can use a single name, a [glob pattern](https://pkg.go.dev/github.com/gobwas/glob#Compile) or a regular expression.
+3. Choose the allowed users and/or teams. If you leave these fields empty, no one is allowed to create or modify this tag.
+4. Select **Save** to save the configuration.
 
 ### Pattern protected tags
 
-The pattern uses [glob](https://pkg.go.dev/github.com/gobwas/glob#Compile) or regular expressions to match a tag name. For regular expressions you need to enclose the pattern in slashes.
+The pattern uses [glob](https://pkg.go.dev/github.com/gobwas/glob#Compile) or regular expressions to match a tag name. For regular expressions, you need to enclose the pattern in slashes.
 
 Examples:
 

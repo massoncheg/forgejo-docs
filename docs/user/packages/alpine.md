@@ -32,7 +32,7 @@ If the registry is private, provide credentials in the url. You can use a passwo
 https://{username}:{your_password_or_token}@forgejo.example.com/api/packages/{owner}/alpine/<branch>/<repository>
 ```
 
-The Alpine registry files are signed with a RSA key which must be known to apk. Download the public key and store it in `/etc/apk/keys/`:
+The Alpine registry files are signed with a RSA key which must be known to `apk`. Download the public key and store it in `/etc/apk/keys/`:
 
 ```shell
 curl -JO https://forgejo.example.com/api/packages/{owner}/alpine/key
