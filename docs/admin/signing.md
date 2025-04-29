@@ -83,7 +83,7 @@ The first value, if set, will always sign the commit and the second value, if se
 When should Forgejo sign the initial commit when creating a repository.
 The possible values for the `INITIAL_COMMIT` setting are:
 
-- `pubkey`: Only if the user has added a GPG key to its account.
+- `pubkey`: Only if the user has added a GPG or SSH key to its account.
 - `twofa`: Only if the user is enrolled into two-factor authentication.
 
 #### Wiki
@@ -91,7 +91,7 @@ The possible values for the `INITIAL_COMMIT` setting are:
 When should Forgejo sign commits to the wiki.
 The possible values for the `WIKI` setting are:
 
-- `pubkey`: Only if the user has added a GPG key to its account.
+- `pubkey`: Only if the user has added a GPG or SSH key to its account.
 - `twofa`: Only if the user is enrolled into two-factor authentication.
 - `parentsigned`: Only if the parent commit is signed.
 
@@ -100,7 +100,7 @@ The possible values for the `WIKI` setting are:
 When should Forgejo sign commits that are created for file changes via the web editor or API.
 The possible values for the `CRUD_ACTIONS` setting are:
 
-- `pubkey`: Only if the user has added a GPG key to its account.
+- `pubkey`: Only if the user has added a GPG or SSH key to its account.
 - `twofa`: Only if the user is enrolled into two-factor authentication.
 - `parentsigned`: Only if the parent commit is signed.
 
@@ -109,7 +109,7 @@ The possible values for the `CRUD_ACTIONS` setting are:
 When should Forgejo sign merge commits from pull requests.
 The possible values for the `MERGES` setting are:
 
-- `pubkey`: Only if the user has added a GPG key to its account.
+- `pubkey`: Only if the user has added a GPG or SSH key to its account.
 - `twofa`: Only if the user is enrolled into two-factor authentication.
 - `basesigned`: Only if the parent commit in the base repository is signed.
 - `headsigned`: Only if the head commit in the head branch is signed.
