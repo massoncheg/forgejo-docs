@@ -305,7 +305,10 @@ The following configuration sets the `Content-Type: application/vnd.android.pack
 - `HTTP_ADDR`: **0.0.0.0**: HTTP listen address.
   - If `PROTOCOL` is set to `fcgi`, Forgejo will listen for FastCGI requests on the TCP socket
     defined by the `HTTP_ADDR` and `HTTP_PORT` configuration settings.
-  - If `PROTOCOL` is set to `http+unix` or `fcgi+unix`, this should be the name of the Unix socket file to use. Relative paths will be made absolute against the _`AppWorkPath`_.
+  - If `PROTOCOL` is set to `http+unix` or `fcgi+unix`, this should be either:
+    - An absolute path to the socket file.
+    - A relative path, in which case it will be made absolute against the _`AppWorkPath`_.
+    - An abstract domain socket name starting with `@`.
 - `HTTP_PORT`: **3000**: HTTP listen port.
   - If `PROTOCOL` is set to `fcgi`, Forgejo will listen for FastCGI requests on the TCP socket
     defined by the `HTTP_ADDR` and `HTTP_PORT` configuration settings.
