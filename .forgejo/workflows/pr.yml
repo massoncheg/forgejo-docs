@@ -13,6 +13,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       - name: lint
+        env:
+          GITHUB_TOKEN: override
         run: |
           npm install -g corepack@latest
           corepack enable
@@ -25,26 +27,38 @@ jobs:
         with:
           write_changes: true
       - name: check typos result
+        env:
+          GITHUB_TOKEN: override
         run: 'git diff --exit-code --word-diff || ( echo "Hint: Fix misspelled words or add false positives in .typos.toml" && false )'
       - name: scripts/cli-docs.sh
+        env:
+          GITHUB_TOKEN: override
         run: |
           scripts/cli-docs.sh run ${{ env.GITHUB_BASE_REF }} > docs/admin/command-line.md
           git diff --exit-code
       - name: release-schedule
+        env:
+          GITHUB_TOKEN: override
         run: |
           pnpm run update-schedule
           git diff --exit-code || (echo "Error: Run 'pnpm run update-schedule' to generate the markdown release schedule and commit it" && false)
       - name: get forgejo.org and move the docs
+        env:
+          GITHUB_TOKEN: override
         run: |
           git clone --recursive --depth 1 https://codeberg.org/forgejo/website/ /tmp/website
           apt-get update -qq && apt-get install -qq -y rsync
           rsync -av --delete ./ /tmp/website/forgejo-docs/${{ env.GITHUB_BASE_REF }}/
       - name: install
+        env:
+          GITHUB_TOKEN: override
         run: |
           cd /tmp/website
           corepack enable
           pnpm install --frozen-lockfile
       - name: build
+        env:
+          GITHUB_TOKEN: override
         run: |
           cd /tmp/website
           colon=':'
