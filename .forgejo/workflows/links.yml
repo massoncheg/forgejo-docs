@@ -26,7 +26,7 @@ jobs:
 
       - name: Check links
         id: lychee
-        run: ./lychee --config .lychee.toml next/docs v11.0/docs
+        run: ./lychee --config next/.lychee.toml next/docs v11.0/docs
         continue-on-error: true
 
       - name: Postprocess
