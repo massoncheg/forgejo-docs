@@ -624,10 +624,33 @@ are not available and the automatic token only has read permissions.
 It is similar to the `on.pull_request` event, with the following exceptions:
 
 - secrets stored in the base repository are available in the `secrets` `context`, (e.g. `${{ secrets.KEY }}`).
+- the automatic token has write permission to the repository.
 - the workflow runs in the context of the default branch of the base repository, meaning that:
   - changes to the workflow in the pull request will be ignored
   - the [actions/checkout](https://code.forgejo.org/actions/checkout) action will checkout the default branch instead
     of the content of the pull request
+
+Care must be taken to unset the `GITHUB_TOKEN` environment variable
+when a job runs scripts from a checkout of the pull request so that it
+does not leak. For instance:
+
+```yaml
+on:
+  pull_request_target:
+
+jobs:
+  preview:
+    runs-on: docker
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+            - name: lint
+      - run: |
+          ./script-from-the-pull-request
+        env:
+          GITHUB_TOKEN: override
+```
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-pull-request/.forgejo/workflows/test.yml).
 
