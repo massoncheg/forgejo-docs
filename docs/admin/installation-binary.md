@@ -91,6 +91,12 @@ If you're _not_ using sqlite, but MySQL or MariaDB or PostgreSQL, you'll have to
 (`/etc/systemd/system/forgejo.service`) and uncomment the corresponding `Wants=` and `After=` lines.
 Otherwise it _should_ work as it is.
 
+After adding or modifying a systemd service file, you will need to reload systemd.
+
+```sh
+sudo systemctl daemon-reload
+```
+
 Now enable and start the Forgejo service, so you can go on with the installation:
 
 ```sh
