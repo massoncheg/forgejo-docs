@@ -12,7 +12,39 @@ To work with the RPM registry, you need to use a package manager like `yum` or `
 
 The following examples use `dnf`.
 
-## Configuring the package registry
+## Configuring the package registry using dnf5
+
+To register the RPM registry add the url to the list of known sources:
+
+```shell
+dnf config-manager addrepo --from-repofile=https://forgejo.example.com/api/packages/{owner}/{group}.repo
+```
+
+| Placeholder | Description                                                        |
+| ----------- | ------------------------------------------------------------------ |
+| `owner`     | The owner of the package.                                          |
+| `group`     | Optional: Everything, e.g. empty, `el7`, `rocky/el9`, `test/fc38`. |
+
+Example:
+
+```shell
+# without a group
+dnf config-manager addrepo --from-repofile=https://forgejo.example.com/api/packages/testuser/rpm.repo
+
+# with the group 'centos/el7'
+dnf config-manager addrepo --from-repofile=https://forgejo.example.com/api/packages/testuser/rpm/centos/el7.repo
+```
+
+If the registry is private, provide credentials in the url. You can use a personal access token:
+
+```shell
+dnf config-manager addrepo --from-repofile=https://{username}:{your_token}@forgejo.example.com/api/packages/{owner}/{group}.repo
+```
+
+You have to add the credentials to the urls in the created `.repo` file in `/etc/yum.repos.d` too.
+
+<details>
+<summary>Configuring the package registry using dnf4</summary>
 
 To register the RPM registry add the url to the list of known sources:
 
@@ -35,13 +67,15 @@ dnf config-manager --add-repo https://forgejo.example.com/api/packages/testuser/
 dnf config-manager --add-repo https://forgejo.example.com/api/packages/testuser/rpm/centos/el7.repo
 ```
 
-If the registry is private, provide credentials in the url. You can use a password or a personal access token:
+If the registry is private, provide credentials in the url. You can use a personal access token:
 
 ```shell
-dnf config-manager --add-repo https://{username}:{your_password_or_token}@forgejo.example.com/api/packages/{owner}/{group}.repo
+dnf config-manager --add-repo https://{username}:{your_token}@forgejo.example.com/api/packages/{owner}/{group}.repo
 ```
 
 You have to add the credentials to the urls in the created `.repo` file in `/etc/yum.repos.d` too.
+
+</details>
 
 ## Publish a package
 
@@ -60,16 +94,15 @@ Example request using HTTP Basic authentication:
 
 ```shell
 # without a group
-curl --user your_username:your_password_or_token \
+curl --user your_username:your_token \
      --upload-file path/to/file.rpm \
      https://forgejo.example.com/api/packages/testuser/rpm/upload
 # with the group 'centos/el7'
-curl --user your_username:your_password_or_token \
+curl --user your_username:your_token \
      --upload-file path/to/file.rpm \
      https://forgejo.example.com/api/packages/testuser/rpm/centos/el7/upload
 ```
 
-If you are using 2FA or OAuth use a personal access token instead of the password.
 You cannot publish a file with the same name twice to a package. You must delete the existing package version first.
 
 The server responds with the following HTTP Status codes.
@@ -100,11 +133,11 @@ Example request using HTTP Basic authentication:
 
 ```shell
 # without a group
-curl --user your_username:your_token_or_password -X DELETE \
+curl --user your_username:your_token -X DELETE \
      https://forgejo.example.com/api/packages/testuser/rpm/package/test-package/1.0.0/x86_64
 
 # with the group 'centos/el7'
-curl --user your_username:your_token_or_password -X DELETE \
+curl --user your_username:your_token -X DELETE \
      https://forgejo.example.com/api/packages/testuser/rpm/centos/el7/package/test-package/1.0.0/x86_64
 ```
 
