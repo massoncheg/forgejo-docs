@@ -298,6 +298,7 @@ OPTIONS:
    --access-token-name value       Name of the generated access token (default: "gitea-admin")
    --access-token-scopes value     Scopes of the generated access token, comma separated. Examples: "all", "public-only,read:issue", "write:repository,write:user" (default: "all")
    --restricted                    Make a restricted user account (default: false)
+   --fullname value                The full, human-readable name of the user
 ```
 
 ### admin user list
