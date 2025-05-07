@@ -24,16 +24,29 @@ Suppose that you cloned a repository and created a new commit on top of the `mai
 git push origin HEAD:refs/for/main -o topic="agit-typo-fixes"
 ```
 
-The topic will be visible in the Pull Request and it will be used to associate further commits with the same Pull Request. Under the hood, it is essentially just a branch.
+Note that `HEAD:refs/for/main` is the [Refspec](https://git-scm.com/book/en/v2/Git-Internals-The-Refspec). `HEAD` refers to the [checked out reference](https://git-scm.com/book/en/v2/Git-Internals-Git-References), but can be replaced with any ["local ref"](https://git-scm.com/docs/git-push). `refs/for/main` refers to the destination (**"remote ref"**), with `main` being the **"target branch"**, as in the branch that your submitted change should be applied to.
 
-It can also be supplied directly using the `<session>` parameter in the **Refspec**, which will set the topic as `topic-branch` and push the **currently checked out branch**:
+The topic will be visible in the Pull Request and it will be used to associate further commits with the same Pull Request.
+
+#### Setting a topic using the session parameter.
+
+Topics can also be defined using the `<session>` parameter in the **Refspec**. In the following example, we create a new pull request using the currently checked out reference (`HEAD`). The target branch will be `main`. The topic will be `topic-branch`.
 
 ```shell
 # topic-branch is the session parameter and the topic
 git push origin HEAD:refs/for/main/topic-branch
 ```
 
-A detailed explanation illustrating the difference between using `-o topic` and `<session>` will follow shortly.
+#### Pushing a non-checked-out reference (non-HEAD)
+
+Suppose you would like to submit a Pull Request meant for a remote branch called `remote-branch` using topic `topic`.
+However, the changes that you want to submit reside in a local branch called `local-branch` that you have not checked out. In order to submit the changes residing in the `local-branch` branch **without** checking it out, you can supply the name of the local branch (`local-branch`) as follows:
+
+```shell
+git push origin local-branch:refs/for/remote-branch/topic
+```
+
+#### Setting a title and a description in AGit
 
 It is also possible to use some additional parameters, such as `title` and `description`. Here's another example targeting the `main` branch:
 
@@ -45,7 +58,9 @@ This can be **any** markdown content.\n
 - [x] Ok"
 ```
 
-To be able to easily push new commits to your pull request, you first need to switch the [default push method](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault) to "upstream":
+#### Changing the default push method
+
+To push commits to your Pull Request without having to specify the Refspec, you can modify the [default push method](https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushdefault) to `upstream` in your Git configuration:
 
 ```shell
 # To only set this option for this specific repository
@@ -63,16 +78,7 @@ git config branch.local-branch.merge refs/for/main/topic-branch
 After doing so, you can now simply run `git push` to push commits to your pull request, without having to specify the refspec.
 This will also allow you to pull, fetch, rebase, etc., from the AGit pull request by default.
 
-#### Pushing a non-checked-out reference (non-HEAD)
-
-While most users will likely be pushing HEAD most of the time, it is worth noting that AGit flow supports pushing any local reference (just like `push` in general).
-
-Suppose you would like to submit a Pull Request meant for a remote branch called `remote-branch` using topic `topic`.
-However, the changes that you want to submit reside in a local branch called `local-branch` that you have not checked out. In order to submit the changes residing in the `local-branch` branch **without** checking it out, you can supply the name of the local branch (`local-branch`) as follows:
-
-```shell
-git push origin local-branch:refs/for/remote-branch/topic
-```
+Alternatively,
 
 ### Parameters
 
@@ -94,6 +100,6 @@ The following parameters are available:
   - `description`: Description of the Pull Request.
   - `force-push`: Necessary when rebasing, amending, or [retroactively modifying](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) your previous commits. Otherwise, a new Pull Request will be opened, **even if you use the same topic**. If used, the value of this parameter should be set to `true`.
 
-Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing Pull Request.
+Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing Pull Request. Should you wish to overwrite the contents of an existing pull request, use the `force-push` parameter.
 
 **For Gerrit users:** Forgejo does not support [Gerrit's Change-Ids](https://gerrit-review.googlesource.com/Documentation/user-changeid.html).
