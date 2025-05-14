@@ -43,11 +43,16 @@ the url `http://forgejo.example.com/assets/image.png`.
 ## Changing the logo
 
 To build a custom logo and/or favicon clone the Forgejo source repository, replace `assets/logo.svg` and/or `assets/favicon.svg` and run
-`make generate-images`. `assets/favicon.svg` is used for the favicon only. This will update below output files which you can then place in `$FORGEJO_CUSTOM/public/assets/img` on your server:
+`make generate-images`.
+
+`assets/favicon.svg` is used for `favicon.png` only, all others will be generated from `logo.svg`. SVG files will be optimized. All source images must also have square dimensions.
+
+The above command will update below output files which you can then place in `$FORGEJO_CUSTOM/public/assets/img` on your server:
 
 - `public/assets/img/logo.svg` - Used for site icon, app icon
-- `public/assets/img/logo.png` - Used for Open Graph
+- `public/assets/img/logo.png` - Used for Open Graph and home page
 - `public/assets/img/avatar_default.png` - Used as the default avatar image
+- `public/assets/img/repo_default.png` - Used as the default repository image, see also the [`picture.REPOSITORY_AVATAR_FALLBACK_IMAGE`](../../admin/config-cheat-sheet/#picture-picture) setting
 - `public/assets/img/apple-touch-icon.png` - Used on iOS devices for bookmarks
 - `public/assets/img/favicon.svg` - Used for favicon
 - `public/assets/img/favicon.png` - Used as fallback for browsers that don't support SVG favicons
