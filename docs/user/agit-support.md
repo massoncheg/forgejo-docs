@@ -78,8 +78,6 @@ git config branch.local-branch.merge refs/for/main/topic-branch
 After doing so, you can now simply run `git push` to push commits to your pull request, without having to specify the refspec.
 This will also allow you to pull, fetch, rebase, etc., from the AGit pull request by default.
 
-Alternatively,
-
 ### Parameters
 
 ```sh
