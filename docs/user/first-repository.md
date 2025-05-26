@@ -24,16 +24,16 @@ This will lead you to the page below.
 
 Here's an explanation of the form's fields:
 
-- **Owner** Here, you can specify whether you want this to be your own personal project or whether you want it to be part of an organization that you're a part of.
+- **Owner** Here you can specify whether you want this to be your own personal project or whether you want it to be part of an organization that you're a part of.
 - **Repository name** A name for your repository (which will also be part of its path, in this case `https://codeberg.org/knut/foobar`).
 - **Visibility** Repositories are either _public_ or _private_. Public means that everyone will be able to access your repository, while your private repositories can only be accessed by you and your collaborators (see [Invite Collaborators](https://docs.codeberg.org/collaborating/invite-collaborators/)).
 - **Description** A short description that appears next to your repository's name where appropriate.
-- **Template** Occasionally, you may want to generate your repository from an existing template. In that case, you can specify that template here. Otherwise, simply leave this field empty.
+- **Template** Occasionally you may want to generate your repository from an existing template. In that case, you can specify that template here. Otherwise, simply leave this field empty.
 - **Issue Labels** If you want to initialize your project's issue tracker with a set of labels that you can use to categorize issues, you can choose one here. You don't have to choose this right away, though, as you can choose and modify issue labels at a later time as well.
 - **.gitignore** A [.gitignore](https://git-scm.com/docs/gitignore) file defines which files Git should not keep track of. This is useful, for example, to prevent configuration files or binaries from being tracked in version control. You can choose to add a predefined file matching the programming language you use now, or add one manually later.
-- **License** Here, you can choose from a list of FSF/OSI approved licenses. A `LICENSE` file will then be added to the repository. For some help on choosing the correct license, have a look at our [licensing article](https://docs.codeberg.org/getting-started/licensing/).
+- **License** Here you can choose from a list of FSF/OSI approved licenses. A `LICENSE` file will then be added to the repository. For some help on choosing the correct license, have a look at our [licensing article](https://docs.codeberg.org/getting-started/licensing/).
 - **README** is the first file one should read when accessing a repository. It's also the first file displayed when accessing a repository, a bit like the "homepage" of your repository. On Forgejo, this is interpreted as a [Markdown](https://docs.codeberg.org/markdown/) file.
-- **Initialize repository** In order to add the `LICENSE`, `README`, and `.gitignore` files mentioned above to your new repository, make sure you tick this box.
+- **Initialize repository** To add the `LICENSE`, `README`, and `.gitignore` files mentioned above to your new repository, make sure you tick this box.
 - **Default branch** Using this field, you can choose how to name the default branch of your Git repository. We recommend you use the predefined default.
 - **Object format** is the repository's object format. We recommend SHA1 as it's the most compatible. It cannot be changed later once the repository has been created.
 
@@ -53,16 +53,16 @@ Here's what the most important buttons do:
   - **Issues** is a very important communication tool between the author, their users, and their contributors. Think of it as part bug-tracker, part forum.
     For more information on this, have a look at [The Basics of Issue Tracking](../issue-tracking-basics/).
   - **Pull Requests** is where other users can ask the author to "pull" in code, from a fork into the author's program.
-  - **Releases** is a space where the author can upload finished versions of their program, e.g., binaries.
+  - **Releases** is a space where the author can upload finished versions of their program, for example binaries.
   - **Wiki** is a basic wiki feature built into Forgejo.
   - **Activity** calculates statistics about this repository.
-- **Repository's Git URLs (4)** - use these to let Git know where to find this repository. Don't worry if you don't understand this now - we will look at this in the following section.
+- **Repository's Git URLs (4)** - use these to let Git know where to find this repository. Don't worry if you don't understand this now, we will look at this in the following section.
 
 ## Connect a local repository to Forgejo
 
 After creating a new repository, as laid out in the previous section, you can now move on to connect the repository with your local development copy.
 
-In this guide, we'll focus on connecting to Forgejo via HTTP using Git on the command line, but note that there are multiple other ways to connect to Forgejo, as laid out in more detail in the articles:
+In this guide, we'll focus on connecting to Forgejo via HTTP using Git on the command line, but note that there are other ways to connect to Forgejo, as laid out in more detail in these articles:
 
 - [Clone & Commit via CLI](https://docs.codeberg.org/git/clone-commit-via-cli/) and
 - [Clone & Commit via Web](https://docs.codeberg.org/git/clone-commit-via-web/)
@@ -111,12 +111,11 @@ LICENSE  README.md
 
 ### Option B: Connect an existing local source tree
 
-If you have already written source code that you now would like to upload to Forgejo, follow these steps:
+If you have already written source code that you now would like to upload to Forgejo, follow the steps below. An upload to Forgejo is referred to as a `push`.
 
 #### 1. Initialize a Git Repository
 
-Unless you already have a Git Repository initialized in your local source tree,
-run `git init` in your project's directory:
+Unless you already have a Git Repository initialized in your local source tree, run `git init` in your project's directory:
 
 ```bash
 knut@iceberg:~/my-project$ git init
@@ -125,7 +124,7 @@ Initialized empty Git repository in /home/knut/my-project/.git/
 
 #### 2. Add Forgejo as the repository's origin
 
-Now, you need to tell Git where to push your changes. You would do that by specifying Forgejo as a remote.
+Now you need to tell Git where to push your changes. You would do that by specifying Forgejo as a remote.
 
 > In this example, we'll specify Forgejo as the `origin` remote. You can name your remote any other way, especially if you already have an `origin`, but `origin` is the recommended name for the main remote repository.
 
