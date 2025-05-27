@@ -1149,6 +1149,12 @@ steps:
 
 ## Debugging workflows
 
+### Enabling debug logging
+
+Certain reusable actions can provide more verbose logging, which can be enabled by creating a action
+secret with the name `ACTIONS_STEP_DEBUG` and setting it to `true`. See also [Action Debugging in
+`@actions/toolkit`](https://github.com/actions/toolkit/blob/main/docs/action-debugging.md).
+
 ### Errors in the YAML file
 
 When the YAML file describing the workflow contains an error that can
