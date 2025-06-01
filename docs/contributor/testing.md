@@ -134,6 +134,14 @@ TAGS='sqlite sqlite_unlock_notify' make watch
 > Do not set the `bindata` tag such as in `TAGS="bindata" make watch`.
 > The browser may fail to load pages with an error like `Failed to load asset`.
 
+It will create, in the source directory:
+
+- The `data` and `log` directories
+- The `custom/conf/app.ini` file after you complete the configuration interactively at http://127.0.0.1:3000
+
+> **NOTE:**  
+> To enable the internal SSH server, manually add `[server].START_SSH_SERVER = true` to `custom/conf/app.ini`
+
 ## Automated tests
 
 ### In the Forgejo repository
