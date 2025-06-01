@@ -48,7 +48,6 @@ X-Gitea-Event: push
 
 ```json
 {
-  "secret": "3gEsCfjlV2ugRwgpU#w1*WaW*wa4NXgGmpCfkbG3",
   "ref": "refs/heads/develop",
   "before": "28e1879d029cb852e4844d9c718537df08844e03",
   "after": "bffeb74224043ba2feb48d137756c8a9331c449a",
