@@ -140,7 +140,10 @@ It will create, in the source directory:
 - The `custom/conf/app.ini` file after you complete the configuration interactively at http://127.0.0.1:3000
 
 > **NOTE:**  
-> To enable the internal SSH server, manually add `[server].START_SSH_SERVER = true` to `custom/conf/app.ini`
+> To enable the internal SSH server, manually add `START_SSH_SERVER = true`
+> to the `[server]` section of `custom/conf/app.ini`, and ensure the
+> `SSH_PORT` option is set to an unprivileged port (any port greater than 1024),
+> such as `2222`.
 
 ## Automated tests
 
