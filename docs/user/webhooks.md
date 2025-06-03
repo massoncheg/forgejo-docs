@@ -30,6 +30,10 @@ The currently supported webhook types are:
 - Feishu / Lark Suite
 - WeCom (Wechat Work)
 
+These channels don't implement all webhook types.
+Those types that are implemented have to be manually tested.
+Try them and open an [issue](https://codeberg.org/forgejo/forgejo/issues/new/choose) if they do not work for your use case.
+
 ### Event information
 
 The following is an example of event information that will be sent by Forgejo to
