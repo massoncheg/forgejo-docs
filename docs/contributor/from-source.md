@@ -134,6 +134,34 @@ docker buildx build --output=type=docker --tag forgejo:mybuild .
 This will run the entire build process in a Docker container with the required dependencies.
 You can also supply a tag during the build process with the `-t` option, to make it easier to publish or run the image later.
 
+### Build using GNU Guix
+
+A [GNU Guix package manager](https://guix.gnu.org/) `manifest.scm`
+file is also provided. It can be used to create a containerized
+environment that has all the needed build and test dependencies, via a
+single command:
+
+```sh
+guix shell -CNF --share=$HOME -m manifest.scm
+```
+
+It's important to set a few environment variables inside the `guix
+shell` environment for proper operation:
+
+```
+export GOTOOLCHAIN=local CC=gcc CGO_ENABLED=1
+```
+
+The `GOTOOLCHAIN=local` environment variable tells the Go build
+machinery to prefer the Go binary provided by Guix instead of an
+external copy fetched from the Go package server, which would fail to
+load needed libraries with messages like `error while loading shared
+libraries: libgcc_s.so.1`.
+
+A few sample commands for building and testing in the Guix container
+are included in a comment in the `manifest.scm` file, for your
+convenience.
+
 ### Testing
 
 See [the section dedicated to testing](../testing/).
