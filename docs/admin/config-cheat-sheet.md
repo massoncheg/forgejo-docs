@@ -535,7 +535,7 @@ And the following unique queues:
 - `SECRET_KEY_URI`: **\<empty\>**: Instead of defining `SECRET_KEY`, this option can be used to use the key stored in a file (example value: `file:/etc/forgejo/secret_key`). It shouldn't be lost, like `SECRET_KEY`.
 - `LOGIN_REMEMBER_DAYS`: **31**: Cookie lifetime, in days.
 - `COOKIE_REMEMBER_NAME`: **gitea_incredible**: Name of the cookie used to store authentication
-  information.
+  information. Must not be the same as `[session].COOKIE_NAME`.
 - `REVERSE_PROXY_AUTHENTICATION_USER`: **X-WEBAUTH-USER**: Header name for reverse proxy
   authentication.
 - `REVERSE_PROXY_AUTHENTICATION_EMAIL`: **X-WEBAUTH-EMAIL**: Header name for reverse proxy
@@ -800,7 +800,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 - `PROVIDER`: **memory**: Session engine provider \[memory, file, redis, redis-cluster, db, mysql, couchbase, memcache, postgres\]. Setting `db` will reuse the configuration in `[database]`.
 - `PROVIDER_CONFIG`: **data/sessions**: For `file`, the root path; for `db`, empty (database config will be used); for others, the connection string. Relative paths will be made absolute against _`AppWorkPath`_.
 - `COOKIE_SECURE`:**empty**: `true` or `false`. Enable this to force using HTTPS for all session access. If not set, it defaults to `true` if the `ROOT_URL` is an HTTPS URL.
-- `COOKIE_NAME`: **i_like_gitea**: The name of the cookie used for the session ID.
+- `COOKIE_NAME`: **i_like_gitea**: The name of the cookie used for the session ID. Must not be the same as `[security].COOKIE_REMEMBER_NAME`.
 - `GC_INTERVAL_TIME`: **86400**: GC interval in seconds.
 - `SESSION_LIFE_TIME`: **86400**: Session life time in seconds, default is 86400 (1 day).
 - `DOMAIN`: **\<empty\>**: Sets the cookie Domain.
