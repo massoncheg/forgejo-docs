@@ -204,19 +204,19 @@ A container with the specified `image:` is run before the `job` starts and is te
 
 The IP address of `pgsql` is on the same [network](https://docs.docker.com/engine/reference/commandline/network/) as the container running the **steps** and there is no need for port binding (see the [docker run --publish](https://docs.docker.com/engine/reference/commandline/run/) option for more information). The `postgres:15` image exposes the PostgreSQL port 5432 and a client will be able to connect as [shown in this example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/test.yml)
 
-### image
+### services.<service_name>.image
 
 The location of the container image to run.
 
-### env
+### services.<service_name>.env
 
 Key/value pairs injected in the environment when running the container, equivalent to [--env](https://docs.docker.com/engine/reference/commandline/run/).
 
-### cmd
+### services.<service_name>.cmd
 
 A list of command and arguments, equivalent to [[COMMAND] [ARG...]](https://docs.docker.com/engine/reference/commandline/run/).
 
-### options
+### services.<service_name>.options
 
 A string of the following additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/).
 
@@ -226,11 +226,13 @@ A string of the following additional options, as documented [docker run](https:/
 
 > **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../admin/runner-installation/#configuration) for more information.
 
-### username
+### services.<service_name>.credentials
+
+#### services.<service_name>.credentials.username
 
 The username to authenticate with the registry where the image is located.
 
-### password
+#### services.<service_name>.credentials.password
 
 The password to authenticate with the registry where the image is located.
 
@@ -653,6 +655,21 @@ jobs:
 ```
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-pull-request/.forgejo/workflows/test.yml).
+
+### `on.release`
+
+Trigger the workflow when an event happens on release, as
+specified with the `types` event parameter.
+
+- `published` the release was created.
+- `edited` the body, title or comments of the release were modified.
+- `deleted` the release was deleted.
+
+```yaml
+on:
+  release:
+    types: [published, edited, deleted]
+```
 
 ### `on.schedule`
 
