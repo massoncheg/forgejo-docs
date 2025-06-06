@@ -429,6 +429,12 @@ The following configuration sets the `Content-Type: application/vnd.android.pack
 
 - `DB_TYPE`: **sqlite3**: The database type in use \[mysql, postgres, sqlite3\].
 - `HOST`: **127.0.0.1:3306**: Database host address and port or absolute path for a Unix socket \[mysql, postgres\] (e.g. /var/run/mysqld/mysqld.sock).
+- `HOST_PRIMARY`: **\<empty\>**: Database host address and port for the primary database node. Only applies for high availability setups which use a primary/secondary architecture. If defined, alongside with `HOST_REPLICAS`, `HOST` will be ignored.
+- `HOST_REPLICAS`: **\<empty\>**: Database host address(es) and port(s) for the replica database node(s). Only applies for high availability setups which use a primary/secondary architecture. Must be coupled with `HOST_PRIMARY`. Multiple connection strings should be supplied as comma-separated values.
+- `LOAD_BALANCE_POLICY`: **Random**: XORM Load Balancing Policy for `EngineGroup` connections. Only applies if `HOST_PRIMARY` and `HOST_REPLICAS` are provided.
+  Other possible values are: `RoundRobin`, `WeightRandom`, `WeightRoundRobin`, and `LeastConn`.
+  Note that `"WeightRandom"` and `"WeightRoundRobin"` also require setting `LOAD_BALANCE_WEIGHTS`.
+- `LOAD_BALANCE_WEIGHTS`: **\<empty\>**: XORM Load Balancing Weights for `EngineGroup` connections. Only applies if `HOST_PRIMARY` and `HOST_REPLICAS` are provided and `LOAD_BALANCE_POLICY` is set to `"WeightRandom"` or `WeightRoundRobin`.
 - `NAME`: **forgejo**: Database name.
 - `USER`: **root**: Database username.
 - `PASSWD`: **\<empty\>**: Database user password. Use \`your password\` or """your password""" for quoting if you use special characters in the password.

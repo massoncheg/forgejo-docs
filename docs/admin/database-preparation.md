@@ -317,3 +317,19 @@ In one-way TLS, the database client verifies the certificate sent from server du
    ```
 
    You should be connected to the database.
+
+### Dedicated Primary/Replica Connection Pools
+
+Starting with v12, Forgejo supports connecting to a dedicated primary/replica database setup.
+This allows scaling the database horizontally by adding more replicas which process all read-only queries, effectively offloading read operations from the primary database.
+This setup is particularly useful for high-traffic instances where read operations can significantly impact performance.
+It might not be needed for low-traffic/small instances.
+
+The implementation uses the [`xorm.EngineGroup`](https://xorm.io/docs/chapter-01/2.engine_group/) logic to manage the connection pool and load balancing between the primary and replica databases.
+Furthermore it allows defining a [load balancing strategy](https://xorm.io/docs/chapter-01/3.policy/) for the replica databases.
+
+The default, `Random`, distributes read-only queries across the replica databases in a random manner.
+Other policies can be used to distribute read-only queries in a round-robin (`RoundRobin`) manner, based on the load on each replica (`LeastConn`), or by using custom weights (`WeightRandom` and `WeightRoundRobin`).
+
+Using a load balancing strategy is only in effect when the number of replica databases in the `EngineGroup` is greater than 1.
+An alternative to the `xorm` load balancing strategy is to use a dedicated load balancer in front of the replica database instances, such as HAProxy, or more advanced, DB-specific solutions like [pgcat](https://github.com/postgresml/pgcat) or [pgdog](https://github.com/pgdogdev/pgdog).
