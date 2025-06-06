@@ -237,6 +237,7 @@ COMMANDS:
    delete                 Delete specific user by id, name or email
    generate-access-token  Generate an access token for a specific user
    must-change-password   Set the must change password flag for the provided users or all users
+   reset-mfa              Remove all two-factor authentication configurations for a user
 
 OPTIONS:
    --help, -h                       show help
@@ -367,6 +368,23 @@ OPTIONS:
    --all, -A                                                    All users must change password, except those explicitly excluded with --exclude (default: false)
    --exclude string, -e string [ --exclude string, -e string ]  Do not change the must-change-password flag for these users
    --unset                                                      Instead of setting the must-change-password flag, unset it (default: false)
+```
+
+### admin user reset-mfa
+
+```
+NAME:
+   forgejo admin user reset-mfa - Remove all two-factor authentication configurations for a user
+
+USAGE:
+   forgejo admin user reset-mfa
+
+OPTIONS:
+   --help, -h                       show help
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --username string, -u string     The user to update
 ```
 
 ### admin repo-sync-releases
