@@ -7,25 +7,36 @@ Forgejo base localization is English. This means that all translations are deriv
 
 ## Managing strings
 
-English localization strings are stored in the file `options/locale/locale_en-US.ini`. Strings are [translated](../localization) on Weblate and string management is partially done by it.
+English localization strings are stored in two locations:
 
-When a new string needs to be added to Forgejo, it must be added to the base language to be picked up by Weblate.
+- `options/locale_next/locale_en-US.json` - preferred
+- `options/locale/locale_en-US.ini` - legacy, doesn't support culture-specific plurals
 
-When a string key needs to be changed, it must be mass-changed for all languages into which the string has already been translated, so that existing translations aren't lost.
+Strings are [translated](../localization) on Weblate and string management is partially done by it.
 
-When an unused string needs to be deleted, it should be only deleted for the base language to avoid merge conflicts. The string will disappear from all translations automatically after the PR is merged.
+New strings, deletion and minor edits of English strings is to be submitted in pull requests as is. All edits are considered minor unless they include changes to handling of placeholders (`%s`, `%[n]s`, `%d`, `%[n]d`).
+
+When a new string is added, it must be double-checked that it's key is unique and is not present in transitions already.
+
+Changes to non-base files are intended to only be done on Weblate and not by pull requests to avoid merge conflicts with Weblate PR and to not waste CI time.
+
+When a UI change renders some string unused, it must be deleted.
+
+Unused strings should only be deleted in base language. The string will disappear from all translations automatically after the PR is merged. Removal of invisible obsolete translated strings is either done by Weblate or sometimes manually.
+
+When a string key needs to be changed, it must be mass-changed for all languages into which the string has already been translated, so that existing translations aren't lost. This includes merging the Weblate PR first and then re-applying the rename to avoid race conditions with changes from Weblate. It is a complicated process, so renaming keys is generally not recommended unless there's a good reason.
 
 ## Localization style
 
 ### Capitalization
 
-All strings should have regular capitalization. Headers, labels, buttons and such should start with a capital letter. Only names, product names and such should be capitalized after that. Forgejo-specific measurement units should not be capitalized.
+All strings should have regular capitalization. Headers, labels, buttons and such should start with a capital letter. Only names, product names and such should be capitalized after that. Git/Forgejo specific measurement units should not be capitalized.
 
 Follow these examples for string capitalization:
 
 | Context | ❌ Bad                                 | ✅ Good                                |
 | ------- | -------------------------------------- | -------------------------------------- |
-| Button  | star                                   | Star                                   |
+| Button  | edit                                   | Edit                                   |
 | Header  | Manage Organizations                   | Manage organizations                   |
 | Option  | Use Custom Avatar                      | Use custom avatar                      |
 | Button  | Add Cleanup Rule                       | Add cleanup rule                       |
@@ -42,6 +53,46 @@ Follow these examples:
 | ---------- | --------- | -------- |
 | Form label | Username. | Username |
 | Form label | Username: | Username |
+
+### Ensuring good translatability
+
+Whenever possible, new strings should include placeholders for names and and numbers they reference. Text formatting should be accessible to translators so they can make good culture-specific translations.
+
+So instead of doing this:
+
+```json
+"commits_found": "commits were found"
+```
+
+```gotmpl
+{{.NumCommits}} {{ctx.Locale.Tr "commits_found"}}.
+```
+
+Do this:
+
+```json
+"n_commits_found": {
+  "one": "%d commit was found.",
+  "other": "%d commits were found."
+}
+```
+
+```gotmpl
+{{ctx.Locale.TrPluralString .NumCommits "commits_found" .NumCommits}}
+```
+
+Large numbers can be formatted as strings like so:
+
+```json
+"n_commits_found": {
+  "one": "%s commit was found.",
+  "other": "%s commits were found."
+}
+```
+
+```gotmpl
+{{ctx.Locale.TrPluralString .NumCommits "commits_found" (CountFmt .NumCommits)}}
+```
 
 ## Contributing
 
