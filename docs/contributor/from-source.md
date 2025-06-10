@@ -61,9 +61,26 @@ git checkout v7.0.3
 
 To build from source, the following programs must be present on the system:
 
-- `go` v1.23 or higher, see [here](https://golang.org/dl/)
-- `node` 20 or higher with `npm`, see [here](https://nodejs.org/en/download/current)
+- `git`
+- `coreutils` (sed, grep, find, echo, ...)
+- `tar`
+- `gzip`
+- `go` see the `go.mod` file in the root of the repository for the minimum
+  required version
+- `node` needs to include `npm`, the latest LTS should generally build fine. In
+  doubt, the `package-lock.json` contains node version constrains for every
+  dependency.
 - `make`
+
+For testing, linting and other build configuration, the following dependencies
+are also required:
+
+- `git` with lfs support
+- `sqlite`
+- `openssh`
+
+Also see the `shell.nix` and `manifest.scm` in the root of the forgejo
+repositories for Nix and Guix definitions of all dependencies.
 
 There are a number of useful `make` targets, only some of which are documented here.
 They can all be displayed with:
