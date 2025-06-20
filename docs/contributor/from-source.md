@@ -21,7 +21,7 @@ version is 20.
 necessary. To be able to use these, you must have the `"$GOPATH/bin"` directory
 on the executable path.
 
-**Note 2**: Go version 1.23 or higher is required. However, it is recommended to
+**Note 2**: Go version 1.24 or higher is required. However, it is recommended to
 obtain the same version as the [continuous integration](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows/testing.yml).
 
 **Note 3**: If you want to avoid installing build dependencies manually,
