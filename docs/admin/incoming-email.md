@@ -30,8 +30,3 @@ If a catch-all mailbox is used, the placeholder may be used anywhere in the user
 - `incoming+%{token}@example.com`
 - `incoming_%{token}@example.com`
 - `%{token}@example.com`
-
-## Security
-
-Be careful when choosing the domain used for receiving incoming email.
-It's recommended receiving incoming email on a subdomain, such as `incoming.example.com` to prevent potential security problems with other services running on `example.com`.
