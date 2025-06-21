@@ -21,8 +21,8 @@ jobs:
 
       - name: Install lychee
         run: |
-          curl -sLO "https://github.com/lycheeverse/lychee/releases/download/lychee-v0.18.1/lychee-x86_64-unknown-linux-gnu.tar.gz"
-          tar -xvzf "lychee-x86_64-unknown-linux-gnu.tar.gz"
+          curl -sL -o lychee.tar.gz "https://github.com/lycheeverse/lychee/releases/download/lychee-v0.19.1/lychee-x86_64-unknown-linux-gnu.tar.gz"
+          echo 19cd4e37f939568ae5b5cc7a7d74ee87 lychee.tar.gz | md5sum -c && tar -xvzf lychee.tar.gz
 
       - name: Check links
         id: lychee
