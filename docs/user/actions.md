@@ -759,6 +759,31 @@ env:
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-expression/.forgejo/workflows/test.yml).
 
+### `defaults`
+
+Set some defaults for all jobs in the workflow.
+
+These global defaults can be overridden with the [per-job `defaults` block](#jobsjob_iddefaults), which in turn can be overridden by the corresponding option in each step.
+
+```yaml
+defaults:
+  run:
+    shell: bash
+    working-directory: ./scripts
+```
+
+### `defaults.run.shell`
+
+Sets the default [`jobs.<job_id>.steps[*].shell`](#jobsjob_idstepsshell) for all jobs.
+
+Can also be overridden per job: [`jobs.<job_id>.defaults.run.shell`](#jobsjob_iddefaultsrunshell)
+
+### `defaults.run.working-directory`
+
+Sets the default [`jobs.<job_id>.steps[*].working-directory`](#jobsjob_idstepsworking-directory) for all jobs.
+
+Can also be overridden per job: [`jobs.<job_id>.defaults.run.working-directory`](#jobsjob_iddefaultsrunworking-directory)
+
 ### `jobs`
 
 The list of jobs in the workflow. The key to each job is a `job_id`
@@ -938,6 +963,32 @@ A string of the following additional options, as documented [docker run](https:/
 > **NOTE:** ignored if `jobs.<job_id>.runs-on` is an LXC container.
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/test.yml)
+
+### `jobs.<job_id>.defaults`
+
+Specify some defaults for all steps in a job.
+Can be used to set the default shell to something else than `sh` when running in a custom container.
+
+There's also a [global `defaults` block](#defaults).
+
+```yaml
+defaults:
+  run:
+    shell: bash
+    working-directory: ./scripts
+```
+
+### `jobs.<job_id>.defaults.run.shell`
+
+Sets the default [`jobs.<job_id>.steps[*].shell`](#jobsjob_idstepsshell) for all steps of this job.
+
+Corresponding global option: [`defaults.run.shell`](#defaultsrunshell)
+
+### `jobs.<job_id>.defaults.run.working-directory`
+
+Sets the default [`jobs.<job_id>.steps[*].working-directory`](#jobsjob_idstepsworking-directory) for all steps of this job.
+
+Corresponding global option: [`defaults.run.working-directory`](#defaultsrunworking-directory)
 
 ### `jobs.<job_id>.services`
 
