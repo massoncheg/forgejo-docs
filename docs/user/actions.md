@@ -744,6 +744,21 @@ jobs:
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-dispatch/.forgejo/workflows/test.yml).
 
+### `enable-email-notifications`
+
+Send an email notification when a workflow run fails or when it recovers from a failure (i.e. it succeeds and the previous run failed).
+
+```yaml
+enable-email-notifications: true
+```
+
+The email notification is sent to the user who triggered the workflow run (e.g. the author of a pull request, the user who pushed a commit, etc.), unless they disabled email notifications in their settings.
+
+If a workflow run is not associated with a user (e.g. a run scheduled every day), the notification will be sent to:
+
+- The user who owns the repository unless they disabled email notifications in their settings.
+- The organization that owns the repository unless there is no contact email in its settings.
+
 ### `env`
 
 Set environment variables that are available in the workflow in the `env` `context` and as regular environment variables.
