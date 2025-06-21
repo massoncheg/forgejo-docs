@@ -989,6 +989,14 @@ The defaults of the console change if Forgejo detects that stdout and/or stderr 
 - `RUN_AT_START`: **true**: Run job at start time (if ENABLED).
 - `SCHEDULE`: **@midnight**: Cron syntax for the job.
 
+#### Cron - Cleanup Offline Runners (`cron.cleanup_offline_runners`)
+
+- `ENABLED`: **false**: Enable cleanup offline runners job.
+- `RUN_AT_START`: **false**: Run the job immediately on start (if ENABLED).
+- `SCHEDULE`: **@midnight**: Cron syntax for when to run the job.
+- `GLOBAL_SCOPE_ONLY`:**true**: Only delete runners in the global scope
+- `OLDER_THAN`: **24h** Only delete runners that have been offline or unused for at least this duration. Minimum duration is "1m"
+
 ### Extended cron tasks (not enabled by default)
 
 #### Cron - Garbage collect all repositories (`cron.git_gc_repos`)
