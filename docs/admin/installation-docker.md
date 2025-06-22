@@ -221,6 +221,68 @@ services:
 +      - ./postgres:/var/lib/postgresql/data
 ```
 
+## Using rootless image
+
+Rootless image uses a different path for the data folder for Forgejo.
+
+Also, the correct permissions must be set for bound folders, here, we will keep the user 1000 and groupid from before:
+
+```bash
+mkdir -p ./forgejo
+sudo chown -R 1000:1000 ./forgejo
+mkdir -p ./conf
+sudo chown -R 1000:1000 ./conf
+```
+
+Here is an example of a `docker-compose.yaml` adapted from the previous PostgreSQL:
+
+```yaml
+networks:
+  forgejo:
+    external: false
+
+services:
+  server:
+    image: codeberg.org/forgejo/forgejo:11-rootless
+    container_name: forgejo
++    user: 1000:1000
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - FORGEJO__database__DB_TYPE=postgres
+      - FORGEJO__database__HOST=db:5432
+      - FORGEJO__database__NAME=forgejo
+      - FORGEJO__database__USER=forgejo
+      - FORGEJO__database__PASSWD=forgejo
+    restart: always
+    networks:
+      - forgejo
+    volumes:
+-      - ./forgejo:/data
++      - ./forgejo:/var/lib/gitea
++      - ./conf:/etc/gitea
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+-      - "222:22"
++      - "222:2222"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      - POSTGRES_USER=forgejo
+      - POSTGRES_PASSWORD=forgejo
+      - POSTGRES_DB=forgejo
+    networks:
+      - forgejo
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+```
+
 ## Hosting repository data on remote storage systems
 
 You might also mount the data and repository folders on a remote drive such as a
@@ -240,7 +302,7 @@ shared via NFS. Append an entry to your `/etc/exports` like
 
 ```shell
 [...]
-/repositories	*(rw,sync,all_squash,sec=sys,anonuid=1024,anongid=100)
+/repositories    *(rw,sync,all_squash,sec=sys,anonuid=1024,anongid=100)
 ```
 
 Four aspects to consider:
