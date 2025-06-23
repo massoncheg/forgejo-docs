@@ -759,6 +759,8 @@ If a workflow run is not associated with a user (e.g. a run scheduled every day)
 - The user who owns the repository unless they disabled email notifications in their settings.
 - The organization that owns the repository unless there is no contact email in its settings.
 
+> **NOTE:** This setting has no effect on the actions webhooks.
+
 ### `env`
 
 Set environment variables that are available in the workflow in the `env` `context` and as regular environment variables.
