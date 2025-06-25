@@ -10,46 +10,32 @@ when creating an issue or pull request. Forgejo supports adding templates to the
 creating issues and pull requests. This will cut down on the initial back-and-forth
 of getting some clarifying details.
 It is currently not possible to provide generic issue/pull-request templates globally.
+In general, there is the choice of using either multiple or a single issue template file(s), a single pull-request template file and additionally the possibility of adding an issue config.
 
 Additionally, the New Issue page URL can be suffixed with `?title=Issue+Title&body=Issue+Text` and the form will be populated with those strings. Those strings will be used instead of the template if there is one.
 
 ## Directory names
 
-Users can create multiple issue templates inside a special directory and allow users to choose one that more specifically
-addresses their problem.
+Users can create multiple template files inside a special directory and this allows different use cases: users can choose to use the template that is suited to address their specific problem. Please note that there can be multiple issue templates. However, there may only be a single pull request template in one repository.
 
-Forgejo will look for template files in the following directories:
+Forgejo will check for template files in the following directories, since Forgejo checks these services to make migration from them easier:
 
-- `ISSUE_TEMPLATE`
-- `issue_template`
-- `.forgejo/ISSUE_TEMPLATE`
-- `.forgejo/issue_template`
-- `.gitea/ISSUE_TEMPLATE`
-- `.gitea/issue_template`
-- `.github/ISSUE_TEMPLATE`
-- `.github/issue_template`
-- `.gitlab/ISSUE_TEMPLATE`
-- `.gitlab/issue_template`
+- `.forgejo`
+- `.gitea`
+- `.github`
+- `.gitlab`
 
-Inside the directory can be multiple markdown (`.md`) or yaml (`.yaml`/`.yml`) issue templates of the form.
+Inside the directory can be multiple markdown (`.md`) or yaml (`.yaml`/`.yml`) files for templates of the form - these are the three allowed file extensions.
 
 ## File names
 
-Possible file names for issue templates:
+For the three file types - issue templates, pull request templates, and issue configs, there are various possible file names that may be used in the directories listed above.
 
-- `ISSUE_TEMPLATE.md`
-- `ISSUE_TEMPLATE.yaml`
-- `ISSUE_TEMPLATE.yml`
-- `issue_template.md`
-- `issue_template.yaml`
-- `issue_template.yml`
+**Issue templates** are arbitrarily named files with any of the three file extensions mentioned above, and there may be any number of them, so they each get their dedicated subdirectory: `issue_template` and `ISSUE_TEMPLATE` are the possible names for the subdirectory that the issue templates go into.
 
-Possible file names for issue config:
+In contrast, there may only be a single pull request template per repository, so there is no extra subdirectory for it. It can reside in any of the `.<service_name>` directories (with the exception of the `.gitlab` directory, this is not supported!) listed in the previous section. A pull request template has a fixed name (see options below) and can end with any of the three file extensions mentioned above.
 
-- `config.yaml`
-- `config.yml`
-
-Possible file names for PR templates:
+Possible file names and file extensions for **PR templates**:
 
 - `PULL_REQUEST_TEMPLATE.md`
 - `PULL_REQUEST_TEMPLATE.yaml`
@@ -57,6 +43,31 @@ Possible file names for PR templates:
 - `pull_request_template.md`
 - `pull_request_template.yaml`
 - `pull_request_template.yml`
+
+Issue config template files need to go into the same subdirectory as issue template files (see above section). Possible file names and file extensions for **issue config**:
+
+- `config.yaml`
+- `config.yml`
+
+An example setup for a single issue template file together with a single pull request template file could look like this:
+
+```
+.forgejo/
+  ISSUE_TEMPLATE/
+    issue_template.yaml
+  pull_request_template.yml
+```
+
+Another example setup but with multiple issue template files instead could look like this:
+
+```
+.forgejo/
+  issue_template/
+    bug.yaml
+    config.yml
+    feature.yaml
+  pull_request_template.md
+```
 
 ## Syntax for markdown template
 
