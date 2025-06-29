@@ -5,13 +5,13 @@ license: 'CC-BY-SA-4.0'
 
 Forgejo relies on hundreds of Free Software components and they all need to be updated on a regular basis, with appropriate tooling and methods.
 
-# Releases
+## Releases
 
 Software referenced by a release (even if such a release is the hash of a commit). They are listed in the [dependency dashboard](https://codeberg.org/forgejo/forgejo/issues/2779) which is updated by [renovate](https://github.com/renovatebot/renovate) from [the renovate.json configuration file](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/renovate.json).
 
-## Decision to upgrade
+### Decision to upgrade
 
-### Development branch
+#### Development branch
 
 An upgrade is justified if:
 
@@ -20,7 +20,7 @@ An upgrade is justified if:
 
 There is no need to upgrade if there is no indication that it is beneficial to Forgejo.
 
-### Stable branch
+#### Stable branch
 
 The [dependency
 dashboard](https://codeberg.org/forgejo/forgejo/issues/2779) can be
@@ -30,7 +30,7 @@ not done automatically.
 An upgrade is justified if it follows the restrictions that apply to
 stable branches (not backporting features for instance).
 
-## Release notes
+### Release notes
 
 When an upgrade has a user facing impact on Forgejo, it should be included in the release notes.
 
@@ -43,7 +43,7 @@ When an upgrade has a user facing impact on Forgejo, it should be included in th
 
 See [this pull request for an example](https://codeberg.org/forgejo/forgejo/pulls/4607#issuecomment-2109794).
 
-## Reviewing renovate pull requests
+### Reviewing renovate pull requests
 
 Pull [requests are opened](https://codeberg.org/forgejo/forgejo/pulls?poster=165503) when an upgrade is available and the decision to merge (positive review) or not (request for change review) depends on what the upgrade offers. The history of past upgrades can be browsed by looking for PR with the same title (e.g. [happy-dom upgrades](https://codeberg.org/forgejo/forgejo/pulls?q=Update+dependency+happy-dom)).
 
@@ -58,7 +58,7 @@ Note that renovate will keep a few (see `prConcurrentLimit` in [renovate.json](h
 
 The [release team](https://codeberg.org/forgejo/governance/src/branch/main/TEAMS.md#releases) looks after the pull requests, to the extent that they can be tested automatically. If manual testing is required (because there is no test coverage for the part of the code that would be impacted by an upgrade), a review will be requested from the people who have the required expertise to either improve the test coverage or come up with a manual test procedure to be repeated.
 
-## Tuning a software upgrade
+### Tuning a software upgrade
 
 There is no uniformity in how software is released and they call for different strategies to deal with upgrades:
 
@@ -116,28 +116,28 @@ There is no uniformity in how software is released and they call for different s
   },
   ```
 
-# Soft forks
+## Soft forks
 
-## Permanent
+### Permanent
 
 - https://code.forgejo.org/forgejo/act is a set of commits on top of https://github.com/nektos/act
 
-## Temporary
+### Temporary
 
 - https://code.forgejo.org/forgejo/download-artifact
 - https://code.forgejo.org/forgejo/upload-artifact
 
-# Cherry-picking
+## Cherry-picking
 
-## lxc-helpers
+### lxc-helpers
 
 Injects itself via [a workflow](https://code.forgejo.org/forgejo/lxc-helpers/src/branch/main/.forgejo/workflows/cascade-act.yml) in its dependencies.
 
-## Gitea
+### Gitea
 
 Cherry-picked in the Forgejo codebase [on a regular basis](https://codeberg.org/forgejo/forgejo/pulls?q=week&labels=116080) using a [dedicated CLI tool](https://codeberg.org/forgejo/tools/src/branch/main/scripts/weekly-cherry-pick.sh).
 
-# Web browser support
+## Web browser support
 
 For changes that would affect the usability of Forgejo, use browser features and APIs that are compatible with the latest version of Firefox ESR.
 

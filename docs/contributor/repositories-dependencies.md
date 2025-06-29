@@ -7,9 +7,9 @@ Some Forgejo repositories that depend on each other have workflows
 that will trigger workflows on other repositories using the
 [cascading-pr](https://code.forgejo.org/actions/cascading-pr/) action.
 
-# Use cases and examples
+## Use cases and examples
 
-## Files copied from other repositories
+### Files copied from other repositories
 
 [setup-forgejo](https://code.forgejo.org/actions/setup-forgejo) contains a [copy](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/forgejo-curl.sh) of the [forgejo-curl](https://code.forgejo.org/forgejo/forgejo-curl) script. This script does not have numbered releases and the latest version is the one in the main branch.
 
@@ -17,7 +17,7 @@ forgejo-curl has a [workflow](https://code.forgejo.org/forgejo/forgejo-curl/src/
 
 When the PR is merged in forgejo-curl, the corresponding PR in setup-forgejo is left open and ready to be merged with the latest version of the forgejo-curl.sh script.
 
-## Verifying an upgrade would work
+### Verifying an upgrade would work
 
 [setup-forgejo](https://code.forgejo.org/actions/setup-forgejo) installs a [runner](https://code.forgejo.org/forgejo/runner/) by default, as [specified in the action.yml](https://code.forgejo.org/actions/setup-forgejo/src/commit/a580cb63b6ce411c3394aff77c7073d4d3e9428c/action.yml#L49) file.
 
@@ -25,7 +25,7 @@ The runner has a [workflow](https://code.forgejo.org/forgejo/runner/src/branch/m
 
 When the PR is merged in forgejo-curl, the corresponding PR in setup-forgejo is closed. It is not meant to upgrade setup-forgejo because there is not yet a tag release published with this change.
 
-# Permissions
+## Permissions
 
 The cascading-pr action needs a token with write permissions on issues
 and repositories that will allow it to fork the destination repository and
@@ -41,7 +41,7 @@ cascading-pr user. This token was added as two secrets named
 `CASCADING_PR_ORIGIN` and `CASCADING_PR_DESTINATION` in the
 https://code.forgejo.org/forgejo/forgejo-curl/ repository.
 
-# Access to secrets
+## Access to secrets
 
 The workflow that contains the cascading-pr action needs access to the
 secrets of the repository and must run `on.pull_request_target`. For
@@ -56,7 +56,7 @@ on:
       - closed
 ```
 
-# Updating the workflow
+## Updating the workflow
 
 When the cascading-pr workflow is added or updated in a repository, it
 must be done in a PR from a branch of the repository and not than from

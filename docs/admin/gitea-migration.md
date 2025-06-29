@@ -16,11 +16,11 @@ Here's what to expect, and some helpful tips:
 - Forgejo will run automatic migrations in the database to convert some structures.
 - There should be no automatic modification of the app.ini related to this upgrade, but it is generally recommended to let Forgejo write to the config file because it is used to store some secrets.
 
-# Native (Package Manager) installation
+## Native (Package Manager) installation
 
 If Gitea is installed via a package manager:
 
-## Arch Linux
+### Arch Linux
 
 Arch Linux provides package for both Gitea and Forgejo,
 but they install to different locations and run as different users.
@@ -31,7 +31,7 @@ First step is to install the Forgejo package, and stop the Gitea service.
     $ pacman -S forgejo
     $ systemctl stop gitea
 
-### Configuration migration
+#### Configuration migration
 
 Now, we can copy the Gitea configuration over the default Forgejo one.
 We need to set the group owner and group write permission so Forgejo can write to it.
@@ -40,7 +40,7 @@ We need to set the group owner and group write permission so Forgejo can write t
     $ chown root:forgejo /etc/forgejo/app.ini
     $ chmod g+w /etc/forgejo/app.ini
 
-### Data migration
+#### Data migration
 
 If we want to leave a copy of the Gitea data untouched (recommend in case of mistakes)
 the next step is to copy the existing data to the Forgejo user's home directory.
@@ -53,7 +53,7 @@ Finally, we need to update the configuration, which currently points to `/var/li
 to point to the new location.
 Edit `/etc/forgejo/app.ini` and replace all instances of `/var/lib/gitea` with `/var/lib/forgejo`.
 
-### Data migration (no copy)
+#### Data migration (no copy)
 
 If you're not concerned about being able to roll back to your Gitea installation,
 you can simply change the owner of the files in `/var/lib/gitea`.
@@ -61,7 +61,7 @@ There's then no need to change the configuration.
 
     $ chown -R forgejo: /var/lib/gitea/*
 
-### Starting Forgejo
+#### Starting Forgejo
 
 Whichever data migration you've chosen, it's now time to start the Forgejo service.
 
@@ -79,7 +79,7 @@ Finally, if you're happy with everything, you can uninstall Gitea.
 
     $ pacman -R gitea
 
-# Containerized (docker, podman, etc) installation
+## Containerized (docker, podman, etc) installation
 
 If gitea was running as a container, it makes sense to run forgejo the same way.
 If all goes well, forgejo 10.x should act as a drop-in replacement for gitea 1.22.x.
@@ -88,7 +88,7 @@ Pay special attention to paths and environment variables.
 If you were running a rootless gitea container, a rootless forgejo container should
 work similarly. The data should be owned by user 1000 and group 1000.
 
-## Configuring paths
+### Configuring paths
 
 The main configuration file is `app.ini`. This file controls the locations of all
 other data. If your app.ini specifies the locations of things, those things should
@@ -96,7 +96,7 @@ continue to work. For unspecified things, pay close attention to the
 [configuration cheat-sheet](https://forgejo.org/docs/latest/admin/config-cheat-sheet/#default-configuration-non-appini-configuration)
 as the defaults may have changed.
 
-## Environment variables
+### Environment variables
 
 The location of `app.ini` is currently specified by the `GITEA_APP_INI`
 environment variable. If unset, the default is `/var/lib/gitea/custom/conf/app.ini`.
@@ -108,11 +108,11 @@ these variables to your container: one with the prefix "GITEA*", and again
 with the prefix "FORGEJO\_", to remain compatible with future versions of
 Forgejo.
 
-# Troubleshooting
+## Troubleshooting
 
 Here are some common problems and how to solve them. Contributions are welcome.
 
-## Missing favicon or logo
+### Missing favicon or logo
 
 Files from `public/assets/img/` must live in `custom/` now; otherwise, they will have no effect.
 
@@ -123,11 +123,11 @@ for the necessary warnings and disclaimers.
 
 The browser caches images, so after changing it, it may take some refreshes or cache-clears to see the change.
 
-## 404 error when downloading a package
+### 404 error when downloading a package
 
 Check (and double-check) your configured paths. Refer to the [storage documentation](https://forgejo.org/docs/latest/admin/storage/), and double-check what the configured path is relative to.
 
-## Action fails to run with "repository not found"
+### Action fails to run with "repository not found"
 
 If the "Set up job" section fails with "repository not found", it's probably trying to pull the action from the wrong place.
 
