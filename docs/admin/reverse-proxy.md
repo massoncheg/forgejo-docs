@@ -229,7 +229,7 @@ listen forgejo_80
   timeout connect 10s
   timeout client 30s
   timeout server 30s
-  server frogejo 127.0.0.1:3000
+  server forgejo 127.0.0.1:3000
 ```
 
 ### HTTPS
@@ -268,7 +268,7 @@ backend forgejo_443
   timeout connect 10s
   timeout server 30s
   retry-on all-retryable-errors
-  server frogejo 127.0.0.1:3000
+  server forgejo 127.0.0.1:3000
 ```
 
 ### HTTPS with UNIX Socket
