@@ -123,6 +123,9 @@ Can be used in `if:` conditionals on jobs and steps.
 - `join( array, optionalSeparator )`. The value for `array` can be an array or a string. All values in `array` are concatenated into a string. If you provide `optionalSeparator`, it is inserted between the concatenated values. Otherwise, the default separator `,` is used. Casts values to a string.
 - `toJSON(value)`. Returns a pretty-print JSON representation of `value`.
 - `fromJSON(value)`. Returns a JSON object or JSON data type for `value`. You can use this function to provide a JSON object as an evaluated expression or to convert environment variables from a string.
+- `hashFile(filePattern[, filePattern...])`. Returns a hash of the concatenated content of the files that match the given pattern(s) in the argument(s). A file may be a pattern such as `directory/*.yml` or `**/some.go`. The files are read from the container running the step, immediately before it is evaluated and run. For instance, if the previous step is `uses: actions/checkout@v4`, files checked out from the repository can be given in argument to `hashFile`.
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-expression/.forgejo/workflows/test.yml).
 
 ## Sharing files between jobs
 
