@@ -138,6 +138,8 @@ $ forgejo-runner generate-config > config.yml
 log:
   # The level of logging, can be trace, debug, info, warn, error, fatal
   level: info
+  # The level of logging for jobs, can be trace, debug, info, earn, error, fatal
+  job_level: info
 
 runner:
   # Where to store the registration result.
@@ -188,10 +190,19 @@ cache:
   # The port of the cache server.
   # 0 means to use a random available port.
   port: 0
+  # The port of the cache proxy.
+  # 0 means to use a random available port.
+  proxy_port: 0
   # The external cache server URL. Valid only when enable is true.
   # If it's specified, it will be used to set the ACTIONS_CACHE_URL environment variable. The URL should generally end with "/".
   # Otherwise it will be set to the the URL of the internal cache server.
   external_server: ""
+  # The shared cache secret. When communicating with a cache server, the runner uses this secret to verify the authenticity of the cache requests.
+  # When using an external cache server it is required to set the same secret for the runner and the cache server.
+  secret: ""
+  # Overrides the ACTIONS_CACHE_URL passed to workflow containers. This should only be used if the runner host is not reachable from the
+  # workflow containers, and requires further setup.
+  actions_cache_url_override: ""
 
 container:
   # Specifies the network to which the container will connect.
@@ -203,8 +214,8 @@ container:
   enable_ipv6: false
   # Whether to use privileged mode or not when launching task containers (privileged mode is required for Docker-in-Docker).
   privileged: false
-  # Additional options to be used when the container is started (e.g., --add-host=my.forgejo.url:host-gateway).
-  options: ""
+  # And other options to be used when the container is started (eg, --add-host=my.forgejo.url:host-gateway).
+  options:
   # The parent directory of a job's working directory.
   # If it's empty, /workspace will be used.
   workdir_parent:
