@@ -749,7 +749,7 @@ jobs:
 
 ### `enable-email-notifications`
 
-Send an email notification when a workflow run fails or when it recovers from a failure (i.e. it succeeds and the previous run failed).
+Send an email notification when a workflow run fails.
 
 ```yaml
 enable-email-notifications: true
