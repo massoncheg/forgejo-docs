@@ -632,8 +632,7 @@ It is similar to the `on.pull_request` event, with the following exceptions:
 - the automatic token has write permission to the repository.
 - the workflow runs in the context of the default branch of the base repository, meaning that:
   - changes to the workflow in the pull request will be ignored
-  - the [actions/checkout](https://code.forgejo.org/actions/checkout) action will checkout the default branch instead
-    of the content of the pull request
+  - the [actions/checkout](https://code.forgejo.org/actions/checkout) action will checkout the default branch instead of the content of the pull request
 
 Care must be taken to unset the `GITHUB_TOKEN` environment variable
 when a job runs scripts from a checkout of the pull request so that it
@@ -909,7 +908,7 @@ jobs:
   test:
 ---
 steps:
-  - uses: https://code.forgejo.org/actions/setup-node@v4
+  - uses: actions/setup-node@v4
     with:
       node-version: '${{ matrix.node }}'
 ```
@@ -1150,7 +1149,7 @@ Check out the workflows in [example-if](https://code.forgejo.org/forgejo/end-to-
 Specifies the repository from which the `Action` will be cloned or a directory where it can be found.
 
 - Remote actions
-  A relative `Action` such as `uses: actions/checkout@v3` will clone the repository at the URL composed by prepending the default actions URL which is https://code.forgejo.org/. It is the equivalent of providing the fully qualified URL `uses: https://code.forgejo.org/actions/checkout@v3`. In other words the following:
+  A relative `Action` such as `uses: actions/checkout@v4` will clone the repository at the URL composed by prepending the default actions URL which is https://data.forgejo.org/. It is the equivalent of providing the fully qualified URL `uses: https://data.forgejo.org/actions/checkout@v4`. In other words the following:
 
   ```yaml
   on: [push]
@@ -1158,7 +1157,7 @@ Specifies the repository from which the `Action` will be cloned or a directory w
     test:
       runs-on: docker
       steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@v4
   ```
 
   is the same as:
@@ -1169,7 +1168,7 @@ Specifies the repository from which the `Action` will be cloned or a directory w
     test:
       runs-on: docker
       steps:
-        - uses: https://code.forgejo.org/actions/checkout@v3
+        - uses: https://data.forgejo.org/actions/checkout@v4
   ```
 
   When possible **it is strongly recommended to choose fully qualified
@@ -1186,7 +1185,7 @@ Specifies the repository from which the `Action` will be cloned or a directory w
   directory is otherwise the same as if it was located in a remote
   repository.
 
-  > **NOTE:** the most common mistake when using an action included in the repository under test is to forget to checkout the repository with `uses: actions/checkout@v3`.
+  > **NOTE:** the most common mistake when using an action included in the repository under test is to forget to checkout the repository with `uses: actions/checkout@v4`.
 
   [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-local-action/).
 
@@ -1271,7 +1270,7 @@ INFO[0000] Start server on http://192.168.1.20:34567
 [checks/check and test]   🐳  docker pull image=node:16-bullseye platform= username= forcePull=false
 [checks/check and test]   🐳  docker create image=node:16-bullseye platform= entrypoint=["/bin/sleep" "10800"] cmd=[]
 [checks/check and test]   🐳  docker run image=node:16-bullseye platform= entrypoint=["/bin/sleep" "10800"] cmd=[]
-[checks/check and test]   ☁  git clone 'https://code.forgejo.org/actions/setup-go' # ref=v3
+[checks/check and test]   ☁  git clone 'https://data.forgejo.org/actions/setup-go' # ref=v3
 [checks/check and test] ⭐ Run Main actions/setup-go@v3
 [checks/check and test]   🐳  docker cp src=/home/loic/.cache/act/actions-setup-go@v3/ dst=/var/run/act/actions/actions-setup-go@v3/
 ...
