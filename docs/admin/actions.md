@@ -3,9 +3,18 @@ title: 'Forgejo Actions administrator guide'
 license: 'CC-BY-SA-4.0'
 ---
 
-`Forgejo Actions` provides continuous integration driven from the files found in the `.forgejo/workflows` directory of a repository. Note that `Forgejo` does not run the jobs, it relies on the [`Forgejo runner`](https://code.forgejo.org/forgejo/runner) to do so. It needs to be installed separately.
+`Forgejo Actions` provides continuous integration driven from the files found in the `.forgejo/workflows` directory of a repository. Note that `Forgejo` does not run the jobs, it relies on the [`Forgejo Runner`](#forgejo-runner) to do so. It needs to be installed separately.
 
 ## Settings
+
+### Enabling/Disabling
+
+As of `Forgejo v1.21`, Actions is enabled by default. It can be disabled by adding the following to `app.ini`:
+
+```yaml
+[actions]
+ENABLED = false
+```
 
 ### Default Actions URL
 
@@ -33,15 +42,6 @@ registration, **care must be taken to avoid name conflicts**. For
 instance if an action has `uses: foo/bar@main` it will clone and try
 to run the action found at `DEFAULT_ACTIONS_URL/foo/bar` if it exists,
 even if it provides something different than what is expected.
-
-### Disabling
-
-As of `Forgejo v1.21` it is enabled by default. It can be disabled by adding the following to `app.ini`:
-
-```yaml
-[actions]
-ENABLED = false
-```
 
 ### Storage
 
@@ -74,11 +74,9 @@ The `admin/monitor/cron` administration web interface can be used to
 manually trigger the `Cleanup actions expired logs and artifacts` task
 instead of waiting for the scheduled task to happen.
 
-## Forgejo runner
+## Forgejo Runner
 
-The `Forgejo runner` is a daemon that fetches workflows to run from a
-Forgejo instance, executes them, sends back with the logs and
-ultimately reports its success or failure.
+The `Forgejo Runner` is a daemon that fetches workflows to run from a Forgejo instance and executes them. It sends back the output from the workflows, as well as the final result of the run.
 
 Installation and setup instructions can be found in the [Forgejo Runner installation guide](../runner-installation/).
 
