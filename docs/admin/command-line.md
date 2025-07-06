@@ -479,6 +479,7 @@ OPTIONS:
    --icon-url string                    Custom icon URL for OAuth2 login source
    --skip-local-2fa                     Set to true to skip local 2fa for users authenticated by this source (default: false)
    --scopes string [ --scopes string ]  Scopes to request when to authenticate against this OAuth2 source
+   --attribute-ssh-public-key string    Claim name providing SSH public keys for this source
    --required-claim-name string         Claim name that has to be set to allow users to login with this source
    --required-claim-value string        Claim value that has to be set to allow users to login with this source
    --group-claim-name string            Claim name providing group names for this source
@@ -517,6 +518,7 @@ OPTIONS:
    --icon-url string                    Custom icon URL for OAuth2 login source
    --skip-local-2fa                     Set to true to skip local 2fa for users authenticated by this source (default: false)
    --scopes string [ --scopes string ]  Scopes to request when to authenticate against this OAuth2 source
+   --attribute-ssh-public-key string    Claim name providing SSH public keys for this source
    --required-claim-name string         Claim name that has to be set to allow users to login with this source
    --required-claim-value string        Claim value that has to be set to allow users to login with this source
    --group-claim-name string            Claim name providing group names for this source
@@ -1159,6 +1161,7 @@ OPTIONS:
    --stacktrace-level string, -L string  Stacktrace logging level
    --flags string, -F string             Flags for the logger
    --expression string, -e string        Matching expression for the logger
+   --exclusion string, -x string         Exclusion for the logger
    --prefix string, -p string            Prefix for the logger
    --color                               Use color in the logs (default: false)
    --debug                               (default: false)
@@ -1191,6 +1194,7 @@ OPTIONS:
    --stacktrace-level string, -L string  Stacktrace logging level
    --flags string, -F string             Flags for the logger
    --expression string, -e string        Matching expression for the logger
+   --exclusion string, -x string         Exclusion for the logger
    --prefix string, -p string            Prefix for the logger
    --color                               Use color in the logs (default: false)
    --debug                               (default: false)
