@@ -43,7 +43,7 @@ In a workflow file you may use expressions. These look like `${{ ... }}`. Expres
 
 ### Variables
 
-You can use variables to read information from the workflow context. There are many different variables available. For example, the expression `${{ github.ref_name }}` would be substituted with the name of the branch the workflow is running for.
+You can use variables to read information from the workflow context. There are many different variables available. For example, the expression `${{ forge.ref_name }}` would be substituted with the name of the branch the workflow is running for.
 
 For a complete list of the values available in the workflow context, see the [workflow reference](../workflow-reference/#context-reference).
 
@@ -154,12 +154,17 @@ A variable found in the settings of the owner of a repository (organization or u
 
 At the start of each workflow, a unique authentication token is automatically created and destroyed when it completes. It can be used to read the repositories associated with the workflow, even when they are private. It is available:
 
-- in the environment of each step as `GITHUB_TOKEN`
-- as `github.token`
-- as `env.GITHUB_TOKEN`
+- in the environment of each step as `FORGEJO_TOKEN`
+- as `forge.token`
+- as `env.FORGEJO_TOKEN`
 - as `secrets.FORGEJO_TOKEN`
-- as `secrets.GITHUB_TOKEN`
-- as `secrets.GITEA_TOKEN`
+
+To help with re-using actions and workflows originally developed for GitHub Actions, they are also available under the following names:
+
+- `GITHUB_TOKEN` == `FORGEJO_TOKEN`
+- `github.token` == `forge.token`
+- `env.GITHUB_TOKEN` == `env.FORGEJO_TOKEN`
+- `secrets.GITHUB_TOKEN` == `secrets.FORGEJO_TOKEN`
 
 This token can only be used for interactions with the repository of the project and any attempt to use it on other repositories, even for creating an issue, will return a 404 error.
 
