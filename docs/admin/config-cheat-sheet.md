@@ -757,6 +757,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 - `USER`: **\<empty\>**: Username of the mailing user (usually the sender's e-mail address).
 - `PASSWD`: **\<empty\>**: Password of the mailing user. Use \`your password\` for quoting if you use special characters in the password.
   - Please note: authentication is only supported when the SMTP server communication is encrypted with TLS (this can be via `STARTTLS`) or the SMTP host is localhost.
+- `PASSWD_URI`: **\<empty\>**: Instead of defining `PASSWD` in the configuration, this option can be used to give Forgejo a path to a file that contains the secret (example value: `file:/etc/forgejo/mailer_passwd`).
 - `ENABLE_HELO`: **true**: Enable HELO operation.
 - `HELO_HOSTNAME`: **(retrieved from system)**: HELO hostname.
 - `FROM`: **\<empty\>**: Mail from address, RFC 5322. This can be just an email address, or the "Name" \<email@example.com\> format.
@@ -777,6 +778,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 - `PORT`: **\<empty\>**: IMAP server port.
 - `USERNAME`: **\<empty\>**: Username of the receiving account.
 - `PASSWORD`: **\<empty\>**: Password of the receiving account.
+- `PASSWORD_URI`: **\<empty\>**: Instead of defining `PASSWORD` in the configuration, this option can be used to give Forgejo a path to a file that contains the secret (example value: `file:/etc/forgejo/email_incoming_password`).
 - `USE_TLS`: **false**: Whether the IMAP server uses TLS.
 - `SKIP_TLS_VERIFY`: **false**: If set to `true`, completely ignores server certificate validation errors. This option is unsafe.
 - `MAILBOX`: **INBOX**: The mailbox name where incoming mail will end up.
