@@ -23,7 +23,7 @@ First, fork the project you would like to work on by clicking the `Fork` button 
 
 ![Fork a project](../_images/user/pull-request/fork-button.png)
 
-Then, clone it onto your local machine. We assume that [you have set up your SSH keys](/security/ssh-key). This has to be done only once:
+Then, clone it onto your local machine. We assume that [you have set up your SSH keys](https://docs.codeberg.org/security/ssh-key). This has to be done only once:
 
 ```shell
 git clone git@codeberg.org:<YOURCODEBERGUSERNAME>/examples.git

@@ -84,7 +84,7 @@ There is no uniformity in how software is released and they call for different s
 
 - **release on every commit or so**.
 
-  There are usually no release notes and there is no notion of release ([monaco-editor](https://github.com/microsoft/monaco-editor/tags)) which may lead to frequent proposals to upgrade. It is similar to software that it tagged with a commit hash instead of a version, either because it does not publish versions ([go-ap](https://github.com/go-ap/activitypub)) or because a particular bug fix is needed before the release is available ([go-rpmutils](github.com/sassoftware/go-rpmutils)).
+  There are usually no release notes and there is no notion of release ([monaco-editor](https://github.com/microsoft/monaco-editor/tags)) which may lead to frequent proposals to upgrade. It is similar to software that it tagged with a commit hash instead of a version, either because it does not publish versions ([go-ap](https://github.com/go-ap/activitypub)) or because a particular bug fix is needed before the release is available ([go-rpmutils](https://github.com/sassoftware/go-rpmutils)).
 
   - control the upgrade frequency with `schedule` (e.g. `schedule:quarterly` for [pprof](https://github.com/google/pprof)).
   - impose a delay with `minimumReleaseAge` (e.g. `monaco-editor` upgrades are considered no more frequently than once a month).
