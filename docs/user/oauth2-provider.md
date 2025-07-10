@@ -189,8 +189,6 @@ After you have generated these values, you can continue with your request.
 
    The `CLIENT_ID` can be obtained by registering an application in the settings. The `STATE` is a random string that will be sent back to your application after the user authorizes. The `state` parameter is optional, but should be used to prevent CSRF attacks.
 
-   ![Authorization Page](/authorize.png)
-
    The user will now be asked to authorize your application. If they authorize it, the user will be redirected to the `REDIRECT_URL`, for example:
 
    ```http
