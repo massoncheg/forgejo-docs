@@ -33,7 +33,7 @@ The first step, `checkout code`, `uses` an action to check out the contents of t
 
 The second step, `list directory contents`, `run`s the provided command in the shell of the job. In this case it lists the contents of the working directory.
 
-That concludes the basic syntax of a workflow file. For a complete definition of the syntax of a workflow file, see the [workflow reference](../workflow-reference/).
+That concludes the basic syntax of a workflow file. For a complete definition of the syntax of a workflow file, see the [workflow reference](../reference/).
 
 ## Expressions
 
@@ -45,7 +45,7 @@ In a workflow file you may use expressions. These look like `${{ ... }}`. Expres
 
 You can use variables to read information from the workflow context. There are many different variables available. For example, the expression `${{ forge.ref_name }}` would be substituted with the name of the branch the workflow is running for.
 
-For a complete list of the values available in the workflow context, see the [workflow reference](../workflow-reference/#context-reference).
+For a complete list of the values available in the workflow context, see the [workflow reference](../reference/#context-reference).
 
 ### Literals
 
@@ -202,4 +202,4 @@ An action is a repository that contains the equivalent of a function in any prog
 
 Just as any other program or function, an action has pre-requisites to successfully be installed and run. When looking at re-using an existing action, this is an important consideration. For instance [setup-go](https://code.forgejo.org/actions/setup-go) depends on NodeJS during installation.
 
-To read more about creating your own actions, see the [actions guide](../actions.md#creating-your-own-actions).
+To read more about creating your own actions, see the [actions guide](../actions/#creating-your-own-actions).

@@ -265,7 +265,7 @@ You may have labels to differentiate between:
 - Different architectures (arm, x86_64, etc.)
 - Specific hardware installed on the runner (nvidia-gpu, big-ram, etc.)
 
-The actual machine provided by the runner **entirely depends on how the runner was registered** (see the [Forgejo Actions administrator guide](../../admin/actions/) for more information).
+The actual machine provided by the runner **entirely depends on how the runner was registered** (see the [Forgejo Actions administrator guide](../../../admin/actions/) for more information).
 
 The list of available `labels` for a given repository can be seen in the `/{owner}/{repo}/settings/actions/runners` page.
 
@@ -391,7 +391,7 @@ container:
 
 Set the volumes for the container to use, as if provided with the `--volume` argument of the `docker run` command.
 
-> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../admin/runner-installation/#configuration) for more information.
+> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../../admin/runner-installation/#configuration) for more information.
 
 > **NOTE:** ignored if `jobs.<job_id>.runs-on` is an LXC container.
 
