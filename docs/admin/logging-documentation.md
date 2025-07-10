@@ -122,6 +122,23 @@ NB: the whole message or string doesn't need to completely match.
 
 Please note this expression will be run in the writer's goroutine but not the logging event goroutine.
 
+#### `EXCLUSION`
+
+`EXCLUSION` represents a regular expression that log events must not match in order to be logged by the output writer.
+Either the log message (with colors removed) or the `longfilename:linenumber:functionname` must not match the exclusion pattern.
+NB: the whole message or string doesn't need to completely match.
+
+Please note this exclusion will be run in the writer's goroutine but not the logging event goroutine.
+
+For example, you can collect logs from the Router, but requests to `/api/healthz` and `/api/metrics` are excluded:
+
+```ini
+[log.router]
+MODE  = console
+LEVEL = INFO
+EXCLUSION = (\/api\/healthz|\/metrics)
+```
+
 #### `FLAGS`
 
 `FLAGS` represents the preceding logging context information that is

@@ -893,6 +893,7 @@ When configuring logging, also consult the detailed [logging documentation](../l
 - `LEVEL`: **log.LEVEL**: Sets the log-level of this writer. Defaults to the `LEVEL` set in the global `[log]` section.
 - `STACKTRACE_LEVEL`: **log.STACKTRACE_LEVEL**: Sets the log level at which to log stack traces.
 - `EXPRESSION`: **""**: A regular expression to match either the function name, file, or message. Defaults to empty. Only log messages that match the expression will be saved in the logger.
+- `EXCLUSION`: **""**: A regular expression to match either the function name, file, or message. Defaults to empty. Only log messages that don't match the expression will be saved in the logger.
 - `FLAGS`: **stdflags**: A comma-separated string representing the log flags. Defaults to `stdflags`, which represents the prefix: `2009/01/23 01:23:23 ...a/b/c/d.go:23:runtime.Caller() [I]: message`. `none` means don't prefix log lines. See [the FLAGS section of the logging documentation](../logging-documentation/#flags) for more information.
 - `PREFIX`: **""**: An additional prefix for every log line in this logger. Defaults to empty.
 - `COLORIZE`: **false**: Whether to colorize the log lines.
