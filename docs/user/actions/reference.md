@@ -409,7 +409,7 @@ A string of the following additional options, as documented [docker run](https:/
 - `--tmpfs`
 - `--hostname` (except for Forgejo runner 6.0.x and 6.1.x)
 
-> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../admin/actions/) for more information.
+> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../../admin/actions/) for more information.
 
 > **NOTE:** ignored if `jobs.<job_id>.runs-on` is an LXC container.
 
