@@ -34,8 +34,9 @@ For an existing repository, you can set up push mirroring as follows:
 
 1. In your repository, go to **Settings** > **Repository**, and then the **Mirror Settings** section.
 2. Enter a repository URL.
-3. If the repository needs authentication, expand the **Authorization** section and fill in your authentication information. Note that the requested **password** can also be your access token.
-4. Select **Add Push Mirror** to save the configuration.
+3. (Optional) Enter a branch filter (comma separated branch names), or leave blank to push all branches.
+4. If the repository needs authentication, expand the **Authorization** section and fill in your authentication information. Note that the requested **password** can also be your access token.
+5. Select **Add Push Mirror** to save the configuration.
 
 The repository now gets mirrored periodically to the remote repository. You can force a sync by selecting **Synchronize Now**. In case of an error, a message is displayed to help you resolve it.
 
@@ -95,3 +96,12 @@ After adding the push mirror, you can click the **Copy public key** link to copy
 
 This public key can then be added as a deploy key on the target repository. How to add one varies by platform, but generally it should be an option in the repository's settings.
 After adding the public key as the deploy key, you can go back to Forgejo and click the **Synchronize now** button and see that it works.
+
+### Branch Filter
+
+Forgejo will use `git push --mirror` when there is no Branch Filter specified.
+When you enter a Branch Filter only branches matching the comma separated branch names will be pushed.
+Branch names can include glob patterns. e.g. `feature/*`.
+Spaces around branch names are trimmed.
+
+Example: `main, feature/*` - this would push the `main` branch and `feature/add-foo`, but not `security/fix-alpha`.
