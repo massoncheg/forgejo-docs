@@ -129,7 +129,11 @@ It is similar to the `on.pull_request` event, with the following exceptions:
   - the [actions/checkout](https://code.forgejo.org/actions/checkout) action will checkout the default branch instead of the content of the pull request
 
 Care must be taken to unset the `FORGEJO_TOKEN` and `GITHUB_TOKEN` environment variables
-when a job runs scripts from a checkout of the pull request so that it does not leak. For instance:
+when a job runs scripts from a checkout of the pull request so that it does not leak. The
+checkout action must also be used with `persist-credentials: false` so they are not stored
+on disk where the script could retrieve them.
+
+For instance:
 
 ```yaml
 on:
@@ -141,8 +145,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
-            - name: lint
+          ref: ${{ forge.event.pull_request.head.sha }}
+          persist-credentials: false
       - run: |
           ./script-from-the-pull-request
         env:
