@@ -474,6 +474,25 @@ jobs:
         if: ${{ forge.event_name == 'pull_request' && forge.event.action == 'closed' }}
 ```
 
+### `jobs.<job_id>.defaults.run.shell`
+
+Set the default shell to use for each step.
+
+```yaml
+jobs:
+  test:
+    runs-on: docker
+    defaults:
+      run:
+        shell: sh
+    steps:
+      - run: echo SUCCESS
+```
+
+See [`jobs.<job_id>.steps[*].shell`](#jobsjob_idstepsshell) for more information on the shell values and their semantics.
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-shell/.forgejo/workflows/test.yml)
+
 ### `jobs.<job_id>.steps[*].run`
 
 A shell script to run in the environment specified with
@@ -485,7 +504,7 @@ jobs:
   test:
     runs-on: docker
     container:
-      image: alpine:3.20
+      image: alpine:latest
     steps:
       - run: |
           grep Alpine /etc/os-release
@@ -505,54 +524,31 @@ The working directory from which the script specified with `jobs.<job_id>.step[*
 
 ### `jobs.<job_id>.steps[*].shell`
 
-The shell used to run the script specified with `jobs.<job_id>.step[*].run`. If not specified it defaults to `bash`.
+The interpreter used to run the script specified with `jobs.<job_id>.step[*].run`. If the interpreter is not specified, it defaults to `bash`.
 
-For instance:
+> **NOTE:** If `jobs.<job_id>.container.image` is set and the shell is not specified, it defaults to `sh` instead of `bash`.
 
-```yaml
-jobs:
-  test:
-    runs-on: docker
-    steps:
-      - run: echo using bash here
-```
-
-Or to specify that `sh` must be used instead:
-
-```yaml
-jobs:
-  test:
-    runs-on: docker
-    steps:
-      - shell: sh
-        run: echo using sh here
-```
-
-If `jobs.<job_id>.container.image` is set and the shell is not specified, it defaults to `sh`.
-
-For instance:
+The value is a command line where the literal string `{0}` is replaced with the path to a (temporary) file, containing the content of `jobs.<job_id>.steps[*].run`. For example `dash -e {0}` would become `dash -e /tmp/xxx`.
 
 ```yaml
 jobs:
   test:
     runs-on: docker
     container:
-      image: alpine:3.20
+      image: debian:bookworm
     steps:
-      - run: echo using sh here
+      - shell: dash -e {0}
+        run: echo using dash here
 ```
 
-Example values:
+Some commonly used interpreters have abbreviated aliases that are expanded into command lines as follows:
 
-- `bash`
-- `pwsh`
-- `python`
-- `sh`
-- `cmd`
-- `powershell`
-- A custom commandline, where the literal string `{0}` is replaced with the path to a (temporary) file, containing the content of `jobs.<job_id>.steps[*].run`. For example `bash -v {0}` would become `bash -v /tmp/xxx`.
+- `bash` => `bash --noprofile --norc -e -o pipefail {0}`
+- `sh` => `sh -e {0}`
+- `node` => `node {0}`
+- `python` => `python {0}`
 
-[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-pull-request/.forgejo/workflows/test.yml)
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-shell/.forgejo/workflows/test.yml)
 
 ### `jobs.<job_id>.steps[*].id`
 
