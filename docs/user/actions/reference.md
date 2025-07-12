@@ -524,9 +524,9 @@ The working directory from which the script specified with `jobs.<job_id>.step[*
 
 ### `jobs.<job_id>.steps[*].shell`
 
-The interpreter used to run the script specified with `jobs.<job_id>.step[*].run`. If the interpreter is not specified, it defaults to `bash`.
+The interpreter used to run the script specified with `jobs.<job_id>.step[*].run`. If the interpreter is not specified, it defaults to `bash` or `sh` if `bash` is not available.
 
-> **NOTE:** If `jobs.<job_id>.container.image` is set and the shell is not specified, it defaults to `sh` instead of `bash`.
+> **NOTE:** The fallback to `sh` if `bash` is not available requires a version of [Forgejo runner >= v8.0.0](https://code.forgejo.org/forgejo/runner/src/branch/main/RELEASE-NOTES.md#8-0-0).
 
 The value is a command line where the literal string `{0}` is replaced with the path to a (temporary) file, containing the content of `jobs.<job_id>.steps[*].run`. For example `dash -e {0}` would become `dash -e /tmp/xxx`.
 
