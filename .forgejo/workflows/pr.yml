@@ -77,7 +77,7 @@ jobs:
           mv dist /tmp
       - name: preview
         if: ${{ secrets.WEBSITETOKEN != '' }}
-        uses: https://data.forgejo.org/forgejo/action-website-preview@main
+        uses: https://data.forgejo.org/forgejo/action-website-preview@v1.0.0
         with:
           directory: /tmp/dist
           name: 'docs_pull_${{ github.event.pull_request.number }}'
