@@ -24,6 +24,7 @@ We encourage you to [read our warm welcome first](./welcome/), then get involved
   - [Compiling from source](./from-source/)
   - [Testing](./testing/)
   - [Development environment](./development-environment/)
+  - [Finding what to work on](./finding-what-to-work-on/)
   - [Interface customization](./customization/)
   - [Architecture overview](./architecture/)
     - [Federation Architecture](https://codeberg.org/forgejo-contrib/federation/src/branch/main/architecture/federation-architecture.md)
