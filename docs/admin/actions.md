@@ -50,8 +50,16 @@ the runner itself and never sent to `Forgejo`.
 
 #### `job` logs
 
-The logs of each `job` run is stored by the `Forgejo` server and never
-expires. The location where these files are stored is configured in
+The logs of each `job` run is stored by the `Forgejo` server and
+expire after a delay that defaults to 365 days and can be configured as
+follows:
+
+```yaml
+[actions]
+LOG_RETENTION_DAYS = 365
+```
+
+The location where these files are stored is configured in
 the `storage.actions_log` section of `app.ini` as [explained in in the
 storage documentation](../storage/).
 

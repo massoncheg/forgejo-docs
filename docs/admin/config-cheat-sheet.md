@@ -1384,6 +1384,9 @@ Note that you may need to set the `[migrations].ALLOW_LOCALNETWORKS` option to `
 - `ENDLESS_TASK_TIMEOUT`: **3h**: Timeout to stop tasks which have a running status and continuous updates but don't end for a long time.
 - `ABANDONED_JOB_TIMEOUT`: **24h**: Timeout to cancel jobs which have a waiting status but haven't been picked up by a runner for a long time.
 - `SKIP_WORKFLOW_STRINGS`: **[skip ci],[ci skip],[no ci],[skip actions],[actions skip]**: Strings committers can place inside a commit message or pull request title to skip executing the corresponding Actions workflow.
+- `LOG_COMPRESSION`: **zstd**: Log compression type, `none` for no compression, `zstd` for zstd compression. Other compression types like `gzip` are NOT supported, since seekable stream is required for log view. It is always recommended to use compression when using local disk as log storage if CPU or memory is not a bottleneck. For S3 compatible object storage services, which may be billed per requests, it will cause two times more requests for each log view. But if network bandwidth is all billed on volume, it may still cut down the costs.
+- `LIMIT_DISPATCH_INPUTS`: **10**: Limit on the number of inputs allowed when using for manual / `workflow_dispatch` triggers.
+- `LOG_RETENTION_DAYS`: **365**: Logs retention time in days. Old logs will be deleted after this period.
 
 ## Other (`other`)
 
