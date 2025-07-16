@@ -21,7 +21,7 @@ Workflows are not executed by the Forgejo instance itself. Instead, they are han
 
 In order for a workflow to run, an appropriate runner needs to be available to the repository. You can view the available runners in the repository settings, under Actions > Runners.
 
-If the instance does not provide runners, or if you wish to use your own runners, check out the [Forgejo Runner installation guide](../../../admin/runner-installation/) to see how to set up and connect your own runner.
+If the instance does not provide runners, or if you wish to use your own runners, check out the [Forgejo Runner installation guide](../../../admin/actions/runner-installation/) to see how to set up and connect your own runner.
 
 ## About GitHub Actions
 

@@ -61,7 +61,7 @@ you can use the API to configure quota rules.
 
 1. With an admin account, create a new application token.
 2. Make yourself familiar with the API endpoints by visiting the swagger documentation, e.g. by visiting `/api/swagger` ([online example](https://try.next.forgejo.org/api/swagger#/admin)).
-3. Make yourself familiar with the available quota subjects from the [respective section in the config cheat sheet](../config-cheat-sheet/#quota-subjects-list).
+3. Make yourself familiar with the available quota subjects from the [respective section in the config cheat sheet](../../config-cheat-sheet/#quota-subjects-list).
 4. Optionally, set up a local helper for interacting with the API:
 
 ```sh

@@ -14,12 +14,12 @@ information.
 Get started in a few simple steps:
 
 1. Set up Forgejo on your system ...
-   - [from binary](../installation-binary/)
-   - [with Docker](../installation-docker/)
+   - [from binary](./binary/)
+   - [with Docker](./docker/)
    - with third-party packaging for various platforms [(see the "Delightful Forgejo" list)](https://codeberg.org/forgejo-contrib/delightful-forgejo#packaging). Unlike the two official installation methods, these resources are not extensively tested to work on every release.
 2. Connect to the web interface and complete the configuration, and,
 3. register the first user which will be granted administrative permissions.
 
 If you already have Gitea installed through your package manager, look at the [Gitea
-migration](../gitea-migration/) guide for information on how to install Forgejo, while
+migration](../upgrade/from-gitea/) guide for information on how to install Forgejo, while
 preserving your data from your Gitea installation.

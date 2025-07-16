@@ -11,8 +11,8 @@ Some settings are provided to customize the look and feel of the Forgejo user in
 
 This includes the default theme, the name of your Forgejo instance, as well as the description that appears in Forgejo's homepage. A complete list of those settings can be found in the config cheat sheet:
 
-- In the [UI section](../config-cheat-sheet/#ui-ui) and below.
-- The `APP_NAME` setting in the [Overall section](../config-cheat-sheet/#overall-default).
+- In the [UI section](../../config-cheat-sheet/#ui-ui) and below.
+- The `APP_NAME` setting in the [Overall section](../../config-cheat-sheet/#overall-default).
 
 They are documented and supported to be backward compatible between versions.
 
@@ -32,6 +32,6 @@ Before deploying your changes to production or upgrading a modified Forgejo inst
 
 ### Instructions
 
-For the reasons mentioned above, the instructions on performing such tasks can be found in the [developer section on interface customization](../../contributor/customization/).
+For the reasons mentioned above, the instructions on performing such tasks can be found in the [developer section on interface customization](../../../contributor/customization/).
 
-At this stage, it is also worth mentioning that it is possible to customize Forgejo by [modifying its source code and compiling the changes](../../contributor/from-source), or by extracting and modifying the files of your choice using the command `forgejo embedded extract`. However, these methods are, for the same reasons as mentioned above, also **unsupported**.
+At this stage, it is also worth mentioning that it is possible to customize Forgejo by [modifying its source code and compiling the changes](../../../contributor/from-source), or by extracting and modifying the files of your choice using the command `forgejo embedded extract`. However, these methods are, for the same reasons as mentioned above, also **unsupported**.

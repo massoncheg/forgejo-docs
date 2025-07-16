@@ -76,7 +76,7 @@ ARTIFACT_RETENTION_DAYS = 90
 
 The location where these artifacts are stored is configured in
 the `storage.artifacts` section of `app.ini` as [explained in in the
-storage documentation](../storage/).
+storage documentation](../setup/storage/).
 
 The `admin/monitor/cron` administration web interface can be used to
 manually trigger the `Cleanup actions expired logs and artifacts` task
@@ -86,7 +86,7 @@ instead of waiting for the scheduled task to happen.
 
 The `Forgejo Runner` is a daemon that fetches workflows to run from a Forgejo instance and executes them. It sends back the output from the workflows, as well as the final result of the run.
 
-Installation and setup instructions can be found in the [Forgejo Runner installation guide](../runner-installation/).
+Installation and setup instructions can be found in the [Forgejo Runner installation guide](./runner-installation/).
 
 ## Choosing labels
 

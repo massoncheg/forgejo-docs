@@ -385,7 +385,7 @@ A special kind of token is needed and can be obtained from the `Create new runne
 - in `/user/settings/actions/runners` to accept workflows from all repositories of the logged in user
 - in `/{owner}/{repository}/settings/actions/runners` to accept workflows from a single repository.
 
-![Screenshot showing runner registration popup](../_images/user/actions/runners-add.png)
+![Screenshot showing runner registration popup](../../_images/user/actions/runners-add.png)
 
 To register the runner, execute `forgejo-runner register` and fill in the prompts. For example:
 
@@ -420,7 +420,7 @@ This will create a `.runner` file in the current directory that looks like:
 }
 ```
 
-To decide which labels to use, see [Choosing labels](../actions/#choosing-labels).
+To decide which labels to use, see [Choosing labels](../#choosing-labels).
 
 The same token can be used multiple times to register any number of runners, independent of each other.
 

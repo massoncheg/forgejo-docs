@@ -75,7 +75,7 @@ When using Actions, keep in mind the following considerations:
 
 - Container runners are generally safe, but they may be compromised if misconfigured.
 - Never trust a host runner if it is shared with other users.
-- The safest option is to [host your own runner](../../../admin/runner-installation/), and use it only for your trusted repositories.
+- The safest option is to [host your own runner](../../../admin/actions/runner-installation/), and use it only for your trusted repositories.
 
 ### Pull requests
 

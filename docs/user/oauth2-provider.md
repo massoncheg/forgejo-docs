@@ -47,7 +47,7 @@ such as:
 - [git-credential-oauth](https://github.com/hickford/git-credential-oauth)
 
 They are both [pre-configured server
-side](../../admin/oauth2-provider/) but need to be installed and
+side](../../admin/advanced/oauth2-provider/) but need to be installed and
 configured client side.
 The following example uses [git-credential-oauth](https://github.com/hickford/git-credential-oauth) on a Debian GNU/Linux machine
 to authenticate on https://code.forgejo.org:

@@ -118,7 +118,7 @@ Files from `public/assets/img/` must live in `custom/` now; otherwise, they will
 
 See [here](https://forgejo.org/docs/next/contributor/customization/#changing-the-logo)
 for details of where these things should live.
-Also see [here](https://forgejo.org/docs/next/admin/customization/#a-word-of-warning-here-be-dragons)
+Also see [here](https://forgejo.org/docs/next/admin/advanced/customization/#a-word-of-warning-here-be-dragons)
 for the necessary warnings and disclaimers.
 
 The browser caches images, so after changing it, it may take some refreshes or cache-clears to see the change.
