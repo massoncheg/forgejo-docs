@@ -157,7 +157,7 @@ sudo chmod 750 /etc/forgejo && sudo chmod 640 /etc/forgejo/app.ini
 Now, (as root), edit `/etc/forgejo/app.ini`.
 
 > **NOTE:** You'll probably find the
-> [Configuration Cheat Sheet](../config-cheat-sheet/) and the
+> [Configuration Cheat Sheet](../../config-cheat-sheet/) and the
 > [Example app.ini](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/custom/conf/app.example.ini)
 > that contains all options incl. descriptions helpful.
 
@@ -187,7 +187,7 @@ The following changes are recommended if dealing with many large files:
   ```
 
   Similar restrictions exist for attachments to issues/pull requests, configured
-  in the [`[attachment]` sections](../config-cheat-sheet/#issue-and-pull-request-attachments-attachment)
+  in the [`[attachment]` sections](../../config-cheat-sheet/#issue-and-pull-request-attachments-attachment)
   `MAX_SIZE` (default 4MB) and `MAX_FILES` (default 5) settings.
 
 - By default **LFS data uploads expire** after 20 minutes - this can be too short for big files,
@@ -224,7 +224,7 @@ The following changes are recommended if dealing with many large files:
   PROTOCOL = sendmail
   FROM = "Forgejo Git" <noreply@yourdomain.com>
   ```
-- By default, Forgejo will listen on the port 3000, but that can be [changed to 80 with `HTTP_PORT`](../config-cheat-sheet/) like this:
+- By default, Forgejo will listen on the port 3000, but that can be [changed to 80 with `HTTP_PORT`](../../config-cheat-sheet/) like this:
   ```ini
   [server]
   HTTP_PORT = 80
@@ -243,7 +243,7 @@ You can test sending a mail by clicking the user button on the upper right of th
 ## General hints for using Forgejo
 
 Sometimes you may want/need to use the Forgejo
-[command line interface](../command-line/).
+[command line interface](../../command-line/).
 Keep in mind that:
 
 - You need to **run it as the `git` user**, for example with:

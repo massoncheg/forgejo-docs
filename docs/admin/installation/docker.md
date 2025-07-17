@@ -13,7 +13,7 @@ If `codeberg.org` cannot be accessed, you can replace every mention of `codeberg
 
 The **11** tag is set to be the latest minor release, starting with **11.0.x**. The **11** tag will then be equal to **11.0.4** when it is released and so on. The **11.0** tag is also set to be the latest patch version release.
 
-Upgrading from **X** to **X+1** (for instance from **9** to **10**) requires a [manual operation and human verification](../upgrade/). However it is possible to use the **X** tag (for instance **10**) to get the latest minor release automatically.
+Upgrading from **X** to **X+1** (for instance from **9** to **10**) requires a [manual operation and human verification](../../upgrade/). However it is possible to use the **X** tag (for instance **10**) to get the latest minor release automatically.
 
 ### Docker:
 
@@ -104,7 +104,7 @@ ssh -F /dev/null git@<address> -p 222
 ## Configuration
 
 The Forgejo configuration is stored in the `app.ini` file as described
-in the [Configuration Cheat Sheet](../config-cheat-sheet). When using
+in the [Configuration Cheat Sheet](../../config-cheat-sheet). When using
 the Forgejo container image, this file is automatically created if it
 does not exist already. In addition it is possible to add settings
 using configuration variables. For instance:

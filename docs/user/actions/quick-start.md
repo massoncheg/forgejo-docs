@@ -12,7 +12,7 @@ To get started we will have to do some setup:
 1. First, verify that Actions is enabled for your repository. Visit your repository settings, and go to Units > Overview. Make sure the Actions checkbox is ticked. If it is not visible, your instance administrator has disabled Forgejo Actions.
    ![Enable Actions](../../_images/user/actions/enable-actions-unit.png)
 
-2. Next, see if there is a runner available for the repository. Visit the repository settings, and go to Actions > Runners. If there are no runners listed, follow the [Forgejo Runner installation guide](../../../admin/runner-installation/) to set up a runner, and return here when you're finished.
+2. Next, see if there is a runner available for the repository. Visit the repository settings, and go to Actions > Runners. If there are no runners listed, follow the [Forgejo Runner installation guide](../../../admin/actions/runner-installation/) to set up a runner, and return here when you're finished.
    ![The list of runners](../../_images/user/actions/repo-runner-list.png)
 
 ## Adding the workflow

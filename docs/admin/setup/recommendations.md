@@ -26,11 +26,11 @@ The recommended settings are sorted alphabetically rather than by importance.
 
 ### `[database].DB_TYPE`
 
-For every action, operation or page you visit, Forgejo must query a database for data. The database is an important part of the Forgejo stack and therefore must be configured with care to ensure proper operation. However, it is difficult to give a recommendation due to its general nature and the many factors that affect the use of the database. So keep the following text in mind when configuring and choosing the database and always test carefully if the configuration suits your situation and [ask for assistance](../seek-assistance/) if needed.
+For every action, operation or page you visit, Forgejo must query a database for data. The database is an important part of the Forgejo stack and therefore must be configured with care to ensure proper operation. However, it is difficult to give a recommendation due to its general nature and the many factors that affect the use of the database. So keep the following text in mind when configuring and choosing the database and always test carefully if the configuration suits your situation and [ask for assistance](../../troubleshooting/seek-assistance/) if needed.
 
 If your instance sees a low to moderate amount of activity, it is recommended to change this value to **sqlite3**. [SQLite3](https://www.sqlite.org/index.html) is a simple, non-maintenance requirement and one file on disk database. It is by far the easiest database to configure and has many other advantages over the other databases, but it becomes a poor choice once you see a lot of concurrent activity in which case performance may decrease, but SQLite can go a long way in the early years of an instance. It is also recommended to change `[database].SQLITE_JOURNAL_MODE` to `WAL`, which allows for a modern and faster way of tracking SQL queries.
 
-If your instances see a high amount of activity, it is recommended to change this value to **mysql** or **postgres**. There is no best managed database server, and it mainly depends on your previous experience and knowledge about the database you want to use, both can handle large amounts of activity, please refer to the [database-configuration](../config-cheat-sheet#database-database/) about what other values should be configured to connect to the database server.
+If your instances see a high amount of activity, it is recommended to change this value to **mysql** or **postgres**. There is no best managed database server, and it mainly depends on your previous experience and knowledge about the database you want to use, both can handle large amounts of activity, please refer to the [database-configuration](../../config-cheat-sheet#database-database) about what other values should be configured to connect to the database server.
 
 **Warning:** Keep in mind that transitioning to another database with an existing database is not a trivial task and must be done carefully.
 
@@ -70,7 +70,7 @@ If your instance does not need to adhere to a security policy that mandates a di
 
 In recent years, spam bots have gotten smarter and have automated more than ever. A simple register form such as in Forgejo is a simple task for bots to register a new user and comment wherever they can about their favorite scam website. Forgejo provides the option to enable captcha on the register form.
 
-If your instance has an open registration, it is recommended to change this value to **true**. You also need to choose which captcha you want to use, you can find more about that in the [service configuration](../config-cheat-sheet#service-service). Keep in mind that certain types of captcha limit the accessibility of registering new users because they often use images that are difficult to see.
+If your instance has an open registration, it is recommended to change this value to **true**. You also need to choose which captcha you want to use, you can find more about that in the [service configuration](../../config-cheat-sheet#service-service). Keep in mind that certain types of captcha limit the accessibility of registering new users because they often use images that are difficult to see.
 
 ### `[ui].ONLY_SHOW_RELEVANT_REPOS`
 

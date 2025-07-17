@@ -150,7 +150,7 @@ Where `/socket/path` is replaced with the value of `ssh-tpm-agent --print-socket
 
 ### Containerized
 
-We take [the default docker-compose file](../installation-docker/#docker) as an example.
+We take [the default docker-compose file](../../installation/docker/#docker) as an example.
 We add an environment variable and a volume mount to the compose file:
 
 ```yaml

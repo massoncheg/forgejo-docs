@@ -788,7 +788,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 ## Cache (`cache`)
 
 - `ADAPTER`: **memory**: Cache engine adapter, either `memory`, `redis`, `redis-cluster`, `twoqueue`, or `memcache`. (`twoqueue` represents a size-limited LRU cache.)
-  - Refer to the [Recommended Settings](../recommendations/#cacheadapter) for more information about cache adapters.
+  - Refer to the [Recommended Settings](../setup/recommendations/#cacheadapter) for more information about cache adapters.
 - `INTERVAL`: **60**: Garbage Collection interval (sec), for `memory` and `twoqueue` cache only.
 - `HOST`: **\<empty\>**: Connection string for `redis`, `redis-cluster`, and `memcache`. For `twoqueue`, sets configuration for the queue.
   - Redis: `redis://:password@127.0.0.1:6379/0?pool_size=100&idle_timeout=180s` (assuming `macaron` was a placeholder for password)
@@ -821,7 +821,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 - `DISABLE_GRAVATAR`: **false**: Enable this to use local avatars only. **DEPRECATED [v1.18+]** moved to the database. Use the admin panel to configure.
 - `ENABLE_FEDERATED_AVATAR`: **false**: Enable support for federated avatars.
 
-- `AVATAR_STORAGE_TYPE`: **default**: Storage type [as explained in detail in the storage documentation](../storage/).
+- `AVATAR_STORAGE_TYPE`: **default**: Storage type [as explained in detail in the storage documentation](../setup/storage/).
 - `AVATAR_UPLOAD_PATH`: **data/avatars**: Path to store user avatar image files.
 - `AVATAR_MAX_WIDTH`: **4096**: Maximum avatar image width in pixels.
 - `AVATAR_MAX_HEIGHT`: **4096**: Maximum avatar image height in pixels.
@@ -829,7 +829,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
 - `AVATAR_MAX_ORIGIN_SIZE`: **262144** (256KiB): If the uploaded file is not larger than this byte size, the image will be used as is, without resizing/converting.
 - `AVATAR_RENDERED_SIZE_FACTOR`: **2**: The multiplication factor for rendered avatar images. Larger values result in finer rendering on HiDPI devices.
 
-- `REPOSITORY_AVATAR_STORAGE_TYPE`: **default**: Storage type defined [as explained in detail in the storage documentation](../storage/).
+- `REPOSITORY_AVATAR_STORAGE_TYPE`: **default**: Storage type defined [as explained in detail in the storage documentation](../setup/storage/).
 - `REPOSITORY_AVATAR_UPLOAD_PATH`: **data/repo-avatars**: Path to store repository avatar image files.
 - `REPOSITORY_AVATAR_FALLBACK`: **none**: How Forgejo deals with missing repository avatars:
   - none = no avatar will be displayed
@@ -851,7 +851,7 @@ Default templates for project boards:
 - `MAX_SIZE`: **2048**: Maximum size (MB).
 - `MAX_FILES`: **5**: Maximum number of attachments that can be uploaded at once.
 
-Additional settings can be included in this section to specify where the data is stored, as [explained in detail in the storage documentation](../storage/).
+Additional settings can be included in this section to specify where the data is stored, as [explained in detail in the storage documentation](../setup/storage/).
 
 ## LFS client (`lfs_client`)
 
@@ -860,7 +860,7 @@ Additional settings can be included in this section to specify where the data is
 
 ## Log (`log`)
 
-When configuring logging, also consult the detailed [logging documentation](../logging-documentation/).
+When configuring logging, also consult the detailed [logging documentation](../troubleshooting/logging/).
 
 - `ROOT_PATH`: **\<empty\>**: Root path for log files.
 - `MODE`: **console**: Logging mode. For multiple modes, use a comma to separate values. You can configure each mode in per-mode log subsections `[log.writer-mode-name]`.
@@ -894,13 +894,13 @@ When configuring logging, also consult the detailed [logging documentation](../l
 - `STACKTRACE_LEVEL`: **log.STACKTRACE_LEVEL**: Sets the log level at which to log stack traces.
 - `EXPRESSION`: **""**: A regular expression to match either the function name, file, or message. Defaults to empty. Only log messages that match the expression will be saved in the logger.
 - `EXCLUSION`: **""**: A regular expression to match either the function name, file, or message. Defaults to empty. Only log messages that don't match the expression will be saved in the logger.
-- `FLAGS`: **stdflags**: A comma-separated string representing the log flags. Defaults to `stdflags`, which represents the prefix: `2009/01/23 01:23:23 ...a/b/c/d.go:23:runtime.Caller() [I]: message`. `none` means don't prefix log lines. See [the FLAGS section of the logging documentation](../logging-documentation/#flags) for more information.
+- `FLAGS`: **stdflags**: A comma-separated string representing the log flags. Defaults to `stdflags`, which represents the prefix: `2009/01/23 01:23:23 ...a/b/c/d.go:23:runtime.Caller() [I]: message`. `none` means don't prefix log lines. See [the FLAGS section of the logging documentation](../troubleshooting/logging/#flags) for more information.
 - `PREFIX`: **""**: An additional prefix for every log line in this logger. Defaults to empty.
 - `COLORIZE`: **false**: Whether to colorize the log lines.
 
 ### Console log mode (`log.console`, or `MODE=console`)
 
-The defaults of the console change if Forgejo detects that stdout and/or stderr are connected to systemd-journald (which will happen automatically when Forgejo is running under systemd). See the [journald section in the logging documentation](../logging-documentation/#journald-mode).
+The defaults of the console change if Forgejo detects that stdout and/or stderr are connected to systemd-journald (which will happen automatically when Forgejo is running under systemd). See the [journald section in the logging documentation](../troubleshooting/logging/#journald-mode).
 
 - For the console logger, `COLORIZE` will default to `true` if not on Windows or if the terminal is determined to be able to display color.
 - `STDERR`: **false** (journald: **true**): Use Stderr instead of Stdout.
@@ -1279,7 +1279,7 @@ WARNING: Changing the settings below can break federation.
 - `LIMIT_SIZE_SWIFT`: **-1**: Maximum size of a Swift upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`).
 - `LIMIT_SIZE_VAGRANT`: **-1**: Maximum size of a Vagrant upload (`-1` means no limits, format `1000`, `1 MB`, `1 GiB`).
 
-Additional settings can be included in this section to specify where the data is stored, as [explained in detail in the storage documentation](../storage/).
+Additional settings can be included in this section to specify where the data is stored, as [explained in detail in the storage documentation](../setup/storage/).
 
 ## Mirror (`mirror`)
 
@@ -1291,23 +1291,23 @@ Additional settings can be included in this section to specify where the data is
 
 ## LFS (`lfs`)
 
-Settings can be included in this section to specify where the LFS files are stored, as [explained in detail in the storage documentation](../storage/).
+Settings can be included in this section to specify where the LFS files are stored, as [explained in detail in the storage documentation](../setup/storage/).
 
 ## Repository Avatars (`repo-avatar`)
 
-Settings can be included in this section to specify where the repository avatars are stored, as [explained in detail in the storage documentation](../storage/).
+Settings can be included in this section to specify where the repository avatars are stored, as [explained in detail in the storage documentation](../setup/storage/).
 
 ## Avatars (`avatar`)
 
-Settings can be included in this section to specify where the avatars are stored, as [explained in detail in the storage documentation](../storage/).
+Settings can be included in this section to specify where the avatars are stored, as [explained in detail in the storage documentation](../setup/storage/).
 
 ## Actions logs (`storage.actions_log`)
 
-Settings can be included in this section to specify where the actions logs are stored, as [explained in detail in the storage documentation](../storage/).
+Settings can be included in this section to specify where the actions logs are stored, as [explained in detail in the storage documentation](../setup/storage/).
 
 ## Actions Artifacts (`storage.artifacts`)
 
-Settings can be included in this section to specify where the actions artifacts are stored, as [explained in detail in the storage documentation](../storage/).
+Settings can be included in this section to specify where the actions artifacts are stored, as [explained in detail in the storage documentation](../setup/storage/).
 
 ## Storage (`storage`)
 
@@ -1322,11 +1322,11 @@ Settings can be included in this section to specify where the actions artifacts 
 | Actions logs        | actions_log/       | [storage.actions_log] |
 | Actions Artifacts   | actions_artifacts/ | [actions.artifacts]   |
 
-The settings for all these sections are [explained in detail in the storage documentation](../storage/).
+The settings for all these sections are [explained in detail in the storage documentation](../setup/storage/).
 
 ## Quota (`quota`)
 
-Also see the [dedicated docs about the quota feature](../quota/).
+Also see the [dedicated docs about the quota feature](../advanced/quota/).
 
 - `ENABLED`: **false**: Enable the quota feature.
 - `DEFAULT_GROUPS`: **\<empty\>**: Comma-separated list of groups that apply by default to users. These groups can be configured via the API.
