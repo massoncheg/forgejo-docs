@@ -156,6 +156,21 @@ jobs:
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-pull-request/.forgejo/workflows/test.yml).
 
+### `on.release`
+
+Trigger the workflow when an event happens on release, as
+specified with the `types` event parameter.
+
+- `published` the release was created.
+- `edited` the body, title or comments of the release were modified.
+- `deleted` the release was deleted.
+
+```yaml
+on:
+  release:
+    types: [published, edited, deleted]
+```
+
 ### `on.schedule`
 
 The `schedule` event allows you to trigger a workflow at a scheduled time. When a workflow with a `schedule` event is present in the default branch, Forgejo will add a task to run it at the designated time. The scheduled workflows on other branches or pull requests are ignored.
@@ -362,6 +377,8 @@ They each run independently and can use the `matrix` context to access these val
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/commit/b6591e2f71196b12f6e0851774f0bd6e2148ec18/.forgejo/workflows/actions.yml#L22-L37).
 
+The following values are the same as [service container syntax](../advanced-features/#services).
+
 ### `jobs.<job_id>.container.image`
 
 - **Docker or Podman:**
@@ -448,6 +465,8 @@ steps:
 ```
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/test.yml)
+
+The following values are the same as [service container syntax](../advanced-features/#services).
 
 ### `jobs.<job_id>.services.image`
 

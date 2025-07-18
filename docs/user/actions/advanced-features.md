@@ -69,19 +69,19 @@ A container with the specified `image:` is run before the job starts and is term
 
 The IP address of `pgsql` is on the same [network](https://docs.docker.com/engine/reference/commandline/network/) as the container running the **steps** and there is no need for port binding. The `postgres:15` image exposes the PostgreSQL port 5432 and a client will be able to connect as [shown in this example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/test.yml)
 
-### image
+### services.<service_name>.image
 
 The location of the container image to run.
 
-### env
+### services.<service_name>.env
 
 Key/value pairs injected in the environment when running the container, equivalent to [--env](https://docs.docker.com/engine/reference/commandline/run/).
 
-### cmd
+### services.<service_name>.cmd
 
 A list of command and arguments, equivalent to [[COMMAND] [ARG...]](https://docs.docker.com/engine/reference/commandline/run/).
 
-### options
+### services.<service_name>.options
 
 A string of the following additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/).
 
@@ -91,10 +91,12 @@ A string of the following additional options, as documented [docker run](https:/
 
 > **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../../admin/actions/runner-installation/#configuration) for more information.
 
-### username
+### services.<service_name>.credentials
+
+#### services.<service_name>.credentials.username
 
 The username to authenticate with the registry where the image is located.
 
-### password
+#### services.<service_name>.credentials.password
 
 The password or access token to authenticate with the registry where the image is located.
