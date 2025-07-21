@@ -20,8 +20,7 @@ By default, `ENABLE_SWAGGER` is true, and `MAX_RESPONSE_ITEMS` is set to 50.
 Forgejo supports these methods of API authentication:
 
 - HTTP basic authentication
-- `token=...` parameter in URL query string
-- `access_token=...` parameter in URL query string
+- `Authorization: Bearer ...` header in HTTP headers
 - `Authorization: token ...` header in HTTP headers
 
 ## Generating and listing API tokens
