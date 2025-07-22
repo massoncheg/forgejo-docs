@@ -125,7 +125,7 @@ If a SSH instance signing key is set, the SSH public key can be obtained at the 
 
 ## Using ssh-tpm-agent
 
-It is possible to use [ssh-tpm-agent](https://github.com/Foxboron/ssh-tpm-agent) so that the SSH private key resides in a [Trusted Platform Module (TPM)](https://en.wikipedia.org/wiki/Trusted_Platform_Module) and therefore makes it harder to leak the SSH private key as it does not reside on the filesystem. To use this, the server that Forgejo runs on must have access to TPM 2.0.
+It is possible to use [ssh-tpm-agent](https://github.com/Foxboron/ssh-tpm-agent) so that the SSH private key can only be used in combination with a [Trusted Platform Module (TPM)](https://en.wikipedia.org/wiki/Trusted_Platform_Module). To use this, the server that Forgejo runs on must have access to TPM 2.0.
 This section only explains how to make the SSH private key available to Forgejo, not how to configure Forgejo to use it.
 
 Follow [the instruction from ssh-tpm-agent](https://github.com/Foxboron/ssh-tpm-agent#usage) to create a key or import an existing key.
