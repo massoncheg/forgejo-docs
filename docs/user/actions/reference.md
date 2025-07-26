@@ -185,6 +185,45 @@ on:
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-cron/.forgejo/workflows/test.yml).
 
+### `on.workflow_call`
+
+The `workflow_call` event allows you to call a workflow from another workflow. The `inputs` can be defined and used in the same way as
+[`on.workflow_dispatch`](#onworkflow_dispatch).
+
+For example if the following workflow is found in `.forgejo/workflows/reusable.yml`:
+
+```yaml
+on:
+  workflow_call:
+    inputs:
+      parameter1:
+        required: true
+        type: string
+
+jobs:
+  callee:
+    runs-on: docker
+    steps:
+      - run: |
+          echo "${{ inputs.parameter1 }}"
+```
+
+it can be called from another workflow as follows:
+
+```yaml
+on:
+  push:
+
+jobs:
+  caller:
+    runs-on: docker
+    uses: ./.forgejo/workflows/reusable.yml
+    with:
+      parameter1: value1
+```
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/test.yml).
+
 ### `on.workflow_dispatch`
 
 The `workflow_dispatch` events allows for manual triggering a workflow by either using the Forgejo UI, or the API with the `POST /repos/{owner}/{repo}/actions/workflows/{workflowname}/dispatches` endpoint. This event allows for inputs to be defined, which will get rendered in the Forgejo UI or read from the body of the API request.
@@ -344,6 +383,14 @@ jobs:
     steps:
       - run: echo only run after linting
 ```
+
+### `jobs.<job_id>.uses`
+
+Specifies the reusable workflow to call with a `workflow_call` event. See [`on.workflow_call`](#onworkflow_call) for more information.
+
+### `jobs.<job_id>.with`
+
+A dictionary mapping the inputs of the `workflow_call` event to concrete values. See [`on.workflow_call`](#onworkflow_call) for more information.
 
 ### `jobs.<job_id>.strategy.matrix`
 
