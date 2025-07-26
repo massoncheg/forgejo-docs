@@ -172,7 +172,9 @@ This token also has write permission to the repository and can be used to push c
 
 In order to avoid infinite recursion, no workflow will be triggered as a side effect of a change authored with this token. For instance, if a branch is pushed to the repository and there exists a workflow that is triggered on push events, it will not fire.
 
-A workflow triggered by a `pull_request` event is an exception: in that case the token does not have write permissions to the repository. The pull request could contain an untested or malicious workflow.
+A workflow triggered by a `pull_request` or `pull_request_target` event from a forked repository is an exception: in that case the token does not have write permissions to the repository. The pull request could contain an untested or malicious workflow.
+
+> **NOTE:** In the case of a `pull_request_target` the risk is mitigated and the automatic token may be given write permissions in future versions of Forgejo.
 
 ## Actions
 
