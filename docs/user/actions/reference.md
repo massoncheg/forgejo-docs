@@ -810,8 +810,8 @@ In addition the following variables are defined by default:
 | FORGEJO_JOB               | The `job_id` of the current job.                                                                                                                                 |
 | FORGEJO_OUTPUT            | The path on the runner to the file that sets the current step's outputs. This file is unique to the current step.                                                |
 | FORGEJO_PATH              | The path on the runner to the file that sets the PATH environment variable. This file is unique to the current step.                                             |
-| FORGEJO_REF               | The fully formed git reference (i.e. starting with `refs/`) associated with the event that triggered the workflow.                                               |
-| FORGEJO_REF_NAME          | The short git reference name of the branch or tag that triggered the workflow for `push` or `tag` events only.                                                   |
+| FORGEJO_REF               | The fully formed git reference (i.e. starting with `refs/`) associated with the event that triggered the workflow, if any (e.g. `refs/heads/main`).              |
+| FORGEJO_REF_NAME          | The short git reference name of the branch or tag associated with the workflow, if any (e.g. `main`).                                                            |
 | FORGEJO_REPOSITORY        | The owner and repository name (e.g. forgejo/docs).                                                                                                               |
 | FORGEJO_REPOSITORY_OWNER  | The repository owner's name (e.g. forgejo)                                                                                                                       |
 | FORGEJO_RUN_NUMBER        | A unique id for the current workflow run in the Forgejo instance.                                                                                                |
@@ -852,8 +852,8 @@ The following are identical to the matching environment variable
 | job               | The `job_id` of the current job.                                                                                                                                 |
 | output            | The path on the runner to the file that sets the current step's outputs. This file is unique to the current step.                                                |
 | path              | The path on the runner to the file that sets the PATH environment variable. This file is unique to the current step.                                             |
-| ref               | The fully formed git reference (i.e. starting with `refs/`) associated with the event that triggered the workflow.                                               |
-| ref_name          | The short git reference name of the branch or tag that triggered the workflow for `push` or `tag` events only.                                                   |
+| ref               | The fully formed git reference (i.e. starting with `refs/`) associated with the event that triggered the workflow, if any (e.g. `refs/heads/main`).              |
+| ref_name          | The short git reference name of the branch or tag associated with the workflow, if any (e.g. `main`).                                                            |
 | repository        | The owner and repository name (e.g. forgejo/docs).                                                                                                               |
 | repository_owner  | The repository owner's name (e.g. forgejo)                                                                                                                       |
 | run_number        | A unique id for the current workflow run in the Forgejo instance.                                                                                                |
