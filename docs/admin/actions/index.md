@@ -151,7 +151,7 @@ If a label specifies `host` as its `label type`, the runner will execute all the
 
 Label example:
 
-- `self-hosted:host://-self-hosted` defines `self-hosted` to be a shell.
+- `self-hosted:host` defines `self-hosted` to be a shell.
 
 ### Special labels
 
