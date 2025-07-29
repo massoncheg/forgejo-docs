@@ -9,4 +9,3 @@ to hosting repositories dedicated to Forgejo development, among which:
 
 - setup-forgejo a Forgejo Action to spawn a Forgejo instance and a runner for testing purposes https://code.forgejo.org/actions/setup-forgejo
 - Forgejo Runner https://code.forgejo.org/forgejo/runner
-- [ACT](https://github.com/nektos/act) soft fork https://code.forgejo.org/forgejo/act

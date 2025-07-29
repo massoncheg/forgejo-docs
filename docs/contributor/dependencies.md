@@ -118,24 +118,10 @@ There is no uniformity in how software is released and they call for different s
 
 ## Soft forks
 
-### Permanent
-
-- https://code.forgejo.org/forgejo/act is a set of commits on top of https://github.com/nektos/act
-
 ### Temporary
 
 - https://code.forgejo.org/forgejo/download-artifact
 - https://code.forgejo.org/forgejo/upload-artifact
-
-## Cherry-picking
-
-### lxc-helpers
-
-Injects itself via [a workflow](https://code.forgejo.org/forgejo/lxc-helpers/src/branch/main/.forgejo/workflows/cascade-act.yml) in its dependencies.
-
-### Gitea
-
-Cherry-picked in the Forgejo codebase [on a regular basis](https://codeberg.org/forgejo/forgejo/pulls?q=week&labels=116080) using a [dedicated CLI tool](https://codeberg.org/forgejo/tools/src/branch/main/scripts/weekly-cherry-pick.sh).
 
 ## Web browser support
 
