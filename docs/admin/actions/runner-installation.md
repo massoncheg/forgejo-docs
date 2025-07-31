@@ -380,7 +380,7 @@ $ docker run --rm data.forgejo.org/forgejo/runner:4.0.0 id
 uid=1000 gid=1000 groups=1000
 ```
 
-One way to run the Docker image is via Docker Compose. To do so, first prepare a `data` directory with non-root permissions (in this case, we pick `1001:1001`):
+One way to run the Docker image is via Docker Compose. To do so, as root, first prepare a `data` directory with non-root permissions (in this case, we pick `1001:1001`):
 
 ```shell
 #!/usr/bin/env bash
