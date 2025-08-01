@@ -23,6 +23,12 @@ In order for a workflow to run, an appropriate runner needs to be available to t
 
 If the instance does not provide runners, or if you wish to use your own runners, check out the [Forgejo Runner installation guide](../../../admin/actions/runner-installation/) to see how to set up and connect your own runner.
 
+## Security
+
+Sensitive security-related issues should be reported to [security@forgejo.org](mailto:security@forgejo.org) using [encryption](https://keyoxide.org/security@forgejo.org).
+
+A security audit of the [runner](https://code.forgejo.org/forgejo/runner) was conducted late 2024 (see [the penetration test report](https://code.forgejo.org/forgejo/nlnet-off-ngie-forgejo/raw/commit/69f76976cc6a62bc7a64f9f76e4be75eec3d608d/target/Forgejo%20penetration%20test%20report%202024%201.0.pdf) for more information). All issues found on that occasion were fixed in 2025.
+
 ## About GitHub Actions
 
 If you are familiar with GitHub Actions, you'll likely recognize many things in Forgejo Actions. Forgejo Actions is designed to be familiar to users of GitHub Actions, but it is **not designed to be compatible**.
