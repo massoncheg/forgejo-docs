@@ -17,6 +17,8 @@ Possible file names for PR default merge message templates:
 
 Note: `.gitea` as the root directory is also recognized and kept only for compatibility reasons.
 
+If Forgejo cannot find the file in the repository, it will search the _`CustomPath`_ for a folder named `default_merge_message` which may contain site-wide templates.
+
 ## Variables
 
 You can use the following variables enclosed in `${}` inside these templates, which follow [os.Expand](https://pkg.go.dev/os#Expand) syntax:
