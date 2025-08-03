@@ -87,7 +87,13 @@ A string of the following additional options, as documented [docker run](https:/
 
 - `--volume`
 - `--tmpfs`
-- `--hostname` (except for Forgejo runner 6.0.x and 6.1.x)
+- `--hostname`
+- `--health-cmd`
+- `--health-interval`
+- `--health-retries`
+- `--health-timeout`
+- `--health-start-period`
+- `--no-healthcheck`
 
 > **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../../admin/actions/runner-installation/#configuration) for more information.
 
