@@ -23,6 +23,10 @@ In order for a workflow to run, an appropriate runner needs to be available to t
 
 If the instance does not provide runners, or if you wish to use your own runners, check out the [Forgejo Runner installation guide](../../../admin/actions/runner-installation/) to see how to set up and connect your own runner.
 
+## Troubleshooting
+
+Learn the basics of [troubleshooting a failed workflow or action](../troubleshooting/).
+
 ## Security
 
 Sensitive security-related issues should be reported to [security@forgejo.org](mailto:security@forgejo.org) using [encryption](https://keyoxide.org/security@forgejo.org).
