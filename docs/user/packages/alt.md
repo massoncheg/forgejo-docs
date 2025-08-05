@@ -1,16 +1,19 @@
 ---
-title: 'Alt Package Registry'
+title: 'ALT Package Registry'
 license: 'Apache-2.0'
 origin_url: 'https://codeberg.org/forgejo/docs/src/commit/8f46649aa9864b075c136c3a1eb86dc1d3579829/docs/user/packages/rpm.md'
 ---
 
-Publish [Alt](https://www.altlinux.org/APT_в_ALT_Linux/CreateRepository) packages for your user or organization.
+Publish [ALT](https://www.altlinux.org/APT_в_ALT_Linux/CreateRepository) packages for your user or organization.
 
 ## Requirements
 
-To work with the Alt registry, you need to use the APT-RPM package manager to consume packages.
+To work with the ALT registry, you need to use a HTTP client like `curl` to upload and a package manager like `apt-get` to consume packages.
 
-The following examples use `apt-rpm`.
+> **NOTE:** In ALT Linux, the `apt-get` command is provided by [APT-RPM](https://en.wikipedia.org/wiki/APT-RPM), a version of APT adapted for RPM packages.
+> This differs from the APT used in Debian or Ubuntu, which is designed for DEB packages.
+
+The following examples use `apt-get`.
 
 ## Configuring the package registry
 
@@ -20,11 +23,11 @@ To register the RPM registry add the url to the list of known sources to the con
 rpm https://forgejo.example.com/api/packages/{owner}/alt/{group}.repo {arch} classic
 ```
 
-| Placeholder | Description                                                        |
-| ----------- | ------------------------------------------------------------------ |
-| `owner`     | The owner of the package.                                          |
-| `group`     | Optional: Everything, e.g. empty, `el7`, `rocky/el9`, `test/fc38`. |
-| `arch`      | Architecture.                                                      |
+| Placeholder | Description                                                    |
+| ----------- | -------------------------------------------------------------- |
+| `owner`     | The owner of the package.                                      |
+| `group`     | Optional: Everything, e.g. empty, `example1`, `test/example1`. |
+| `arch`      | Architecture.                                                  |
 
 Example:
 
@@ -32,7 +35,7 @@ Example:
 # without a group and architecture x86_64
 rpm https://forgejo.example.com/api/packages/testuser/alt/alt.repo x86_64 classic
 
-# with the group 'centos/el7' and architectire noarch
+# with the group 'example1' and architectire noarch
 rpm https://forgejo.example.com/api/packages/testuser/alt/group/example1.repo noarch classic
 ```
 
@@ -42,7 +45,7 @@ If the registry is private, provide credentials in the URL. You can use a passwo
 rpm https://{username}:{your_password_or_token}@forgejo.example.com/api/packages/{owner}/alt/{group}.repo {arch} classic
 ```
 
-You have to add the credentials to the URLs in the created `.repo` file in `/etc/apt/sources.list.d/` too.
+You have to add the credentials to the URLs in the created `.list` file in `/etc/apt/sources.list.d/` too.
 
 ## Publish a package
 
@@ -52,10 +55,10 @@ To publish a RPM package (`*.rpm`), perform a HTTP PUT operation with the packag
 PUT https://forgejo.example.com/api/packages/{owner}/alt/{group}/upload
 ```
 
-| Parameter | Description                                                        |
-| --------- | ------------------------------------------------------------------ |
-| `owner`   | The owner of the package.                                          |
-| `group`   | Optional: Everything, e.g. empty, `el7`, `rocky/el9`, `test/fc38`. |
+| Parameter | Description                                                    |
+| --------- | -------------------------------------------------------------- |
+| `owner`   | The owner of the package.                                      |
+| `group`   | Optional: Everything, e.g. empty, `example1`, `test/example1`. |
 
 Example request using HTTP Basic authentication:
 
