@@ -51,7 +51,7 @@ Set up the user to run the daemon:
 $ useradd --create-home runner
 ```
 
-If the runner will be using Docker or Podman, ensure the `runner` user had access to the docker/podman socket.
+If the runner will be using Docker (or rootful Podman through the Docker shim), ensure the `runner` user had access to the docker/podman socket.
 If you are using Docker, run:
 
 ```shell
@@ -66,12 +66,16 @@ The `Forgejo runner` relies on application containers (Docker, Podman, etc.) or 
   See the [Docker installation](https://docs.docker.com/engine/install/) documentation for more information.
 
 - **Podman:**
-  While Podman is generally compatible with Docker, it does not create a socket for managing containers by default (because it doesn't usually need one).
+  Podman provides a (generally compatible) Docker CLI and Socket. Depending on your distribution, you may need to install an additional package (e.g. `podman-docker` for Ubuntu).  
+  The socket is _not enabled by default_ and must be enabled. If it is not, the Forgejo runner complains about "daemon Docker Engine socket not found", or "cannot ping the docker daemon".  
+  On systemd-based distributions, there is a systemd unit available which can be enabled `systemctl enable --now podman.socket`.  
+  To use [rootless podman](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md) for the socket, run `systemctl --user enable --now podman.socket` as the runner user.
 
-  If the Forgejo runner complains about "daemon Docker Engine socket not found", or "cannot ping the docker daemon", you can use Podman to provide a Docker compatible socket from an unprivileged user and pass that socket on to the runner by executing:
+  On non-systemd distributions, the podman socket can be provided by running `podman system service -t 0` in the background.
+
+  The location of the podman socket must be passed to the Forgejo runner using the `DOCKER_HOST` environment variable.
 
   ```shell
-  $ podman system service -t 0 &
   $ DOCKER_HOST=unix://${XDG_RUNTIME_DIR}/podman/podman.sock ./forgejo-runner daemon
   ```
 
@@ -605,6 +609,14 @@ container:
 ```
 
 Now, `Forgejo runner` will create networks with IPv6 enabled, and workflow containers will be assigned addresses from the pools defined in the Docker daemon configuration.
+
+### IPv6 connectivity issues with rootless podman
+
+Because creation of real networks is limited to the root user, rootless podman cannot create actual networks.  
+To work around this issue, podman creates so-called tap-networks which come with [their own limitations](https://github.com/containers/podman/blob/main/rootless.md).  
+At the time of writing, only Podman version 5.3 and later have been observed to have proper IPv6 support in rootless bridge networks.  
+Podman 5 switched to [`passt`](https://passt.top/passt/about/) for rootless networking and 5.3 includes fixes like host-service reachability.
+(Earlier versions appear to cause "host unreachable" or "network unreachable" issues with bridge networks - which is the type Forgejo runners create.)
 
 ## Packaging
 

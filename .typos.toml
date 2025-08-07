@@ -11,6 +11,8 @@ TABL = "TABL" # weird false-positive
 odf = "odf"
 # ./docs/contributor/adr/adr-activity-for-like.md
 edn = "edn"
+# ./docs/admin/runner-installation.md https://passt.top/passt/about/
+passt = "passt"
 
 [default]
 extend-ignore-identifiers-re = [
