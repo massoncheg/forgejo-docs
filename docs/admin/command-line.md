@@ -487,6 +487,7 @@ OPTIONS:
    --restricted-group string            Group Claim value for restricted users
    --group-team-map string              JSON mapping between groups and org teams
    --group-team-map-removal             Activate automatic team membership removal depending on groups (default: false)
+   --allow-username-change              Allow users to change their username (default: false)
 ```
 
 ### admin auth update-oauth
@@ -526,6 +527,7 @@ OPTIONS:
    --restricted-group string            Group Claim value for restricted users
    --group-team-map string              JSON mapping between groups and org teams
    --group-team-map-removal             Activate automatic team membership removal depending on groups (default: false)
+   --allow-username-change              Allow users to change their username (default: false)
 ```
 
 ### admin auth add-ldap
