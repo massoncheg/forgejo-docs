@@ -757,6 +757,17 @@ steps:
 
 When a step with `continue-on-error` fails, its `steps.<step_id>.outcome` will be `failure`, but its `steps.<step_id>.conclusion` will be `success`.
 
+### `jobs.<job_id>.steps[*].timeout-minutes`
+
+Set the number of minutes this step can be performed before it is canceled.
+
+```yaml
+steps:
+  - run: sleep 301
+    timeout-minutes: 5
+  - run: echo "this will not get run"
+```
+
 ## Contexts
 
 A context is an object that contains information relevant to a `workflow` run. For instance the `secrets` context contains the secrets defined in the repository. Each of the following context is defined as a top-level variable when evaluating expressions. For instance `${{ secrets.MYSECRET }}` will be replaced by the value of `MYSECRET`.
