@@ -392,6 +392,19 @@ Specifies the reusable workflow to call with a `workflow_call` event. See [`on.w
 
 A dictionary mapping the inputs of the `workflow_call` event to concrete values. See [`on.workflow_call`](#onworkflow_call) for more information.
 
+### `jobs.<job_id>.name`
+
+The name of the job. If not set, the name of the job defaults to `<job_id>`.
+The expressions it contains will be interpolated. For instance if the variable `SOME` is set to `THING`, in the following:
+
+```yaml
+jobs:
+  test:
+    name: jobname-${{ vars.SOME }}
+```
+
+The name of the job will be `jobname-THING`.
+
 ### `jobs.<job_id>.strategy.matrix`
 
 If present, it will generate a matrix from the content of the object
@@ -425,6 +438,8 @@ They each run independently and can use the `matrix` context to access these val
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/commit/b6591e2f71196b12f6e0851774f0bd6e2148ec18/.forgejo/workflows/actions.yml#L22-L37).
 
 The following values are the same as [service container syntax](../advanced-features/#services).
+
+> **NOTE:** if `jobs.<job_id>.mame` is set, care must be taken that it evaluates to a unique name for each job created from the matrix, e.g. `name-${{ matrix.variant }}-${{ matrix.node}}` in the above example.
 
 ### `jobs.<job_id>.container.image`
 
