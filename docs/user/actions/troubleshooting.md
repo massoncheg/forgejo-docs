@@ -23,3 +23,23 @@ It is also possible to verify that the workflows and/or actions found in a repos
 ## Forgejo runner logs
 
 If the logs of the action displayed in the web UI are incomplete, it is worth looking into the [logs of the Forgejo runner itself](../../../admin/actions/runner-installation/#configuration).
+
+## Common Workflow Issues
+
+Keep in mind the following caveats in case you have problems with your workflow:
+
+### Non-Standard Git Credentials in the workflow
+
+Usually, [`actions/checkout`](https://code.forgejo.org/actions/checkout) creates git credentials for your workflow "on the fly" and inserts them into the git config (Example: `http.https://codeberg.org/.extraheader=AUTHORIZATION: basic ***`).
+
+For Standard use cases, this is what you'll probably want. However, if you need to interact with **different repositories** in your workflow (e.g. your private repositories, usually with renovate or similar tools), you may want to use different credentials like an API key with specific scope.
+
+It might be possible that your custom git credentials are set correctly, but the "auto-generated" key from the git config is still preferred, leading to failures when interacting with other repositories.
+
+To fix this, set `persist-credentials` to `false` in your checkout action's configuration:
+
+```yaml
+- uses: https://code.forgejo.org/actions/checkout@v4
+  with:
+    persist-credentials: false
+```
