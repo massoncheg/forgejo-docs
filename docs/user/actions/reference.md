@@ -384,6 +384,41 @@ jobs:
       - run: echo only run after linting
 ```
 
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-needs/.forgejo/workflows/test.yml).
+
+### `jobs.<job_id>.outputs`
+
+The `jobs.<job_id>.outputs` object is a key/value map of the output of the
+corresponding job, defined by writing to `$FORGEJO_OUTPUT`. For instance:
+
+```yaml
+on: [push]
+jobs:
+  job1:
+    runs-on: docker
+    outputs:
+      job1output: ${{ steps.step1.outputs.value }}
+    steps:
+      - id: step1
+        run: |
+          set -x
+          echo "value=value1" >> $FORGEJO_OUTPUT
+```
+
+This output can then be used in jobs that run after it completes (i.e. that need it in the sense of [`jobs.<job_id>.needs`](#jobsjob_idneeds)). For instance:
+
+```yaml
+job2:
+  needs: [job1]
+  runs-on: docker
+  steps:
+    - run: |
+        set -x
+        test "${{ needs.job1.outputs.job1output }}" = "value1"
+```
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-needs/.forgejo/workflows/test.yml).
+
 ### `jobs.<job_id>.uses`
 
 Specifies the reusable workflow to call with a `workflow_call` event. See [`on.workflow_call`](#onworkflow_call) for more information.
@@ -795,6 +830,7 @@ A context is an object that contains information relevant to a `workflow` run. F
 | forge        | information about the workflow being run        |
 | matrix       | information about the current row of the matrix |
 | steps        | information about the steps that have been run  |
+| needs        | information about the jobs that have been run   |
 | inputs       | the input parameters given to an action         |
 
 To help with re-using actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forge` context.
@@ -952,6 +988,13 @@ Values that contain newlines can be set as follows:
 ```
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-expression/.forgejo/workflows/test.yml).
+
+### needs
+
+The `needs` context contains information about the `jobs` in the current workflow that have
+already run before the current job (i.e. that need it in the sense of [`jobs.<job_id>.needs`](#jobsjob_idneeds)).
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-needs/.forgejo/workflows/test.yml).
 
 ### inputs
 
