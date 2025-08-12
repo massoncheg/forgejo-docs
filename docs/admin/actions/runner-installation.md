@@ -40,7 +40,7 @@ You should now be able to test the runner by running `forgejo-runner -v`:
 
 ```
 $ forgejo-runner -v
-forgejo-runner version v6.3.1
+forgejo-runner version v9.0.3
 ```
 
 ### Setting up the runner user
@@ -90,14 +90,14 @@ The `Forgejo runner` relies on application containers (Docker, Podman, etc.) or 
   $ lxc-helpers.sh lxc_container_user_install myrunner 1000 debian
   ```
 
-  > **NOTE:** Multiarch [Go](https://go.dev/) builds and [binfmt](https://github.com/tonistiigi/binfmt) need `bookworm` to produce and test binaries on a single machine for people who do not have access to dedicated hardware. If this is not needed, installing the `Forgejo runner` on `bullseye` will also work.
+  > **NOTE:** Multiarch [Go](https://go.dev/) builds and [binfmt](https://github.com/tonistiigi/binfmt) need `bookworm` to produce and test binaries on a single machine for people who do not have access to dedicated hardware.
 
   The `Forgejo runner` can then be installed and run within the `myrunner` container.
 
   ```shell
   $ lxc-helpers.sh lxc_container_run forgejo-runners -- sudo --user debian bash
   $ sudo apt-get install docker.io wget gnupg2
-  $ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v6.3.1/forgejo-runner-6.3.1-linux-amd64
+  $ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v9.0.3/forgejo-runner-9.0.3-linux-amd64
   ...
   ```
 
@@ -373,14 +373,14 @@ The [OCI images](https://code.forgejo.org/forgejo/-/packages/container/runner/)
 are built from the Dockerfile which is [found in the source directory](https://code.forgejo.org/forgejo/runner/src/branch/main/Dockerfile). It contains the `forgejo-runner` binary.
 
 ```shell
-$ docker run --rm data.forgejo.org/forgejo/runner:4.0.0 forgejo-runner --version
-forgejo-runner version v4.0.0
+$ docker run --rm data.forgejo.org/forgejo/runner:9 forgejo-runner --version
+forgejo-runner version v9.0.3
 ```
 
 It does not run as root:
 
 ```shell
-$ docker run --rm data.forgejo.org/forgejo/runner:4.0.0 id
+$ docker run --rm data.forgejo.org/forgejo/runner:9 id
 uid=1000 gid=1000 groups=1000
 ```
 
@@ -416,8 +416,8 @@ services:
     command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
     restart: 'unless-stopped'
 
-  gitea:
-    image: 'data.forgejo.org/forgejo/runner:4.0.0'
+  forgejo:
+    image: 'data.forgejo.org/forgejo/runner:9'
     links:
       - docker-in-docker
     depends_on:
@@ -470,7 +470,7 @@ To register the runner, execute `forgejo-runner register` and fill in the prompt
 
 ```shell
 $ forgejo-runner register
-INFO Registering runner, arch=arm64, os=linux, version=v4.0.0.
+INFO Registering runner, arch=arm64, os=linux, version=v9.0.3.
 WARN Runner in user-mode.
 INFO Enter the Forgejo instance URL (for example, https://next.forgejo.org/):
 https://code.forgejo.org/
@@ -480,7 +480,7 @@ INFO Enter the runner name (if set empty, use hostname: runner-host):
 my-forgejo-runner
 INFO Enter the runner labels, leave blank to use the default labels (comma-separated, for example, ubuntu-20.04:docker://node:20-bookworm,ubuntu-18.04:docker://node:20-bookworm):
 
-INFO Registering runner, name=my-forgejo-runner, instance=https://code.forgejo.org/, labels=[docker:docker://node:20-bullseye].
+INFO Registering runner, name=my-forgejo-runner, instance=https://code.forgejo.org/, labels=[docker:docker://node:20-bookworm].
 DEBU Successfully pinged the Forgejo instance server
 INFO Runner registered successfully.
 ```
@@ -495,7 +495,7 @@ This will create a `.runner` file in the current directory that looks like:
   "name": "my-forgejo-runner",
   "token": "864e6019009e1635d98adf3935b305d32494d42a",
   "address": "https://code.forgejo.org/",
-  "labels": ["docker:docker://node:20-bullseye"]
+  "labels": ["docker:docker://node:20-bookworm"]
 }
 ```
 
