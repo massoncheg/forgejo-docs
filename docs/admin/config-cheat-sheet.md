@@ -1089,6 +1089,11 @@ The defaults of the console change if Forgejo detects that stdout and/or stderr 
 - `SCHEDULE`: **@annually**: Cron syntax to set how often to check.
 - `OLDER_THAN`: **168h**: Only delete inactive accounts older than this.
 
+#### Cron - Remove resolved reports (`cron.remove_resolved_reports`)
+
+- `ENABLED`: **false**: Enable service.
+- `SCHEDULE`: **@every 24h**: Cron syntax to set how often to check.
+
 ## Git (`git`)
 
 - `PATH`: **""**: The path of the Git executable. If empty, Forgejo searches through the PATH environment variable.
@@ -1387,6 +1392,10 @@ Note that you may need to set the `[migrations].ALLOW_LOCALNETWORKS` option to `
 - `LOG_COMPRESSION`: **zstd**: Log compression type, `none` for no compression, `zstd` for zstd compression. Other compression types like `gzip` are NOT supported, since seekable stream is required for log view. It is always recommended to use compression when using local disk as log storage if CPU or memory is not a bottleneck. For S3 compatible object storage services, which may be billed per requests, it will cause two times more requests for each log view. But if network bandwidth is all billed on volume, it may still cut down the costs.
 - `LIMIT_DISPATCH_INPUTS`: **10**: Limit on the number of inputs allowed when using for manual / `workflow_dispatch` triggers.
 - `LOG_RETENTION_DAYS`: **365**: Logs retention time in days. Old logs will be deleted after this period.
+
+## Moderation (`moderation`)
+
+- `KEEP_RESOLVED_REPORTS_FOR`: **168h**: How long to keep resolved abuse reports for. Default value is 7 days.
 
 ## Other (`other`)
 
