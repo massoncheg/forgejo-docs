@@ -131,7 +131,7 @@ NAME:
    forgejo forgejo-cli f3 - F3
 
 USAGE:
-   forgejo forgejo-cli f3
+   forgejo forgejo-cli f3 [command [command options]]
 
 GLOBAL OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
