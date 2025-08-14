@@ -10,7 +10,7 @@ You should [install go](https://golang.org/doc/install) and set up your go
 environment correctly. In particular, it is recommended to set the `$GOPATH`
 environment variable and to add the go bin directory or directories
 `${GOPATH//://bin:}/bin` to the `$PATH`. See the Go wiki entry for
-[GOPATH](https://github.com/golang/go/wiki/GOPATH).
+[GOPATH](https://go.dev/wiki/GOPATH).
 
 Next, [install Node.js with npm](https://nodejs.org/en/download/current) which is
 required to build the JavaScript and CSS files. The minimum supported Node.js
