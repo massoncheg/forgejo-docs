@@ -540,6 +540,10 @@ And the following unique queues:
 - `SECRET_KEY`: **\<random at every install\>**: Global secret key. This key is VERY IMPORTANT; if you lose it, data encrypted by it (like 2FA secrets) can no longer be decrypted.
 - `SECRET_KEY_URI`: **\<empty\>**: Instead of defining `SECRET_KEY`, this option can be used to use the key stored in a file (example value: `file:/etc/forgejo/secret_key`). It shouldn't be lost, like `SECRET_KEY`.
 - `LOGIN_REMEMBER_DAYS`: **31**: Cookie lifetime, in days.
+- `GLOBAL_TWO_FACTOR_REQUIREMENT`: **none**: Which users are required to enable 2FA. One of "none", "all", "admin".
+  - `none`: No user is required to enable 2FA
+  - `all`: All users are required to enable 2FA
+  - `admin`: Every admin is required to enable 2FA
 - `COOKIE_REMEMBER_NAME`: **gitea_incredible**: Name of the cookie used to store authentication
   information. Must not be the same as `[session].COOKIE_NAME`.
 - `REVERSE_PROXY_AUTHENTICATION_USER`: **X-WEBAUTH-USER**: Header name for reverse proxy
