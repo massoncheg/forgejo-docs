@@ -187,25 +187,19 @@ on:
 
 ### `on.workflow_call`
 
-The `workflow_call` event allows you to call a workflow from another workflow. The `inputs` can be defined and used in the same way as
-[`on.workflow_dispatch`](#onworkflow_dispatch).
+The `workflow_call` event allows you to call a workflow from another workflow.
 
 For example if the following workflow is found in `.forgejo/workflows/reusable.yml`:
 
 ```yaml
 on:
   workflow_call:
-    inputs:
-      parameter1:
-        required: true
-        type: string
 
 jobs:
   callee:
     runs-on: docker
     steps:
-      - run: |
-          echo "${{ inputs.parameter1 }}"
+      - run: echo OK
 ```
 
 it can be called from another workflow as follows:
@@ -218,17 +212,87 @@ jobs:
   caller:
     runs-on: docker
     uses: ./.forgejo/workflows/reusable.yml
-    with:
-      parameter1: value1
 ```
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/test.yml).
+
+### `on.workflow_call.inputs`
+
+Inputs for a [`workflow_call`](#onworkflow_call) are declared in the `inputs` sub-key, where each sub-key itself is an input. Each of those inputs may have a `type`:
+
+- `boolean`
+- `number`
+- `string`
+
+Additionally, every input can be made `required`, given a human-readable `description`, and a `default` value.
+
+```yaml
+on:
+  workflow_call:
+    inputs:
+      boolean:
+        description: 'Boolean'
+        required: false
+        type: boolean
+      number:
+        description: 'Number'
+        default: '100'
+        type: number
+      string:
+        description: 'String'
+        required: true
+        type: string
+```
+
+Inputs then can be used inside the jobs with the `inputs` context:
+
+```yaml
+jobs:
+  test:
+    runs-on: docker
+    steps:
+      - run: echo ${{ inputs.number }}
+```
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/reusable.yml).
+
+### `on.workflow_call.outputs`
+
+Outputs for a [`workflow_call`](#onworkflow_call) are declared in the `outputs` sub-key:
+
+```yaml
+outputs:
+  name_of_the_output:
+    value: value_of_the_output
+```
+
+A concrete example looks like this:
+
+```yaml
+on:
+  workflow_call:
+    outputs:
+      output1:
+        value: ${{ jobs.callee.outputs.job-output }}
+
+jobs:
+  callee:
+    runs-on: docker
+    outputs:
+      job-output: ${{ steps.stepwithoutput.outputs.myvalue }}
+    steps:
+      - id: stepwithoutput
+        run: |
+          echo "myvalue=outputvalue1" >> $FORGEJO_OUTPUT
+```
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/reusable.yml).
 
 ### `on.workflow_dispatch`
 
 The `workflow_dispatch` events allows for manual triggering a workflow by either using the Forgejo UI, or the API with the `POST /repos/{owner}/{repo}/actions/workflows/{workflowname}/dispatches` endpoint. This event allows for inputs to be defined, which will get rendered in the Forgejo UI or read from the body of the API request.
 
-Inputs are declared in the `inputs` sub-key, where each sub-key itself is an input. Each of those inputs need to have an `type`. These types can be:
+Inputs are declared in the `inputs` sub-key, where each sub-key itself is an input. Each of those inputs need to have a `type`. These types can be:
 
 - `choice`: A dropdown where the available options are defined as a list of strings with `options`
 - `boolean`: A checkbox with the values of `true` or `false`
@@ -423,9 +487,31 @@ job2:
 
 Specifies the reusable workflow to call with a `workflow_call` event. See [`on.workflow_call`](#onworkflow_call) for more information.
 
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/test.yml).
+
 ### `jobs.<job_id>.with`
 
-A dictionary mapping the inputs of the `workflow_call` event to concrete values. See [`on.workflow_call`](#onworkflow_call) for more information.
+A dictionary mapping the inputs of the `workflow_call` event to concrete values. See [`on.workflow_call.inputs`](#onworkflow_callinputs) for more information on how the inputs are declared in reusable workflow.
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/test.yml).
+
+### `jobs.<job_id>.secrets`
+
+Controls the secrets provided to the reusable workflow being called. It can either be `secrets: inherit` in which case the reusable workflow will have access to the same secrets as the caller. Or it can be a dictionary mapping a selection of secrets. For instance in the following, the reusable workflow will get `keep_it_private` as the result of evaluating the expression `${{ secrets.secret }}`:
+
+```yaml
+on:
+  push:
+
+jobs:
+  caller:
+    runs-on: docker
+    uses: ./.forgejo/workflows/reusable.yml
+    secrets:
+      secret: keep_it_private
+```
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/test.yml).
 
 ### `jobs.<job_id>.name`
 
