@@ -14,7 +14,7 @@ We want your contribution to be meaningful and to last.
 
 We cannot test all the behaviour of Forgejo.
 It is complex, and certain aspects are only important to a handful of users.
-To reduce the burden on maintainer,
+To reduce the burden on the maintainers,
 you should do your best to make testing easy and automated.
 
 ## What is a "reasonable" effort?

@@ -59,7 +59,7 @@ on:
 ## Updating the workflow
 
 When the cascading-pr workflow is added or updated in a repository, it
-must be done in a PR from a branch of the repository and not than from
+must be done in a PR from a branch of the repository and not from
 a forked repository. It runs `on.pull_request_target` and if run from
 a fork it will use the content of the default branch instead of the
 proposed change.

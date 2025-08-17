@@ -62,7 +62,7 @@ Weblate will retry connection attempts but it takes hours before it does that. I
 
 ### Commit changing non-base locales was merged before Weblate
 
-If a commit changing translation files other than `en_US.ini` was merged before all changes from Weblate were merged, it could have caused Weblate to lock itself due to failed rebase.
+If a commit changing translation files other than `en_US.ini` was merged before all changes from Weblate were merged, it could have caused Weblate to lock itself due to a failed rebase.
 If the rebase did succeed, everything is ok and no steps need to be taken, just be more cautious with merges next time.
 If Weblate failed to rebase, there are two ways to solve this issue.
 

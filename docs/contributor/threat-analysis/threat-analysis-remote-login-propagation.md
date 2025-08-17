@@ -56,7 +56,7 @@ See also [blog: geballte sicherheit][1] for getting an idea about the analysis.
 
 ### Actors
 
-1. **Script Kiddies**: Boored teens, willing to do some illegal stuff without deep knowledge of tech details but broad knowledge across internet discussions. Able to do some bash / python scripting.
+1. **Script Kiddies**: Bored teens, willing to do some illegal stuff without deep knowledge of tech details but broad knowledge across internet discussions. Able to do some bash / python scripting.
 2. **Experienced Hacker**: Hacker with deep knowledge.
 3. **Hacker**: Hacker with some knowledge.
 4. **Malicious Fediverse Member**: Malicious Members of the fediverse, able to operate malicious forge instances.

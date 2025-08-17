@@ -111,7 +111,7 @@ EB114F5E6C0DC2BCDD183550A4B61A2DC5923710 is already imported in the
 keyring.
 
 There are a lot of contradictory information regarding the management
-of subkeys, with zillions ways of doing something that looks like it
+of subkeys, with zillions of ways of doing something that looks like it
 could work but creates situations that are close to impossible to
 figure out. Experimenting with the CLI, reading the gpg man page and
 using common sense is the best way to understand how it works. Reading
