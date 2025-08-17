@@ -39,6 +39,8 @@ That concludes the basic syntax of a workflow file. For a complete definition of
 
 In a workflow file you may use expressions. These look like `${{ ... }}`. Expressions are evaluated by the runner when executing a workflow. In certain fields of the workflow file, like `if: `, the `${{ }}` is implicit and can be stripped.
 
+> **NOTE:** Implicit type conversions with booleans may be difficult to figure out when assigned to actions inputs or output values. It is easier for debugging to use explicit strings (e.g. 'yes' or 'no') instead of true/false or 'true'/'false'.
+
 [Check out the expression example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-expression/.forgejo/workflows/test.yml)
 
 ### Variables
