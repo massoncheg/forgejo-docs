@@ -747,7 +747,7 @@ Define allowed algorithms and their minimum key length (use -1 to disable a type
   - SMTP family: if your provider does not explicitly say which protocol it uses but does provide a port, you can set `SMTP_PORT` instead, and this will be inferred.
   - **sendmail**: Use the operating system's `sendmail` command instead of SMTP. This is common on Linux systems.
   - **dummy**: Send email messages to the log as a testing phase.
-  - Note that enabling `sendmail` will ignore all other `mailer` settings except `ENABLED`, `FROM`, `SUBJECT_PREFIX`, and `SENDMAIL_PATH`.
+  - Note that enabling `sendmail` will ignore all other `mailer` settings except `ENABLED`, `FROM`, `SUBJECT_PREFIX`, `SENDMAIL_PATH` and `SENDMAIL_ARGS`.
   - Enabling `dummy` will ignore all settings except `ENABLED`, `SUBJECT_PREFIX`, and `FROM`.
 - `SMTP_ADDR`: **\<empty\>**: Mail server address. e.g., smtp.gmail.com. For `smtp+unix`, this should be the path to a Unix socket instead. _Before 1.18, this was combined with `SMTP_PORT` under the name `HOST`._
 - `SMTP_PORT`: **\<empty\>**: Mail server port. If no protocol is specified, it will be inferred by this setting. Common ports are listed below. _Before 1.18, this was combined with `SMTP_ADDR` under the name `HOST`._
