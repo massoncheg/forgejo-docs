@@ -47,6 +47,8 @@ If an action's `uses` statement starts with `./` it will be loaded from the spec
 
 [Take a look at the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-local-action/).
 
+The action is taken from a local directory, from the perspective of the runner. This means you will typically need to have a checkout action before being able to use a local action.
+
 ## Creating your own actions
 
 It is fairly simple to create your own actions. An action is really just a directory with an `action.yml` in it. There are three types of actions, `node`, `docker` and `composite`.
@@ -55,9 +57,9 @@ These types of actions are both explained further below.
 
 > **Tip:** When first developing an action, it is useful to load it as a [local action](#local-actions) for testing.
 
-### `actions.yml`
+### `action.yml`
 
-The `actions.yml` file contains all the metadata for the action. It decides the name, description, inputs, outputs and how to run the action.
+The `action.yml` file contains all the metadata for the action. It decides the name, description, inputs, outputs and how to run the action.
 
 Take a look at this simple example:
 
