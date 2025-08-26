@@ -23,7 +23,7 @@ Forgejo will check for template files in the following directories, since Forgej
 - `.forgejo`
 - `.gitea`
 - `.github`
-- `.gitlab`
+- `docs`
 
 Inside the directory can be multiple markdown (`.md`) or yaml (`.yaml`/`.yml`) files for templates of the form - these are the three allowed file extensions.
 
