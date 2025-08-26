@@ -427,7 +427,7 @@ The following configuration sets the `Content-Type: application/vnd.android.pack
 
 ## Database (`database`)
 
-- `DB_TYPE`: **sqlite3**: The database type in use \[mysql, postgres, sqlite3\].
+- `DB_TYPE`: **\<empty\>**: The database type to use \[mysql, postgres, sqlite3\].
 - `HOST`: **127.0.0.1:3306**: Database host address and port or absolute path for a Unix socket \[mysql, postgres\] (e.g. /var/run/mysqld/mysqld.sock).
 - `HOST_PRIMARY`: **\<empty\>**: Database host address and port for the primary database node. Only applies for high availability setups which use a primary/secondary architecture. If defined, alongside with `HOST_REPLICAS`, `HOST` will be ignored.
 - `HOST_REPLICAS`: **\<empty\>**: Database host address(es) and port(s) for the replica database node(s). Only applies for high availability setups which use a primary/secondary architecture. Must be coupled with `HOST_PRIMARY`. Multiple connection strings should be supplied as comma-separated values.
