@@ -108,6 +108,8 @@ The `Forgejo runner` relies on application containers (Docker, Podman, etc.) or 
 
   > **Warning:** there is no isolation at all and a single job can permanently destroy the host.
 
+  > **Warning:** processes forked out of a job may linger after the job is complete, possibly forever, if the job fails to wait for them to complete.
+
 ### Registering the runner
 
 To receive tasks from the Forgejo instance, the runner needs to be registered.
