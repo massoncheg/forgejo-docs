@@ -1110,3 +1110,25 @@ steps:
 ```
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-local-action/.forgejo/workflows/test.yml)
+
+## Environment variables
+
+Forgejo defines some environment variables that are available on each step.
+
+**RUNNER_TOOL_CACHE**
+
+This is a directory where tools can be installed. Defaults to `/opt/hostedtoolcache`. Despite the name, this directory is not cached across builds anymore but the variable is kept for compatibility reasons.
+
+If you want to enable the toolcache for actions that supports it, mount a volume to `/opt/hostedtoolcache`.
+
+**RUNNER_TMP**
+
+This is a temporary directory provided by the runner. It's hardcoded to `/tmp`.
+
+**RUNNER_OS**
+
+The operating system of the runner, e.g. `Linux`
+
+**RUNNER_ARCH**
+
+The cpu architecture of the runner
