@@ -50,7 +50,7 @@ See also the [set of examples](https://code.forgejo.org/forgejo/end-to-end/src/b
 
 ## Services
 
-PostgreSQL, Redis and other services can be run from container images with something similar to the following. See also the [set of examples](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/).
+PostgreSQL, MariaDB and other services can be run from container images with something similar to the following. See also the [set of examples](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/).
 
 ```yaml
 job:
@@ -67,7 +67,11 @@ job:
 
 A container with the specified `image:` is run before the job starts and is terminated when it completes. The job can address the service using its name, in this case `pgsql`.
 
-The IP address of `pgsql` is on the same [network](https://docs.docker.com/engine/reference/commandline/network/) as the container running the **steps** and there is no need for port binding. The `postgres:15` image exposes the PostgreSQL port 5432 and a client will be able to connect as [shown in this example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/test.yml)
+The IP address of `pgsql` is on the same [network](https://docs.docker.com/engine/reference/commandline/network/) as the container running the **steps** and there is no need for port binding. The `postgres:15` image exposes the PostgreSQL port 5432 and a client will be able to connect as [shown in this example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/test.yml).
+
+> **NOTE:** services are only supported with the `docker` backend, not with the `lxc` backend.
+
+> **NOTE:** services require [`[container].network`](../../../admin/actions/runner-installation/#configuration) to be empty so that a new network can be temporarily created to connect the container running the workflow with the services.
 
 ### services.<service_name>.image
 
