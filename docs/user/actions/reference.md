@@ -120,7 +120,7 @@ If the head of a pull request is from a forked repository, the secrets are not a
 
 ### `on.pull_request_target`
 
-It is similar to the `on.pull_request` event, with the following exceptions:
+Trigger the workflow when an event happens on a pull request, and execute the workflow in the context of the **target branch** of the pull request. Specifically, it is similar to the `on.pull_request` event with the following exceptions:
 
 - secrets stored in the base repository are available in the `secrets` `context`, (e.g. `${{ secrets.KEY }}`).
 - the automatic token has write permission to the repository.
@@ -128,31 +128,14 @@ It is similar to the `on.pull_request` event, with the following exceptions:
   - changes to the workflow in the pull request will be ignored
   - the [actions/checkout](https://code.forgejo.org/actions/checkout) action will checkout the default branch instead of the content of the pull request
 
-Care must be taken to unset the `FORGEJO_TOKEN` and `GITHUB_TOKEN` environment variables
-when a job runs scripts from a checkout of the pull request so that it does not leak. The
-checkout action must also be used with `persist-credentials: false` so they are not stored
-on disk where the script could retrieve them.
+It is strongly recommended that workflows using `on.pull_request_target` do not interact with the untrusted code from the pull request, as it can be difficult to anticipate the security risks and side-effects. Although the workflow code itself is executed from the safe source of the target branch, its interactions with the untrusted code could compromise security. A known, non-exhaustive list of risks includes:
 
-For instance:
+- All action steps are executed with the `FORGEJO_TOKEN` and `GITHUB_TOKEN` environment variables; interacting with untrusted code in the pull request may leak these tokens.
+- The `actions/checkout` action will persist the security token unless configured with `persist-credentials: false`; untrusted code in the pull request may retrieve the token from disk and lead to it being leaked.
+- Secrets that are used in action steps, for example as command-line parameters or environment variables, may be available to environment inspection by untrusted code leading to the risk of secret compromise.
+- An `actions/cache` step introduces an opportunity for executed untrusted code in a pull request to poison cache contents which may later be used in a workflow that is executed with higher-level permissions, such as access to more secrets.
 
-```yaml
-on:
-  pull_request_target:
-
-jobs:
-  preview:
-    runs-on: docker
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ forge.event.pull_request.head.sha }}
-          persist-credentials: false
-      - run: |
-          ./script-from-the-pull-request
-        env:
-          FORGEJO_TOKEN: override
-          GITHUB_TOKEN: override
-```
+The safest configuration is to not checkout the code of the pull request at all.
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-pull-request/.forgejo/workflows/test.yml).
 
@@ -785,7 +768,7 @@ Check out the workflows in [example-if](https://code.forgejo.org/forgejo/end-to-
 
 Specifies the repository from which the `Action` will be cloned or a directory where it can be found.
 
-- **Remote actions**  
+- **Remote actions**
   A relative `Action` such as `uses: actions/checkout@v4` will clone the repository at the URL composed by prepending the `DEFAULT_ACTIONS_URL` (`https://data.forgejo.org` by default, see note below). It is the equivalent of providing the fully qualified URL `uses: https://data.forgejo.org/actions/checkout@v4`. In other words the following:
 
   ```yaml
@@ -837,7 +820,7 @@ Specifies the repository from which the `Action` will be cloned or a directory w
 
   would get the `latest` version of the `some-action` container by user `actions` from `code.forgejo.org`.
 
-- **Local actions**  
+- **Local actions**
   An action that begins with a `./` will be loaded from a directory
   instead of being cloned from a repository. The structure of the
   directory is otherwise the same as if it was located in a remote
