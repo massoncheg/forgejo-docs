@@ -21,8 +21,8 @@ jobs:
 
       - name: Install lychee
         run: |
-          curl -sL -o lychee.tar.gz "https://github.com/lycheeverse/lychee/releases/download/lychee-v0.19.1/lychee-x86_64-unknown-linux-gnu.tar.gz"
-          echo 19cd4e37f939568ae5b5cc7a7d74ee87 lychee.tar.gz | md5sum -c && tar -xvzf lychee.tar.gz
+          curl -sL -o lychee.tar.gz "https://github.com/lycheeverse/lychee/releases/download/lychee-v0.20.1/lychee-x86_64-unknown-linux-gnu.tar.gz"
+          echo 82d3811fee8be38b06bcf644c36c3e79 lychee.tar.gz | md5sum -c && tar -xvzf lychee.tar.gz
 
       - name: Check links
         id: lychee
@@ -33,7 +33,7 @@ jobs:
         run: sed -E "s+(### Errors in )(.*)+\1[\2](https://codeberg.org/forgejo/docs/src/branch/\2)+" -i ./report.md
 
       - name: Update issue
-        uses: https://github.com/peter-evans/create-issue-from-file@v5.0.0
+        uses: https://data.forgejo.org/peter-evans/create-issue-from-file@v5.0.0
         with:
           title: Dead links report
           issue-number: 583
