@@ -33,7 +33,7 @@ jobs:
         run: sed -E "s+(### Errors in )(.*)+\1[\2](https://codeberg.org/forgejo/docs/src/branch/\2)+" -i ./report.md
 
       - name: Update issue
-        uses: https://data.forgejo.org/peter-evans/create-issue-from-file@v5.0.0
+        uses: https://github.com/peter-evans/create-issue-from-file@v5.0.0
         with:
           title: Dead links report
           issue-number: 583
