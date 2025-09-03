@@ -60,6 +60,8 @@ Improvements to our documentation help everyone involved, and it is unlikely tha
 
 - There exist [many other Forgejo-related projects that one can contribute to][forgejo-profile].
 - The [Pull Requests Agreement][pr-agreement] lists the conditions for merging Pull Requests in Forgejo repositories.
+- Forgejo contributions are subjected to [testing requirements][]. Feel free to ask other contributors for help.
 
 [forgejo-profile]: https://codeberg.org/forgejo/.profile
 [pr-agreement]: https://codeberg.org/forgejo/governance/src/branch/main/PullRequestsAgreement.md
+[testing requirements]: ../testing/
