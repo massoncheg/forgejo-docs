@@ -18,7 +18,7 @@ PROTOCOL       = smtps
 SMTP_ADDR      = mail.example.com
 SMTP_PORT      = 587
 USER           = forgejo@example.com
-PASSWD         = mysecurepassword
+PASSWD         = `mysecurepassword`
 ```
 
 Restart Forgejo for the configuration changes to take effect.
