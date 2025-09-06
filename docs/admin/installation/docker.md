@@ -106,16 +106,22 @@ ssh -F /dev/null git@<address> -p 222
 The Forgejo configuration is stored in the `app.ini` file as described
 in the [Configuration Cheat Sheet](../../config-cheat-sheet). When using
 the Forgejo container image, this file is automatically created if it
-does not exist already. In addition it is possible to add settings
-using configuration variables. For instance:
+does not exist already.
+
+It is possible to add and modify configuration values by setting environment
+variables named in format `FORGEJO__[SECTION]__[KEY]`. The `DEFAULT` section
+of the configuration should be an empty string. For instance:
 
 ```
+FORGEJO____APP_NAME=Frogejo 🐸
 FORGEJO__repository__ENABLE_PUSH_CREATE_USER=true
 ```
 
-is the equivalent of adding the following to `app.ini`:
+is equivalent to adding the following to `app.ini`:
 
 ```
+APP_NAME=Frogejo 🐸
+
 [repository]
 ENABLE_PUSH_CREATE_USER = true
 ```
