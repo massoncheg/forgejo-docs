@@ -996,19 +996,61 @@ The following are identical to the matching environment variable
 
 Example: `${{ forge.SHA }}`
 
-### forge.event
+### forge
 
-The `forge.event` object is set to the payload associated with the
-event (`forge.event_name`) that triggered the workflow.
+The `forge` object is set to the payload associated with the event (`forge.event_name`) that triggered the workflow.
 
-- [`push` and `push.branches` event](https://codeberg.org/forgejo/docs/src/branch/v1.21/docs/user/actions-contexts/push/push/github) produced by [an example workflow](https://code.forgejo.org/forgejo/end-to-end/src/commit/d825dac67e1a0b7fa1117db0558fe42152313763/actions/example-push/.forgejo/workflows/test.yml)
-- [`push.tags` event](https://codeberg.org/forgejo/docs/src/branch/v1.21/docs/user/actions-contexts/tag/push/github) produced by [an example workflow](https://code.forgejo.org/forgejo/end-to-end/src/commit/d825dac67e1a0b7fa1117db0558fe42152313763/actions/example-tag/.forgejo/workflows/test.yml)
-- `pull_request` and `pull_request_event` events produced by [an example workflow](https://code.forgejo.org/forgejo/end-to-end/src/commit/d825dac67e1a0b7fa1117db0558fe42152313763/actions/example-pull-request/.forgejo/workflows/test.yml).
-  - [`pull_request` from the same repository](https://codeberg.org/forgejo/docs/src/branch/v1.21/docs/user/actions-contexts/pull-request/root/pull_request/github)
-  - [`pull_request` from a forked repository](https://codeberg.org/forgejo/docs/src/branch/v1.21/docs/user/actions-contexts/pull-request/fork-org/pull_request/github)
-  - [`pull_request_target` from the same repository](https://codeberg.org/forgejo/docs/src/branch/v1.21/docs/user/actions-contexts/pull-request/root/pull_request_target/github)
-  - [`pull_request_target` from a forked repository](https://codeberg.org/forgejo/docs/src/branch/v1.21/docs/user/actions-contexts/pull-request/fork-org/pull_request_target/github)
-- [`schedule` event](https://codeberg.org/forgejo/docs/src/branch/v1.21/docs/user/actions-contexts/cron/schedule/github) produced by [an example workflow](https://code.forgejo.org/forgejo/end-to-end/src/commit/d825dac67e1a0b7fa1117db0558fe42152313763/actions/example-cron/.forgejo/workflows/test.yml)
+To find out what this payload is made of, insert a job at the beginning of the workflow to display it in the web UI. For instance:
+
+```yaml
+debug:
+  runs-on: docker
+  steps:
+    - name: event
+      run: |
+        cat <<'EOF'
+        ${{ toJSON(forge) }}
+        EOF
+```
+
+will show something similar to the following when a label is updated in a pull request:
+
+```json
+{
+  "event": {
+    "action": "label_updated",
+    "commit_id": "",
+    "label": {
+      "color": "795548",
+      "description": "Issue or pull request related to testing",
+      "exclusive": false,
+      "id": 23,
+      "is_archived": false,
+      "name": "Kind/Testing",
+      "url": "https://code.forgejo.org/api/v1/repos/forgejo/runner/labels/23"
+    },
+    "number": 948,
+    "pull_request": {
+...
+  "workflow": "cascade",
+  "run_attempt": "1",
+  "run_id": "117195",
+  "run_number": "9384",
+  "actor": "earl-warren",
+  "repository": "forgejo/runner",
+  "event_name": "pull_request_target",
+  "sha": "09adcc47d250567412c2fc2083ed7dcf61a7b953",
+  "ref": "refs/heads/main",
+  "ref_name": "main",
+  "ref_type": "branch",
+  "head_ref": "wip-cascade",
+  "base_ref": "main",
+  "token": "***",
+  "workspace": "/workspace/forgejo/runner",
+...
+```
+
+> **NOTE:** although the automatic token is masked (see `***` in the example above), it is not advisable to display this on a publicly readable instance.
 
 ### matrix
 
