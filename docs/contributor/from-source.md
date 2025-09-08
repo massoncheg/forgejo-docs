@@ -70,6 +70,7 @@ To build from source, the following programs must be present on the system:
 - `node` needs to include `npm`, the latest LTS should generally build fine. In
   doubt, the `package-lock.json` contains node version constrains for every
   dependency.
+- `gcc`
 - `make`
 
 For testing, linting and other build configuration, the following dependencies
