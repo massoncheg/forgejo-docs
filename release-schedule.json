@@ -1,12 +1,16 @@
 [
-  { "major": "7", "minor": "0", "cut": "2024-04-01", "release": "2024-04-23", "eol": "2025-07-16", "lts": true },
+  { "major": "7", "minor": "0", "cut": "2024-04-01", "release": "2024-04-23", "eol": "2025-07-17", "lts": true },
   { "major": "8", "minor": "0", "cut": "2024-07-01", "release": "2024-07-30", "eol": "2024-10-16", "lts": false },
   { "major": "9", "minor": "0", "cut": "2024-09-25", "release": "2024-10-16", "eol": "2025-01-16", "lts": false },
   { "major": "10", "minor": "0", "cut": "2024-12-25", "release": "2025-01-16", "eol": "2025-04-16", "lts": false },
   { "major": "11", "minor": "0", "cut": "2025-03-26", "release": "2025-04-16", "eol": "2026-07-16", "lts": true },
   { "major": "12", "minor": "0", "cut": "2025-06-25", "release": "2025-07-17", "eol": "2025-10-16", "lts": false },
-  { "major": "13", "minor": "0", "cut": "2025-09-24", "release": "2025-10-16", "eol": "2026-01-15", "lts": false },
-  { "major": "14", "minor": "0", "cut": "2025-12-24", "release": "2026-01-15", "eol": "2026-04-16", "lts": false },
-  { "major": "15", "minor": "0", "cut": "2026-03-25", "release": "2026-04-16", "eol": "2027-07-15", "lts": true },
-  { "major": "16", "minor": "0", "cut": "2026-06-24", "release": "2026-07-16", "eol": "2026-10-15", "lts": false }
+  { "major": "13", "minor": "0", "cut": "2025-09-25", "release": "2025-10-16", "eol": "2026-01-15", "lts": false },
+  { "major": "14", "minor": "0", "cut": "2025-12-18", "release": "2026-01-15", "eol": "2026-04-16", "lts": false },
+  { "major": "15", "minor": "0", "cut": "2026-03-26", "release": "2026-04-16", "eol": "2027-07-15", "lts": true },
+  { "major": "16", "minor": "0", "cut": "2026-06-25", "release": "2026-07-16", "eol": "2026-10-15", "lts": false },
+  { "major": "17", "minor": "0", "cut": "2026-09-24", "release": "2026-10-15", "eol": "2027-01-14", "lts": false },
+  { "major": "18", "minor": "0", "cut": "2026-12-17", "release": "2027-01-14", "eol": "2027-04-15", "lts": false },
+  { "major": "19", "minor": "0", "cut": "2027-03-25", "release": "2027-04-15", "eol": "2028-07-13", "lts": true },
+  { "major": "20", "minor": "0", "cut": "2027-06-24", "release": "2027-07-15", "eol": "2027-10-14", "lts": false }
 ]
