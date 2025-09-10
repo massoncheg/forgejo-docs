@@ -62,13 +62,15 @@ $ usermod -aG docker runner
 
 The `Forgejo runner` relies on application containers (Docker, Podman, etc.) or system containers (LXC) to execute a workflow in an isolated environment. They need to be installed and configured independently.
 
+It is common for workflows to also require interaction with a container environment, for example to execute `docker build` commands. This is distinct from how Forgejo Runner itself executes jobs, and is an optional configuration that is described in detail in [Utilizing Docker within Actions](../docker-access/).
+
 - **Docker:**
   See the [Docker installation](https://docs.docker.com/engine/install/) documentation for more information.
 
 - **Podman:**
-  Podman provides a (generally compatible) Docker CLI and Socket. Depending on your distribution, you may need to install an additional package (e.g. `podman-docker` for Ubuntu).  
-  The socket is _not enabled by default_ and must be enabled. If it is not, the Forgejo runner complains about "daemon Docker Engine socket not found", or "cannot ping the docker daemon".  
-  On systemd-based distributions, there is a systemd unit available which can be enabled `systemctl enable --now podman.socket`.  
+  Podman provides a (generally compatible) Docker CLI and Socket. Depending on your distribution, you may need to install an additional package (e.g. `podman-docker` for Ubuntu).
+  The socket is _not enabled by default_ and must be enabled. If it is not, the Forgejo runner complains about "daemon Docker Engine socket not found", or "cannot ping the docker daemon".
+  On systemd-based distributions, there is a systemd unit available which can be enabled `systemctl enable --now podman.socket`.
   To use [rootless podman](https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md) for the socket, run `systemctl --user enable --now podman.socket` as the runner user.
 
   On non-systemd distributions, the podman socket can be provided by running `podman system service -t 0` in the background.
@@ -375,14 +377,14 @@ The [OCI images](https://code.forgejo.org/forgejo/-/packages/container/runner/)
 are built from the Dockerfile which is [found in the source directory](https://code.forgejo.org/forgejo/runner/src/branch/main/Dockerfile). It contains the `forgejo-runner` binary.
 
 ```shell
-$ docker run --rm data.forgejo.org/forgejo/runner:9 forgejo-runner --version
-forgejo-runner version v9.0.3
+$ docker run --rm data.forgejo.org/forgejo/runner:11 forgejo-runner --version
+forgejo-runner version v11.0.0
 ```
 
 It does not run as root:
 
 ```shell
-$ docker run --rm data.forgejo.org/forgejo/runner:9 id
+$ docker run --rm data.forgejo.org/forgejo/runner:11 id
 uid=1000 gid=1000 groups=1000
 ```
 
@@ -419,7 +421,7 @@ services:
     restart: 'unless-stopped'
 
   forgejo:
-    image: 'data.forgejo.org/forgejo/runner:9'
+    image: 'data.forgejo.org/forgejo/runner:11'
     links:
       - docker-in-docker
     depends_on:
@@ -614,9 +616,9 @@ Now, `Forgejo runner` will create networks with IPv6 enabled, and workflow conta
 
 ### IPv6 connectivity issues with rootless podman
 
-Because creation of real networks is limited to the root user, rootless podman cannot create actual networks.  
-To work around this issue, podman creates so-called tap-networks which come with [their own limitations](https://github.com/containers/podman/blob/main/rootless.md).  
-At the time of writing, only Podman version 5.3 and later have been observed to have proper IPv6 support in rootless bridge networks.  
+Because creation of real networks is limited to the root user, rootless podman cannot create actual networks.
+To work around this issue, podman creates so-called tap-networks which come with [their own limitations](https://github.com/containers/podman/blob/main/rootless.md).
+At the time of writing, only Podman version 5.3 and later have been observed to have proper IPv6 support in rootless bridge networks.
 Podman 5 switched to [`passt`](https://passt.top/passt/about/) for rootless networking and 5.3 includes fixes like host-service reachability.
 (Earlier versions appear to cause "host unreachable" or "network unreachable" issues with bridge networks - which is the type Forgejo runners create.)
 
