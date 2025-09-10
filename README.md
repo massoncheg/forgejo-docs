@@ -51,6 +51,20 @@ pnpm install
 
 Every time you `pull` the repo or `checkout` a different branch, you should run `pnpm install` again to update the dependencies.
 
+##### Possible steps for Ubuntu and derivatives
+
+The mermaid image generation process requires puppeteer which automatically installs a stable version of chrome to run.
+On modern (>= 24) Ubuntu versions, app-armor restricts chrome and thus puppeteer will fail to run. You can follow this workaround:
+
+- Install a version of chrome
+  - For example: `npx @puppeteer/browsers install chrome@stable` in $HOME
+    - As described here: https://www.chromium.org/getting-involved/download-chromium/
+- Update or create an app-armor profile
+  - https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md
+- Then run any preview with `PUPPETEER_EXECUTABLE_PATH="path/to/downloaded/chrome/executable" PUPETEER_SKIP_CHROMIUM_DOWNLOAD="true" COREPACK_ENABLE_STRICT=0 pnpm run preview`
+
+See also: https://codeberg.org/forgejo/docs/issues/1430
+
 #### Previewing changes
 
 ```shell
