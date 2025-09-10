@@ -369,7 +369,7 @@ The following configuration sets the `Content-Type: application/vnd.android.pack
 - `LANDING_PAGE`: **home**: Landing page for unauthenticated users \[home, explore, organizations, login, **custom**\]. Where custom would instead be any URL such as "/org/repo" or even `https://anotherwebsite.com`.
 - `LFS_START_SERVER`: **false**: Enables Git LFS support.
 - `LFS_CONTENT_PATH`: **%(APP_DATA_PATH)s/lfs**: Default LFS content path. (if it is on local storage.) **DEPRECATED** use settings in `[lfs]`.
-- `LFS_JWT_SECRET`: **\<empty\>**: LFS authentication secret; change this to a unique string.
+- `LFS_JWT_SECRET`: **\<empty\>**: LFS authentication secret; change this to a unique base64-encoded 32-byte value. One can be generated with `openssl rand -base64 32`
 - `LFS_JWT_SECRET_URI`: **\<empty\>**: Instead of defining `LFS_JWT_SECRET` in the configuration, this option can be used to give Forgejo a path to a file that contains the secret (example value: `file:/etc/forgejo/lfs_jwt_secret`).
 - `LFS_HTTP_AUTH_EXPIRY`: **24h**: LFS authentication validity period in `time.Duration`; pushes taking longer than this may fail.
 - `LFS_MAX_FILE_SIZE`: **0**: Maximum allowed LFS file size in bytes (Set to 0 for no limit).
@@ -1160,7 +1160,7 @@ This section only performs "set" config; a removed config key from this section 
 - `REFRESH_TOKEN_EXPIRATION_TIME`: **730**: Lifetime of an OAuth2 refresh token in hours.
 - `INVALIDATE_REFRESH_TOKENS`: **true**: Check if a refresh token has already been used.
 - `JWT_SIGNING_ALGORITHM`: **RS256**: Algorithm used to sign OAuth2 tokens. Valid values: \[`HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`, `ES256`, `ES384`, `ES512`\].
-- `JWT_SECRET`: **\<empty\>**: OAuth2 authentication secret for access and refresh tokens; change this to a unique string. This setting is only needed if `JWT_SIGNING_ALGORITHM` is set to `HS256`, `HS384`, or `HS512`.
+- `JWT_SECRET`: **\<empty\>**: OAuth2 authentication secret for access and refresh tokens; change this to a unique base64-encoded 32-byte value. One can be generated with `openssl rand -base64 32`. This setting is only needed if `JWT_SIGNING_ALGORITHM` is set to `HS256`, `HS384`, or `HS512`.
 - `JWT_SECRET_URI`: **\<empty\>**: Instead of defining `JWT_SECRET` in the configuration, this option can be used to give Forgejo a path to a file that contains the secret (example value: `file:/etc/forgejo/oauth2_jwt_secret`).
 - `JWT_SIGNING_PRIVATE_KEY_FILE`: **jwt/private.pem**: Private key file path used to sign OAuth2 tokens. The path is relative to **the** `APP_DATA_PATH`. This setting is only needed if `JWT_SIGNING_ALGORITHM` is set to `RS256`, `RS384`, `RS512`, `ES256`, `ES384`, or `ES512`. The file must contain an RSA or ECDSA private key in the PKCS8 format. **If no key exists, a 4096-bit** key will be created for you.
 - `MAX_TOKEN_LENGTH`: **32767**: Maximum length of token/cookie to accept from the OAuth2 provider.
