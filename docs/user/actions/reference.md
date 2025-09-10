@@ -861,7 +861,7 @@ For actions that are implemented with a `Dockerfile`, the `entrypoint` key is us
 
 ### `jobs.<job_id>.steps[*].env`
 
-Set environment variables like it's [top-level variant `env`](#env-2), but only for the current step.
+Set environment variables like it's [top-level variant `env`](#env), but only for the current step.
 
 ### `jobs.<job_id>.steps[*].continue-on-error`
 
