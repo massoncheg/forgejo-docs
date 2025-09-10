@@ -30,6 +30,7 @@ These documents are targeted to people who run Forgejo on their machines.
 - Forgejo Actions
   - [Overview](./actions/)
   - [Forgejo Runner installation](./actions/runner-installation/)
+  - [Securing Forgejo Actions Deployments](./actions/security/)
   - [Docker Access](./actions/docker-access/)
 - Upgrade and migration
   - [Upgrade guide](./upgrade/)
