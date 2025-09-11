@@ -29,6 +29,7 @@ We encourage you to [read our warm welcome first](./welcome/), then get involved
   - [Architecture overview](./architecture/)
     - [Federation Architecture](https://codeberg.org/forgejo-contrib/federation/src/branch/main/architecture/federation-architecture.md)
     - [Federation Architectural Decision Records](https://codeberg.org/forgejo-contrib/federation/src/branch/main/architecture/adr)
+    - [Repository Migration](./repository-migration/)
   - [Threat Analysis](./threat-analysis/)
   - [Developer Certificate of Origin (DCO)](./dco/)
   - [code.forgejo.org](./code-forgejo-org/)
