@@ -433,6 +433,20 @@ jobs:
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-needs/.forgejo/workflows/test.yml).
 
+### `jobs.<job_id>.timeout-minutes`
+
+Set the number of minutes this job can be performed before it is canceled.
+
+```yaml
+jobs:
+  test:
+    runs-on: docker
+    timeout-minutes: 1
+    steps:
+      - run: sleep 2m
+      - run: echo will never run
+```
+
 ### `jobs.<job_id>.outputs`
 
 The `jobs.<job_id>.outputs` object is a key/value map of the output of the
