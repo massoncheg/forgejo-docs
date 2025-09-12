@@ -21,7 +21,7 @@ When the PR is merged in forgejo-curl, the corresponding PR in setup-forgejo is 
 
 [setup-forgejo](https://code.forgejo.org/actions/setup-forgejo) installs a [runner](https://code.forgejo.org/forgejo/runner/) by default, as [specified in the action.yml](https://code.forgejo.org/actions/setup-forgejo/src/commit/a580cb63b6ce411c3394aff77c7073d4d3e9428c/action.yml#L49) file.
 
-The runner has a [workflow](https://code.forgejo.org/forgejo/runner/src/branch/main/.forgejo/workflows/cascade-setup-forgejo.yml) that will open a pull request to setup-forgejo to [update the default version](https://code.forgejo.org/forgejo/runner/src/branch/main/.forgejo/cascading-pr-setup-forgejo) in the action.yml file. The runner workflow will wait on the setup-forgejo workflow and fail if it does not pass, thus providing additional confirmation that the change under test won't break setup-forgejo when it upgrades to using a release that contains the change.
+The runner has a [workflow](https://code.forgejo.org/forgejo/runner/src/branch/main/.forgejo/workflows/cascade-setup-forgejo.yml) that will open a pull request to setup-forgejo to [update the default version](https://code.forgejo.org/forgejo/runner/src/branch/main/.forgejo/cascading-setup-forgejo) in the action.yml file. The runner workflow will wait on the setup-forgejo workflow and fail if it does not pass, thus providing additional confirmation that the change under test won't break setup-forgejo when it upgrades to using a release that contains the change.
 
 When the PR is merged in forgejo-curl, the corresponding PR in setup-forgejo is closed. It is not meant to upgrade setup-forgejo because there is not yet a tag release published with this change.
 

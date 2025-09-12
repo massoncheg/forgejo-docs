@@ -336,8 +336,8 @@ forgejo-runner >= 6.1.0. For forgejo-runner < 6.1.0, it defaults to `false`
 
 #### Cache configuration
 
-Some actions such as https://data.forgejo.org/actions/cache or
-https://data.forgejo.org/actions/setup-go can communicate with the
+Some actions such as `https://data.forgejo.org/actions/cache` or
+`https://data.forgejo.org/actions/setup-go` can communicate with the
 `Forgejo runner` to save and restore commonly used files such as
 compilation dependencies. They are stored as compressed tar archives,
 fetched when a job starts and saved when it completes.

@@ -78,22 +78,22 @@ It is possible for any user to manually register a new OAuth2 application on the
 
 ### Using Codeberg as an authentication source
 
-In this example, https://v7.next.forgejo.org will be configured to add the option to delegate user registration to https://codeberg.org.
+In this example, `https://forgejo.example.com` will be configured to add the option to delegate user registration to https://codeberg.org.
 
 ![Login page with Codeberg authentication source](../_images/user/oauth2-provider/authsource-intro-login-page.png)
 
-> **NOTE:** In OAuth2 jargon, https://v7.next.forgejo.org is the OAuth2 client and Codeberg is the OAuth2 provider.
+> **NOTE:** In OAuth2 jargon, `https://forgejo.example.com` is the OAuth2 client and Codeberg is the OAuth2 provider.
 
 - Choose an arbitrary but distinctive name for the OAuth2 provider (e.g., **Codeberg**).
 - Choose an existing Codeberg user to create the OAuth2 application. It does not need to be a user with elevated privileges (e.g., **user-for-oauth-application**).
 - On https://codeberg.org, log in as **user-for-oauth-application**.
-  - Visit https://codeberg.org/user/settings/applications and create a new OAuth2 application. There needs to be only one redirect URI, composed with the arbitrary name that was chosen above: https://v7.next.forgejo.org/user/oauth2/Codeberg/callback.
+  - Visit https://codeberg.org/user/settings/applications and create a new OAuth2 application. There needs to be only one redirect URI, composed with the arbitrary name that was chosen above: `https://forgejo.example.com/user/oauth2/Codeberg/callback`.
     ![Create a new OAuth2 application](../_images/user/oauth2-provider/authsource-provider-create.png)
-  - When created, the OAuth2 application is given a **Client ID** and a **Client secret** that https://v7.next.forgejo.org will need to let https://codeberg.org know it is an authorized OAuth2 client.
+  - When created, the OAuth2 application is given a **Client ID** and a **Client secret** that `https://forgejo.example.com` will need to let https://codeberg.org know it is an authorized OAuth2 client.
     ![Client ID and secret of a new OAuth2 application](../_images/user/oauth2-provider/authsource-provider-show.png)
-- On https://v7.next.forgejo.org, log in as a user with admin privileges.
-  - Create a new authentication source on https://v7.next.forgejo.org, the Forgejo instance that is going to act as the OAuth2 client, allowing its users to register using the account they have on https://codeberg.org.
-    - Visit https://v7.next.forgejo.org/admin/auths/new to create the authentication source with:
+- On `https://forgejo.example.com`, log in as a user with admin privileges.
+  - Create a new authentication source on `https://forgejo.example.com`, the Forgejo instance that is going to act as the OAuth2 client, allowing its users to register using the account they have on https://codeberg.org.
+    - Visit `https://forgejo.example.com/admin/auths/new` to create the authentication source with:
       - **Authentication type:** OAuth2
       - **Authentication name:** the arbitrary name that was chosen above (e.g., **Codeberg**)
       - **OAuth2 provider:** OpenID Connect
@@ -103,14 +103,14 @@ In this example, https://v7.next.forgejo.org will be configured to add the optio
       - **OpenID Connect Auto Discovery URL:** https://codeberg.org/.well-known/openid-configuration
       - Leave all other fields at their default values.
         ![Create a new OAuth2 authentication source](../_images/user/oauth2-provider/authsource-client-create.png)
-    - It will show in the list of authentication sources at https://v7.next.forgejo.org/admin/auths.
+    - It will show in the list of authentication sources at `https://forgejo.example.com/admin/auths`.
       ![List of OAuth2 authentication source](../_images/user/oauth2-provider/authsource-client-list.png)
-- On https://v7.next.forgejo.org, not logged in.
-  - Visit https://v7.next.forgejo.org/user/login.
+- On `https://forgejo.example.com`, not logged in.
+  - Visit `https://forgejo.example.com/user/login`.
     ![Login page with Codeberg authentication source](../_images/user/oauth2-provider/authsource-intro-login-page.png)
-  - Click on **Sign in with Codeberg** to be redirected to Codeberg and authorize https://v7.next.forgejo.org to obtain the details of your account (user name, email, etc.). If you are not already logged in to Codeberg, you will need to before this authorization request is presented to you.
-    ![Authorizing v7.next.forgejo.org](../_images/user/oauth2-provider/authsource-intro-login-confirm.png)
-  - Review the pre-filled information that will be used to create your account on https://v7.next.forgejo.org.
+  - Click on **Sign in with Codeberg** to be redirected to Codeberg and authorize `https://forgejo.example.com` to obtain the details of your account (user name, email, etc.). If you are not already logged in to Codeberg, you will need to before this authorization request is presented to you.
+    ![Authorizing forgejo.example.com](../_images/user/oauth2-provider/authsource-intro-login-confirm.png)
+  - Review the pre-filled information that will be used to create your account on `https://forgejo.example.com`.
     ![Filling account information](../_images/user/oauth2-provider/authsource-intro-login-create.png)
   - You are redirected to the home page of the newly created account.
     ![User home page](../_images/user/oauth2-provider/authsource-intro-login-home.png)

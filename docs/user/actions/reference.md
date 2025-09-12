@@ -92,8 +92,6 @@ on:
     types: [opened, edited]
 ```
 
-[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-issue/.forgejo/workflows/test.yml).
-
 ### `on.pull_request`
 
 Trigger the workflow when an event happens on a pull request, as specified with the `types` event parameter. It defaults to `[opened, synchronize, reopened]` if not specified.
