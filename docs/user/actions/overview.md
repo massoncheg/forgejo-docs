@@ -13,6 +13,8 @@ If you want a quick way to get started with an example, check out the [quick sta
 
 Forgejo Actions workflows are defined using `.yaml` files in the `.forgejo/workflows` directory of the repository. The workflow file describes the events that should trigger the workflow, and which jobs need to be executed.
 
+> **NOTE:** in the absence of a `.forgejo/workflows` directory, workflows will be looked up in the `.github/workflows` directory, if it exists.
+
 For more information about how to write workflow files, check out the [basic concepts](../basic-concepts/). There is also a guide to the more [advanced features](../advanced-features/).
 
 ## Runners
