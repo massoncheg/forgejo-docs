@@ -48,15 +48,22 @@ git push origin local-branch:refs/for/remote-branch/topic
 
 #### Setting a title and a description in AGit
 
-It is also possible to use some additional parameters, such as `title` and `description`. Here's another example targeting the `main` branch:
+It is also possible to use some additional push options, such as `title` and `description`. Here's another example targeting the `main` branch:
 
 ```shell
 git push origin HEAD:refs/for/main -o topic="topic-branch" \
   -o title="Title of the PR" \
-  -o description="# The PR Description
-This can be **any** markdown content.\n
-- [x] Ok"
+  -o description="This can be **any** markdown content."
 ```
+
+Both push options are optional. If no `title` or `description` push option is included, the title and the description of the first commit will be used in their place instead.
+
+New lines are not supported in the `description` push option. There are two workarounds:
+
+- Write `\n` for new lines. (i.e. `-o description="- first line\n- second line"`)
+- Encode your multi-line description using base64. (See [forgejo/forgejo#8479][])
+
+[forgejo/forgejo#8479]: https://codeberg.org/forgejo/forgejo/pulls/8479
 
 #### Changing the default push method
 
@@ -95,7 +102,7 @@ The following parameters are available:
 - `-o <topic|title|description|force-push>`: Push options
   - `topic`: Essentially an identifier. **If left empty,** the value of `<session>`, if present, will be used for the topic. Otherwise, Forgejo will return an error. If you want to push additional commits to a pull request that was created using AGit, you **must** use the same topic.
   - `title`: Title of the pull request. **If left empty,** the first line of the first new Git commit will be used instead.
-  - `description`: Description of the pull request.
+  - `description`: Description of the pull request. **If left empty,** the description of the first new Git commit will be used instead.
   - `force-push`: Necessary when rebasing, amending, or [retroactively modifying](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) your previous commits. Otherwise, a new pull request will be opened, **even if you use the same topic**. If used, the value of this parameter should be set to `true`.
 
 Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing open pull request.
