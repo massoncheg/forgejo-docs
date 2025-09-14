@@ -870,10 +870,10 @@ When configuring logging, also consult the detailed [logging documentation](../t
 - `MODE`: **console**: Logging mode. For multiple modes, use a comma to separate values. You can configure each mode in per-mode log subsections `[log.writer-mode-name]`.
 - `LEVEL`: **Info**: General log level. \[Trace, Debug, Info, Warn, Error, Critical, Fatal, None\]
 - `STACKTRACE_LEVEL`: **None**: Default log level at which to create stack traces (rarely useful, do not set it). \[Trace, Debug, Info, Warn, Error, Critical, Fatal, None\]
-- `ENABLE_SSH_LOG`: **false**: Save SSH log to the log file.
-- `logger.access.MODE`: **\<empty\>**: The "access" logger.
-- `logger.router.MODE`: **,**: The "router" logger; a single comma means it will use the default `MODE` above.
-- `logger.xorm.MODE`: **,**: The "xorm" logger.
+- `LOGGER_ACCESS_MODE`: **\<empty\>**: The "access" logger.
+- `LOGGER_ROUTER_MODE`: **,**: The "router" logger; a single comma means it will use the default `MODE` above.
+- `LOGGER_XORM_MODE`: **,**: The "xorm" logger.
+- `LOGGER_SSH_MODE`: **\<empty\>**: The "ssh" logger, which is disabled by default.
 
 ### Access Log (`log`)
 
