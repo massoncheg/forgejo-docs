@@ -143,10 +143,19 @@ $ forgejo-runner generate-config > config.yml
 # You don't have to copy this file to your instance,
 # just run `forgejo-runner generate-config > config.yaml` to generate a config file.
 
+#
+# The value of level or job_level can be trace, debug, info, warn, error or fatal
+#
 log:
-  # The level of logging, can be trace, debug, info, warn, error, fatal
+  #
+  # What is displayed in the output of the runner process but not sent
+  # to the Forgejo instance.
+  #
   level: info
-  # The level of logging for jobs, can be trace, debug, info, earn, error, fatal
+  #
+  # What is sent to the Forgejo instance and therefore
+  # visible in the web UI for a given job.
+  #
   job_level: info
 
 runner:
@@ -349,6 +358,9 @@ and rebuild dependencies.
 If the machine on which the `Forgejo runner` is running has a slow
 disk and plenty of CPU and bandwidth, it may be better to not activate
 the cache as it can slow down the execution time.
+
+For more information see the `cache` section of
+the [runner configuration file](#configuration).
 
 ### Starting the runner
 
