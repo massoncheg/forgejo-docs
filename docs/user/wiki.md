@@ -13,15 +13,15 @@ The user in these examples is `knut`, the polar bear, and its repository is `foo
 
 ## Activation and Permissions
 
-To enable the wiki for a repository, visit the `Settings` page and activate `Enable Repository Wiki` in the `Advanced Section`. It will default to the built-in wiki which is described here, but you can add a URI to an external site the "Wiki" tab should link to.
+To enable the wiki for a repository, visit the `Settings` page and activate `Enable repository wiki` in the `Wiki` section under `Units`. It will default to the built-in wiki which is described here, but you can add a URI to an external site the "Wiki" tab should link to.
 
 > **Warning**
 > Be aware that the wiki, once enabled, is accessible to _everyone_ who has `read` access to your repository - on public repositories even unauthenticated guests can access the wiki.
 > The wiki is _not_ a suitable place for storing private information or secrets (like passwords).
 >
-> Activating the `Allow anyone to edit the Wiki` option in `Settings` will give everyone with an account write access to the wiki.
+> Activating the `Allow anyone to edit the wiki` option in `Settings` will give everyone with an account write access to the wiki.
 
-To edit the wiki, `write` permission to the repository is required, unless the `Allow anyone to edit the Wiki` setting is activated on the `Settings` page, in the `Advanced Settings` section.
+To edit the wiki, `write` permission to the repository is required, unless the `Allow anyone to edit the wiki` setting is activated on the `Settings` page, in the `Wiki` section under `Units`.
 
 ## Wiki structure
 
