@@ -25,6 +25,8 @@ interface that shows the the details of the jobs for a workflow.
 based on the [upload-artifact](https://code.forgejo.org/actions/upload-artifact) action and
 the [download-artifact](https://code.forgejo.org/actions/download-artifact) action.
 
+> **NOTE:** the name of an artifact is limited to 255 characters.
+
 ## Uploading to a package registry
 
 Forgejo offers built-in [package registries](../../packages/). You can use these to publish packages for various package managers, or just [generic](../../packages/generic) build output.
