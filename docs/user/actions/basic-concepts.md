@@ -98,6 +98,7 @@ You may use these functions in expressions:
 - `join( array, optionalSeparator )`. The value for `array` can be an array or a string. All values in `array` are concatenated into a string. If you provide `optionalSeparator`, it is inserted between the concatenated values. Otherwise, the default separator `,` is used. Casts values to a string.
 - `toJSON(value)`. Returns a pretty-print JSON representation of `value`.
 - `fromJSON(value)`. Returns a JSON object or JSON data type for `value`. You can use this function to provide a JSON object as an evaluated expression or to convert environment variables from a string.
+- `hashFiles(pattern[, ...])`. Returns a hash (e.g. `39b35c59b92fdb3024d09a4f2f960d123ba59c3d531569f5195b65fbf0a40161`) based on the concatenated content of all the files matching the [patterns](https://www.npmjs.com/package/@actions/glob#patterns) given in argument. Returns an empty string if the files are not found. It is a JavaScript function executed in the container running the action and requires [Node.js](https://nodejs.org/) to be installed.
 
 Some of these functions cast values to strings in order to compare them. The following conversions are used:
 
