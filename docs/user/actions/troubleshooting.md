@@ -19,6 +19,7 @@ As of [Forgejo runner v8.0.0 and above](https://code.forgejo.org/forgejo/runner/
   ![Complete job logs with schema validation errors](../../_images/user/actions/validate-complete-job.webp)
 
 It is also possible to verify that the workflows and/or actions found in a repository successfully pass schema validation [using the Forgejo runner CLI](https://code.forgejo.org/forgejo/runner/releases/tag/v9.0.0) (e.g. `forgejo-runner validate --repository https://example.com/my/repo`) (available in the [Forgejo runner v9.0.0](https://code.forgejo.org/forgejo/runner/releases/tag/v9.0.0) and above).
+A `pre-commit` hook is also provided to help automate this, see [Advanced features](../advanced-features/#pre-commit-hook) for more details.
 
 ## Forgejo runner logs
 

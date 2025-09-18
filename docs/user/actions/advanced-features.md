@@ -5,6 +5,22 @@ license: 'CC-BY-SA-4.0'
 
 This page covers the more advanced features of Forgejo Actions.
 
+## pre-commit hook
+
+A [`pre-commit` hook](https://pre-commit.com/) is provided to assist in
+validating Forgejo Actions files in your projects.
+See [pre-commit.com](https://pre-commit.com/) for detailed instructions on how
+to set it up, as well as more details on how it works, and then add this to
+your `.pre-commit-config.yaml` file:
+
+```yaml
+repos:
+  - repo: https://code.forgejo.org/forgejo/runner
+    rev: v11.1.0
+    hooks:
+      - id: forgejo-runner-validate
+```
+
 ## Artifacts
 
 `Artifacts` let you persist data after a job has completed. An artifact is a file or collection of files produced during a workflow run.
