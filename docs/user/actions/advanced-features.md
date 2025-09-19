@@ -16,7 +16,7 @@ your `.pre-commit-config.yaml` file:
 ```yaml
 repos:
   - repo: https://code.forgejo.org/forgejo/runner
-    rev: v11.1.0
+    rev: v11.1.1
     hooks:
       - id: forgejo-runner-validate
 ```
