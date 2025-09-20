@@ -76,8 +76,7 @@ In addition, there is _`StaticRootPath`_, which can be set as a built-in at buil
 - `DEFAULT_PRIVATE`: **last**: Default privacy setting when creating a new repository.
   \[last, private, public\]
 - `DEFAULT_PUSH_CREATE_PRIVATE`: **true**: Default privacy setting when creating a new repository with push-to-create.
-- `MAX_CREATION_LIMIT`: **-1**: Global maximum creation limit of repositories per user;
-  `-1` means no limit.
+- `MAX_CREATION_LIMIT`: **-1**: Global maximum creation limit of repositories for each user and organization; `-1` means no limit. If regular users can create organizations (see `DISABLE_REGULAR_ORG_CREATION`) then they can bypass this by creating new organizations. The global limit can be overridden by an administrator on each user and repository through their respective configuration UIs.
 - `PREFERRED_LICENSES`: **Apache-2.0, MIT"**: Preferred Licenses to place at
   the top of the list. Name must match the file name in options/license or custom/options/license.
 - `DISABLE_HTTP_GIT`: **false**: Disable the ability to interact with repositories over the

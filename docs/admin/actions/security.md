@@ -21,6 +21,7 @@ After network access is established, managing the risks to a Forgejo Runner syst
 
 - [`service.DISABLE_REGISTRATION`](../../config-cheat-sheet/#service-service) can be set to `true` which will prevent unexpected users from registering on the Forgejo instance. Mallory will not be able to create their own Forgejo account. Forgejo administrators can create new accounts for users on-demand.
 - [`repository.MAX_CREATION_LIMIT`](../../config-cheat-sheet/#repository-repository) can be set to `0` in order to prevent users from creating unexpected repositories on the instance. Mallory won't be able to create new empty repositories from which they may be able to run malicious workflow actions. Forgejo administrators can override this value temporarily when new authorized repositories are created, allowing the system to be usable despite this configuration.
+  - For any value other than `-1` and `0`, be aware that [`admin.DISABLE_REGULAR_ORG_CREATION`](../../config-cheat-sheet/#admin-admin) must also be set to `true` to prevent users from effectively bypassing this limitation by creating organizations.
 - [`repository.ALLOW_FORK_WITHOUT_MAXIMUM_LIMIT`](../../config-cheat-sheet/#repository-repository) can be set to `false`, which will prevent users from forking existing repositories. Mallory won't be able to fork existing repositories, preventing them from creating pull requests that can trigger workflow runs.
 
 There is no ideal configuration for these values, as changing them affects Forgejo access and security, but limits functionality.
