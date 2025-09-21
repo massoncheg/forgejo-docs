@@ -122,9 +122,3 @@ There is no uniformity in how software is released and they call for different s
 
 - https://code.forgejo.org/forgejo/download-artifact
 - https://code.forgejo.org/forgejo/upload-artifact
-
-## Web browser support
-
-For changes that would affect the usability of Forgejo, use browser features and APIs that are compatible with the latest version of Firefox ESR.
-
-For changes that do not affect usability, using features up to [Baseline <PREVIOUS-YEAR>](https://web.dev/baseline) is acceptable.

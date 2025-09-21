@@ -26,6 +26,7 @@ We encourage you to [read our warm welcome first](./welcome/), then get involved
   - [Development environment](./development-environment/)
   - [Finding what to work on](./finding-what-to-work-on/)
   - [Interface customization](./customization/)
+  - [Web browser support](./browser-support/)
   - [Architecture overview](./architecture/)
     - [Federation Architecture](https://codeberg.org/forgejo-contrib/federation/src/branch/main/architecture/federation-architecture.md)
     - [Federation Architectural Decision Records](https://codeberg.org/forgejo-contrib/federation/src/branch/main/architecture/adr)
