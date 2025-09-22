@@ -30,7 +30,8 @@ Both the LDAP via BindDN and the simple auth LDAP share the following fields:
 
   - An LDAP filter specifying if a user should be given administrator
     privileges. If a user account passes the filter, the user will be
-    privileged as an administrator.
+    privileged as an administrator. In order to select a subset of the
+    LDAP users, this filter is applied to the result set of the User Filter.
   - Example: `(objectClass=adminAccount)`
   - Example for Microsoft Active Directory (AD): `(memberOf=CN=admin-group,OU=example,DC=example,DC=org)`
 
