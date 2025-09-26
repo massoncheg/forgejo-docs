@@ -403,7 +403,7 @@ For instance:
 ---
 jobs:
   build:
-    if: forge.ref == 'refs/heads/main'
+    if: forgejo.ref == 'refs/heads/main'
     steps:
       - run: echo only run on main branch
 ```
@@ -684,10 +684,10 @@ jobs:
     steps:
       - name: some-step
         # This step runs when the event that triggerend the workflow was the opening of a pull request
-        if: ${{ forge.event_name == 'pull_request' && forge.event.action == 'opened' }}
+        if: ${{ forgejo.event_name == 'pull_request' && forgejo.event.action == 'opened' }}
       - name: another-step
         # This step runs when the event that triggered the workflow was the closing of a pull request
-        if: ${{ forge.event_name == 'pull_request' && forge.event.action == 'closed' }}
+        if: ${{ forgejo.event_name == 'pull_request' && forgejo.event.action == 'closed' }}
 ```
 
 ### `jobs.<job_id>.defaults.run.shell`
@@ -903,18 +903,18 @@ steps:
 
 A context is an object that contains information relevant to a `workflow` run. For instance the `secrets` context contains the secrets defined in the repository. Each of the following context is defined as a top-level variable when evaluating expressions. For instance `${{ secrets.MYSECRET }}` will be replaced by the value of `MYSECRET`.
 
-| Context name | Description                                     |
-| ------------ | ----------------------------------------------- |
-| secrets      | secrets available in the repository             |
-| vars         | variables available in the repository           |
-| env          | environment variables defined in the workflow   |
-| forge        | information about the workflow being run        |
-| matrix       | information about the current row of the matrix |
-| steps        | information about the steps that have been run  |
-| needs        | information about the jobs that have been run   |
-| inputs       | the input parameters given to an action         |
+| Context name     | Description                                     |
+| ---------------- | ----------------------------------------------- |
+| secrets          | secrets available in the repository             |
+| vars             | variables available in the repository           |
+| env              | environment variables defined in the workflow   |
+| forgejo or forge | information about the workflow being run        |
+| matrix           | information about the current row of the matrix |
+| steps            | information about the steps that have been run  |
+| needs            | information about the jobs that have been run   |
+| inputs           | the input parameters given to an action         |
 
-To help with re-using actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forge` context.
+To help with re-using actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forgejo` context.
 
 ### secrets
 
@@ -972,12 +972,14 @@ To help with re-using actions and workflows originally developed for GitHub Acti
 
 ### github
 
-To help with re-using actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forge` context.
+To help with re-using actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forgejo` context.
 
-### forge
+### forgejo
 
 The following are identical to the matching environment variable
-(e.g. `forge.base_ref` is the same as `env.FORGEJO_BASE_REF`):
+(e.g. `forgejo.base_ref` is the same as `env.FORGEJO_BASE_REF`):
+
+> **NOTE:** the `forge` context is the same as the `forgejo` context.
 
 | Name              | Description                                                                                                                                                      |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1006,13 +1008,15 @@ The following are identical to the matching environment variable
 | token             | The unique authentication token automatically created for duration of the workflow.                                                                              |
 | workspace         | The default working directory on the runner for steps, and the default location of the repository when using the checkout action.                                |
 
-Example: `${{ forge.SHA }}`
+Example: `${{ forgejo.SHA }}`
 
-### forge
+In addition, the `forgejo` context contains the `forgejo.event` object
+which is set to the payload associated with the event
+(`forgejo.event_name`) that triggered the workflow.
 
-The `forge` object is set to the payload associated with the event (`forge.event_name`) that triggered the workflow.
-
-To find out what this payload is made of, insert a job at the beginning of the workflow to display it in the web UI. For instance:
+To find out what this payload is made of, insert a job at the
+beginning of the workflow to display the entire context in the web
+UI. For instance:
 
 ```yaml
 debug:
@@ -1021,7 +1025,7 @@ debug:
     - name: event
       run: |
         cat <<'EOF'
-        ${{ toJSON(forge) }}
+        ${{ toJSON(forgejo) }}
         EOF
 ```
 
