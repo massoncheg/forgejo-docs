@@ -432,7 +432,7 @@ services:
     command: ['dockerd', '-H', 'tcp://0.0.0.0:2375', '--tls=false']
     restart: 'unless-stopped'
 
-  forgejo:
+  runner:
     image: 'data.forgejo.org/forgejo/runner:11'
     links:
       - docker-in-docker
