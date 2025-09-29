@@ -16,7 +16,7 @@ ENABLED        = true
 FROM           = forgejo@example.com
 PROTOCOL       = smtps
 SMTP_ADDR      = mail.example.com
-SMTP_PORT      = 587
+SMTP_PORT      = 465
 USER           = forgejo@example.com
 PASSWD         = `mysecurepassword`
 ```
