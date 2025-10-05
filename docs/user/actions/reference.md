@@ -353,6 +353,83 @@ env:
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-expression/.forgejo/workflows/test.yml).
 
+### `concurrency`
+
+The concurrency settings control the concurrent executions of a workflow when triggered by multiple distinct events.
+
+If no concurrency settings are provided, Forgejo will automatically manage the concurrency of a workflow that is executed by the `on.push` and `on.pull_request` (synchronize) events in the following manner: whenever a new event triggers a new workflow invocation, any other invocations of the same workflow will be canceled automatically.
+
+Some common usages of `concurrency` include:
+
+- If you're performing checks, such as automated tests in a software project, then it can be desirable to ignore older changes and focus on checking the most recent changes. The default behavior, omitting `concurrency` from your workflow, is usually fine.
+- If you're performing releases of artifacts from a branch, then you may want to ensure each event's workflow is completed without being superseded by a later event. [`concurrency.cancel-in-progress`](#concurrencycancel-in-progress) can be set to `false` to aid this case, and [`concurrency.group`](#concurrencygroup) can be omitted.
+- If you're performing deployments, then using [`concurrency.group`](#concurrencygroup) can be important so that only a single deployment occurs at one time. [`concurrency.cancel-in-progress`](#concurrencycancel-in-progress) is typically set to `false` to avoid canceling an in-progress deployment.
+
+Multiple jobs within a workflow are not affected by the `concurrency` setting. [`jobs.<job_id>.needs`](#jobsjob_idneeds) can be used to introduce ordering between different jobs, which can prevent them from running concurrently if desired.
+
+### `concurrency.group`
+
+An optional concurrency group for the workflow. A concurrency group is a string that is defined by the workflow. When a concurrency group is present, Forgejo will make a best-effort to ensure that only a single workflow with the same concurrency group is executed at one time. The [contexts](#contexts) `forgejo`/`forge`/`github`, `inputs`, and `vars` can be referenced. Concurrency groups are case insensitive.
+
+When multiple workflows are triggered from events with a concurrency group, the [`concurrency.cancel-in-progress`](#concurrencycancel-in-progress) setting determines _how_ only a single workflow will execute; either cancelling previous workflow runs, or queuing behind them.
+
+For example:
+
+```yaml
+on: [push]
+concurrency:
+  group: deploy-${{ forgejo.ref }}
+jobs:
+  # ...
+```
+
+In this example, the concurrency group will evaluate to a string like `deploy-refs/heads/main`. Only a single workflow with this concurrency group will execute at once, even if multiple pushes occur to the `main` branch.
+
+Forgejo makes a **best-effort** to ensure that only a single workflow with the same concurrency group is executed at one time by dispatching tasks to runners only when Forgejo believes no other runner is executing the workflow. However, in exceptional circumstances this cannot be guaranteed.
+
+### `concurrency.cancel-in-progress`
+
+`cancel-in-progress` is a boolean setting indicating whether to cancel the execution of other workflows when new events trigger new workflows. Variables from the [contexts](#contexts) `forgejo`/`forge`/`github`, `inputs`, and `vars` can be referenced.
+
+If the [`concurrency.group`](#concurrencygroup) setting is not provided, then `cancel-in-progress` behaves as follows:
+
+- If omitted, it will default to `true` for `on.push` and `on.pull_request` (synchronize) events.
+- If evaluated to `true`, then any previous invocation of the same workflow with the same branch will be canceled, allowing the newest event to be processed as soon as possible.
+- If evaluated to `false`, then no concurrency management will occur. Multiple invocations of the workflow may run simultaneously, as long as the available runner instances have capacity to execute the workflows.
+
+Example:
+
+```yaml
+on: [push]
+concurrency:
+  cancel-in-progress: false
+```
+
+If the [`concurrency.group`](#concurrencygroup) setting is provided, then `cancel-in-progress` behaves as follows:
+
+- If omitted, it will default to `true` for `on.push` and `on.pull_request` (synchronize) events.
+- If evaluated to `true`, then any previous invocation of any workflow in the repository with the same concurrency group will be canceled, allowing the newest event to be processed as soon as possible.
+- If evaluated to `false`, then any previous invocation of any workflow in the repository with the same concurrency group will be executed before the newer invocation, allowing each workflow to complete in sequence. Note that exact sequential ordering is not guaranteed; while typically workflows that were triggered earlier will be executed earlier, there are some edge-cases where this does not occur. For example, a workflow may be "re-run" through the UI even if later workflows have already been queued or completed.
+
+Example:
+
+```yaml
+on: [push]
+concurrency:
+  group: deploy-${{ forgejo.ref }}
+  cancel-in-progress: true
+```
+
+As the value of `cancel-in-progress` can be evaluated with an expression, it can be used to make workflows sequential conditionally; for example, the below configuration would cancel most workflows on a push, but allow multiple simultaneous workflows on `main`:
+
+```yaml
+on: [push]
+concurrency:
+  cancel-in-progress: ${{ forgejo.ref_name != 'main' }}
+jobs:
+  # ...
+```
+
 ### `jobs`
 
 The list of jobs in the workflow. The key to each job is a `job_id` and its content defines the sequential `step`s to be run.
