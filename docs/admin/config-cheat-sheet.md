@@ -367,7 +367,7 @@ The following configuration sets the `Content-Type: application/vnd.android.pack
 - `LANDING_PAGE`: **home**: Landing page for unauthenticated users \[home, explore, organizations, login, **custom**\]. Where custom would instead be any URL such as "/org/repo" or even `https://anotherwebsite.com`.
 - `LFS_START_SERVER`: **false**: Enables Git LFS support.
 - `LFS_CONTENT_PATH`: **%(APP_DATA_PATH)s/lfs**: Default LFS content path. (if it is on local storage.) **DEPRECATED** use settings in `[lfs]`.
-- `LFS_JWT_SECRET`: **\<empty\>**: LFS authentication secret; change this to a unique base64-encoded 32-byte value. One can be generated with `openssl rand -base64 32`
+- `LFS_JWT_SECRET`: **\<empty\>**: LFS authentication secret; change this to a unique base64-encoded 32-byte value. A new value can be generated with `forgejo generate secret LFS_JWT_SECRET`.
 - `LFS_JWT_SECRET_URI`: **\<empty\>**: Instead of defining `LFS_JWT_SECRET` in the configuration, this option can be used to give Forgejo a path to a file that contains the secret (example value: `file:/etc/forgejo/lfs_jwt_secret`).
 - `LFS_HTTP_AUTH_EXPIRY`: **24h**: LFS authentication validity period in `time.Duration`; pushes taking longer than this may fail.
 - `LFS_MAX_FILE_SIZE`: **0**: Maximum allowed LFS file size in bytes (Set to 0 for no limit).
@@ -535,7 +535,7 @@ And the following unique queues:
 ## Security (`security`)
 
 - `INSTALL_LOCK`: **false**: Controls access to the installation page. When set to "true", the installation page is not accessible.
-- `SECRET_KEY`: **\<random at every install\>**: Global secret key. This key is VERY IMPORTANT; if you lose it, data encrypted by it (like 2FA secrets) can no longer be decrypted.
+- `SECRET_KEY`: **\<random at every install\>**: Global secret key. This key is VERY IMPORTANT; if you lose it, data encrypted by it (like 2FA secrets) can no longer be decrypted. A new value can be generated with `forgejo generate secret SECRET_KEY`.
 - `SECRET_KEY_URI`: **\<empty\>**: Instead of defining `SECRET_KEY`, this option can be used to use the key stored in a file (example value: `file:/etc/forgejo/secret_key`). It shouldn't be lost, like `SECRET_KEY`.
 - `LOGIN_REMEMBER_DAYS`: **31**: Cookie lifetime, in days.
 - `GLOBAL_TWO_FACTOR_REQUIREMENT`: **none**: Which users are required to enable 2FA. One of "none", "all", "admin".
@@ -564,7 +564,7 @@ And the following unique queues:
 - `DISABLE_WEBHOOKS`: **false**: Set to `true` to disable the webhooks feature.
 - `ONLY_ALLOW_PUSH_IF_GITEA_ENVIRONMENT_SET`: **true**: Set to `false` to allow local users to push to **Forgejo** repositories without setting up the Forgejo environment. This is not recommended, and if you want local users to push to Forgejo repositories, you should set the environment appropriately.
 - `IMPORT_LOCAL_PATHS`: **false**: Set to `false` to prevent all users (including admin) from importing local paths on the server.
-- `INTERNAL_TOKEN`: **\<random at every install if no uri set\>**: Secret used to validate communication within the Forgejo binary.
+- `INTERNAL_TOKEN`: **\<random at every install if no uri set\>**: Secret used to validate communication within the Forgejo binary. A new value can be generated with `forgejo generate secret INTERNAL_TOKEN`.
 - `INTERNAL_TOKEN_URI`: **\<empty\>**: Instead of defining `INTERNAL_TOKEN` in the configuration, this option can be used to give Forgejo a path to a file that contains the internal token (example value: `file:/etc/forgejo/internal_token`).
 - `PASSWORD_HASH_ALGO`: **pbkdf2**: The hash algorithm to use \[argon2, pbkdf2, pbkdf2_v1, pbkdf2_hi, scrypt, bcrypt\]; argon2 and scrypt require significant amounts of memory.
   - Note: The default parameters for `pbkdf2` hashing have changed - the previous settings are available as `pbkdf2_v1` but are not recommended.
@@ -1158,7 +1158,7 @@ This section only performs "set" config; a removed config key from this section 
 - `REFRESH_TOKEN_EXPIRATION_TIME`: **730**: Lifetime of an OAuth2 refresh token in hours.
 - `INVALIDATE_REFRESH_TOKENS`: **true**: Check if a refresh token has already been used.
 - `JWT_SIGNING_ALGORITHM`: **RS256**: Algorithm used to sign OAuth2 tokens. Valid values: \[`HS256`, `HS384`, `HS512`, `RS256`, `RS384`, `RS512`, `ES256`, `ES384`, `ES512`\].
-- `JWT_SECRET`: **\<empty\>**: OAuth2 authentication secret for access and refresh tokens; change this to a unique base64-encoded 32-byte value. One can be generated with `openssl rand -base64 32`. This setting is only needed if `JWT_SIGNING_ALGORITHM` is set to `HS256`, `HS384`, or `HS512`.
+- `JWT_SECRET`: **\<empty\>**: OAuth2 authentication secret for access and refresh tokens; change this to a unique base64-encoded 32-byte value. A new value can be generated with `forgejo generate secret JWT_SECRET`. This setting is only needed if `JWT_SIGNING_ALGORITHM` is set to `HS256`, `HS384`, or `HS512`.
 - `JWT_SECRET_URI`: **\<empty\>**: Instead of defining `JWT_SECRET` in the configuration, this option can be used to give Forgejo a path to a file that contains the secret (example value: `file:/etc/forgejo/oauth2_jwt_secret`).
 - `JWT_SIGNING_PRIVATE_KEY_FILE`: **jwt/private.pem**: Private key file path used to sign OAuth2 tokens. The path is relative to **the** `APP_DATA_PATH`. This setting is only needed if `JWT_SIGNING_ALGORITHM` is set to `RS256`, `RS384`, `RS512`, `ES256`, `ES384`, or `ES512`. The file must contain an RSA or ECDSA private key in the PKCS8 format. **If no key exists, a 4096-bit** key will be created for you.
 - `MAX_TOKEN_LENGTH`: **32767**: Maximum length of token/cookie to accept from the OAuth2 provider.
