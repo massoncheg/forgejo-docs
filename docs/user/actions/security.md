@@ -3,7 +3,7 @@ title: 'Forgejo Actions | Security'
 license: 'CC-BY-SA-4.0'
 ---
 
-Forgejo Actions is a very flexible CI/CD system. It lets you write workflows that execute arbitrary code, with contents of potentiall private repositories. This brings some security risks. This page details the security design of the Actions system, and any considerations you should be aware of.
+Forgejo Actions is a very flexible CI/CD system. It lets you write workflows that execute arbitrary code, with contents of potentially private repositories. This brings some security risks. This page details the security design of the Actions system, and any considerations you should be aware of.
 
 ## Security Design
 
