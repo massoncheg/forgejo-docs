@@ -468,7 +468,7 @@ The list of available `labels` for a given repository can be seen in the `/{owne
 
 ![a list of runners, with their associated labels](../../_images/user/actions/list-of-runners.png)
 
-If your job specifies a labal for which no runner is online, the job cannot be executed and your pipeline will halt until a runner with a matching label comes online. You will be able to see this in the Actions tab of your repository.
+If your job specifies a label for which no runner is online, the job cannot be executed and your pipeline will halt until a runner with a matching label comes online. You will be able to see this in the Actions tab of your repository.
 
 ### `jobs.<job_id>.if`
 
