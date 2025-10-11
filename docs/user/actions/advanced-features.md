@@ -110,6 +110,7 @@ A string of the following additional options, as documented [docker run](https:/
 - `--volume`
 - `--tmpfs`
 - `--hostname`
+- `--memory` (requires runner 11.2.0 or greater)
 - `--health-cmd`
 - `--health-interval`
 - `--health-retries`
@@ -118,6 +119,8 @@ A string of the following additional options, as documented [docker run](https:/
 - `--no-healthcheck`
 
 > **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../../admin/actions/runner-installation/#configuration) for more information.
+
+> **NOTE:** the value of `--memory` cannot be higher than the value set in the runner configuration file in `[container].options`, if any.
 
 ### services.<service_name>.credentials
 

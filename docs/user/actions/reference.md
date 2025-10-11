@@ -701,8 +701,11 @@ A string of the following additional options, as documented [docker run](https:/
 - `--volume`
 - `--tmpfs`
 - `--hostname` (except for Forgejo runner 6.0.x and 6.1.x)
+- `--memory` (requires runner 11.2.0 or greater)
 
 > **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../../admin/actions/) for more information.
+
+> **NOTE:** the value of `--memory` cannot be higher than the value set in the runner configuration file in `[container].options`, if any.
 
 > **NOTE:** ignored if `jobs.<job_id>.runs-on` is an LXC container.
 
@@ -745,7 +748,7 @@ See also `jobs.<job_id>.container.volumes`
 
 ### `jobs.<job_id>.services.options`
 
-See also `jobs.<job_id>.container.options`
+See [`services.<service_name>.options`](../advanced-features/#servicesservice_nameoptions)
 
 ### `jobs.<job_id>.steps`
 
