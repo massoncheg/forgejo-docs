@@ -58,10 +58,7 @@ git push origin HEAD:refs/for/main -o topic="topic-branch" \
 
 Both push options are optional. If no `title` or `description` push option is included, the title and the description of the first commit will be used in their place instead.
 
-New lines are not supported in the `description` push option. There are two workarounds:
-
-- Write `\n` for new lines. (i.e. `-o description="- first line\n- second line"`)
-- Encode your multi-line description using base64. (See [forgejo/forgejo#8479][])
+New lines are not supported in the `description` push option. Multi-line descriptions can be encoded in base64 to work around this. (See [forgejo/forgejo#8479][])
 
 [forgejo/forgejo#8479]: https://codeberg.org/forgejo/forgejo/pulls/8479
 
