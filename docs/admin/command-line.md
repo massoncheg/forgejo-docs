@@ -853,9 +853,10 @@ DESCRIPTION:
    A command to diagnose problems with the current Forgejo instance according to the given configuration. Some problems can optionally be fixed by modifying the database or data storage.
 
 COMMANDS:
-   check           Diagnose and optionally fix problems
-   recreate-table  Recreate tables from XORM definitions and copy the data.
-   convert         Convert the database
+   check              Diagnose and optionally fix problems
+   recreate-table     Recreate tables from XORM definitions and copy the data.
+   convert            Convert the database
+   avatar-strip-exif  Strip EXIF metadata from all images in the avatar storage
 
 OPTIONS:
    --help, -h                       show help
@@ -925,6 +926,22 @@ USAGE:
 
 DESCRIPTION:
    A command to convert an existing MySQL database from utf8 to utf8mb4
+
+OPTIONS:
+   --help, -h                       show help
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+```
+
+### doctor avatar-strip-exif
+
+```
+NAME:
+   forgejo doctor avatar-strip-exif - Strip EXIF metadata from all images in the avatar storage
+
+USAGE:
+   forgejo doctor avatar-strip-exif
 
 OPTIONS:
    --help, -h                       show help
