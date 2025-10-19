@@ -82,9 +82,13 @@ of https://code.forgejo.org/forgejo-integration/runner. Its role is to copy and 
 
 - Binaries are downloaded from https://code.forgejo.org/forgejo-integration/runner, signed and copied to https://code.forgejo.org/forgejo/runner.
 - Container images are copied from https://code.forgejo.org/forgejo-integration to https://code.forgejo.org/forgejo
-
-It can also be done from the CLI with `forgejo-runner exec` and
-providing the secrets from the command line.
+  It can also be done from the CLI with `forgejo-runner exec` and providing the secrets from the command line.
+- Once the new version is published, wait 24h for renovate to propose a pull request titled `Update forgejo-runner to vX.Y.Z` (e.g. [Update forgejo-runner to v11.1.2](https://code.forgejo.org/forgejo/runner/pulls/1055))
+- After merging the pull request titled `Update forgejo-runner to vX.Y.Z` ask a member of the devops team to upgrade the [runners hardware](https://code.forgejo.org/infrastructure/documentation/src/branch/main/runner-lxc.md) with:
+  ```
+  forgejo-runner-service.sh upgrade https://code.forgejo.org/forgejo/runner/raw/branch/main/examples/lxc-systemd/forgejo-runner-service.sh
+  ```
+  which is expected to display a line confirming the upgrade to `vX.Y.Z`. More information on that script can be [found in the README](https://code.forgejo.org/forgejo/runner/src/branch/main/examples/lxc-systemd#how-it-works).
 
 ## Release signing keys management
 
