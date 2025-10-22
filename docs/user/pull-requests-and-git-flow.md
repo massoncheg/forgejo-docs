@@ -131,4 +131,4 @@ especially for the default branches of your project where other people rely on i
 **Warning** If you accidentally leaked sensitive data, say, leaked credentials,
 keep in mind that commits stay directly accessible, e.g., from the user
 activity tab or a Pull Request feed, for a while.
-Please contact us if you really need to remove such data from the public.
+Please contact your instance admin if you really need to remove such data from the public.
