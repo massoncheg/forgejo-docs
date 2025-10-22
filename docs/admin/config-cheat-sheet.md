@@ -1113,8 +1113,6 @@ The defaults of the console change if Forgejo detects that stdout and/or stderr 
 - `PULL_REQUEST_PUSH_MESSAGE`: **true**: Respond to pushes to a non-default branch with a URL for creating a Pull Request (if the repository has them enabled).
 - `VERBOSE_PUSH`: **true**: Print status information about pushes as they are being processed.
 - `VERBOSE_PUSH_DELAY`: **5s**: Only print verbose information if the push takes longer than this delay.
-- `LARGE_OBJECT_THRESHOLD`: **1048576**: (Go-Git only) Don't cache objects greater than this size in memory. (Set to 0 to disable.)
-- `DISABLE_CORE_PROTECT_NTFS`: **false**: Set to true to forcibly set `core.protectNTFS` to false.
 - `DISABLE_PARTIAL_CLONE`: **false**: Disable the usage of partial clones for git.
 
 ### Git - Timeout settings (`git.timeout`)
