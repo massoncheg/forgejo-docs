@@ -119,7 +119,7 @@ OPTIONS:
    --secret-file string       path to the file containing the secret the runner will use to connect as a 40 character hexadecimal string
    --scope string, -s string  {owner}[/{repo}] - leave empty for a global runner
    --labels string            comma separated list of labels supported by the runner (e.g. docker,ubuntu-latest,self-hosted)  (not required since v1.21)
-   --keep-labels              do not affect the labels when updating an existing runner (default: false)
+   --keep-labels              do not affect the labels when updating an existing runner
    --name string              name of the runner (default runner) (default: "runner")
    --version string           version of the runner (not required since v1.21)
 ```
@@ -160,8 +160,8 @@ OPTIONS:
    --port string, -p string         Temporary port number to prevent conflict (default: "3000")
    --install-port string            Temporary port number to run the install page on to prevent conflict (default: "3000")
    --pid string, -P string          Custom pid file path (default: "/run/gitea.pid")
-   --quiet, -q                      Only display Fatal logging errors until logging is set-up (default: false)
-   --verbose                        Set initial logging to TRACE level until logging is properly set-up (default: false)
+   --quiet, -q                      Only display Fatal logging errors until logging is set-up
+   --verbose                        Set initial logging to TRACE level until logging is properly set-up
 ```
 
 ## dump
@@ -183,18 +183,18 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --file string, -f string         Name of the dump file which will be created. Supply '-' for stdout. See type for available types. (default: "forgejo-dump-<timestamp>.zip")
-   --verbose, -V                    Show process details (default: false)
-   --quiet, -q                      Only display warnings and errors (default: false)
+   --verbose, -V                    Show process details
+   --quiet, -q                      Only display warnings and errors
    --tempdir string, -t string      Temporary dir path
    --database string, -d string     Specify the database SQL syntax: sqlite3, mysql, postgres
-   --skip-repository, -R            Skip repositories (default: false)
-   --skip-log, -L                   Skip logs (default: false)
-   --skip-custom-dir                Skip custom directory (default: false)
-   --skip-lfs-data                  Skip LFS data (default: false)
-   --skip-attachment-data           Skip attachment data (default: false)
-   --skip-package-data              Skip package data (default: false)
-   --skip-index                     Skip bleve index data (default: false)
-   --skip-repo-archives             Skip repository archives (default: false)
+   --skip-repository, -R            Skip repositories
+   --skip-log, -L                   Skip logs
+   --skip-custom-dir                Skip custom directory
+   --skip-lfs-data                  Skip LFS data
+   --skip-attachment-data           Skip attachment data
+   --skip-package-data              Skip package data
+   --skip-index                     Skip bleve index data
+   --skip-repo-archives             Skip repository archives
    --type value                     Dump output format: zip, tar, tar.sz, tar.gz, tar.xz, tar.bz2, tar.br, tar.lz4, tar.zst (default: zip)
 ```
 
@@ -264,14 +264,14 @@ OPTIONS:
    --username string                Username
    --password string                User password
    --email string                   User email address
-   --admin                          User is an admin (default: false)
-   --random-password                Generate a random password for the user (default: false)
-   --must-change-password           Set this option to false to prevent forcing the user to change their password after initial login (default: true)
+   --admin                          User is an admin
+   --random-password                Generate a random password for the user
+   --must-change-password           Set this option to false to prevent forcing the user to change their password after initial login
    --random-password-length int     Length of the random password to be generated (default: 12)
-   --access-token                   Generate access token for the user (default: false)
+   --access-token                   Generate access token for the user
    --access-token-name string       Name of the generated access token (default: "gitea-admin")
    --access-token-scopes string     Scopes of the generated access token, comma separated. Examples: "all", "public-only,read:issue", "write:repository,write:user" (default: "all")
-   --restricted                     Make a restricted user account (default: false)
+   --restricted                     Make a restricted user account
    --fullname string                The full, human-readable name of the user
 ```
 
@@ -289,7 +289,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --admin                          List only admin users (default: false)
+   --admin                          List only admin users
 ```
 
 ### admin user change-password
@@ -308,7 +308,7 @@ OPTIONS:
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --username string, -u string     The user to change password for
    --password string, -p string     New password to set for user
-   --must-change-password           User must change password (default: true)
+   --must-change-password           User must change password
 ```
 
 ### admin user delete
@@ -328,7 +328,7 @@ OPTIONS:
    --id int                         ID of user of the user to delete (default: 0)
    --username string, -u string     Username of the user to delete
    --email string, -e string        Email of the user to delete
-   --purge                          Purge user, all their repositories, organizations and comments (default: false)
+   --purge                          Purge user, all their repositories, organizations and comments
 ```
 
 ### admin user generate-access-token
@@ -347,7 +347,7 @@ OPTIONS:
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --username string, -u string     Username
    --token-name string, -t string   Token name (default: "gitea-admin")
-   --raw                            Display only the token value (default: false)
+   --raw                            Display only the token value
    --scopes string                  Comma separated list of scopes to apply to access token, examples: "all", "public-only,read:issue", "write:repository,write:user" (default: "all")
 ```
 
@@ -365,9 +365,9 @@ OPTIONS:
    --custom-path string, -C string                              Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string                                   Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string                                Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --all, -A                                                    All users must change password, except those explicitly excluded with --exclude (default: false)
+   --all, -A                                                    All users must change password, except those explicitly excluded with --exclude
    --exclude string, -e string [ --exclude string, -e string ]  Do not change the must-change-password flag for these users
-   --unset                                                      Instead of setting the must-change-password flag, unset it (default: false)
+   --unset                                                      Instead of setting the must-change-password flag, unset it
 ```
 
 ### admin user reset-mfa
@@ -477,7 +477,7 @@ OPTIONS:
    --custom-profile-url string          Use a custom Profile URL (option for GitLab/GitHub)
    --custom-email-url string            Use a custom Email URL (option for GitHub)
    --icon-url string                    Custom icon URL for OAuth2 login source
-   --skip-local-2fa                     Set to true to skip local 2fa for users authenticated by this source (default: false)
+   --skip-local-2fa                     Set to true to skip local 2fa for users authenticated by this source
    --scopes string [ --scopes string ]  Scopes to request when to authenticate against this OAuth2 source
    --attribute-ssh-public-key string    Claim name providing SSH public keys for this source
    --required-claim-name string         Claim name that has to be set to allow users to login with this source
@@ -486,8 +486,8 @@ OPTIONS:
    --admin-group string                 Group Claim value for administrator users
    --restricted-group string            Group Claim value for restricted users
    --group-team-map string              JSON mapping between groups and org teams
-   --group-team-map-removal             Activate automatic team membership removal depending on groups (default: false)
-   --allow-username-change              Allow users to change their username (default: false)
+   --group-team-map-removal             Activate automatic team membership removal depending on groups
+   --allow-username-change              Allow users to change their username
 ```
 
 ### admin auth update-oauth
@@ -517,7 +517,7 @@ OPTIONS:
    --custom-profile-url string          Use a custom Profile URL (option for GitLab/GitHub)
    --custom-email-url string            Use a custom Email URL (option for GitHub)
    --icon-url string                    Custom icon URL for OAuth2 login source
-   --skip-local-2fa                     Set to true to skip local 2fa for users authenticated by this source (default: false)
+   --skip-local-2fa                     Set to true to skip local 2fa for users authenticated by this source
    --scopes string [ --scopes string ]  Scopes to request when to authenticate against this OAuth2 source
    --attribute-ssh-public-key string    Claim name providing SSH public keys for this source
    --required-claim-name string         Claim name that has to be set to allow users to login with this source
@@ -526,8 +526,8 @@ OPTIONS:
    --admin-group string                 Group Claim value for administrator users
    --restricted-group string            Group Claim value for restricted users
    --group-team-map string              JSON mapping between groups and org teams
-   --group-team-map-removal             Activate automatic team membership removal depending on groups (default: false)
-   --allow-username-change              Allow users to change their username (default: false)
+   --group-team-map-removal             Activate automatic team membership removal depending on groups
+   --allow-username-change              Allow users to change their username
 ```
 
 ### admin auth add-ldap
@@ -545,29 +545,29 @@ OPTIONS:
    --config string, -c string         Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string      Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --name string                      Authentication name.
-   --not-active                       Deactivate the authentication source. (default: false)
-   --active                           Activate the authentication source. (default: false)
+   --not-active                       Deactivate the authentication source.
+   --active                           Activate the authentication source.
    --security-protocol string         Security protocol name.
-   --skip-tls-verify                  Disable TLS verification. (default: false)
+   --skip-tls-verify                  Disable TLS verification.
    --host string                      The address where the LDAP server can be reached.
    --port int                         The port to use when connecting to the LDAP server. (default: 0)
    --user-search-base string          The LDAP base at which user accounts will be searched for.
    --user-filter string               An LDAP filter declaring how to find the user record that is attempting to authenticate.
    --admin-filter string              An LDAP filter specifying if a user should be given administrator privileges.
    --restricted-filter string         An LDAP filter specifying if a user should be given restricted status.
-   --allow-deactivate-all             Allow empty search results to deactivate all users. (default: false)
+   --allow-deactivate-all             Allow empty search results to deactivate all users.
    --username-attribute string        The attribute of the user’s LDAP record containing the user name.
    --firstname-attribute string       The attribute of the user’s LDAP record containing the user’s first name.
    --surname-attribute string         The attribute of the user’s LDAP record containing the user’s surname.
    --email-attribute string           The attribute of the user’s LDAP record containing the user’s email address.
    --public-ssh-key-attribute string  The attribute of the user’s LDAP record containing the user’s public ssh key.
-   --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source (default: false)
+   --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source
    --avatar-attribute string          The attribute of the user’s LDAP record containing the user’s avatar.
    --bind-dn string                   The DN to bind to the LDAP server with when searching for the user.
    --bind-password string             The password for the Bind DN, if any.
-   --attributes-in-bind               Fetch attributes in bind DN context. (default: false)
-   --synchronize-users                Enable user synchronization. (default: false)
-   --disable-synchronize-users        Disable user synchronization. (default: false)
+   --attributes-in-bind               Fetch attributes in bind DN context.
+   --synchronize-users                Enable user synchronization.
+   --disable-synchronize-users        Disable user synchronization.
    --page-size uint                   Search page size. (default: 0)
 ```
 
@@ -587,29 +587,29 @@ OPTIONS:
    --work-path string, -w string      Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --id int                           ID of authentication source (default: 0)
    --name string                      Authentication name.
-   --not-active                       Deactivate the authentication source. (default: false)
-   --active                           Activate the authentication source. (default: false)
+   --not-active                       Deactivate the authentication source.
+   --active                           Activate the authentication source.
    --security-protocol string         Security protocol name.
-   --skip-tls-verify                  Disable TLS verification. (default: false)
+   --skip-tls-verify                  Disable TLS verification.
    --host string                      The address where the LDAP server can be reached.
    --port int                         The port to use when connecting to the LDAP server. (default: 0)
    --user-search-base string          The LDAP base at which user accounts will be searched for.
    --user-filter string               An LDAP filter declaring how to find the user record that is attempting to authenticate.
    --admin-filter string              An LDAP filter specifying if a user should be given administrator privileges.
    --restricted-filter string         An LDAP filter specifying if a user should be given restricted status.
-   --allow-deactivate-all             Allow empty search results to deactivate all users. (default: false)
+   --allow-deactivate-all             Allow empty search results to deactivate all users.
    --username-attribute string        The attribute of the user’s LDAP record containing the user name.
    --firstname-attribute string       The attribute of the user’s LDAP record containing the user’s first name.
    --surname-attribute string         The attribute of the user’s LDAP record containing the user’s surname.
    --email-attribute string           The attribute of the user’s LDAP record containing the user’s email address.
    --public-ssh-key-attribute string  The attribute of the user’s LDAP record containing the user’s public ssh key.
-   --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source (default: false)
+   --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source
    --avatar-attribute string          The attribute of the user’s LDAP record containing the user’s avatar.
    --bind-dn string                   The DN to bind to the LDAP server with when searching for the user.
    --bind-password string             The password for the Bind DN, if any.
-   --attributes-in-bind               Fetch attributes in bind DN context. (default: false)
-   --synchronize-users                Enable user synchronization. (default: false)
-   --disable-synchronize-users        Disable user synchronization. (default: false)
+   --attributes-in-bind               Fetch attributes in bind DN context.
+   --synchronize-users                Enable user synchronization.
+   --disable-synchronize-users        Disable user synchronization.
    --page-size uint                   Search page size. (default: 0)
 ```
 
@@ -628,23 +628,23 @@ OPTIONS:
    --config string, -c string         Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string      Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --name string                      Authentication name.
-   --not-active                       Deactivate the authentication source. (default: false)
-   --active                           Activate the authentication source. (default: false)
+   --not-active                       Deactivate the authentication source.
+   --active                           Activate the authentication source.
    --security-protocol string         Security protocol name.
-   --skip-tls-verify                  Disable TLS verification. (default: false)
+   --skip-tls-verify                  Disable TLS verification.
    --host string                      The address where the LDAP server can be reached.
    --port int                         The port to use when connecting to the LDAP server. (default: 0)
    --user-search-base string          The LDAP base at which user accounts will be searched for.
    --user-filter string               An LDAP filter declaring how to find the user record that is attempting to authenticate.
    --admin-filter string              An LDAP filter specifying if a user should be given administrator privileges.
    --restricted-filter string         An LDAP filter specifying if a user should be given restricted status.
-   --allow-deactivate-all             Allow empty search results to deactivate all users. (default: false)
+   --allow-deactivate-all             Allow empty search results to deactivate all users.
    --username-attribute string        The attribute of the user’s LDAP record containing the user name.
    --firstname-attribute string       The attribute of the user’s LDAP record containing the user’s first name.
    --surname-attribute string         The attribute of the user’s LDAP record containing the user’s surname.
    --email-attribute string           The attribute of the user’s LDAP record containing the user’s email address.
    --public-ssh-key-attribute string  The attribute of the user’s LDAP record containing the user’s public ssh key.
-   --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source (default: false)
+   --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source
    --avatar-attribute string          The attribute of the user’s LDAP record containing the user’s avatar.
    --user-dn string                   The user's DN.
 ```
@@ -665,23 +665,23 @@ OPTIONS:
    --work-path string, -w string      Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --id int                           ID of authentication source (default: 0)
    --name string                      Authentication name.
-   --not-active                       Deactivate the authentication source. (default: false)
-   --active                           Activate the authentication source. (default: false)
+   --not-active                       Deactivate the authentication source.
+   --active                           Activate the authentication source.
    --security-protocol string         Security protocol name.
-   --skip-tls-verify                  Disable TLS verification. (default: false)
+   --skip-tls-verify                  Disable TLS verification.
    --host string                      The address where the LDAP server can be reached.
    --port int                         The port to use when connecting to the LDAP server. (default: 0)
    --user-search-base string          The LDAP base at which user accounts will be searched for.
    --user-filter string               An LDAP filter declaring how to find the user record that is attempting to authenticate.
    --admin-filter string              An LDAP filter specifying if a user should be given administrator privileges.
    --restricted-filter string         An LDAP filter specifying if a user should be given restricted status.
-   --allow-deactivate-all             Allow empty search results to deactivate all users. (default: false)
+   --allow-deactivate-all             Allow empty search results to deactivate all users.
    --username-attribute string        The attribute of the user’s LDAP record containing the user name.
    --firstname-attribute string       The attribute of the user’s LDAP record containing the user’s first name.
    --surname-attribute string         The attribute of the user’s LDAP record containing the user’s surname.
    --email-attribute string           The attribute of the user’s LDAP record containing the user’s email address.
    --public-ssh-key-attribute string  The attribute of the user’s LDAP record containing the user’s public ssh key.
-   --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source (default: false)
+   --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source
    --avatar-attribute string          The attribute of the user’s LDAP record containing the user’s avatar.
    --user-dn string                   The user's DN.
 ```
@@ -704,13 +704,13 @@ OPTIONS:
    --auth-type string               SMTP Authentication Type (PLAIN/LOGIN/CRAM-MD5) default PLAIN (default: "PLAIN")
    --host string                    SMTP Host
    --port int                       SMTP Port (default: 0)
-   --force-smtps                    SMTPS is always used on port 465. Set this to force SMTPS on other ports. (default: true)
-   --skip-verify                    Skip TLS verify. (default: true)
+   --force-smtps                    SMTPS is always used on port 465. Set this to force SMTPS on other ports.
+   --skip-verify                    Skip TLS verify.
    --helo-hostname string           Hostname sent with HELO. Leave blank to send current hostname
-   --disable-helo                   Disable SMTP helo. (default: true)
+   --disable-helo                   Disable SMTP helo.
    --allowed-domains string         Leave empty to allow all domains. Separate multiple domains with a comma (',')
-   --skip-local-2fa                 Skip 2FA to log on. (default: true)
-   --active                         This Authentication Source is Activated. (default: true)
+   --skip-local-2fa                 Skip 2FA to log on.
+   --active                         This Authentication Source is Activated.
 ```
 
 ### admin auth update-smtp
@@ -732,13 +732,13 @@ OPTIONS:
    --auth-type string               SMTP Authentication Type (PLAIN/LOGIN/CRAM-MD5) default PLAIN (default: "PLAIN")
    --host string                    SMTP Host
    --port int                       SMTP Port (default: 0)
-   --force-smtps                    SMTPS is always used on port 465. Set this to force SMTPS on other ports. (default: true)
-   --skip-verify                    Skip TLS verify. (default: true)
+   --force-smtps                    SMTPS is always used on port 465. Set this to force SMTPS on other ports.
+   --skip-verify                    Skip TLS verify.
    --helo-hostname string           Hostname sent with HELO. Leave blank to send current hostname
-   --disable-helo                   Disable SMTP helo. (default: true)
+   --disable-helo                   Disable SMTP helo.
    --allowed-domains string         Leave empty to allow all domains. Separate multiple domains with a comma (',')
-   --skip-local-2fa                 Skip 2FA to log on. (default: true)
-   --active                         This Authentication Source is Activated. (default: true)
+   --skip-local-2fa                 Skip 2FA to log on.
+   --active                         This Authentication Source is Activated.
 ```
 
 ### admin auth list
@@ -759,7 +759,7 @@ OPTIONS:
    --tab-width int                  width of tab characters in formatted table (equivalent number of spaces) (default: 8)
    --padding int                    padding added to a cell before computing its width (default: 1)
    --pad-char string                ASCII char used for padding if padchar == '\\t', the Writer will assume that the width of a '\\t' in the formatted output is tabwidth, and cells are left-aligned independent of align_left (for correct-looking results, tabwidth must correspond to the tab width in the viewer displaying the result) (default: "\t")
-   --vertical-bars                  Set to true to print vertical bars between columns (default: false)
+   --vertical-bars                  Set to true to print vertical bars between columns
 ```
 
 ### admin auth delete
@@ -795,7 +795,7 @@ OPTIONS:
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --title string                   a title of a message
    --content string                 a content of a message
-   --force, -f                      A flag to bypass a confirmation step (default: false)
+   --force, -f                      A flag to bypass a confirmation step
 ```
 
 ## migrate
@@ -882,13 +882,13 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --list                           List the available checks (default: false)
-   --default                        Run the default checks (if neither --run or --all is set, this is the default behaviour) (default: false)
+   --list                           List the available checks
+   --default                        Run the default checks (if neither --run or --all is set, this is the default behaviour)
    --run string [ --run string ]    Run the provided checks - (if --default is set, the default checks will also run)
-   --all                            Run all the available checks (default: false)
-   --fix                            Automatically fix what we can (default: false)
+   --all                            Run all the available checks
+   --fix                            Automatically fix what we can
    --log-file string                Name of the log file (no verbose log output by default). Set to "-" to output to stdout
-   --color, -H                      Use color for outputted information (default: false)
+   --color, -H                      Use color for outputted information
 ```
 
 ### doctor recreate-table
@@ -912,7 +912,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --debug                          Print SQL commands sent (default: false)
+   --debug                          Print SQL commands sent
 ```
 
 ### doctor convert
@@ -991,7 +991,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --debug                          (default: false)
+   --debug
 ```
 
 ### manager restart
@@ -1008,7 +1008,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --debug                          (default: false)
+   --debug
 ```
 
 ### manager reload-templates
@@ -1025,7 +1025,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --debug                          (default: false)
+   --debug
 ```
 
 ### manager flush-queues
@@ -1043,8 +1043,8 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --timeout duration               Timeout for the flushing process (default: 1m0s)
-   --non-blocking                   Set to true to not wait for flush to complete before returning (default: false)
-   --debug                          (default: false)
+   --non-blocking                   Set to true to not wait for flush to complete before returning
+   --debug
 ```
 
 ### manager logging
@@ -1085,7 +1085,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --debug                          (default: false)
+   --debug
 ```
 
 ### manager logging resume
@@ -1102,7 +1102,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --debug                          (default: false)
+   --debug
 ```
 
 ### manager logging release-and-reopen
@@ -1119,7 +1119,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --debug                          (default: false)
+   --debug
 ```
 
 ### manager logging remove
@@ -1136,7 +1136,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --debug                          (default: false)
+   --debug
    --logger string                  Logger name - will default to "default"
 ```
 
@@ -1182,14 +1182,14 @@ OPTIONS:
    --expression string, -e string        Matching expression for the logger
    --exclusion string, -x string         Exclusion for the logger
    --prefix string, -p string            Prefix for the logger
-   --color                               Use color in the logs (default: false)
-   --debug                               (default: false)
+   --color                               Use color in the logs
+   --debug
    --filename string, -f string          Filename for the logger - this must be set.
-   --rotate, -r                          Rotate logs (default: true)
+   --rotate, -r                          Rotate logs
    --max-size int, -s int                Maximum size in bytes before rotation (default: 0)
-   --daily, -d                           Rotate logs daily (default: true)
+   --daily, -d                           Rotate logs daily
    --max-days int, -D int                Maximum number of daily logs to keep (default: 0)
-   --compress, -z                        Compress rotated logs (default: true)
+   --compress, -z                        Compress rotated logs
    --compression-level int, -Z int       Compression level to use (default: 0)
 ```
 
@@ -1215,10 +1215,10 @@ OPTIONS:
    --expression string, -e string        Matching expression for the logger
    --exclusion string, -x string         Exclusion for the logger
    --prefix string, -p string            Prefix for the logger
-   --color                               Use color in the logs (default: false)
-   --debug                               (default: false)
-   --reconnect-on-message, -R            Reconnect to host for every message (default: false)
-   --reconnect, -r                       Reconnect to host when connection is dropped (default: false)
+   --color                               Use color in the logs
+   --debug
+   --reconnect-on-message, -R            Reconnect to host for every message
+   --reconnect, -r                       Reconnect to host when connection is dropped
    --protocol string, -P string          Set protocol to use: tcp, unix, or udp (defaults to tcp)
    --address string, -a string           Host address and port to connect to (defaults to :7020)
 ```
@@ -1237,8 +1237,8 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --debug                          (default: false)
-   --off                            Switch off SQL logging (default: false)
+   --debug
+   --off                            Switch off SQL logging
 ```
 
 ### manager processes
@@ -1255,11 +1255,11 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --debug                          (default: false)
-   --flat                           Show processes as flat table rather than as tree (default: false)
-   --no-system                      Do not show system processes (default: false)
-   --stacktraces                    Show stacktraces (default: false)
-   --json                           Output as json (default: false)
+   --debug
+   --flat                           Show processes as flat table rather than as tree
+   --no-system                      Do not show system processes
+   --stacktraces                    Show stacktraces
+   --json                           Output as json
    --cancel string                  Process PID to cancel. (Only available for non-system processes.)
 ```
 
@@ -1301,7 +1301,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --include-vendored, --vendor     Include files under public/vendor as well (default: false)
+   --include-vendored, --vendor     Include files under public/vendor as well
 ```
 
 ### embedded view
@@ -1318,7 +1318,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --include-vendored, --vendor     Include files under public/vendor as well (default: false)
+   --include-vendored, --vendor     Include files under public/vendor as well
 ```
 
 ### embedded extract
@@ -1335,10 +1335,10 @@ OPTIONS:
    --custom-path string, -C string          Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string               Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string            Set Forgejo's working path (defaults to the directory of the Forgejo binary)
-   --include-vendored, --vendor             Include files under public/vendor as well (default: false)
-   --overwrite                              Overwrite files if they already exist (default: false)
-   --rename                                 Rename files as {name}.bak if they already exist (overwrites previous .bak) (default: false)
-   --custom                                 Extract to the 'custom' directory as per app.ini (default: false)
+   --include-vendored, --vendor             Include files under public/vendor as well
+   --overwrite                              Overwrite files if they already exist
+   --rename                                 Rename files as {name}.bak if they already exist (overwrites previous .bak)
+   --custom                                 Extract to the 'custom' directory as per app.ini
    --destination string, --dest-dir string  Extract to the specified directory
 ```
 
@@ -1368,8 +1368,8 @@ OPTIONS:
    --minio-bucket string              Minio storage bucket
    --minio-location string            Minio storage location to create bucket
    --minio-base-path string           Minio storage base path on the bucket
-   --minio-use-ssl                    Enable SSL for minio (default: false)
-   --minio-insecure-skip-verify       Skip SSL verification (default: false)
+   --minio-use-ssl                    Enable SSL for minio
+   --minio-insecure-skip-verify       Skip SSL verification
    --minio-checksum-algorithm string  Minio checksum algorithm (default/md5)
 ```
 
@@ -1424,7 +1424,7 @@ OPTIONS:
    --repo_name string               Restore destination repository name
    --units string                   Which items will be restored, one or more units should be separated as comma.
       wiki, issues, labels, releases, release_assets, milestones, pull_requests, comments are allowed. Empty means all units.
-   --validation  Sanity check the content of the files before trying to load them (default: false)
+   --validation  Sanity check the content of the files before trying to load them
 ```
 
 ## cert
@@ -1446,7 +1446,7 @@ OPTIONS:
    --rsa-bits int        Size of RSA key to generate. Ignored if --ecdsa-curve is set (default: 3072)
    --start-date string   Creation date formatted as Jan 1 15:04:05 2011
    --duration duration   Duration that certificate is valid for (default: 8760h0m0s)
-   --ca                  whether this cert should be its own Certificate Authority (default: false)
+   --ca                  whether this cert should be its own Certificate Authority
 ```
 
 ## generate secret
