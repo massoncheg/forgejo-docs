@@ -35,10 +35,7 @@ To register the package registry the Cargo configuration must be updated.
 Add the following text to the configuration file located in the current users home directory (for example: `~/.cargo/config.toml`):
 
 ```
-[registry]
-default = "forgejo"
-
-[registries.forgejo]
+[registries.{registry_name}]
 index = "sparse+https://forgejo.example.com/api/packages/{owner}/cargo/" # Sparse index
 # index = "https://forgejo.example.com/{owner}/_cargo-index.git" # Git
 
@@ -46,9 +43,10 @@ index = "sparse+https://forgejo.example.com/api/packages/{owner}/cargo/" # Spars
 # git-fetch-with-cli = true
 ```
 
-| Parameter | Description               |
-| --------- | ------------------------- |
-| `owner`   | The owner of the package. |
+| Parameter       | Description                                         |
+| --------------- | --------------------------------------------------- |
+| `owner`         | The owner of the package.                           |
+| `registry_name` | The name used to refer to the registry in commands. |
 
 ## Credentials
 
@@ -60,13 +58,14 @@ To obtain a token useable by Cargo, prepend the string "Bearer " to your API tok
 To store the token in your configuration, add the credentials section to the credentials file located in the current users home directory (for example `~/.cargo/credentials.toml`):
 
 ```
-[registries.forgejo]
+[registries.{registry_name}]
 token = "Bearer {token}"
 ```
 
-| Parameter | Description                                                   |
-| --------- | ------------------------------------------------------------- |
-| `token`   | Your [personal access token](../../api-usage/#authentication) |
+| Parameter       | Description                                                   |
+| --------------- | ------------------------------------------------------------- |
+| `token`         | Your [personal access token](../../api-usage/#authentication) |
+| `registry_name` | The name used to refer to the registry in commands.           |
 
 ## Git vs Sparse
 
@@ -79,8 +78,12 @@ Since Rust 1.68, sparse is the default method for crates.io.
 Publish a package by obtaining an [API token](#Credentials) and running the following command in your project:
 
 ```shell
-cargo publish
+cargo publish --registry {registry_name}
 ```
+
+| Parameter       | Description                                       |
+| --------------- | ------------------------------------------------- |
+| `registry_name` | The name of the registry in `.cargo/config.toml`. |
 
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
 
@@ -89,12 +92,13 @@ You cannot publish a package if a package of the same name and version already e
 To install a package from the package registry, execute the following command:
 
 ```shell
-cargo add {package_name}
+cargo add {package_name} --registry {registry_name}
 ```
 
-| Parameter      | Description       |
-| -------------- | ----------------- |
-| `package_name` | The package name. |
+| Parameter       | Description                                       |
+| --------------- | ------------------------------------------------- |
+| `package_name`  | The package name.                                 |
+| `registry_name` | The name of the registry in `.cargo/config.toml`. |
 
 ## Supported commands
 
