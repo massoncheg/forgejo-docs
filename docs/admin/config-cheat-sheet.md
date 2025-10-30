@@ -947,18 +947,21 @@ The defaults of the console change if Forgejo detects that stdout and/or stderr 
 
 #### Cron - Update Mirrors (`cron.update_mirrors`)
 
+- `ENABLED`: **true**: Enable service.
 - `SCHEDULE`: **@every 10m**: Cron syntax for scheduling update mirrors, e.g., `@every 3h`.
 - `PULL_LIMIT`: **50**: Limit the number of mirrors added to the queue to this number (negative values mean no limit; 0 will result in no mirrors being queued, effectively disabling pull mirror updating).
 - `PUSH_LIMIT`: **50**: Limit the number of mirrors added to the queue to this number (negative values mean no limit; 0 will result in no mirrors being queued, effectively disabling push mirror updating).
 
 #### Cron - Repository Health Check (`cron.repo_health_check`)
 
+- `ENABLED`: **true**: Enable service.
 - `SCHEDULE`: **@midnight**: Cron syntax for scheduling repository health check.
 - `TIMEOUT`: **60s**: Time duration syntax for health check execution timeout.
 - `ARGS`: **\<empty\>**: Arguments for the command `git fsck`, e.g., `--unreachable --tags`. See more on http://git-scm.com/docs/git-fsck
 
 #### Cron - Repository Statistics Check (`cron.check_repo_stats`)
 
+- `ENABLED`: **true**: Enable service.
 - `RUN_AT_START`: **true**: Run repository statistics check at start time.
 - `SCHEDULE`: **@midnight**: Cron syntax for scheduling repository statistics check.
 
@@ -981,10 +984,12 @@ The defaults of the console change if Forgejo detects that stdout and/or stderr 
 
 #### Cron - Update Migration Poster ID (`cron.update_migration_poster_id`)
 
+- `ENABLED`: **true**: Enable service.
 - `SCHEDULE`: **@midnight**: Interval as a duration between each synchronization; it will always attempt synchronization when the instance starts.
 
 #### Cron - Sync External Users (`cron.sync_external_users`)
 
+- `ENABLED`: **true**: Enable service.
 - `SCHEDULE`: **@midnight**: Interval as a duration between each synchronization; it will always attempt synchronization when the instance starts.
 - `UPDATE_EXISTING`: **true**: Create new users, update existing user data, and disable users that are not in the external source anymore (default), or only create new users if `UPDATE_EXISTING` is set to false.
 
@@ -994,13 +999,22 @@ The defaults of the console change if Forgejo detects that stdout and/or stderr 
 - `RUN_AT_START`: **true**: Run job at start time (if ENABLED).
 - `SCHEDULE`: **@midnight**: Cron syntax for the job.
 
-#### Cron - Cleanup Offline Runners (`cron.cleanup_offline_runners`)
+#### Cron - Check for new Forgejo versions (`cron.update_checker`)
 
-- `ENABLED`: **false**: Enable cleanup offline runners job.
-- `RUN_AT_START`: **false**: Run the job immediately on start (if ENABLED).
-- `SCHEDULE`: **@midnight**: Cron syntax for when to run the job.
-- `GLOBAL_SCOPE_ONLY`:**true**: Only delete runners in the global scope
-- `OLDER_THAN`: **24h** Only delete runners that have been offline or unused for at least this duration. Minimum duration is "1m"
+- `ENABLED`: **true**: Enable service.
+- `RUN_AT_START`: **false**: Run tasks at start-up time (if ENABLED).
+- `ENABLE_SUCCESS_NOTICE`: **true**: Set to false to switch off success notices. (Note: `NOTICE_ON_SUCCESS` is used in most other cron jobs for consistency).
+- `SCHEDULE`: **@every 168h**: Cron syntax for scheduling a check, e.g. `@every 168h`.
+- `HTTP_ENDPOINT`: **https://dl.gitea.com/gitea/version.json**: [DEPRECATED] The endpoint that Forgejo will check for newer versions. Not in use by the project. Might be dropped in a future version.
+- `DOMAIN_ENDPOINT`: **release.forgejo.org**: The domain with a [TXT record](https://en.wikipedia.org/wiki/TXT_record) that, if specified, Forgejo will query for newer versions. This is preferred over `HTTP_ENDPOINT`.
+
+#### Cron - Clean up deleted branches (`cron.deleted_branches_cleanup`)
+
+- `ENABLED`: **true**: Enable service.
+- `RUN_AT_START`: **true**: Clean-up deleted branches when starting server (default true).
+- `NOTICE_ON_SUCCESS`: **false**: Set to true to switch on success notices.
+- `SCHEDULE`: **@midnight**: Interval as a duration between each synchronization (default every 24h).
+- `OLDER_THAN`: **24h**: deleted branches older than OLDER_THAN ago are subject to deletion.
 
 ### Extended cron tasks (not enabled by default)
 
@@ -1056,14 +1070,13 @@ The defaults of the console change if Forgejo detects that stdout and/or stderr 
 - `SCHEDULE`: **@every 168h**: Cron syntax to set how often to check.
 - `OLDER_THAN`: **8760h**: Any action older than this expression will be deleted from the database; suggest using `8760h` (1 year) because that's the maximum length of the heatmap.
 
-#### Cron - Check for new Forgejo versions (`cron.update_checker`)
+#### Cron - Cleanup Offline Runners (`cron.cleanup_offline_runners`)
 
-- `ENABLED`: **true**: Enable service.
-- `RUN_AT_START`: **false**: Run tasks at start-up time (if ENABLED).
-- `ENABLE_SUCCESS_NOTICE`: **true**: Set to false to switch off success notices. (Note: `NOTICE_ON_SUCCESS` is used in most other cron jobs for consistency).
-- `SCHEDULE`: **@every 168h**: Cron syntax for scheduling a check, e.g. `@every 168h`.
-- `HTTP_ENDPOINT`: **https://dl.gitea.com/gitea/version.json**: [DEPRECATED] The endpoint that Forgejo will check for newer versions. Not in use by the project. Might be dropped in a future version.
-- `DOMAIN_ENDPOINT`: **release.forgejo.org**: The domain with a [TXT record](https://en.wikipedia.org/wiki/TXT_record) that, if specified, Forgejo will query for newer versions. This is preferred over `HTTP_ENDPOINT`.
+- `ENABLED`: **false**: Enable cleanup offline runners job.
+- `RUN_AT_START`: **false**: Run the job immediately on start (if ENABLED).
+- `SCHEDULE`: **@midnight**: Cron syntax for when to run the job.
+- `GLOBAL_SCOPE_ONLY`:**true**: Only delete runners in the global scope
+- `OLDER_THAN`: **24h** Only delete runners that have been offline or unused for at least this duration. Minimum duration is "1m"
 
 #### Cron - Delete all old system notices from database (`cron.delete_old_system_notices`)
 
