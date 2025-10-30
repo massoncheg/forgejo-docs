@@ -43,3 +43,10 @@ We encourage you to [read our warm welcome first](./welcome/), then get involved
   - [Release management](./release/)
   - [Managing dependencies between repositories](./repositories-dependencies/)
   - [Secrets](./secrets/)
+
+When you've contributed something, you'll have learned new things in the process.
+Why not share those things with other contributors?
+Creating a personal article is an option to do so.
+Once you do, create a Pull Request on this page and extend the list.
+
+- [The History of Forgejo's Pub-Sub Pattern](https://chris-besch.com/articles/forgejo_pub_sub_pattern_history) by Christopher Besch on 30th October 2025
