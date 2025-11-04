@@ -249,9 +249,10 @@ networks:
 
 services:
   server:
-    image: codeberg.org/forgejo/forgejo:13-rootless
+-   image: codeberg.org/forgejo/forgejo:13
++   image: codeberg.org/forgejo/forgejo:13-rootless
     container_name: forgejo
-+    user: 1000:1000
++   user: 1000:1000
     environment:
       - USER_UID=1000
       - USER_GID=1000
