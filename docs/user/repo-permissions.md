@@ -50,13 +50,15 @@ The permissions for teams are quite configurable. You can specify which reposito
 
 Each unit is configured to have one of these 3 permission levels:
 
-- No Access: Members cannot view or take any other action on this unit.
+- No Access: Members cannot view or take any other action on this unit when the repository is private.
 - Read: Members can view the unit and perform standard actions for that unit (See the Read column under [Collaborators](#collaborators)).
 - Write: Members can view the unit and execute write actions for that unit (See the Write column under [Collaborators](#collaborators)).
 
+> **Note**: all team members with access to a private repository are trusted with viewing partial data related to this repository on all units. For instance if a team is configured with **No Access** to issues, they will not be able to add a comment on an issue but they will be able to see the partial information about the issues when browsing the dashboard of the organization.
+
 When a team is configured to have administrator access, this is specified, and you cannot change units. The team will have admin permissions (See the Admin column under _Collaborators_).
 
-Currently, there are six units that can be configured:
+Currently, the following units that can be configured:
 
 - Code: access source code, files, commits, and branches.
 - Issues: organize bug reports, tasks, and milestones.
@@ -64,6 +66,8 @@ Currently, there are six units that can be configured:
 - Releases: track the project versions and downloads.
 - Wiki: access and write documentation.
 - Projects: access and manage issues and pull requests in project boards.
+- Packages: access and manage [packages](../packages).
+- Actions: access and manage [Forgejo Actions](../actions/overview).
 
 There are also two units which can be toggled:
 
