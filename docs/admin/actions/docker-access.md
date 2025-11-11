@@ -100,8 +100,11 @@ runner:
   # ... skipping other configuration values you may have ...
   envs:
     # Step 3 (Part 1):
-    # This DOCKER_HOST environment variable will be setup in each
-    # created container. When you run the docker CLI or related
+    # A container will be setup for each job, and each step will
+    # be executed in it.
+    # This DOCKER_HOST environment variable will be used at each exec
+    # in that container, like docker exec -e DOCKER_HOST=tcp://dind_container.docker.internal:2375 <command>
+    # When you run the docker CLI or related
     # commands, they'll find this variable and reach out to the DIND
     # container to perform work there.
     DOCKER_HOST: tcp://dind_container.docker.internal:2375
