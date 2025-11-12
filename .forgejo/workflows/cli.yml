@@ -1,0 +1,24 @@
+name: CLI
+
+on:
+  schedule:
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+jobs:
+  cli:
+    runs-on: docker
+    steps:
+      - uses: https://data.forgejo.org/actions/checkout@v4
+
+      - run: ./scripts/cli-docs.sh > docs/admin/command-line.md
+
+      - uses: https://data.forgejo.org/peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'admin: update CLI docs'
+          committer: forgejo-website <forgejo-website@noreply.codeberg.org>
+          author: forgejo-website <forgejo-website@noreply.codeberg.org>
+          branch: cli
+          delete-branch: true
+          title: 'admin: update CLI docs'
+          body: ''
