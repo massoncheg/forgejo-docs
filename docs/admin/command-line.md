@@ -41,7 +41,7 @@ COMMANDS:
    restore-repo     Restore the repository from disk
    actions          Manage Forgejo Actions
    cert             Generate self-signed certificate
-   generate         Generate Gitea's secrets/keys/tokens
+   generate         Generate Forgejo's secrets/keys/tokens
    forgejo-cli      Forgejo CLI
 
 GLOBAL OPTIONS:
