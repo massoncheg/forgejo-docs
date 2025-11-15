@@ -78,6 +78,15 @@ To download a package from your repository:
 1. Select the name of the package to view the details.
 1. In the **Assets** section, select the name of the package file you want to download.
 
+## Link a package to a repository
+
+To link a package to a repository:
+
+1. Go to **Packages** in the navigation bar on user or organization page.
+1. Select the name of the package to view the details.
+1. Navigate to **Settings** on the right-hand side.
+1. Choose a repository from the drop-down page to link your package with the repository.
+
 ## Delete a package
 
 You cannot edit a package after you have published it in the Package Registry. Instead, you
@@ -87,7 +96,8 @@ To delete a package from your repository:
 
 1. Go to **Packages** in the navigation bar.
 1. Select the name of the package to view the details.
-1. Click **Delete package** to permanently delete the package.
+1. Navigate to **Settings** on the right-hand side.
+1. Click **Delete package** in the danger zone to permanently delete the package.
 
 ## Disable the Package Registry
 
