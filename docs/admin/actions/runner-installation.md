@@ -20,14 +20,17 @@ Download the latest [binary release](https://code.forgejo.org/forgejo/runner/rel
 
 ```shell
 
+$ export ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
 $ export RUNNER_VERSION=$(curl -X 'GET' https://data.forgejo.org/api/v1/repos/forgejo/runner/releases/latest | jq .name -r | cut -c 2-)
-$ wget -O forgejo-runner https://code.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-amd64
+$ export FORGEJO_URL="https://code.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-${ARCH}"
+$ wget -O forgejo-runner ${FORGEJO_URL}
 $ chmod +x forgejo-runner
-$ wget -O forgejo-runner.asc https://code.forgejo.org/forgejo/runner/releases/download/v${RUNNER_VERSION}/forgejo-runner-${RUNNER_VERSION}-linux-amd64.asc
+$ wget -O forgejo-runner.asc ${FORGEJO_URL}.asc
 $ gpg --keyserver hkps://keys.openpgp.org --recv EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
-$ gpg --verify forgejo-runner.asc forgejo-runner
+$ gpg --verify forgejo-runner.asc forgejo-runner && echo "✓ Verified" || echo "✗ Failed"
 Good signature from "Forgejo <contact@forgejo.org>"
 		aka "Forgejo Releases <release@forgejo.org>"
+✓ Verified
 ```
 
 Next, copy the downloaded binary to `/usr/local/bin` and make it executable:
