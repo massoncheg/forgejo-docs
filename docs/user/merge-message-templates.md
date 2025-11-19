@@ -35,6 +35,8 @@ You can use the following variables enclosed in `${}` inside these templates, wh
 - PullRequestIndex: Pull request's index number
 - PullRequestReference: Pull request's reference character with index number, i.e., #1, !2
 - ClosingIssues: A string containing all issues that will be closed by this pull request, i.e., `close #1, close #2`
+- ReviewedOn: A string containing `Reviewed-on: <link>` with the link to the pull request
+- ReviewedBy: Lines containing `Reviewed-by: <username> <<email>>` with the names and emails of the reviewers
 
 ## Rebase
 
