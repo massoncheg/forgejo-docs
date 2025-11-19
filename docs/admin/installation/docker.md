@@ -290,6 +290,82 @@ services:
       - ./postgres:/var/lib/postgresql/data
 ```
 
+### Using rootless image on raspberry pi
+
+Unfortunately, docker on raspberry pis sometimes has issues with permission remapping when
+mounting folders, even if that is not enabled within docker. So the configuration provided
+above will fail because the service will be unable to create files in the `./forgejo`
+directory. A workaround for this is to use named volumes. Amending the above compose file
+in the following ways:
+
+```yaml
+networks:
+  forgejo:
+    external: false
+
++volumes:
++  forgejo-data:
++    driver: local
++    driver_opts:
++      type: none
++      o: bind
++      device: ./forgejo
++  forgejo-config:
++    driver: local
++    driver_opts:
++      type: none
++      o: bind
++      device: ./conf
++  postgres-data:
++    driver: local
++    driver_opts:
++      type: none
++      o: bind
++      device: ./postgres
+
+services:
+  server:
+    image: codeberg.org/forgejo/forgejo:13-rootless
+    container_name: forgejo
+    user: 1000:1000
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - FORGEJO__database__DB_TYPE=postgres
+      - FORGEJO__database__HOST=db:5432
+      - FORGEJO__database__NAME=forgejo
+      - FORGEJO__database__USER=forgejo
+      - FORGEJO__database__PASSWD=forgejo
+    restart: always
+    networks:
+      - forgejo
+    volumes:
+-      - ./forgejo:/var/lib/gitea
++      - forgejo-data:/var/lib/gitea
+-      - ./conf:/etc/gitea
++      - forgejo-config:/etc/gitea
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+      - "222:2222"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      - POSTGRES_USER=forgejo
+      - POSTGRES_PASSWORD=forgejo
+      - POSTGRES_DB=forgejo
+    networks:
+      - forgejo
+    volumes:
+-      - ./postgres:/var/lib/postgresql/data
++      - postgres-data:/var/lib/postgresql/data
+```
+
 ## Hosting repository data on remote storage systems
 
 You might also mount the data and repository folders on a remote drive such as a
