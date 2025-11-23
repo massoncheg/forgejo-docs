@@ -14,6 +14,10 @@ Each `Forgejo Runner` release is published for all supported architectures as:
 
 ## Binary installation
 
+### System requirements
+
+`Forgejo Runner` requires that Git is installed, and has been tested with a minimum version of Git 2.24.3.
+
 ### Downloading and installing the binary
 
 Download the latest [binary release](https://code.forgejo.org/forgejo/runner/releases) and verify its signature:
