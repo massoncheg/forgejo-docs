@@ -998,6 +998,69 @@ A context is an object that contains information relevant to a `workflow` run. F
 
 To help with re-using actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forgejo` context.
 
+### Availability
+
+Some contexts like `secrets` can only be accessed in certain places. Likewise, functions can be restricted to certain workflow keys. The following table lists which contexts and functions are available where.
+
+| Workflow key                                       | Accessible contexts                                                                                    | Accessible functions                                     |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- |
+| `run-name`                                         | `forgejo`, `inputs`, `vars`                                                                            | -                                                        |
+| `concurrency`                                      | `forgejo`, `inputs`, `vars`                                                                            | -                                                        |
+| `env`                                              | `env`, `forgejo`, `inputs`, `secrets`, `vars`                                                          | -                                                        |
+| `jobs.<job-id>.concurrency`                        | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
+| `jobs.<job-id>.container`                          | `env`, `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                      | -                                                        |
+| `jobs.<job-id>.container.credentials`              | `env`, `forgejo`, `inputs `, `matrix`, `needs`, `secrets`, `strategy`, `vars`                          | -                                                        |
+| `jobs.<job-id>.container.credentials`              | `env`, `forgejo`, `inputs `, `matrix`, `needs`, `secrets`, `strategy`, `vars`                          | -                                                        |
+| `jobs.<job-id>.container.env.<env-id>`             | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `strategy`, `vars`          | -                                                        |
+| `jobs.<job-id>.container.image`                    | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
+| `jobs.<job-id>.continue-on-error`                  | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
+| `jobs.<job-id>.defaults.run`                       | `env`, `forgejo`, `inputs `, `matrix`, `needs`, `strategy`, `vars`                                     | -                                                        |
+| `jobs.<job-id>.env`                                | `forgejo`, `inputs`, `matrix`, `needs`, `secrets`, `strategy`, `vars`                                  | -                                                        |
+| `jobs.<job-id>.environment`                        | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
+| `jobs.<job-id>.environment.url`                    | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `steps`, `strategy`, `vars`            | -                                                        |
+| `jobs.<job-id>.if`                                 | `env`, `forgejo`, `inputs`, `needs`, `secrets`, `vars`                                                 | `always`, `cancelled`, `failure`, `success`              |
+| `jobs.<job-id>.name`                               | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
+| `jobs.<job-id>.outputs.<output-id>`                | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | -                                                        |
+| `jobs.<job-id>.runs-on`                            | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
+| `jobs.<job-id>.secrets.<secret_id>`                | `forgejo`, `inputs`, `matrix`, `needs`, `secrets`, `strategy`, `vars`                                  | -                                                        |
+| `jobs.<job-id>.services`                           | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
+| `jobs.<job-id>.services.<service-id>`              | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
+| `jobs.<job-id>.services.<service-id>.credentials`  | `env`, `forgejo`, `inputs`, `secrets`, `vars`                                                          | -                                                        |
+| `jobs.<job-id>.services.<service-id>.env.<env-id>` | `env`, `forgejo`, `inputs `, `job`, `matrix`, `needs`, `runner`, `secrets`, `strategy`, `vars`         | -                                                        |
+| `jobs.<job-id>.steps[*].continue-on-error`         | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
+| `jobs.<job-id>.steps[*].env`                       | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
+| `jobs.<job-id>.steps[*].if`                        | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `always`, `cancelled`, `failure`, `success`, `hashFiles` |
+| `jobs.<job-id>.steps[*].name`                      | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
+| `jobs.<job-id>.steps[*].run`                       | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
+| `jobs.<job-id>.steps[*].timeout-minutes`           | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
+| `jobs.<job-id>.steps[*].uses`                      | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
+| `jobs.<job-id>.steps[*].with`                      | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
+| `jobs.<job-id>.steps[*].working-directory`         | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
+| `jobs.<job-id>.strategy`                           | `forgejo`, `inputs`, `needs`, `vars`                                                                   | -                                                        |
+| `jobs.<job-id>.strategy.fail-fast`                 | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
+| `jobs.<job-id>.strategy.max-parallel`              | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
+| `jobs.<job-id>.timeout-minutes`                    | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
+| `jobs.<job-id>.with.<with-id>`                     | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
+| `on.workflow_call.inputs.<input-id>.default`       | `forgejo`, `inputs`, `vars`                                                                            | -                                                        |
+| `on.workflow_call.outputs.<output-id>.value`       | `forgejo`, `inputs`, `jobs`, `vars`                                                                    | -                                                        |
+
+When you are manipulating a particular context like `env`, you cannot reference context variables defined within the same workflow key. Therefore, the following example will **not** work:
+
+```yaml
+on:
+  push:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invalid context reference
+        run: |
+          echo "$IS_PUSH"
+        env:
+          EVENT: '${{ forgejo.event_name}}'
+          IS_PUSH: "${{ env.EVENT == 'push' }}" # false because env.EVENT is undefined
+```
+
 ### secrets
 
 A map of the repository secrets. It is empty if the `event` that triggered the `workflow` is `pull_request` and the head is from a fork of the repository.
@@ -1016,7 +1079,7 @@ A map of the environment variables defined in the workflow.
 
 Example: `${{ env.SOMETHING }}`
 
-In addition the following variables are defined by default:
+In addition, the variables listed in the following table are injected into the environment of the shell executing a particular step. However, they are not included in `env` and can therefore not be referenced when defining a workflow.
 
 | Name                      | Description                                                                                                                                                      |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
