@@ -25,10 +25,10 @@ In the top level `[log]` section the following configurations can be placed:
 
 And it can contain the following sub-loggers:
 
-- `logger.default.MODE`: (Default: **,**): List of log outputs to use for the default logger.
-- `logger.router.MODE`: (Default: **,**): List of log outputs to use for the Router logger.
-- `logger.access.MODE`: (Default: **\<empty\>**) List of log outputs to use for the Access logger. By default, the access logger is disabled.
-- `logger.xorm.MODE`: (Default: **,**) List of log outputs to use for the XORM logger.
+- `LOGGER_DEFAULT_MODE`: (Default: **,**): List of log outputs to use for the default logger.
+- `LOGGER_ROUTER_MODE`: (Default: **,**): List of log outputs to use for the Router logger.
+- `LOGGER_ACCESS_MODE`: (Default: **\<empty\>**) List of log outputs to use for the Access logger. By default, the access logger is disabled.
+- `LOGGER_XORM_MODE`: (Default: **,**) List of log outputs to use for the XORM logger.
 
 Setting a comma (`,`) to sub-logger's mode means making it use the default global `MODE`.
 
@@ -44,10 +44,10 @@ ROOT_PATH = %(GITEA_WORK_DIR)/log
 MODE = console
 LEVEL = Info
 STACKTRACE_LEVEL = None
-logger.default.MODE = ,
-logger.router.MODE = ,
-logger.xorm.MODE = ,
-logger.access.MODE =
+LOGGER_DEFAULT_MODE = ,
+LOGGER_ROUTER_MODE = ,
+LOGGER_XORM_MODE = ,
+LOGGER_ACCESS_MODE =
 
 ; this is the config options of "console" mode (used by MODE=console above)
 [log.console]
@@ -67,8 +67,8 @@ The Router logger is disabled, the access logs (>=Warn) goes into `access.log`:
 
 ```ini
 [log]
-logger.router.MODE =
-logger.access.MODE = access-file
+LOGGER_ROUTER_MODE =
+LOGGER_ACCESS_MODE = access-file
 
 [log.access-file]
 MODE = file
@@ -252,7 +252,7 @@ should be taken when changing its template. The main benefit of this
 logger is that Forgejo can now log accesses in a standard log format so
 standard tools may be used.
 
-You can enable this logger using `logger.access.MODE = ...`.
+You can enable this logger using `LOGGER_ACCESS_MODE = ...`.
 
 If desired the format of the Access logger can be changed by changing
 the value of the `ACCESS_LOG_TEMPLATE`.
