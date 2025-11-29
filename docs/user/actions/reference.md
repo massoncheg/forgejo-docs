@@ -619,8 +619,6 @@ jobs:
           node-version: '${{ matrix.node }}'
 ```
 
-> **NOTE:** dynamic matrix objects, e.g. using `fromJSON`, are not supported - this is a [known caveat](https://code.forgejo.org/forgejo/runner/issues/525).
-
 Will create four jobs where:
 
 - `matrix.variant` = "bookworm" & `matrix.node` = "18"
@@ -630,9 +628,36 @@ Will create four jobs where:
 
 They each run independently and can use the `matrix` context to access these values, like in the `node-version` key in the snippet.
 
-[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/commit/b6591e2f71196b12f6e0851774f0bd6e2148ec18/.forgejo/workflows/actions.yml#L22-L37).
+The `strategy.matrix` option can calculate the jobs to be created, typically by using the `fromJSON` evaluation function. The following snippet contains the same four job matrix defined above, but the matrix options can be defined by the `matrix-generator` job. The test job `needs` the `matrix-generator` job so that it is executed first and defines the job matrix:
 
-The following values are the same as [service container syntax](../advanced-features/#services).
+```yaml
+jobs:
+  matrix-generator:
+    runs-on: docker
+    outputs:
+      variants: ${{ steps.generate_matrix.outputs.variants }}
+      nodes: ${{ steps.generate_matrix.outputs.nodes }}
+    steps:
+      - id: generate_matrix
+        run: |
+          echo 'variants=["bookworm", "bullseye"]' >> $GITHUB_OUTPUT
+          echo 'nodes=["18", "20"]' >> $GITHUB_OUTPUT
+  test:
+    needs: matrix-generator
+    runs-on: docker
+    strategy:
+      matrix:
+        variant: ${{ fromJSON(needs.matrix-generator.outputs.variants) }}
+        node: ${{ fromJSON(needs.matrix-generator.outputs.nodes) }}
+    container:
+      image: debian:${{ matrix.obj.variant }}
+    steps:
+      - uses: https://code.forgejo.org/actions/setup-node@v4
+        with:
+          node-version: '${{ matrix.node }}'
+```
+
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/commit/b6591e2f71196b12f6e0851774f0bd6e2148ec18/.forgejo/workflows/actions.yml#L22-L37).
 
 > **NOTE:** if `jobs.<job_id>.mame` is set, care must be taken that it evaluates to a unique name for each job created from the matrix, e.g. `name-${{ matrix.variant }}-${{ matrix.node}}` in the above example.
 
