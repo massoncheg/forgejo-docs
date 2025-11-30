@@ -5,17 +5,17 @@ license: 'CC-BY-SA-4.0'
 
 Blocking another user is desirable if they are acting maliciously or are spamming your repository (for instance, by adding unsolicited comments in issues). For such cases, Forgejo provides the functionality to block other users. When you block a user, Forgejo does not explicitly notify them, but they may learn through an interaction with you that is blocked.
 
-## How to Block Someone
+## How to block Someone
 
-In order to block another user, go to their profile page and click on the "Block" button.
+In order to block another user, go to their profile page and click on the button with three dots. The menu that is shown has a "Block" action, click on it.
 
-![Profile card where block button is shown](../_images/user/block/profile.png)
+![Profile card where block button is shown](../_images/user/block/profile.webp)
 
 A popup will show; please read carefully what blocking another user implies, and if you accept the implications, click on Yes.
 
 ![Popup where implications of the block action is listed](../_images/user/block/popup.png)
 
-### List of Blocked Users and Unblocking
+### List of blocked Users and Unblocking
 
 If you would like to see the list of users you've blocked, navigate to your user profile in the top-right corner and click on the settings item.
 
@@ -29,7 +29,7 @@ To unblock someone, click on the unblock button next to their name.
 
 ![List of people that are currently blocked by the user](../_images/user/block/user_list_blocks.png)
 
-## How to Block Someone as an Organization
+## How to block Someone as an organization
 
 It is possible to block a user from an organization; this has the same implications as a normal user blocking another user. To block a user from an organization, you must be on that organization's Owners team.
 
@@ -49,7 +49,7 @@ To unblock that person, you can click the unblock button next to their name.
 
 ![Blocked person being shown in the blocked users list](../_images/user/block/org_unblock.png)
 
-## Implications of Blocking a User
+## Implications of blocking a User
 
 When you block a user:
 
