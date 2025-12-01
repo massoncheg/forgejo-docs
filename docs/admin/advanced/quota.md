@@ -136,3 +136,30 @@ Or remove them:
 ```shell
 api_helper "/admin/quota/groups/<GROUPNAME>/users/<USERNAME>" -XDELETE
 ```
+
+## Sync Quota Groups with OAuth2 Providers
+
+If you use OAuth2 providers, you can sync the quota groups with a special claim returned by the provider.
+
+This claim should be a comma-separated list of group names, for example:
+
+```json
+{
+  "quota_groups": "dev,student"
+}
+```
+
+You can configure the mapping of these groups to quota groups in Forgejo, allowing you to manage quotas based on the user's OAuth2 group membership. For example:
+
+```json
+{
+  "dev": ["premium", "git-max-50g"],
+  "student": ["git-max-5g"]
+}
+```
+
+You will need to configure the auth source at `https://<your-instance>/admin/auths` by filling these fields:
+
+- **Claim name providing group names for this source to be used for quota management**: For the example above, this would be `quota_groups`.
+- **Map claimed groups to quota groups**: Here you can map the groups returned by the OAuth2 provider to the quota groups you have created. Fill in the JSON using the format shown above.
+- **Remove users from synchronized quota groups if user does not belong to corresponding group**: If enabled, users will be removed from quota groups if they no longer belong to the corresponding OAuth2 group. Notice: only the groups specified in the mapping will be considered for removal. If you simply remove a group from the mapping, users will not be removed from the quota group.
