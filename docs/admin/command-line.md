@@ -488,6 +488,9 @@ OPTIONS:
    --group-team-map string              JSON mapping between groups and org teams
    --group-team-map-removal             Activate automatic team membership removal depending on groups
    --allow-username-change              Allow users to change their username
+   --quota-group-claim-name string      Claim name providing quota group names for this source
+   --quota-group-map string             JSON mapping between groups and quota groups
+   --quota-group-map-removal            Activate automatic quota group removal depending on groups
 ```
 
 ### admin auth update-oauth
@@ -528,6 +531,9 @@ OPTIONS:
    --group-team-map string              JSON mapping between groups and org teams
    --group-team-map-removal             Activate automatic team membership removal depending on groups
    --allow-username-change              Allow users to change their username
+   --quota-group-claim-name string      Claim name providing quota group names for this source
+   --quota-group-map string             JSON mapping between groups and quota groups
+   --quota-group-map-removal            Activate automatic quota group removal depending on groups
 ```
 
 ### admin auth add-ldap
