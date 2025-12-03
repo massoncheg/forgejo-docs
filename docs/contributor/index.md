@@ -49,4 +49,5 @@ Why not share those things with other contributors?
 Creating a personal article is an option to do so.
 Once you do, create a Pull Request on this page and extend the list.
 
+- [Forgejo Action Notification Development](https://chris-besch.com/articles/forgejo_actions_notification) (including exhaustive development and testing setup) by Christopher Besch on 20th November 2025
 - [The History of Forgejo's Pub-Sub Pattern](https://chris-besch.com/articles/forgejo_pub_sub_pattern_history) by Christopher Besch on 30th October 2025
