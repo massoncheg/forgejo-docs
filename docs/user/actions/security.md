@@ -19,6 +19,10 @@ When a workflow is triggered, the Forgejo instance will try to find a runner to 
 
 Your workflow will never be executed by a runner that does not belong to one of these groups.
 
+### Pull requests from forks
+
+When a repository is publicly available on a Forgejo instance with open registration, any user can open a pull request that includes code to be executed by Forgejo Actions. Checkout the [section dedicated to trust management](../security-pull-request) for more information.
+
 ### Automatic token
 
 When a workflow is started, a unique authentication token is automatically created. It can be used to read the repositories associated with the workflow, even when they are private. This token is automatically destroyed when the workflow finishes.
@@ -28,16 +32,6 @@ This token can only be used for interactions with the repository it was created 
 ### Pull requests
 
 Workflows triggered by the `pull_request` event are an exception. The token generated for these runs does _not_ have write permissions for the repository, since a pull request is not verified and could contain an untested or malicious workflow.
-
-The first time a user proposes a pull request, the `on.pull_request` workflows are blocked.
-
-![blocked action](../../_images/user/actions/action-blocked.png)
-
-They can be approved by a maintainer of the project and there will be no need to unblock future pull requests.
-
-![button to approve an action](../../_images/user/actions/action-approve.png)
-
-If a trusted user attempts to abuse the actions system, they can be blocked. This will revoke the user's ability to run `pull_request` workflows.
 
 #### pull_request_target
 
@@ -76,11 +70,6 @@ When using Actions, keep in mind the following considerations:
 - Container runners are generally safe, but they may be compromised if misconfigured.
 - Never trust a host runner if it is shared with other users.
 - The safest option is to [host your own runner](../../../admin/actions/runner-installation/), and use it only for your trusted repositories.
-
-### Pull requests
-
-- Carefully review changes to the workflows, and only approve workflows from trusted users.
-- Prefer `on.pull_request_target` over `on.pull_request` whenever possible.
 
 ### Secrets
 
