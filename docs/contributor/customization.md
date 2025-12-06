@@ -184,8 +184,8 @@ Fonts can be customized using CSS variables:
 
 ```css
 :root {
-  --fonts-proportional:  /* custom proportional fonts * !important;
-  --fonts-monospace:  /* custom monospace fonts * !important;
-  --fonts-emoji:  /* custom emoji fonts * !important;
+  --fonts-proportional: 'Proportional fonts here' !important;
+  --fonts-monospace: 'Monospace fonts here' !important;
+  --fonts-emoji: 'Emoji fonts here' !important;
 }
 ```
