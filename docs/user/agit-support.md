@@ -108,3 +108,9 @@ Should you wish to overwrite the contents of an existing pull request, use the `
 > **Note**: A new pull request will be created if the `topic` was used in a pull request that is merged or closed, independently of the `force-push` parameter.
 
 **For Gerrit users:** Forgejo does not support [Gerrit's Change-Ids](https://gerrit-review.googlesource.com/Documentation/user-changeid.html).
+
+### Review Workflow
+
+The web UI can be used to review AGit pull requests like any other.
+
+To get command line instructions, click the "View command line instructions" drop-down at the bottom of the pull request form.
