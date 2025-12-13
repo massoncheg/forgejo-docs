@@ -1066,7 +1066,7 @@ Some contexts like `secrets` can only be accessed in certain places. Likewise, f
 | `jobs.<job-id>.strategy.max-parallel`              | `env`, `forgejo`, `inputs`, `job`, `matrix`, `needs`, `runner`, `secrets`, `steps`, `strategy`, `vars` | `hashFiles`                                              |
 | `jobs.<job-id>.timeout-minutes`                    | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
 | `jobs.<job-id>.with.<with-id>`                     | `forgejo`, `inputs`, `matrix`, `needs`, `strategy`, `vars`                                             | -                                                        |
-| `on.workflow_call.inputs.<input-id>.default`       | `forgejo`, `inputs`, `vars`                                                                            | -                                                        |
+| `on.workflow_call.inputs.<input-id>.default`       | `forgejo`, `vars` [^1]                                                                                 | -                                                        |
 | `on.workflow_call.outputs.<output-id>.value`       | `forgejo`, `inputs`, `jobs`, `vars`                                                                    | -                                                        |
 
 When you are manipulating a particular context like `env`, you cannot reference context variables defined within the same workflow key. Therefore, the following example will **not** work:
@@ -1085,6 +1085,8 @@ jobs:
           EVENT: '${{ forgejo.event_name}}'
           IS_PUSH: "${{ env.EVENT == 'push' }}" # false because env.EVENT is undefined
 ```
+
+[^1]: While GitHub Actions permits accessing `inputs` in `on.workflow_call.inputs.<input-id>.default`, [it is always empty](https://codeberg.org/forgejo/forgejo/issues/9768#issuecomment-8852121). Therefore, Forgejo Runner does not make it available.
 
 ### secrets
 
