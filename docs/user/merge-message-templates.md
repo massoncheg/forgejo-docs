@@ -30,10 +30,10 @@ You can customize the title and body of the default message following these rule
 
 - To replace each of those sections the first line of the template is used to replace the title and other lines the body.
 - For the title, leading and trailing whitespace is trimmed
-- For the body, trailing whitespace is trimmed from each line
+- For the body, trailing whitespace is trimmed from the last line
 - If only the title is meant to be changed a single-line template can be used.
 - To keep the default title but change the default body the template needs to start with a newline `\n` character.
-- To remove the default title (make it empty) any white-space character can be inserted in the first line of the template, as trailing white spaces are trimmed.
+- To remove the default title (make it empty) any white-space character can be inserted in the first line of the template, as white spaces are trimmed.
 
 ### Examples
 
