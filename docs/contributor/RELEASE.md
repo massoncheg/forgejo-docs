@@ -152,47 +152,63 @@ Here are a few notions that help understand how it works:
 
 #### Create
 
-- mkdir /tmp/secrets && pushd /tmp/secrets
-- gopass list openpgp
-- gopass fscopy openpgp/20??-release-team.gpg 20??-release-team.gpg # for all years
-- docker run -v ${PWD}:/tmp/secrets -ti --rm data.forgejo.org/oci/debian:bookworm bash
-- apt update && apt install -y gnupg2
-- gpg --import 20\*-release-team.gpg
-- gpg --expert --edit-key EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
-- addkey
-- key type: ECC (signature only)
-- elliptic curve Curve 25519
-- key validity: 18 months
-- gpg --list-key --with-subkey-fingerprints # set FINGERPRINT to the fingerprint of the new subkey
-- gpg --export-secret-subkeys --armor "${FINGERPRINT}!" > $(date +%Y)-release-team.gpg
-- gpg --export --armor EB114F5E6C0DC2BCDD183550A4B61A2DC5923710 > openpgp/release-team.gpg.pub
-- popd && rm -r /tmp/secrets
+```sh
+mkdir /tmp/secrets && pushd /tmp/secrets
+gopass list openpgp
+gopass fscopy openpgp/20??-release-team.gpg 20??-release-team.gpg # for all years
+docker run -v ${PWD}:/tmp/secrets -ti --rm data.forgejo.org/oci/debian:bookworm bash
+apt update && apt install -y gnupg2
+gpg --import 20*-release-team.gpg
+gpg --expert --edit-key EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
+  addkey
+  key type: ECC (signature only)
+  elliptic curve Curve 25519
+  key validity: 18 months
+gpg --list-key --with-subkey-fingerprints # set FINGERPRINT to the fingerprint of the new subkey
+year=$(date +%Y)
+gpg --export-secret-subkeys --armor "${FINGERPRINT}!" > $year-release-team.gpg
+gpg --export --armor EB114F5E6C0DC2BCDD183550A4B61A2DC5923710 > release-team.gpg.pub
+gopass fscopy $year-release-team.gpg openpgp/$year-release-team.gpg
+gopass fscopy release-team.gpg.pub openpgp/release-team.gpg.pub
+popd && rm -r /tmp/secrets
+```
 
 #### Sanity check
 
-- mkdir /tmp/secrets && pushd /tmp/secrets
-- gopass fscopy openpgp/release-team.gpg.pub release-team.gpg.pub
-- gopass fscopy openpgp/20??-release-team.gpg 20??-release-team.gpg # year of the new subkey
-- docker run -v ${PWD}:/tmp/secrets -ti --rm data.forgejo.org/oci/debian:bookworm bash
-- apt update && apt install -y gnupg2
-- cd /tmp/secrets
-- export GNUPGHOME=/tmp/signrelease ; mkdir $GNUPGHOME ; chmod 700 $GNUPGHOME
-- gpg --import 20??-release-team.gpg # year of the new subkey
-- find $GNUPGHOME/private-keys-v1.d # only has **one** file named after the keygrip
-- echo bar > /tmp/foo
-- gpg --detach-sig --output /tmp/foo.asc --sign /tmp/foo
-- export GNUPGHOME=/tmp/user ; mkdir $GNUPGHOME ; chmod 700 $GNUPGHOME
-- gpg --import release-team.gpg.pub
-- gpg --verify /tmp/foo.asc /tmp/foo
-- popd && rm -r /tmp/secrets
+```sh
+mkdir /tmp/secrets && pushd /tmp/secrets
+gopass fscopy openpgp/release-team.gpg.pub release-team.gpg.pub
+year=$(date +%Y)
+gopass fscopy openpgp/$year-release-team.gpg $year-release-team.gpg # year of the new subkey
+docker run -e year=$year -v ${PWD}:/tmp/secrets -ti --rm data.forgejo.org/oci/debian:bookworm bash
+apt update && apt install -y gnupg2
+cd /tmp/secrets
+export GNUPGHOME=/tmp/signrelease ; mkdir $GNUPGHOME ; chmod 700 $GNUPGHOME
+gpg --import $year-release-team.gpg # year of the new subkey
+find $GNUPGHOME/private-keys-v1.d # only has **one** file named after the keygrip
+echo bar > /tmp/foo
+gpg --detach-sig --output /tmp/foo.asc --sign /tmp/foo
+export GNUPGHOME=/tmp/user ; mkdir $GNUPGHOME ; chmod 700 $GNUPGHOME
+gpg --import release-team.gpg.pub
+gpg --verify /tmp/foo.asc /tmp/foo
+exit
+popd && rm -r /tmp/secrets
+```
 
 #### Publish
 
-- mkdir /tmp/secrets && pushd /tmp/secrets
-- gopass fscopy openpgp/release-team.gpg.pub release-team.gpg.pub
-- gpg --import release-team.gpg.pub
-- gpg --keyserver keys.openpgp.org --send-keys EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
-- popd && rm -r /tmp/secrets
+```sh
+mkdir /tmp/secrets && pushd /tmp/secrets
+gopass fscopy release-team.gpg.pub release-team.gpg.pub
+gpg --import release-team.gpg.pub
+gpg --keyserver keys.openpgp.org --send-keys EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
+popd && rm -r /tmp/secrets
+```
+
+Update the `GPG_PRIVATE_KEY` secret in the runner and forgejo repositories dedicated to signing the releases with the new private sub-key:
+
+- https://invisible.forgejo.org/forgejo/runner/settings/actions/secrets
+- https://invisible.forgejo.org/forgejo/forgejo/settings/actions/secrets
 
 #### Reminder
 
