@@ -162,7 +162,7 @@ At the start of each workflow, a unique authentication token is automatically cr
 - as `env.FORGEJO_TOKEN`
 - as `secrets.FORGEJO_TOKEN`
 
-To help with re-using actions and workflows originally developed for GitHub Actions, they are also available under the following names:
+To help with reusing actions and workflows originally developed for GitHub Actions, they are also available under the following names:
 
 - `GITHUB_TOKEN` == `FORGEJO_TOKEN`
 - `github.token` == `forgejo.token`
@@ -205,6 +205,6 @@ An action is a repository that contains the equivalent of a function in any prog
 - **action.yml:** describes the inputs and outputs of the action and the implementation. See [this example](https://code.forgejo.org/actions/setup-forgejo/src/branch/main/action.yml).
 - **Dockerfile:** if no `action.yml` file is found, it is used to create an image with `docker build` and run a container from it to carry out the action. See [this example](https://code.forgejo.org/forgejo/test-setup-forgejo-docker) and [the workflow that uses it](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-docker-action). Note that files written outside of the **workspace** will be lost when the **step** using such an action terminates.
 
-Just as any other program or function, an action has pre-requisites to successfully be installed and run. When looking at re-using an existing action, this is an important consideration. For instance [setup-go](https://code.forgejo.org/actions/setup-go) depends on NodeJS during installation.
+Just as any other program or function, an action has pre-requisites to successfully be installed and run. When looking at reusing an existing action, this is an important consideration. For instance [setup-go](https://code.forgejo.org/actions/setup-go) depends on NodeJS during installation.
 
 To read more about creating your own actions, see the [actions guide](../actions/#creating-your-own-actions).

@@ -659,7 +659,7 @@ jobs:
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/commit/b6591e2f71196b12f6e0851774f0bd6e2148ec18/.forgejo/workflows/actions.yml#L22-L37).
 
-> **NOTE:** if `jobs.<job_id>.mame` is set, care must be taken that it evaluates to a unique name for each job created from the matrix, e.g. `name-${{ matrix.variant }}-${{ matrix.node}}` in the above example.
+> **NOTE:** if `jobs.<job_id>.name` is set, care must be taken that it evaluates to a unique name for each job created from the matrix, e.g. `name-${{ matrix.variant }}-${{ matrix.node}}` in the above example.
 
 ### `jobs.<job_id>.container.image`
 
@@ -1021,7 +1021,7 @@ A context is an object that contains information relevant to a `workflow` run. F
 | needs            | information about the jobs that have been run   |
 | inputs           | the input parameters given to an action         |
 
-To help with re-using actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forgejo` context.
+To help with reusing actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forgejo` context.
 
 ### Availability
 
@@ -1136,7 +1136,7 @@ In addition, the variables listed in the following table are injected into the e
 | FORGEJO_TOKEN             | The unique authentication token automatically created for duration of the workflow.                                                                              |
 | FORGEJO_WORKSPACE         | The default working directory on the runner for steps, and the default location of the repository when using the checkout action.                                |
 
-To help with re-using actions and workflows originally developed for GitHub Actions, each `FORGEJO_*` variable is also available as a `GITHUB_*` variable with the same suffix (e.g. `GITHUB_REPOSITORY` is the same as `FORGEJO_REPOSITORY`).
+To help with reusing actions and workflows originally developed for GitHub Actions, each `FORGEJO_*` variable is also available as a `GITHUB_*` variable with the same suffix (e.g. `GITHUB_REPOSITORY` is the same as `FORGEJO_REPOSITORY`).
 
 > **NOTE:** the `FORGEJO_*` variables require [Forgejo runner v7.0.0](https://code.forgejo.org/forgejo/runner/src/branch/main/RELEASE-NOTES.md#7-0-0) or above. With earlier versions only the `GITHUB_*` variables were defined.
 
@@ -1144,7 +1144,7 @@ To help with re-using actions and workflows originally developed for GitHub Acti
 
 ### github
 
-To help with re-using actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forgejo` context.
+To help with reusing actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forgejo` context.
 
 ### forgejo
 

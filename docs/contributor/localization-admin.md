@@ -28,7 +28,7 @@ merged with a **merge commit** into the Forgejo development branch as follows:
   - [Merge commit](https://codeberg.org/forgejo/forgejo/commit/0b73a1da00ba92aabf5782ff62264a96bcbd1638)
   - [The actual commit](https://codeberg.org/forgejo/forgejo/commit/5a7af0dae2ef1c7d18ea5ac53ae8682d9d0c28df)
 - Visit [Weblate history](https://translate.codeberg.org/changes/browse/forgejo/)
-  and make sure there's a message about succsessful rebase
+  and make sure there's a message about successful rebase
 
 ## Merging a pull request that changes translations
 

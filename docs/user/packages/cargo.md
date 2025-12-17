@@ -53,7 +53,7 @@ index = "sparse+https://forgejo.example.com/api/packages/{owner}/cargo/" # Spars
 If the registry is private or you want to publish new packages, you must use your credentials to access it.
 
 The Cargo registry requires an [API token](https://codeberg.org/user/settings/applications) with the "write:packages" permission.
-To obtain a token useable by Cargo, prepend the string "Bearer " to your API token.
+To obtain a token usable by Cargo, prepend the string "Bearer " to your API token.
 
 To store the token in your configuration, add the credentials section to the credentials file located in the current users home directory (for example `~/.cargo/credentials.toml`):
 
