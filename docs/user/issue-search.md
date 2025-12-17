@@ -56,3 +56,54 @@ For example,
 
 - `"\"\""` will search for `""`
 - `\+1` will search for `+1`
+
+## Filters
+
+Filters listed below may be escaped by using a phrase search. For example, `"is:open"`.
+
+### State
+
+These filters are mutually exclusive.
+If multiple state filters are used, then the rightmost filter takes precedence.
+
+|          Filter           |                         Description                         |
+| :-----------------------: | :---------------------------------------------------------: |
+| `is:open` or `-is:closed` |         Filters issues/pull requests that are open          |
+| `is:closed` or `-is:open` |        Filters issues/pull requests that are closed         |
+|         `is:all`          | Filters issues/pull requests that are either open or closed |
+
+Examples,
+
+- `is:open +"bug"`: Searches for `bug` among open issues/PRs.
+- `is:all -"backport"`: Search for all issues/PRs that do not contain the term "backport".
+- `"is:all"`: Literal search for `is:all`. Matches Issues/PRs that contain the term `is:all`.
+
+### User
+
+These filter issues/pull requests by a username.
+
+|    Filter    |    Description    |
+| :----------: | :---------------: |
+|  `author:*`  |    Authored By    |
+| `assignee:*` |    Assigned To    |
+|  `review:*`  |    Reviewed By    |
+| `mentions:*` | Mentions the user |
+
+Examples,
+
+- `author:forgejo is:all`: All issues/PRs created by user `forgejo`.
+
+### Misc.
+
+|         Filter         |                                      Description                                       |
+| :--------------------: | :------------------------------------------------------------------------------------: |
+| `sort:<by>:[asc/desc]` | Sorts issues/PRs. Where, `<by>` is one of `created`, `comments`, `updated`, `deadline` |
+| `modified:[>/<]<date>` |                            Last updated date in ISO format                             |
+
+Examples,
+
+- `sort:created:desc is:all`: Sort by the latest issues/PRs.
+- `sort:comments:desc`: Sort by the most commented issues.
+- `modified:>2025-12-05`: Searches for issues/PRs modified after `2025-12-05`.
+- `modified:2025-12-05`: Searches for issues/PRs modified exactly on `2025-12-05`.
+- `modified:<2025-12-05`: Searches for issues/PRs modified before `2025-12-05`.

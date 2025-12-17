@@ -482,6 +482,7 @@ relation to port exhaustion.
 - `REPO_INDEXER_PATH`: **indexers/repos.bleve**: Index file used for code search.
 - `REPO_INDEXER_CONN_STR`: \*\*\*\*: Code indexer connection string, available when `REPO_INDEXER_TYPE` is `elasticsearch`. i.e., http://elastic:password@localhost:9200
 - `REPO_INDEXER_NAME`: **gitea_codes**: Code indexer name, available when `REPO_INDEXER_TYPE` is `elasticsearch`.
+- `REPO_INDEXER_FUZZY_ENABLED`: **false**: Enables fuzzy search as an option for code search.
 
 - `REPO_INDEXER_INCLUDE`: **empty**: A comma-separated list of glob patterns (see https://github.com/gobwas/glob) to **include** in the index. Use `**.txt` to match any files with the .txt extension. An empty list means include all files.
 - `REPO_INDEXER_EXCLUDE`: **empty**: A comma-separated list of glob patterns (see https://github.com/gobwas/glob) to **exclude** from the index. Files that match this list will not be indexed, even if they match in `REPO_INDEXER_INCLUDE`.
