@@ -82,6 +82,7 @@ The repository pushes shortly thereafter. To force a push, select the **Synchron
 Forgejo supports the use of SSH as an authentication method for push mirrors.
 You can enable this when adding a new push mirror; existing push mirrors cannot be configured to use SSH.
 This feature is only available if Forgejo is able to find the `ssh` executable.
+LFS over SSH protocol is not implemented in Forgejo, any LFS objects will not be mirrored.
 
 To use SSH as an authentication method, select the **Use SSH authentication** option in the authorization tab when adding a new push mirror.
 Make sure to use SSH-conform URLs for **Git Remote Repository URL**, which is e.g. `git@forgejo.org:<your_forgejo_group>/<your_forgejo_project>.git` for Forgejo (differs from the default authorization approach as mentioned above).
