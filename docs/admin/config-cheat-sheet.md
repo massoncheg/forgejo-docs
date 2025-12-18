@@ -436,6 +436,7 @@ The following configuration sets the `Content-Type: application/vnd.android.pack
 - `NAME`: **forgejo**: Database name.
 - `USER`: **root**: Database username.
 - `PASSWD`: **\<empty\>**: Database user password. Use \`your password\` or """your password""" for quoting if you use special characters in the password.
+- `PASSWD_URI`: **\<empty\>**: Instead of defining `PASSWD` in the configuration, this option can be used to give Forgejo a path to a file that contains the secret (example value: `file:/etc/forgejo/db_passwd`).
 - `CHARSET_COLLATION`: **_empty_**: (MySQL only) Forgejo expects to use a case-sensitive collation for the database. Leave it empty to use the default collation.
 - `SCHEMA`: **\<empty\>**: For PostgreSQL only, schema to use if different from "public". The schema must exist beforehand,
   the user must have creation privileges on it, and the user search path must be set to look into the schema first
