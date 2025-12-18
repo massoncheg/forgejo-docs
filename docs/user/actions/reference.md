@@ -1143,6 +1143,7 @@ In addition, the variables listed in the following table are injected into the e
 | FORGEJO_STEP_SUMMARY      | The path on the runner to the file that contains job summaries from workflow commands. This file is unique to the current step.                                  |
 | FORGEJO_TOKEN             | The unique authentication token automatically created for duration of the workflow.                                                                              |
 | FORGEJO_WORKSPACE         | The default working directory on the runner for steps, and the default location of the repository when using the checkout action.                                |
+| FORGEJO_WORKFLOW_REF      | Ref path to the workflow, for example, `owner/example-respository/.forgejo/workflows/test-workflow.yaml@refs/heads/main`                                         |
 
 To help with reusing actions and workflows originally developed for GitHub Actions, each `FORGEJO_*` variable is also available as a `GITHUB_*` variable with the same suffix (e.g. `GITHUB_REPOSITORY` is the same as `FORGEJO_REPOSITORY`).
 
@@ -1187,6 +1188,7 @@ The following are identical to the matching environment variable
 | step_summary      | The path on the runner to the file that contains job summaries from workflow commands. This file is unique to the current step.                                  |
 | token             | The unique authentication token automatically created for duration of the workflow.                                                                              |
 | workspace         | The default working directory on the runner for steps, and the default location of the repository when using the checkout action.                                |
+| workflow_ref      | Ref path to the workflow, for example, `owner/example-respository/.forgejo/workflows/test-workflow.yaml@refs/heads/main`                                         |
 
 Example: `${{ forgejo.SHA }}`
 
