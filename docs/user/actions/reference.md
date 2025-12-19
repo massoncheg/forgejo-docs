@@ -1130,6 +1130,7 @@ In addition, the variables listed in the following table are injected into the e
 | FORGEJO_ENV               | The path on the runner to the file that sets variables from workflow commands. This file is unique to the current step and changes for each step in a job.       |
 | FORGEJO_EVENT_NAME        | The name of the event that triggered the workflow (e.g. `push`).                                                                                                 |
 | FORGEJO_EVENT_PATH        | The path to the file on the Forgejo runner that contains the full event webhook payload.                                                                         |
+| FORGEJO_HEAD_REF          | The name of the head branch of the pull request (e.g. my-feature). Only defined when a workflow runs because of a `pull_request` or `pull_request_target` event. |
 | FORGEJO_JOB               | The `job_id` of the current job.                                                                                                                                 |
 | FORGEJO_OUTPUT            | The path on the runner to the file that sets the current step's outputs. This file is unique to the current step.                                                |
 | FORGEJO_PATH              | The path on the runner to the file that sets the PATH environment variable. This file is unique to the current step.                                             |
@@ -1137,10 +1138,11 @@ In addition, the variables listed in the following table are injected into the e
 | FORGEJO_REF_NAME          | The short git reference name of the branch or tag associated with the workflow, if any (e.g. `main`).                                                            |
 | FORGEJO_REPOSITORY        | The owner and repository name (e.g. forgejo/docs).                                                                                                               |
 | FORGEJO_REPOSITORY_OWNER  | The repository owner's name (e.g. forgejo)                                                                                                                       |
-| FORGEJO_RUN_NUMBER        | A unique id for the current workflow run in the Forgejo instance.                                                                                                |
+| FORGEJO_RUN_ATTEMPT       | Attempt number for this run, beginning at 1 and incrementing when the job is re-run.                                                                             |
+| FORGEJO_RUN_NUMBER        | A unique id for the current workflow run in the repository of the workflow.                                                                                      |
+| FORGEJO_RUN_ID            | A unique id for the current workflow run in the Forgejo instance.                                                                                                |
 | FORGEJO_SERVER_URL        | The URL of the Forgejo instance running the workflow (e.g. https://code.forgejo.org)                                                                             |
 | FORGEJO_SHA               | The commit SHA that triggered the workflow. The value of this commit SHA depends on the event that triggered the workflow.                                       |
-| FORGEJO_STEP_SUMMARY      | The path on the runner to the file that contains job summaries from workflow commands. This file is unique to the current step.                                  |
 | FORGEJO_TOKEN             | The unique authentication token automatically created for duration of the workflow.                                                                              |
 | FORGEJO_WORKSPACE         | The default working directory on the runner for steps, and the default location of the repository when using the checkout action.                                |
 | FORGEJO_WORKFLOW_REF      | Ref path to the workflow, for example, `owner/example-respository/.forgejo/workflows/test-workflow.yaml@refs/heads/main`                                         |
@@ -1167,14 +1169,13 @@ The following are identical to the matching environment variable
 | action            | The numerical id of the current step.                                                                                                                            |
 | action_path       | When evaluated while running a `composite` action (i.e. `using: "composite"`, the path where an action files are located.                                        |
 | action_repository | For a step executing an action, this is the owner and repository name of the action (e.g. `actions/checkout`).                                                   |
-| actions           | Set to true when the Forgejo runner is running the workflow on behalf of a Forgejo instance. Set to false when running the workflow from `forgejo-runner exec`.  |
 | actor             | The name of the user that triggered the `workflow`.                                                                                                              |
 | api_url           | The API endpoint of the Forgejo instance running the workflow (e.g. https://code.forgejo.org/api/v1).                                                            |
 | base_ref          | The name of the base branch of the pull request (e.g. main). Only defined when a workflow runs because of a `pull_request` or `pull_request_target` event.       |
-| head_ref          | The name of the head branch of the pull request (e.g. my-feature). Only defined when a workflow runs because of a `pull_request` or `pull_request_target` event. |
-| env               | The path on the runner to the file that sets variables from workflow commands. This file is unique to the current step and changes for each step in a job.       |
+| event             | JSON object containing event details of how the workflow was triggered; details vary depending on the event.                                                     |
 | event_name        | The name of the event that triggered the workflow (e.g. `push`).                                                                                                 |
 | event_path        | The path to the file on the Forgejo runner that contains the full event webhook payload.                                                                         |
+| head_ref          | The name of the head branch of the pull request (e.g. my-feature). Only defined when a workflow runs because of a `pull_request` or `pull_request_target` event. |
 | job               | The `job_id` of the current job.                                                                                                                                 |
 | output            | The path on the runner to the file that sets the current step's outputs. This file is unique to the current step.                                                |
 | path              | The path on the runner to the file that sets the PATH environment variable. This file is unique to the current step.                                             |
@@ -1182,10 +1183,11 @@ The following are identical to the matching environment variable
 | ref_name          | The short git reference name of the branch or tag associated with the workflow, if any (e.g. `main`).                                                            |
 | repository        | The owner and repository name (e.g. forgejo/docs).                                                                                                               |
 | repository_owner  | The repository owner's name (e.g. forgejo)                                                                                                                       |
-| run_number        | A unique id for the current workflow run in the Forgejo instance.                                                                                                |
+| run_id            | A unique id for the current workflow run in the Forgejo instance.                                                                                                |
+| run_number        | A unique id for the current workflow run in the repository of the workflow.                                                                                      |
+| run_attempt       | Attempt number for this run, beginning at 1 and incrementing when the job is re-run.                                                                             |
 | server_url        | The URL of the Forgejo instance running the workflow (e.g. https://code.forgejo.org)                                                                             |
 | sha               | The commit SHA that triggered the workflow. The value of this commit SHA depends on the event that triggered the workflow.                                       |
-| step_summary      | The path on the runner to the file that contains job summaries from workflow commands. This file is unique to the current step.                                  |
 | token             | The unique authentication token automatically created for duration of the workflow.                                                                              |
 | workspace         | The default working directory on the runner for steps, and the default location of the repository when using the checkout action.                                |
 | workflow_ref      | Ref path to the workflow, for example, `owner/example-respository/.forgejo/workflows/test-workflow.yaml@refs/heads/main`                                         |
