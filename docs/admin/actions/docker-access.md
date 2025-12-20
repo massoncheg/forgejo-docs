@@ -182,7 +182,8 @@ The valid values for this configuration, and how they relate to accessing Docker
   - This allows containers access to docker; please review the [Administrator Notes](#administrator-notes-1) below for security details.
 - `docker_host: "unix://..."` or `docker_host: "tcp://..."`
   - Another URL can be used to provide a specific docker daemon.
-  - Forgejo Runner **will not** share the socket with the containers.
+  - Forgejo Runner **will** share the socket with the containers as long as it's a UNIX socket or a named pipe.
+  - This allows containers access to docker; please review the [Administrator Notes](#administrator-notes-1) below for security details.
 
 ### Administrator Notes
 
