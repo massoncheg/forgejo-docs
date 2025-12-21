@@ -171,7 +171,6 @@ services:
       - forgejo
     volumes:
       - ./forgejo:/data
-      - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
 +      - $SOCKET_PATH:$SOCKET_PATH
     ports:

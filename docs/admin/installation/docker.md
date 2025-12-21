@@ -36,7 +36,6 @@ services:
       - forgejo
     volumes:
       - ./forgejo:/data
-      - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
       - '3000:3000'
@@ -160,7 +159,6 @@ services:
       - forgejo
     volumes:
       - ./forgejo:/data
-      - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
@@ -206,7 +204,6 @@ services:
       - forgejo
     volumes:
       - ./forgejo:/data
-      - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
@@ -268,7 +265,6 @@ services:
 -      - ./forgejo:/data
 +      - ./forgejo:/var/lib/gitea
 +      - ./conf:/etc/gitea
-      - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
@@ -344,7 +340,6 @@ services:
 +      - forgejo-data:/var/lib/gitea
 -      - ./conf:/etc/gitea
 +      - forgejo-config:/etc/gitea
-      - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
@@ -443,7 +438,6 @@ services:
 -      - ./forgejo:/data
 +      - /mnt/repositories/data:/var/lib/gitea
 +      - /mnt/repositories/conf:/etc/gitea
-      - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
