@@ -25,6 +25,15 @@ You may want this for scenarios like:
 Forgejo does not need the help of a proxy to do HTTPS, it can do it directly.  
 Set in `SERVER` section of the configuration `PROTOCOL=https` and either set `CERT_FILE` and `KEY_FILE` or let Forgejo manage the certificates with `ENABLE_ACME=true`
 
+## Security of subpath
+
+The security model of browsers assumes that interactions on the same-origin are safe.[^1]
+By using a subpath, this assumption of the browser no longer holds, which can can make using Forgejo insecure if that origin hosts content entered by a user under different sub-paths.
+Forgejo offers **no protection** to mitigate this scenario.
+For example, malicious content on the same origin could host CSRF attacks against Forgejo.
+
+[^1]: A good read about this security model is https://educatedguesswork.org/posts/web-security-model-origin.
+
 ## NGINX
 
 ### Basic HTTP
@@ -69,7 +78,6 @@ server {
     location /code/ { # Replace /code here with your subpath
         rewrite ^ $request_uri;
         rewrite ^/code(/.*) $1 break;
-        return 400;
         proxy_pass http://127.0.0.1:3000$uri;
 
         proxy_set_header Connection $http_connection;
