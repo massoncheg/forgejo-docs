@@ -19,7 +19,7 @@ function latest() {
 	else
 		select="$major"
 	fi
-	curl -sS https://codeberg.org/api/v1/repos/forgejo-experimental/forgejo/releases | jq -r '.[] | .tag_name | select(startswith("'$select'"))' | sort --reverse --version-sort | head -1
+	curl -sS https://codeberg.org/api/v1/repos/forgejo-integration/forgejo/releases | jq -r '.[] | .tag_name | select(startswith("'$select'"))' | sort --reverse --version-sort | head -1
 }
 
 function download() {
@@ -29,7 +29,8 @@ function download() {
 		return
 	fi
 	local version=$(latest $major)
-	curl -sS "https://codeberg.org/forgejo-experimental/forgejo/releases/download/${version}/forgejo-${version#v}-linux-amd64" >${FORGEJO}
+	echo "Downloading version $version"
+	curl -sS "https://codeberg.org/forgejo-integration/forgejo/releases/download/${version}/forgejo-${version#v}-linux-amd64" >${FORGEJO}
 	chmod +x ${FORGEJO}
 }
 
@@ -107,6 +108,8 @@ function generate() {
 	section "###" "admin auth update-ldap"
 	section "###" "admin auth add-ldap-simple"
 	section "###" "admin auth update-ldap-simple"
+	section "###" "admin auth add-pam"
+	section "###" "admin auth update-pam"
 	section "###" "admin auth add-smtp"
 	section "###" "admin auth update-smtp"
 	section "###" "admin auth list"
