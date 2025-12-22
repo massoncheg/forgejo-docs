@@ -15,6 +15,12 @@ list of repositories.
 It uses the `README.md` file from the `.profile` repository of the
 user (or organization), if it exists.
 
+Forked `.profile` repositories do not display profile content - only regular
+`.profile` repositories (not forks) will be used to populate the profile page.
+If you want to use content from a forked `.profile` repository, convert the
+fork to a regular repository in the "Danger Zone" section of repository
+settings.
+
 ![Profile README.md](../_images/user/profile/profile-step2.png)
 
 Making the `.profile` repository private will hide the Profile README.
