@@ -3,7 +3,7 @@ title: Secrets
 license: 'CC-BY-SA-4.0'
 ---
 
-All Forgejo credentials are shared among the [secret keepers](https://codeberg.org/forgejo/meta/src/branch/readme/TEAMS.md#secrets-keeper) teams in a private repository with encrypted content.
+All Forgejo credentials are shared among the [devops](https://codeberg.org/forgejo/governance/src/branch/main/TEAMS.md#devops) team in a private repository with encrypted content.
 
 ## Get started
 
