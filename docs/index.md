@@ -1,5 +1,5 @@
 ---
-title: 'Forgejo prerelease documentation'
+title: 'Forgejo v14.0 documentation'
 ---
 
 - [What is Forgejo?](/)

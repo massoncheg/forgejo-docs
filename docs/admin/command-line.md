@@ -439,6 +439,8 @@ COMMANDS:
    update-ldap         Update existing LDAP (via Bind DN) authentication source
    add-ldap-simple     Add new LDAP (simple auth) authentication source
    update-ldap-simple  Update existing LDAP (simple auth) authentication source
+   add-pam             Add new PAM authentication source
+   update-pam          Update existing PAM authentication source
    add-smtp            Add new SMTP authentication source
    update-smtp         Update existing SMTP authentication source
    list                List auth sources
@@ -690,6 +692,49 @@ OPTIONS:
    --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source
    --avatar-attribute string          The attribute of the user’s LDAP record containing the user’s avatar.
    --user-dn string                   The user's DN.
+```
+
+### admin auth add-pam
+
+```
+NAME:
+   forgejo admin auth add-pam - Add new PAM authentication source
+
+USAGE:
+   forgejo admin auth add-pam
+
+OPTIONS:
+   --help, -h                       show help
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --name string                    Application Name
+   --service-name string            PAM service name (default: "PLAIN")
+   --email-domain string            PAM email domain
+   --skip-local-2fa                 Skip 2FA to log on.
+   --active                         This Authentication Source is Activated.
+```
+
+### admin auth update-pam
+
+```
+NAME:
+   forgejo admin auth update-pam - Update existing PAM authentication source
+
+USAGE:
+   forgejo admin auth update-pam
+
+OPTIONS:
+   --help, -h                       show help
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --name string                    Application Name
+   --id int                         ID of authentication source (default: 0)
+   --service-name string            PAM service name (default: "PLAIN")
+   --email-domain string            PAM email domain
+   --skip-local-2fa                 Skip 2FA to log on.
+   --active                         This Authentication Source is Activated.
 ```
 
 ### admin auth add-smtp
