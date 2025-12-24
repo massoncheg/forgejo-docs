@@ -23,4 +23,4 @@ If there is a feature you are missing, you are welcome to [discuss it](https://c
 
 - The default environment is very different. Most Forgejo Runners use a Debian bookworm image with just node.js by default, while GitHub uses a larger `ubuntu` image.
 - Some keys in the `github` context are missing.
-- Certain subkeys on the `job` key in workflow files are ignored, like `permissions`, `timeout-minutes` and `continue-on-error`.
+- Certain subkeys on the `job` key in workflow files are ignored, like `permissions`, and `continue-on-error`.

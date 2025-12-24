@@ -191,7 +191,7 @@ on:
 
 jobs:
   caller:
-    runs-on: docker
+    runs-on: docker # (optional, see details in `jobs.<job_id>.uses`)
     uses: ./.forgejo/workflows/reusable.yml
 ```
 
@@ -234,6 +234,8 @@ jobs:
     steps:
       - run: echo ${{ inputs.number }}
 ```
+
+Inputs are provided to a [`workflow_call`](#onworkflow_call) by using [`jobs.<job_id>.with`](#jobsjob_idwith).
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/reusable.yml).
 
@@ -444,7 +446,7 @@ Specifies the id for the job. This is used in some places to uniquely identify t
 
 ### `jobs.<job_id>.runs-on`
 
-Each `job` in a `workflow` must specify the kind of machine it needs to run its `steps` with `runs-on`. For instance `docker` in the following `workflow`
+Specifies the kind of machine that is needed to run the `job`. For instance `docker` in the following `workflow`
 
 ```yaml
 ---
@@ -469,6 +471,8 @@ The list of available `labels` for a given repository can be seen in the `/{owne
 ![a list of runners, with their associated labels](../../_images/user/actions/list-of-runners.png)
 
 If your job specifies a label for which no runner is online, the job cannot be executed and your pipeline will halt until a runner with a matching label comes online. You will be able to see this in the Actions tab of your repository.
+
+`runs-on` is typically a required field. However, if a job defines [`jobs.<job_id>.uses`](#jobsjob_iduses) in order to reference a reusable workflow, then it is optional. See [`jobs.<job_id>.uses`](#jobsjob_iduses) for more information on this behaviour.
 
 ### `jobs.<job_id>.if`
 
@@ -557,7 +561,23 @@ job2:
 
 ### `jobs.<job_id>.uses`
 
-Specifies the reusable workflow to call with a `workflow_call` event. See [`on.workflow_call`](#onworkflow_call) for more information.
+Specifies the reusable workflow to call with a `workflow_call` event. `uses` can be specified in one of three supported formats:
+
+- `./.forgejo/workflows/reusable.yml` -- refers to a workflow file within the same repository as the current workflow is defined.
+- `some-org/some-repo/.forgejo/workflows/reusable.yml@main` -- refers to a workflow file within a different repository (`some-org/some-repo`), at a specified path and Git reference (`main`). The target repository must be a public repository.
+- `https://example.com/some-org/some-repo/.forgejo/workflows/reusable.yml@main` -- refers to a workflow file hosted remotely by a different Forgejo or GitHub instance. The target repository must be a public reposistory.
+
+If [`jobs.<job_id>.runs-on`](#jobsjob_idruns-on) field is absent, then Forgejo will attempt to perform workflow expansion on the reusable workflow. Workflow expansion results in the target workflow's jobs being handled as individual jobs which can be executed on separate runners. When multiple jobs are present in the workflow, this provides an easier to understand experience for accessing the logs, and permits the jobs to run on separate runners with their own `runs-on` fields.
+
+Workflow expansion has limited support:
+
+- `with:` or `secrets:` to provide inputs to a job is not supported
+- `on.workflow_call.outputs` to receive outputs from the job is not supported
+- A workflow file hosted remotely by a different Forgejo or GitHub instance is not supported, and will automatically disable workflow expansion.
+
+Workflow expansion can be disabled by providing a value for [`jobs.<job_id>.runs-on`](#jobsjob_idruns-on).
+
+See [`on.workflow_call`](#onworkflow_call) for more information on defining a workflow call.
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/test.yml).
 
