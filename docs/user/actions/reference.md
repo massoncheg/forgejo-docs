@@ -571,7 +571,7 @@ If [`jobs.<job_id>.runs-on`](#jobsjob_idruns-on) field is absent, then Forgejo w
 
 Workflow expansion has limited support:
 
-- `with:` or `secrets:` to provide inputs to a job is not supported
+- `secrets:` to provide secret inputs to a job is not supported
 - A workflow file hosted remotely by a different Forgejo or GitHub instance is not supported, and will automatically disable workflow expansion.
 
 Workflow expansion can be disabled by providing a value for [`jobs.<job_id>.runs-on`](#jobsjob_idruns-on).
