@@ -565,16 +565,11 @@ Specifies the reusable workflow to call with a `workflow_call` event. `uses` can
 
 - `./.forgejo/workflows/reusable.yml` -- refers to a workflow file within the same repository as the current workflow is defined.
 - `some-org/some-repo/.forgejo/workflows/reusable.yml@main` -- refers to a workflow file within a different repository (`some-org/some-repo`), at a specified path and Git reference (`main`). The target repository must be a public repository.
-- `https://example.com/some-org/some-repo/.forgejo/workflows/reusable.yml@main` -- refers to a workflow file hosted remotely by a different Forgejo or GitHub instance. The target repository must be a public reposistory.
+- `https://example.com/some-org/some-repo/.forgejo/workflows/reusable.yml@main` -- refers to a workflow file hosted on a different Forgejo or GitHub instance. The target repository must be a public reposistory.
 
 If [`jobs.<job_id>.runs-on`](#jobsjob_idruns-on) field is absent, then Forgejo will attempt to perform workflow expansion on the reusable workflow. Workflow expansion results in the target workflow's jobs being handled as individual jobs which can be executed on separate runners. When multiple jobs are present in the workflow, this provides an easier to understand experience for accessing the logs, and permits the jobs to run on separate runners with their own `runs-on` fields.
 
-Workflow expansion has limited support:
-
-- `secrets:` to provide secret inputs to a job is not supported
-- A workflow file hosted remotely by a different Forgejo or GitHub instance is not supported, and will automatically disable workflow expansion.
-
-Workflow expansion can be disabled by providing a value for [`jobs.<job_id>.runs-on`](#jobsjob_idruns-on).
+Workflow expansion can be disabled by providing a value for [`jobs.<job_id>.runs-on`](#jobsjob_idruns-on). A workflow file hosted on a different Forgejo or GitHub instance is not supported by workflow expansion, and will automatically disable it.
 
 See [`on.workflow_call`](#onworkflow_call) for more information on defining a workflow call.
 
