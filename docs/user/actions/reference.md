@@ -191,11 +191,10 @@ on:
 
 jobs:
   caller:
-    runs-on: docker # (optional, see details in `jobs.<job_id>.uses`)
     uses: ./.forgejo/workflows/reusable.yml
 ```
 
-[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/test.yml).
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call-expansion/.forgejo/workflows/test.yml).
 
 ### `on.workflow_call.inputs`
 
@@ -237,7 +236,7 @@ jobs:
 
 Inputs are provided to a [`workflow_call`](#onworkflow_call) by using [`jobs.<job_id>.with`](#jobsjob_idwith).
 
-[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/reusable.yml).
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call-expansion/.forgejo/workflows/reusable-layer-1.yml).
 
 ### `on.workflow_call.outputs`
 
@@ -269,7 +268,7 @@ jobs:
           echo "myvalue=outputvalue1" >> $FORGEJO_OUTPUT
 ```
 
-[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/reusable.yml).
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call-expansion/.forgejo/workflows/reusable-layer-1.yml).
 
 ### `on.workflow_dispatch`
 
@@ -567,19 +566,17 @@ Specifies the reusable workflow to call with a `workflow_call` event. `uses` can
 - `some-org/some-repo/.forgejo/workflows/reusable.yml@main` -- refers to a workflow file within a different repository (`some-org/some-repo`), at a specified path and Git reference (`main`). The target repository must be a public repository.
 - `https://example.com/some-org/some-repo/.forgejo/workflows/reusable.yml@main` -- refers to a workflow file hosted on a different Forgejo or GitHub instance. The target repository must be a public reposistory.
 
-If [`jobs.<job_id>.runs-on`](#jobsjob_idruns-on) field is absent, then Forgejo will attempt to perform workflow expansion on the reusable workflow. Workflow expansion results in the target workflow's jobs being handled as individual jobs which can be executed on separate runners. When multiple jobs are present in the workflow, this provides an easier to understand experience for accessing the logs, and permits the jobs to run on separate runners with their own `runs-on` fields.
+It is recommended that [`jobs.<job_id>.runs-on`](#jobsjob_idruns-on) is omitted when using `uses`, as this will allow Forgejo to perform workflow expansion. Workflow expansion results in the target workflow's jobs appearing in the UI as separate jobs. This provides an easier to understand experience for accessing the logs of each job, and permits the jobs to run on separate runners with their own `runs-on` fields. A workflow file hosted on a different Forgejo or GitHub instance is not supported by workflow expansion, and will automatically disable it.
 
-Workflow expansion can be disabled by providing a value for [`jobs.<job_id>.runs-on`](#jobsjob_idruns-on). A workflow file hosted on a different Forgejo or GitHub instance is not supported by workflow expansion, and will automatically disable it.
+`uses` is typically accompanied by [`jobs.<job_id>.with`](#jobsjob_idwith) and [`jobs.<job_id>.secrets`](#jobsjob_idsecrets) to provide information into the reusable workflow. See [`on.workflow_call`](#onworkflow_call) for more information on defining a workflow call.
 
-See [`on.workflow_call`](#onworkflow_call) for more information on defining a workflow call.
-
-[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/test.yml).
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call-expansion/.forgejo/workflows/test.yml).
 
 ### `jobs.<job_id>.with`
 
 A dictionary mapping the inputs of the `workflow_call` event to concrete values. See [`on.workflow_call.inputs`](#onworkflow_callinputs) for more information on how the inputs are declared in reusable workflow.
 
-[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/test.yml).
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call-expansion/.forgejo/workflows/test.yml).
 
 ### `jobs.<job_id>.secrets`
 
@@ -597,7 +594,7 @@ jobs:
       secret: keep_it_private
 ```
 
-[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call/.forgejo/workflows/test.yml).
+[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-workflow-call-expansion/.forgejo/workflows/test.yml).
 
 ### `jobs.<job_id>.name`
 
