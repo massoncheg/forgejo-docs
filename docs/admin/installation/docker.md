@@ -460,7 +460,7 @@ Note, that this setup is simple and does not necessarily reflect the reality of 
 
 ## SSH passthrough
 
-If you want to use Git over SSH working then a easy option is to port forward a dedicated port (e.g. 22) to the Forgejo container which is then handled by the internal SSH server or OpenSSH daemon. We strongly recommend this option, it's the most secure option.
+If you want to use Git over SSH, an easy option is to port-forward a dedicated port (e.g. 22) to the Forgejo container, where it is handled by the internal SSH server or OpenSSH daemon. We strongly recommend this approach, as it is the most secure.
 
-If you're unable to port forward then there are other methods to have SSH passthrough, several of them are documented in [Gitea's documentation](https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough).
+If you're unable to port forward, then there are other methods to have SSH passthrough, several of them are documented in [Gitea's documentation](https://docs.gitea.com/installation/install-with-docker#ssh-container-passthrough).
 It should be emphasized that extra care must be taken with regarding how the `SSH_ORIGINAL_COMMAND` command is quoted, we recommend using `SSH_ORIGINAL_COMMAND=$(printf %q "$SSH_ORIGINAL_COMMAND")`.
