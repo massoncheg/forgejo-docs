@@ -1259,7 +1259,12 @@ If the rule is defined above the renderer ini section or the name does not match
 
 ## Federation (`federation`)
 
-- `ENABLED`: **false**: Enable/Disable federation capabilities.
+**WARNING**: federation is under active development and is still considered
+experimental. _Enabling it will forever make the domain Forgejo is running on
+unavailable for federation with other software_. See the [FAQ](/faq/#what-about-forge-federation)
+for more detailed information.
+
+- `ENABLED`: **false**: Enable/Disable federation capabilities. _Did you read and understand the warning above?_
 - `SHARE_USER_STATISTICS`: **true**: Enable/Disable user statistics for nodeinfo if federation is enabled.
 - `MAX_SIZE`: **4**: Maximum federation request and response size in MB.
 - `SIGNATURE_ENFORCED`: **true**: Enable/Disable validation of HTTP signatures. This is similar to Mastodon's `AUTHORIZED_FETCH`, also called "secure mode". This setting requires all incoming requests to be signed by the originating server. It is recommended to keep this setting enabled.
