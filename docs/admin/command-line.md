@@ -904,10 +904,11 @@ DESCRIPTION:
    A command to diagnose problems with the current Forgejo instance according to the given configuration. Some problems can optionally be fixed by modifying the database or data storage.
 
 COMMANDS:
-   check              Diagnose and optionally fix problems
-   recreate-table     Recreate tables from XORM definitions and copy the data.
-   convert            Convert the database
-   avatar-strip-exif  Strip EXIF metadata from all images in the avatar storage
+   check                  Diagnose and optionally fix problems
+   recreate-table         Recreate tables from XORM definitions and copy the data.
+   convert                Convert the database
+   avatar-strip-exif      Strip EXIF metadata from all images in the avatar storage
+   cleanup-commit-status  Cleanup extra records in commit_status table
 
 OPTIONS:
    --help, -h                       show help
