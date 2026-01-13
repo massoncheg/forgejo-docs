@@ -1002,6 +1002,43 @@ OPTIONS:
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
+### doctor cleanup-commit-status
+
+```
+NAME:
+   forgejo doctor cleanup-commit-status - Cleanup extra records in commit_status table
+
+USAGE:
+   forgejo doctor cleanup-commit-status
+
+DESCRIPTION:
+   Forgejo suffered from a bug which caused the creation of more entries in the
+   "commit_status" table than necessary. This operation removes the redundant
+   data caused by the bug. Removing this data is almost always safe.
+   These redundant records can be accessed by users through the API, making it
+   possible, but unlikely, that removing it could have an impact to
+   integrating services (API: /repos/{owner}/{repo}/commits/{ref}/statuses).
+
+   It is safe to run while Forgejo is online.
+
+   On very large Forgejo instances, the performance of operation will improve
+   if the buffer-size option is used with large values. Approximately 130 MB of
+   memory is required for every 100,000 records in the buffer.
+
+   Bug reference: https://codeberg.org/forgejo/forgejo/issues/10671
+
+
+OPTIONS:
+   --help, -h                       show help
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --verbose, -V                    Show process details
+   --dry-run                        Report statistics from the operation but do not modify the database
+   --buffer-size int                Record count per query while iterating records; larger values are typically faster but use more memory (default: 100000)
+   --delete-chunk-size int          Number of records to delete per DELETE query (default: 1000)
+```
+
 ## manager
 
 ```

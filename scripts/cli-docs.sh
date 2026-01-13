@@ -125,6 +125,7 @@ function generate() {
 	section "###" "doctor recreate-table"
 	section "###" "doctor convert"
 	section "###" "doctor avatar-strip-exif"
+	section "###" "doctor cleanup-commit-status"
 
 	section "##" "manager"
 	section "###" "manager shutdown"
