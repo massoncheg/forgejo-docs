@@ -43,9 +43,9 @@ on:
 
 Trigger the workflow when a commit or a tag is pushed.
 
-If the `branches` event parameter is present, it will only be triggered if the a commit is pushed to one of the branches in the list.
+If the `branches` event parameter is present, it will only be triggered if the commit is pushed to one of the branches in the list.
 
-If the `paths` event parameter is present, it will only be triggered if the a pushed commit modifies one of the path in the list.
+If the `paths` event parameter is present, it will only be triggered if the pushed commit modifies one of the path in the list.
 
 If both `branches` and `paths` are present, the workflow will only be triggered if both match.
 
