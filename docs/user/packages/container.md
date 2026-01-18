@@ -48,6 +48,19 @@ For example, these are all valid image names for the owner `testuser`:
 
 **NOTE:** The registry only supports case-insensitive tag names. So `image:tag` and `image:Tag` get treated as the same image and tag.
 
+## Linking an image to a repository
+
+Images can be manually linked to a repository so that they appear in its "Packages" tab.
+
+In addition, images can be automatically linked when a package is first created. After creation, no further auto-linking is performed, even when publishing new versions (Docker tags). Auto-linking can be accomplished in two ways:
+
+- By adding a label to the Docker image, for example: `LABEL org.opencontainers.image.source=https://forgejo.example.com/testuser/myrepo` (replace the host, owner, and repository as appropriate)
+- By naming the image after the repository, for example: `forgejo.example.com/testuser/myrepo`
+  - Nested image names such as `forgejo.example.com/testuser/myrepo/myimage/myservice[...]` are also supported.
+  - Since Docker image names must be lowercase, owner and repository names are treated as case-insensitive.
+
+If both methods match a repository, the repository referenced in the label is preferred.
+
 ## Push an image
 
 Push an image by executing the following command:
