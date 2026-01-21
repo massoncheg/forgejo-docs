@@ -121,6 +121,7 @@ If the head of a pull request is from a forked repository, the secrets are not a
 Trigger the workflow when an event happens on a pull request, and execute the workflow in the context of the **target branch** of the pull request. Specifically, it is similar to the `on.pull_request` event with the following exceptions:
 
 - secrets stored in the base repository are available in the `secrets` `context`, (e.g. `${{ secrets.KEY }}`).
+- `ACTIONS_ID_TOKEN_REQUEST_URL` and `ACTIONS_ID_TOKEN_REQUEST_TOKEN` will be available in the environment if [`enable-openid-connect`](#enable-openid-connect) is set to `true` at the workflow or job level.
 - the automatic token has write permission to the repository.
 - the workflow runs in the context of the default branch of the base repository, meaning that:
   - changes to the workflow in the pull request will be ignored
@@ -129,6 +130,7 @@ Trigger the workflow when an event happens on a pull request, and execute the wo
 It is strongly recommended that workflows using `on.pull_request_target` do not interact with the untrusted code from the pull request, as it can be difficult to anticipate the security risks and side-effects. Although the workflow code itself is executed from the safe source of the target branch, its interactions with the untrusted code could compromise security. A known, non-exhaustive list of risks includes:
 
 - All action steps are executed with the `FORGEJO_TOKEN` and `GITHUB_TOKEN` environment variables; interacting with untrusted code in the pull request may leak these tokens.
+- Workflows with [`enable-openid-connect`](#enable-openid-connect) set to `true` at the workflow or job level will have the `ACTIONS_ID_TOKEN_REQUEST_URL` and `ACTIONS_ID_TOKEN_REQUEST_TOKEN` variables set; interacting with untrusted code in the pull request may leak these variables and request OIDC ID tokens.
 - The `actions/checkout` action will persist the security token unless configured with `persist-credentials: false`; untrusted code in the pull request may retrieve the token from disk and lead to it being leaked.
 - Secrets that are used in action steps, for example as command-line parameters or environment variables, may be available to environment inspection by untrusted code leading to the risk of secret compromise.
 - An `actions/cache` step introduces an opportunity for executed untrusted code in a pull request to poison cache contents which may later be used in a workflow that is executed with higher-level permissions, such as access to more secrets.
@@ -338,6 +340,20 @@ If a workflow run is not associated with a user (e.g. a run scheduled every day)
 - The organization that owns the repository unless there is no contact email in its settings.
 
 > **NOTE:** This setting has no effect on the actions webhooks.
+
+### `enable-openid-connect`
+
+Allow all jobs in the workflow to generate OIDC compliant ID tokens.
+
+```yaml
+enable-openid-connect: true
+```
+
+Enabling this setting adds `ACTIONS_ID_TOKEN_REQUEST_URL` and `ACTIONS_ID_TOKEN_REQUEST_TOKEN` which can be used to generate an ID token.
+
+See the [Security OpenID Connect documentation](./security-openid-connect) for more information.
+
+> **NOTE:** This setting is disabled for `pull_request` events from forked repositories.
 
 ### `env`
 
@@ -608,6 +624,26 @@ jobs:
 ```
 
 The name of the job will be `jobname-THING`.
+
+### `jobs.<job_id>.enable-openid-connect`
+
+Allow this job to generate OIDC compliant ID tokens.
+
+```yaml
+on:
+  push:
+
+jobs:
+  caller:
+    uses: ./.forgejo/workflows/reusable.yml
+    enable-openid-connect: true
+```
+
+See also [enable-openid-connect](#enable-openid-connect).
+
+> **NOTE:** This setting takes precedence over the workflow level setting.
+
+> **NOTE:** This setting is disabled for `pull_request` events from forked repositories.
 
 ### `jobs.<job_id>.strategy.matrix`
 
