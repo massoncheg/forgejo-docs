@@ -41,7 +41,11 @@ interface that shows the the details of the jobs for a workflow.
 based on the [upload-artifact](https://code.forgejo.org/actions/upload-artifact) action and
 the [download-artifact](https://code.forgejo.org/actions/download-artifact) action.
 
-> **NOTE:** the name of an artifact is limited to 255 characters.
+> **NOTE:** The name of an artifact is limited to 255 characters.
+
+> **NOTE:** It is not currently possible to access artifacts from other workflow runs within forgejo [#8004](https://codeberg.org/forgejo/forgejo/issues/8004).
+
+> **NOTE:** When using upload and download actions you must use v3 or patched v4 as demonstrated [here](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-artifacts-v4/.forgejo/workflows/test.yml).
 
 ## Uploading to a package registry
 
