@@ -11,7 +11,6 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
 
 1. Your `app.ini` (with any sensitive data scrubbed as necessary).
 2. The Forgejo logs, and any other appropriate log files for the situation.
-
    - When using systemd, use `journalctl --lines 1000 --unit forgejo` to collect logs.
    - When using docker, use `docker logs --tail 1000 <forgejo-container>` to collect logs.
    - By default, the logs are outputted to console. If you need to collect logs from files,
@@ -35,7 +34,6 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
 
 3. Any error messages you are seeing.
 4. If you meet slow/hanging/deadlock problems, please report the stack trace when the problem occurs:
-
    1. Enable pprof in `app.ini` and restart Forgejo.
 
       ```ini

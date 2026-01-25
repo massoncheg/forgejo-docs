@@ -65,7 +65,6 @@ There is no uniformity in how software is released and they call for different s
 - **grouping related software**.
 
   When the decision to upgrade applies to a number of related software, it is less noisy to have them all upgraded in a single PR rather than a number of individual PRs. Such dependencies can be grouped together.
-
   - **using a renovate [group preset](https://docs.renovatebot.com/presets-group/):** e.g. `group:linters` include `eslint`, `eslint-plugin-array-func`, `eslint-plugin-github` etc. See also [an example PR](https://codeberg.org/forgejo/forgejo/pulls/3921).
   - **creating a new group:**
 
@@ -85,7 +84,6 @@ There is no uniformity in how software is released and they call for different s
 - **release on every commit or so**.
 
   There are usually no release notes and there is no notion of release ([monaco-editor](https://github.com/microsoft/monaco-editor/tags)) which may lead to frequent proposals to upgrade. It is similar to software that it tagged with a commit hash instead of a version, either because it does not publish versions ([go-ap](https://github.com/go-ap/activitypub)) or because a particular bug fix is needed before the release is available ([go-rpmutils](https://github.com/sassoftware/go-rpmutils)).
-
   - control the upgrade frequency with `schedule` (e.g. `schedule:quarterly` for [pprof](https://github.com/google/pprof)).
   - impose a delay with `minimumReleaseAge` (e.g. `monaco-editor` upgrades are considered no more frequently than once a month).
   - require dashboard approval with `dependencyDashboardApproval` (e.g. `go-ap` upgrades will never be proposed unless manually required from the [dashboard](https://codeberg.org/forgejo/forgejo/issues/2779).
@@ -93,7 +91,6 @@ There is no uniformity in how software is released and they call for different s
 - **automerge CI dependencies**.
 
   The dependencies that are exclusively used in the CI and demonstrated to work as expected when it passes can be merged automatically. They are listed in [renovate.json](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/renovate.json)) in the `Automerge some packages when CI succeeds` stanza as follows.
-
   - **extends:** if the software is included in a known renovate package preset (e.g. ["packages:linters"](https://docs.renovatebot.com/presets-packages/#packageslinters)). Figuring out if that is the case requires looking at the output of a renovate run and analyzing the debug logs.
   - **matchDepNames:** to explicitly list the dependency (e.g. `markdownlint-cli`).
   - **matchPackagePrefixes:** if a range of CI related dependency happen to share the same prefix (e.g. `@playwright/`)

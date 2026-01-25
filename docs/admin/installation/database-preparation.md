@@ -203,7 +203,6 @@ If the communication between Forgejo and your database instance is performed thr
 The PostgreSQL driver used by Forgejo supports two-way TLS. In two-way TLS, both database client and server authenticate each other by sending their respective certificates to their respective opposite for validation. In other words, the server verifies client certificate, and the client verifies server certificate.
 
 1. On the server with the database instance, place the following credentials:
-
    - `/path/to/postgresql.crt`: Database instance certificate
    - `/path/to/postgresql.key`: Database instance private key
    - `/path/to/root.crt`: CA certificate chain to validate client certificates
@@ -236,7 +235,6 @@ The PostgreSQL driver used by Forgejo supports two-way TLS. In two-way TLS, both
 5. Restart PostgreSQL to apply configurations above.
 
 6. On the server running the Forgejo instance, place the following credentials under the home directory of the user who runs Forgejo (e.g. `git`):
-
    - `~/.postgresql/postgresql.crt`: Database client certificate
    - `~/.postgresql/postgresql.key`: Database client private key
    - `~/.postgresql/root.crt`: CA certificate chain to validate server certificate
@@ -265,7 +263,6 @@ While the MySQL/MariaDB driver used by Forgejo also supports two-way TLS, Forgej
 In one-way TLS, the database client verifies the certificate sent from server during the connection handshake, and the server assumes that the connected client is legitimate, since client certificate verification doesn't take place.
 
 1. On the database instance, place the following credentials:
-
    - `/path/to/mysql.crt`: Database instance certificate
    - `/path/to/mysql.key`: Database instance key
    - `/path/to/ca.crt`: CA certificate chain. This file isn't used on one-way TLS, but is used to validate client certificates on two-way TLS.

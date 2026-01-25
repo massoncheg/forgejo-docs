@@ -18,8 +18,8 @@ importers:
         specifier: 14.0.1
         version: 14.0.1
       prettier:
-        specifier: 3.0.2
-        version: 3.0.2
+        specifier: 3.8.1
+        version: 3.8.1
       remark-cli:
         specifier: 11.0.0
         version: 11.0.0
@@ -990,8 +990,8 @@ packages:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
 
-  prettier@3.0.2:
-    resolution: {integrity: sha512-o2YR9qtniXvwEZlOKbveKfDQVyqxbEIWn48Z8m3ZJjBjcCmUy3xZGIv+7AkaeuaTr6yPXJjwv07ZWlsWbEy1rQ==}
+  prettier@3.8.1:
+    resolution: {integrity: sha512-UOnG6LftzbdaHZcKoPFtOcCKztrQ57WkHDeRD9t/PTQtmT0NHSeWWepj6pS0z/N7+08BHFDQVUrfmfMRcZwbMg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -2474,7 +2474,7 @@ snapshots:
 
   pluralize@8.0.0: {}
 
-  prettier@3.0.2: {}
+  prettier@3.8.1: {}
 
   proc-log@3.0.0: {}
 

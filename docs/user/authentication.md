@@ -9,25 +9,20 @@ origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8
 Both the LDAP via BindDN and the simple auth LDAP share the following fields:
 
 - Authorization Name **(required)**
-
   - A name to assign to the new method of authorization.
 
 - Host **(required)**
-
   - The address where the LDAP server can be reached.
   - Example: `example.com`
 
 - Port **(required)**
-
   - The port to use when connecting to the server.
   - Example: `389` for LDAP or `636` for LDAP SSL
 
 - Enable TLS Encryption (optional)
-
   - Whether to use TLS when connecting to the LDAP server.
 
 - Admin Filter (optional)
-
   - An LDAP filter specifying if a user should be given administrator
     privileges. If a user account passes the filter, the user will be
     privileged as an administrator. In order to select a subset of the
@@ -36,7 +31,6 @@ Both the LDAP via BindDN and the simple auth LDAP share the following fields:
   - Example for Microsoft Active Directory (AD): `(memberOf=CN=admin-group,OU=example,DC=example,DC=org)`
 
 - Username attribute (optional)
-
   - The attribute of the user's LDAP record containing the user name. Given
     attribute value will be used for the new Forgejo account username after the first
     successful sign-in. Leave empty to use the login name given on the sign-in form.
@@ -47,13 +41,11 @@ Both the LDAP via BindDN and the simple auth LDAP share the following fields:
   - Example for Microsoft Active Directory (AD): `sAMAccountName`
 
 - First name attribute (optional)
-
   - The attribute of the user's LDAP record containing the user's first name.
     This will be used to populate their account information.
   - Example: `givenName`
 
 - Surname attribute (optional)
-
   - The attribute of the user's LDAP record containing the user's surname.
     This will be used to populate their account information.
   - Example: `sn`
@@ -68,19 +60,16 @@ Both the LDAP via BindDN and the simple auth LDAP share the following fields:
 Adds the following fields:
 
 - Bind DN (optional)
-
   - The DN to bind to the LDAP server with when searching for the user. This
     may be left blank to perform an anonymous search.
   - Example: `cn=Search,dc=example,dc=com`
 
 - Bind Password (optional)
-
   - The password for the Bind DN specified above, if any. _Note: The password
     is stored encrypted with the SECRET_KEY on the server. It is still recommended
     to ensure that the Bind DN has as few privileges as possible._
 
 - User Search Base **(required)**
-
   - The LDAP base at which user accounts will be searched for.
   - Example: `ou=Users,dc=example,dc=com`
 
@@ -111,14 +100,12 @@ Adds the following fields:
 Adds the following fields:
 
 - User DN **(required)**
-
   - A template to use as the user's DN. The `%s` matching parameter will be
     substituted with the login name given on the sign-in form.
   - Example: `cn=%s,ou=Users,dc=example,dc=com`
   - Example: `uid=%s,ou=Users,dc=example,dc=com`
 
 - User Search Base (optional)
-
   - The LDAP base at which user accounts will be searched for.
   - Example: `ou=Users,dc=example,dc=com`
 
@@ -134,17 +121,14 @@ Adds the following fields:
 Uses the following fields:
 
 - Group Search Base (optional)
-
   - The LDAP DN used for groups.
   - Example: `ou=group,dc=example,dc=com`
 
 - Group Name Filter (optional)
-
   - An LDAP filter declaring how to find valid groups in the above DN.
   - Example: `(|(cn=forgejo_users)(cn=admins))`
 
 - User Attribute in Group (optional)
-
   - The user attribute that is used to reference a user in the group object.
   - Example: `uid` if the group object contains a `member: bender` and the user object contains a `uid: bender`.
   - Example: `dn` if the group object contains a `member: uid=bender,ou=users,dc=planetexpress,dc=com`.
