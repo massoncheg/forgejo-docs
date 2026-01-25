@@ -105,7 +105,7 @@ even if you already migrated to Gitea.
 
 - Any version before Forgejo v1.20.3-0
   - verify the `app.ini` file does not contain problematic `[storage*]` sections [as explained in the v1.20.3-0 blog post](https://forgejo.org/2023-08-release-v1-20-3-0/)
-- From v1.19.x to a version greater or equal to than [1.20](https://forgejo.org/2023-07-release-v1/)
+- From v1.19.x to a version greater or equal to than [1.20](https://forgejo.org/2023-07-release-v1201-0/)
   - The [tokens](https://forgejo.org/docs/v1.20/user/oauth2-provider/#scoped-tokens) were refactored in a way that does not guarantee their scope will be preserved. They may be larger or narrower and the only way to be sure that the intended scope is preserved is to re-create the token.
 - Any version before [Gitea 1.17](https://github.com/go-gitea/gitea/releases/tag/v1.17.4)
   - preserve a custom gitconfig: [episode 1](https://web.archive.org/web/20240313092747/https://gna.org/blog/1-17-breaking-episode-1/), [episode 2](https://web.archive.org/web/20240313092759/https://gna.org/blog/1-17-breaking-episode-2/)

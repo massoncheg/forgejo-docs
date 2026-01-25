@@ -71,7 +71,7 @@ However, before doing that, we recommend working on translations independently b
 
 ### Applying
 
-In order to become a member of the team apply by opening a new issue at [forgejo/governance](https://codeberg.org/forgejo/governance) repository. See [previous applications](https://codeberg.org/forgejo/governance/issues?q=application+to+the+localization+team&state=closed) for inspiration.
+In order to become a member of the team apply by opening a new issue at [forgejo/governance](https://codeberg.org/forgejo/governance) repository. See [previous applications](https://codeberg.org/forgejo/governance/issues?q=localization&state=closed) for inspiration.
 
 In the application message, state the following:
 

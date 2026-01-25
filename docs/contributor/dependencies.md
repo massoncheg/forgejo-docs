@@ -45,7 +45,7 @@ See [this pull request for an example](https://codeberg.org/forgejo/forgejo/pull
 
 ### Reviewing renovate pull requests
 
-Pull [requests are opened](https://codeberg.org/forgejo/forgejo/pulls?poster=165503) when an upgrade is available and the decision to merge (positive review) or not (request for change review) depends on what the upgrade offers. The history of past upgrades can be browsed by looking for PR with the same title (e.g. [happy-dom upgrades](https://codeberg.org/forgejo/forgejo/pulls?q=Update+dependency+happy-dom)).
+Pull [requests are opened](https://codeberg.org/forgejo/forgejo/pulls?poster=165503) when an upgrade is available and the decision to merge (positive review) or not (request for change review) depends on what the upgrade offers. The history of past upgrades can be browsed by looking for PR with the same title (e.g. [happy-dom upgrades](https://codeberg.org/forgejo/forgejo/pulls?q=%22Update+dependency+happy-dom%22&type=all)).
 
 - The PR contains information about the release. If it does not, it has detailed references that can be used to browse the commits in the dependency source repository and figure out what the changes are.
 - The comment of the review:

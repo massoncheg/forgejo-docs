@@ -4,7 +4,7 @@ license: 'Apache-2.0'
 origin_url: 'https://github.com/go-gitea/gitea/blob/e865de1e9d65dc09797d165a51c8e705d2a86030/docs/content/usage/agit-support.en-us.md'
 ---
 
-Forgejo ships with limited support for [AGit-Flow](https://git-repo.info/en/2020/03/agit-flow-and-git-repo/).
+Forgejo ships with limited support for [AGit-Flow](https://web.archive.org/web/20260114065059/https://git-repo.info/en/2020/03/agit-flow-and-git-repo/).
 
 Similarly to [Gerrit's workflow](https://www.gerritcodereview.com), this workflow provides a way of submitting changes to repositories hosted on Forgejo instances using the `git push` command alone, without having to create forks or feature branches and then using the web UI to create a pull request.
 
