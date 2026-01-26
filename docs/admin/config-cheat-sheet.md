@@ -524,14 +524,16 @@ And the following unique queues:
 
 - `DEFAULT_EMAIL_NOTIFICATIONS`: **enabled**: Default configuration for email notifications for users (user configurable). Options: enabled, onmention, disabled.
 - `DISABLE_REGULAR_ORG_CREATION`: **false**: Disallow regular (non-admin) users from creating organizations.
-- `USER_DISABLED_FEATURES`: **_empty_**: Disabled features for users, could be `deletion`, `manage_ssh_keys`, `manage_gpg_keys`; more features may be added in the future.
+- `USER_DISABLED_FEATURES`: **_empty_**: Disabled features for users, could be `deletion`, `manage_ssh_keys`, `manage_gpg_keys`, `manage_password`; more features may be added in the future.
   - `deletion`: User cannot delete their own account.
   - `manage_ssh_keys`: User cannot configure SSH keys.
   - `manage_gpg_keys`: User cannot configure GPG keys.
-- `EXTERNAL_USER_DISABLE_FEATURES`: **_empty_**: Comma-separated list of disabled features ONLY if the user has an external login type (e.g., LDAP, Oauth, etc.), could be `deletion`, `manage_ssh_keys`, `manage_gpg_keys`. This setting is independent from `USER_DISABLED_FEATURES` and supplements the behavior of `USER_DISABLED_FEATURES`.
+  - `manage_password`: User cannot configure their password.
+- `EXTERNAL_USER_DISABLE_FEATURES`: **_empty_**: Comma-separated list of disabled features ONLY if the user has an external login type (e.g., LDAP, Oauth, etc.), could be `deletion`, `manage_ssh_keys`, `manage_gpg_keys`, `manage_password`. This setting is independent from `USER_DISABLED_FEATURES` and supplements the behavior of `USER_DISABLED_FEATURES`.
   - `deletion`: User cannot delete their own account.
   - `manage_ssh_keys`: User cannot configure SSH keys.
   - `manage_gpg_keys`: User cannot configure GPG keys.
+  - `manage_password`: User cannot configure their password.
 - `SEND_NOTIFICATION_EMAIL_ON_NEW_USER`: **false**: Enable email notifications to instance admins on new user sign-up. It requires `ENABLE_NOTIFY_MAIL` to be true.
 
 ## Security (`security`)
