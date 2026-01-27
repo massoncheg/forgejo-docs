@@ -1370,7 +1370,7 @@ runs:
     - run: echo ${{ inputs.message-input }}
 ```
 
-would have an input `input-one` which could be used by a `workflow.yaml` like this:
+would have an input `message-input` which could be used by a `workflow.yaml` like this:
 
 ```yaml
 steps:
