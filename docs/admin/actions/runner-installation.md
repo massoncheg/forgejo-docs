@@ -450,18 +450,23 @@ services:
     command: '/bin/sh -c "while : ; do sleep 1 ; done ;"'
 ```
 
-Here, we're not running the `forgejo-runner daemon` yet because we need to register it first. Please note that in a recent install of docker `docker-compose` is not a separate command but should be run as `docker compose`.
+Here, we're not running the `forgejo-runner daemon` yet because we need to configure and register it first. Please note that in a recent install of docker `docker-compose` is not a separate command but should be run as `docker compose`.
 
-Follow the [registration instructions](#standard-registration) below by starting the `runner` service with `docker-compose up -d` and entering it via:
+To configure and register the runner, start the `runner` service with `docker-compose up -d` and enter it via:
 
 ```shell
 docker exec -it runner /bin/sh
 ```
 
-In this shell, run the `forgejo-runner register` command as described below. After that is done, take the service down again with `docker-compose down` and modify the `command` to:
+In this shell, run the command `forgejo-runner config > config.yml` to create a configuration file with default settings.
+You can then edit the configuration file `config.yml`.
+Also, see the [configuration section](#configuration) above for configuration settings.
+
+In the same shell, run the `forgejo-runner register` command to register the runner and follow the [registration instructions](#standard-registration) below.
+After that is done, take the service down again with `docker-compose down` and modify the `command` to:
 
 ```yaml
-command: '/bin/sh -c "sleep 5; forgejo-runner daemon"'
+command: '/bin/sh -c "sleep 5; forgejo-runner daemon --config config.yml"'
 ```
 
 Here, the sleep allows the `docker-in-docker` service to start up before the `forgejo-runner daemon` is started.
