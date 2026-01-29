@@ -2,6 +2,7 @@
 
 set -e
 
+# shellcheck disable=SC2223
 : ${FORGEJO:=/tmp/forgejo-binary}
 
 function dependencies() {
@@ -19,18 +20,19 @@ function latest() {
 	else
 		select="$major"
 	fi
-	curl -sS https://codeberg.org/api/v1/repos/forgejo-integration/forgejo/releases | jq -r '.[] | .tag_name | select(startswith("'$select'"))' | sort --reverse --version-sort | head -1
+	curl --retry 5 --fail -sS https://codeberg.org/api/v1/repos/forgejo-integration/forgejo/releases | jq -r '.[] | .tag_name | select(startswith("'"$select"'"))' | sort --reverse --version-sort | head -1
 }
 
 function download() {
 	local major="$1"
 
-	if test -f $FORGEJO; then
+	if test -f "$FORGEJO"; then
 		return
 	fi
-	local version=$(latest $major)
-	curl -sS "https://codeberg.org/forgejo-integration/forgejo/releases/download/${version}/forgejo-${version#v}-linux-amd64" >${FORGEJO}
-	chmod +x ${FORGEJO}
+	local version=$(latest "$major")
+	echo "Using Forgejo version ${version}" 
+	curl --retry 5 --fail  -sS "https://codeberg.org/forgejo-integration/forgejo/releases/download/${version}/forgejo-${version#v}-linux-amd64" >"${FORGEJO}"
+	chmod +x "${FORGEJO}"
 }
 
 function front() {
@@ -60,11 +62,12 @@ function section() {
 	echo "${depth} ${title}"
 	echo
 	echo '```'
-	${FORGEJO} $cmd --help
+	${FORGEJO} "$cmd" --help
 	echo '```'
 }
 
 function section_help() {
+	# shellcheck disable=SC2016
 	section "##" "" 'forgejo `--help`' | sed -e '/^VERSION:/d' -e '/built with GNU Make/d'
 }
 
@@ -170,7 +173,7 @@ function run() {
 	local version="$1"
 
 	dependencies >&/dev/null
-	download $version
+	download "$version"
 	generate | cleanup
 }
 
