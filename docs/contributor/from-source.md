@@ -140,6 +140,11 @@ TAGS="bindata" make backend
 
 Webpack source maps are by default enabled in development builds and disabled in production builds. They can be enabled by setting the `ENABLE_SOURCEMAP=true` environment variable.
 
+**Note**: if you have the `libvips` library installed globally, the frontend
+part of the build might fail with `npm error sharp` error messages. In order
+to fix this, set the `SHARP_IGNORE_GLOBAL_LIBVIPS=true` environment variable
+and rerun the build command.
+
 ### Build the Docker image
 
 To build Forgejo's Docker image, you need to have Docker and the Docker Buildx plugin installed.
