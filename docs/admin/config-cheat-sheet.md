@@ -454,7 +454,7 @@ The following configuration sets the `Content-Type: application/vnd.android.pack
     - `verify-ca`: Enable TLS with verification of the database server certificate against its root certificate.
     - `verify-full`: Enable TLS and verify the database server name matches the given certificate in either the `Common Name` or `Subject Alternative Name` fields.
 - `SQLITE_TIMEOUT`: **500**: Query timeout for SQLite3 only.
-- `SQLITE_JOURNAL_MODE`: **"WAL"**: Change journal mode for SQlite3. Can be used to enable [WAL mode](https://www.sqlite.org/wal.html) when high load causes write congestion. See [SQlite3 docs](https://www.sqlite.org/pragma.html#pragma_journal_mode) for possible values. Defaults to enabling WAL mode.
+- `SQLITE_JOURNAL_MODE`: **WAL**: Change the SQLite journal mode. Forgejo configures SQLite to use `WAL` which improves concurrency by allowing concurrent reads during writes while mitigating database locks. `WAL` creates additional files besides forgejo.db; forgejo.db-shm and forgejo.db-wal. This setting can be overridden if required and defaults to WAL. See the [SQLite3 docs](https://www.sqlite.org/pragma.html#pragma_journal_mode) for supported values (`DELETE`, `WAL`, `TRUNCATE`, `PERSIST`, `MEMORY`, `OFF`).
 - `ITERATE_BUFFER_SIZE`: **50**: Internal buffer size for iterating.
 - `PATH`: **data/forgejo.db**: For SQLite3 only, the database file path.
 - `LOG_SQL`: **false**: Log the executed SQL.
