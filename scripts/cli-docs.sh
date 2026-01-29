@@ -30,7 +30,7 @@ function download() {
 		return
 	fi
 	local version=$(latest "$major")
-	echo "Using Forgejo version ${version}" 
+	echo "Using Forgejo version ${version}" >&2
 	curl --retry 5 --fail  -sS "https://codeberg.org/forgejo-integration/forgejo/releases/download/${version}/forgejo-${version#v}-linux-amd64" >"${FORGEJO}"
 	chmod +x "${FORGEJO}"
 }
