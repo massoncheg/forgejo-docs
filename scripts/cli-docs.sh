@@ -20,6 +20,7 @@ function latest() {
 	else
 		select="$major"
 	fi
+	echo "Fetching latest Forgejo ${select}" >&2
 	curl --retry 5 --fail -sS https://codeberg.org/api/v1/repos/forgejo-integration/forgejo/releases | jq -r '.[] | .tag_name | select(startswith("'"$select"'"))' | sort --reverse --version-sort | head -1
 }
 
@@ -30,12 +31,13 @@ function download() {
 		return
 	fi
 	local version=$(latest "$major")
-	echo "Using Forgejo version ${version}" >&2
+	echo "Downloading Forgejo version ${version}" >&2
 	curl --retry 5 --fail  -sS "https://codeberg.org/forgejo-integration/forgejo/releases/download/${version}/forgejo-${version#v}-linux-amd64" >"${FORGEJO}"
 	chmod +x "${FORGEJO}"
 }
 
 function front() {
+	echo "Generating frontmatter" >&2
 	# Add the frontmatter and a note at the top of the file
 	cat <<'EOF'
 ---
@@ -57,12 +59,14 @@ function section() {
 	local depth="$1"
 	local cmd="$2"
 	local title="${3:-$cmd}"
+	echo "Generating section ${cmd:-help}" >&2
 
 	echo
 	echo "${depth} ${title}"
 	echo
 	echo '```'
-	${FORGEJO} "$cmd" --help
+	# shellcheck disable=SC2086 # Empty cmd should be dropped
+	${FORGEJO} $cmd --help
 	echo '```'
 }
 
