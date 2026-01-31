@@ -1167,7 +1167,7 @@ In addition, the variables listed in the following table are injected into the e
 | FORGEJO_ACTION            | The numerical id of the current step.                                                                                                                            |
 | FORGEJO_ACTION_PATH       | When evaluated while running a `composite` action (i.e. `using: "composite"`, the path where an action files are located.                                        |
 | FORGEJO_ACTION_REPOSITORY | For a step executing an action, this is the owner and repository name of the action (e.g. `actions/checkout`).                                                   |
-| FORGEJO_ACTIONS           | Set to true when the Forgejo runner is running the workflow on behalf of a Forgejo instance. Set to false when running the workflow from `forgejo-runner exec`.  |
+| FORGEJO_ACTIONS           | Always set to true when the Forgejo runner is running the workflow.                                                                                              |
 | FORGEJO_ACTOR             | The name of the user that triggered the `workflow`.                                                                                                              |
 | FORGEJO_API_URL           | The API endpoint of the Forgejo instance running the workflow (e.g. https://code.forgejo.org/api/v1).                                                            |
 | FORGEJO_BASE_REF          | The name of the base branch of the pull request (e.g. main). Only defined when a workflow runs because of a `pull_request` or `pull_request_target` event.       |
