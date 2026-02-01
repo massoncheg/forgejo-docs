@@ -351,7 +351,7 @@ enable-openid-connect: true
 
 Enabling this setting adds `ACTIONS_ID_TOKEN_REQUEST_URL` and `ACTIONS_ID_TOKEN_REQUEST_TOKEN` which can be used to generate an ID token.
 
-See the [Security OpenID Connect documentation](./security-openid-connect) for more information.
+See the [Security OpenID Connect documentation](../security-openid-connect/) for more information.
 
 > **NOTE:** This setting is disabled for `pull_request` events from forked repositories.
 

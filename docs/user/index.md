@@ -35,8 +35,10 @@ involved in running it on their machines.
     - [Advanced features](./actions/advanced-features/)
     - [Using Actions](./actions/actions/)
     - [Security](./actions/security/)
+    - [Security of Pull Requests](./actions/security-pull-request/)
+    - [Security OpenID Connect](./actions/security-openid-connect/)
     - [GitHub Actions differences](./actions/github-actions/)
-    - [References](./actions/reference/)
+    - [Reference](./actions/reference/)
   - [Git blame](./blame/)
   - [README badges](./readme-badges/)
 - Advanced Usage
