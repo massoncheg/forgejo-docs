@@ -8,8 +8,8 @@ You need a database to use Forgejo. The easiest option is SQLite which managed f
 
 Forgejo supports:
 
-- MariaDB (>=10.6)
-- MySQL (>=8.0)
+- MariaDB (>=10.6), using the InnoDB storage engine
+- MySQL (>=8.0), using the InnoDB storage engine
 - PostgreSQL (>=13)
 - SQLite3
 
