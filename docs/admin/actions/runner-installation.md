@@ -458,7 +458,7 @@ To configure and register the runner, start the `runner` service with `docker-co
 docker exec -it runner /bin/sh
 ```
 
-In this shell, run the command `forgejo-runner config > config.yml` to create a configuration file with default settings.
+In this shell, run the command `forgejo-runner generate-config > config.yml` to create a configuration file with default settings.
 You can then edit the configuration file `config.yml`.
 Also, see the [configuration section](#configuration) above for configuration settings.
 
