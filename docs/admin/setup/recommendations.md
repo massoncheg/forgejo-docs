@@ -3,11 +3,11 @@ title: Recommended Settings and Tips
 license: 'CC-BY-SA-4.0'
 ---
 
-Although the default settings are appropriate for a general Forgejo instance, not every instance has the same purpose, aim, or user size. As a result, this is a list of suggested settings that you could use if they relate to your situation. The list aims to describe what it changes, what it does, and when it makes sense to make the adjustment.
+The default settings are applicable to a broad range of Forgejo instances. Nevertheless, not every instance has the same purpose and number of users. This document lists settings suggested for various situations, the results of such configuration changes, and their use cases.
 
 ## Recommended Settings
 
-After this, you will see headings being named such as `[section.part].ENABLE_FEATURE_XY`. This describes what setting it's talking about; in this case, it would be a setting in the section called `section.part`, while the setting name is `ENABLE_FEATURE_XY`. So if you wanted to change that setting in your `app.ini`, it would look like:
+In this document, configuration parameters are described as `[section.part].ENABLE_FEATURE_XY`, with `section` and `.part` indicating the section and subsection accordingly, and `ENABLE_FEATURE_XY` reflecting the key. As an example, here's how it would look like in the `app.ini` file:
 
 ```ini
 [section.part]

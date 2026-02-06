@@ -14,23 +14,23 @@ There is a fully functional log output by default, so it is not necessary to def
 
 ## The `[log]` section
 
-Configuration of logging facilities in Forgejo happen in the `[log]` section and its subsections.
+Configuration of logging facilities in Forgejo happens in the `[log]` section and its subsections.
 
-In the top level `[log]` section the following configurations can be placed:
+The top level section `[log]` has the following properties:
 
-- `ROOT_PATH`: (Default: **%(GITEA_WORK_DIR)/log**): Base path for log files.
-- `MODE`: (Default: **console**) List of log outputs to use for the Default logger.
-- `LEVEL`: (Default: **Info**) Least severe log events to persist, case-insensitive. Possible values are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`.
-- `STACKTRACE_LEVEL`: (Default: **None**) For this and more severe events the stacktrace will be printed upon getting logged.
+- `ROOT_PATH`: (Default: **_[AppWorkPath](../../config-cheat-sheet/#default-configuration-non-appini-configuration)_/log**): Base path for log files.
+- `MODE`: (Default: **console**): List of log outputs to use for the Default logger.
+- `LEVEL`: (Default: **Info**): Least severe log events to persist, case-insensitive. Possible values, sorted by increasing severity, are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`.
+- `STACKTRACE_LEVEL`: (Default: **None**): Least severe events to print stacktrace for. Possible values are the same as for the `LEVEL` option.
 
-And it can contain the following sub-loggers:
+The `[log]` section can contain sub-logger modes as well:
 
 - `LOGGER_DEFAULT_MODE`: (Default: **,**): List of log outputs to use for the default logger.
 - `LOGGER_ROUTER_MODE`: (Default: **,**): List of log outputs to use for the Router logger.
-- `LOGGER_ACCESS_MODE`: (Default: **\<empty\>**) List of log outputs to use for the Access logger. By default, the access logger is disabled.
-- `LOGGER_XORM_MODE`: (Default: **,**) List of log outputs to use for the XORM logger.
+- `LOGGER_ACCESS_MODE`: (Default: **\<empty\>**): List of log outputs to use for the Access logger. By default, the access logger is disabled.
+- `LOGGER_XORM_MODE`: (Default: **,**): List of log outputs to use for the XORM logger.
 
-Setting a comma (`,`) to sub-logger's mode means making it use the default global `MODE`.
+Setting a sub-logger's mode to a comma (`,`) makes it use the global `MODE`.
 
 ## Quick samples
 
