@@ -96,7 +96,7 @@ repository will be automatically revoked.
 
 ### Blocked users
 
-When a [user is blocked](../blocking-user), the trust they were
+When a [user is blocked](../../blocking-user), the trust they were
 granted on all repositories owned by the user doing the blocking will
 be revoked.
 

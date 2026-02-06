@@ -61,7 +61,7 @@ LOG_RETENTION_DAYS = 365
 
 The location where these files are stored is configured in
 the `storage.actions_log` section of `app.ini` as [explained in in the
-storage documentation](../storage/).
+storage documentation](../setup/storage/).
 
 #### `artifacts` logs
 
