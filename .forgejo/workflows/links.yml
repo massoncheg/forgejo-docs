@@ -3,6 +3,8 @@ name: Links
 on:
   schedule:
     - cron: '0 18 * * *'
+  workflow_dispatch:
+
 jobs:
   linkChecker:
     runs-on: docker
@@ -21,8 +23,8 @@ jobs:
 
       - name: Install lychee
         run: |
-          curl -sL -o lychee.tar.gz "https://github.com/lycheeverse/lychee/releases/download/lychee-v0.20.1/lychee-x86_64-unknown-linux-gnu.tar.gz"
-          echo 82d3811fee8be38b06bcf644c36c3e79 lychee.tar.gz | md5sum -c && tar -xvzf lychee.tar.gz
+          curl -sL -o lychee.tar.gz "https://github.com/lycheeverse/lychee/releases/download/lychee-v0.22.0/lychee-x86_64-unknown-linux-gnu.tar.gz"
+          echo d004215a789db155779d3263e6e18ad424879b18eeddb00745efb8d9b2bd8891 lychee.tar.gz | sha256sum -c && tar -xzf lychee.tar.gz
 
       - name: Check links
         id: lychee
