@@ -85,7 +85,7 @@ This will also allow you to pull, fetch, rebase, etc., from the AGit pull reques
 ### Parameters
 
 ```sh
-git push <remote-name> <local-ref>:refs/for[draft|for-review]/<branch>/<session> [-o <topic|title|description|force-push>]
+git push <remote-name> <local-ref>:refs/<for|draft|for-review>/<branch>/<session> [-o <topic|title|description|force-push>]
 ```
 
 The following parameters are available:
