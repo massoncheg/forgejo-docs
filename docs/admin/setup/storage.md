@@ -175,7 +175,7 @@ connect to a S3 compatible server:
 - `MINIO_ACCESS_KEY_ID`: S3 accessKeyID to connect.
 - `MINIO_SECRET_ACCESS_KEY`: S3 secretAccessKey to connect.
 - `MINIO_BUCKET`: **forgejo**: S3 bucket to store the data.
-- `MINIO_BUCKET_LOOKUP`: **auto**: S3 [bucket lookup type](https://min.io/docs/minio/linux/developers/go/API.html#constructor).
+- `MINIO_BUCKET_LOOKUP`: **auto**: S3 bucket lookup type.
   - `auto` Auto detected
   - `dns` Virtual Host style
   - `path` Path Style
