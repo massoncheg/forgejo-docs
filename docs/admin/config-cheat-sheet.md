@@ -124,7 +124,6 @@ In addition, there is _`StaticRootPath`_, which can be set as a built-in at buil
 - `DEFAULT_MERGE_MESSAGE_OFFICIAL_APPROVERS_ONLY`: **true**: In default merge messages, only include approvers who are officially allowed to review.
 - `DEFAULT_UPDATE_STYLE`: **merge**: Set default PR branch update style for repository creation; valid options: `merge`, `rebase`.
 - `POPULATE_SQUASH_COMMENT_WITH_COMMIT_MESSAGES`: **false**: In default squash-merge messages, include the commit message of all commits comprising the pull request.
-- `ADD_CO_COMMITTER_TRAILERS`: **true**: Add `Co-authored-by` and `Co-committed-by` trailers to merge commit messages if the committer does not match the author.
 - `RETARGET_CHILDREN_ON_MERGE`: **true**: Retarget child pull requests to the parent pull request branch target on merge of the parent pull request. It only works on merged PRs where the head and base branch target the same repo.
 
 ### Repository - Issue (`repository.issue`)
