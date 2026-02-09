@@ -24,26 +24,26 @@ Suppose that you cloned a repository and created a new commit on top of the `mai
 git push origin HEAD:refs/for/main -o topic="agit-typo-fixes"
 ```
 
-Note that `HEAD:refs/for/main` is the [Refspec](https://git-scm.com/book/en/v2/Git-Internals-The-Refspec). `HEAD` refers to the [checked out reference](https://git-scm.com/book/en/v2/Git-Internals-Git-References), but can be replaced with any ["local ref"](https://git-scm.com/docs/git-push). `refs/for/main` refers to the destination (**"remote ref"**), with `main` being the **"target branch"**, as in the branch that your submitted change should be applied to.
+Note that `HEAD:refs/for/main` is the [Refspec](https://git-scm.com/book/en/v2/Git-Internals-The-Refspec). `HEAD` refers to the [checked out reference](https://git-scm.com/book/en/v2/Git-Internals-Git-References), but can be replaced with any ["local ref"](https://git-scm.com/docs/git-push) (e.g. branch). `refs/for/main` refers to the destination (**"remote ref"**), with `main` being the **"target branch"**, as in the branch that your submitted change should be applied to.
 
 The topic will be visible in the pull request and it will be used to associate further commits with the same pull request.
 
-#### Setting a topic using the session parameter.
+#### Setting a topic using the 'topic' parameter.
 
-Topics can also be defined using the `<session>` parameter in the **Refspec**. In the following example, we create a new pull request using the currently checked out reference (`HEAD`). The target branch will be `main`. The topic will be `topic-branch`.
+Topics can also be defined using the `<topic>` parameter in the **Refspec**. The following example does the same as the example above: Create a new pull request using the currently checked out reference (`HEAD`) with target branch `main` and topic `agit-typo-fixes`.
 
 ```shell
-# topic-branch is the session parameter and the topic
-git push origin HEAD:refs/for/main/topic-branch
+# `agit-typo-fixes` is the topic parameter
+git push origin HEAD:refs/for/main/agit-typo-fixes
 ```
 
 #### Pushing a non-checked-out reference (non-HEAD)
 
-Suppose you would like to submit a pull request meant for a remote branch called `remote-branch` using topic `topic`.
-However, the changes that you want to submit reside in a local branch called `local-branch` that you have not checked out. In order to submit the changes residing in the `local-branch` branch **without** checking it out, you can supply the name of the local branch (`local-branch`) as follows:
+Suppose you would like to submit a pull request meant for a remote branch called `new-feature` using topic `implement-part12`.
+However, the changes that you want to submit reside in a local branch called `my-new-feature` that you have not checked out. In order to submit the changes residing in the `my-new-feature` branch **without** checking it out, you can supply the name of the local branch (`my-new-feature`) as follows:
 
 ```shell
-git push origin local-branch:refs/for/remote-branch/topic
+git push origin my-new-feature:refs/for/new-feature/implement-part12
 ```
 
 #### Setting a title and a description in AGit
@@ -51,7 +51,7 @@ git push origin local-branch:refs/for/remote-branch/topic
 It is also possible to use some additional push options, such as `title` and `description`. Here's another example targeting the `main` branch:
 
 ```shell
-git push origin HEAD:refs/for/main -o topic="topic-branch" \
+git push origin HEAD:refs/for/main -o topic="implement-part12" \
   -o title="Title of the PR" \
   -o description="This can be **any** markdown content."
 ```
@@ -69,14 +69,12 @@ To push commits to your pull request without having to specify the Refspec, you 
 ```shell
 # To only set this option for this specific repository
 git config push.default upstream
-# Or run this instead if you want to set this option globally
-git config --global push.default upstream
 ```
 
 Then, run the following command:
 
 ```shell
-git config branch.local-branch.merge refs/for/main/topic-branch
+git config branch.my-new-feature.merge refs/for/main/implement-part12
 ```
 
 After doing so, you can now simply run `git push` to push commits to your pull request, without having to specify the refspec.
@@ -85,24 +83,24 @@ This will also allow you to pull, fetch, rebase, etc., from the AGit pull reques
 ### Parameters
 
 ```sh
-git push <remote-name> <local-ref>:refs/<for|draft|for-review>/<branch>/<session> [-o <topic|title|description|force-push>]
+git push <remote-name> <local-ref>:refs/<for|draft|for-review>/<branch>/<topic> [-o <topic|title|description|force-push>]
 ```
 
 The following parameters are available:
 
 - `<remote-name>`: The name of the remote repository (e.g., `origin`) **(required)**
 - `<local-ref>`: The local reference being pushed (e.g., `HEAD`, `my-branch`, a commit hash) **(required)**
-- `refs/<for|draft|for-review>/<branch>/<session>`: Refspec **(required)**
-  - `for`/`draft`/`for-review`: This parameter describes the pull request type. **for** opens a normal pull request. **draft** and **for-review** are currently silently ignored.
+- `refs/<for|draft|for-review>/<branch>/<topic>`: Refspec **(required)**
+  - `for`, `draft`, `for-review`: This parameter describes the pull request type. **for** opens a normal pull request. **draft** and **for-review** are currently silently ignored.
   - `<branch>`: The target branch that a pull request should be merged against **(required)**
-  - `<session>`: The session identifier or topic for the remote pull request. **If left empty,** the topic must be supplied using the `-o topic` option.
+  - `<topic>`: The topic for the remote pull request. **If left empty,** the topic must be supplied using the `-o topic` option.
 - `-o <topic|title|description|force-push>`: Push options
-  - `topic`: Essentially an identifier. **If left empty,** the value of `<session>`, if present, will be used for the topic. Otherwise, Forgejo will return an error. If you want to push additional commits to a pull request that was created using AGit, you **must** use the same topic.
+  - `topic`: Essentially an identifier. **If left empty,** the value of `<topic>`, if present, will be used for the topic. Otherwise, Forgejo will return an error.
   - `title`: Title of the pull request. **If left empty,** the first line of the first new Git commit will be used instead.
   - `description`: Description of the pull request. **If left empty,** the description of the first new Git commit will be used instead.
   - `force-push`: Necessary when rebasing, amending, or [retroactively modifying](https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History) your previous commits. Otherwise, a new pull request will be opened, **even if you use the same topic**. If used, the value of this parameter should be set to `true`.
 
-Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing open pull request.
+If you want to push additional commits to a pull request that was created using AGit, you **must** use the same topic. Forgejo relies on the `topic` parameter and a linear commit history in order to associate new commits with an existing open pull request.
 Should you wish to overwrite the contents of an existing pull request, use the `force-push` parameter.
 
 > **Note**: A new pull request will be created if the `topic` was used in a pull request that is merged or closed, independently of the `force-push` parameter.
