@@ -1057,16 +1057,17 @@ steps:
 
 A context is an object that contains information relevant to a `workflow` run. For instance the `secrets` context contains the secrets defined in the repository. Each of the following context is defined as a top-level variable when evaluating expressions. For instance `${{ secrets.MYSECRET }}` will be replaced by the value of `MYSECRET`.
 
-| Context name     | Description                                     |
-| ---------------- | ----------------------------------------------- |
-| secrets          | secrets available in the repository             |
-| vars             | variables available in the repository           |
-| env              | environment variables defined in the workflow   |
-| forgejo or forge | information about the workflow being run        |
-| matrix           | information about the current row of the matrix |
-| steps            | information about the steps that have been run  |
-| needs            | information about the jobs that have been run   |
-| inputs           | the input parameters given to an action         |
+| Context name     | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| secrets          | secrets available in the repository               |
+| vars             | variables available in the repository             |
+| env              | environment variables defined in the workflow     |
+| forgejo or forge | information about the workflow being run          |
+| matrix           | information about the current row of the matrix   |
+| steps            | information about the steps that have been run    |
+| needs            | information about the jobs that have been run     |
+| inputs           | the input parameters given to an action           |
+| runner           | information about the runner and operating system |
 
 To help with reusing actions and workflows originally developed for GitHub Actions, the `github` context is defined to be the same as the `forgejo` context.
 
@@ -1381,24 +1382,21 @@ steps:
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-local-action/.forgejo/workflows/test.yml)
 
+### runner
+
+A map of information on the runner and the operating system.
+
+Example: `${{ runner.os }}`
+
+In addition, the variables are also available as environment variables that are available on each step. Note that those environment variables, just like the ones mentioned for the [env context](#env-1), are not included in `env`.
+
+| Name                | Environment Variable | Description                                                                                                                                                                                                                                                                                                                |
+| ------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `runner.os`         | `RUNNER_OS`          | The operating system of the runner, e.g. `Linux`                                                                                                                                                                                                                                                                           |
+| `runner.arch`       | `RUNNER_ARCH`        | The CPU architecture of the runner. Common values are `X86`, `X64`, `ARM`, and `ARM64`.                                                                                                                                                                                                                                    |
+| `runner.temp`       | `RUNNER_TMP`         | This is a temporary directory provided by the runner.                                                                                                                                                                                                                                                                      |
+| `runner.tool_cache` | `RUNNER_TOOL_CACHE`  | This is a directory where tools can be installed. Defaults to `/opt/hostedtoolcache`. Despite the name, this directory is not cached across builds anymore but the variable is kept for compatibility reasons. If you want to enable the toolcache for actions that supports it, mount a volume to `/opt/hostedtoolcache`. |
+
 ## Environment variables
 
-Forgejo defines some environment variables that are available on each step.
-
-**RUNNER_TOOL_CACHE**
-
-This is a directory where tools can be installed. Defaults to `/opt/hostedtoolcache`. Despite the name, this directory is not cached across builds anymore but the variable is kept for compatibility reasons.
-
-If you want to enable the toolcache for actions that supports it, mount a volume to `/opt/hostedtoolcache`.
-
-**RUNNER_TMP**
-
-This is a temporary directory provided by the runner. It's hardcoded to `/tmp`.
-
-**RUNNER_OS**
-
-The operating system of the runner, e.g. `Linux`
-
-**RUNNER_ARCH**
-
-The cpu architecture of the runner
+Forgejo defines some environment variables that are available on each step. Please see the [env context](#env-1) and the [runner context](#runner) for a list of the environment variables.
