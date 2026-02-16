@@ -1419,6 +1419,7 @@ Note that you may need to set the `[migrations].ALLOW_LOCALNETWORKS` option to `
 
 ## Moderation (`moderation`)
 
+- `ENABLED`: **false**: Whether moderation features (abusive content reporting) are enabled or not (disabled by default).
 - `KEEP_RESOLVED_REPORTS_FOR`: **168h**: How long to keep resolved abuse reports for. Default value is 7 days.
 
 ## Other (`other`)
