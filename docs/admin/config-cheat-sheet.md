@@ -653,7 +653,7 @@ And the following unique queues:
   BASIC and the user's password. Please note if you disable this, you will not be able to access the
   tokens API endpoints using a password. Furthermore, this only disables BASIC authentication using the
   password - not tokens or OAuth Basic.
-- `ENABLE_INTERNAL_SIGNIN`: **true**: Enables the built-in authentication flow. Disable this to force users to log in through external authentication sources.
+- `ENABLE_INTERNAL_SIGNIN`: **true**: Enables the built-in authentication flow. Disable this to force users to log in through external authentication sources. Note: to also disable password authentication, see `ENABLE_BASIC_AUTHENTICATION`.
 - `ENABLE_REVERSE_PROXY_AUTHENTICATION`: **false**: Enable this to allow reverse proxy authentication for web requests.
 - `ENABLE_REVERSE_PROXY_AUTHENTICATION_API`: **false**: Enable this to allow reverse proxy authentication for API requests; the reverse proxy is responsible for ensuring that no CSRF is possible.
 - `ENABLE_REVERSE_PROXY_AUTO_REGISTRATION`: **false**: Enable this to allow auto-registration
