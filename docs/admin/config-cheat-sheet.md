@@ -279,10 +279,10 @@ The following configuration sets the `Content-Type: application/vnd.android.pack
 - `APP_DATA_PATH`: **_`AppWorkPath`_/data**: This is the default root path for storing data.
 - `PROTOCOL`: **http**: \[http, https, fcgi, http+unix, fcgi+unix\]
   - Note: Value must be lowercase.
-- `USE_PROXY_PROTOCOL`: **false**: Expect PROXY protocol headers on connections. Warning: this feature is [not working](https://codeberg.org/forgejo/forgejo/issues/633).
+- `USE_PROXY_PROTOCOL`: **false**: Expect PROXY protocol headers on connections.
 - `PROXY_PROTOCOL_TLS_BRIDGING`: **false**: When the protocol is https, expect PROXY protocol headers after TLS negotiation.
-- `PROXY_PROTOCOL_HEADER_TIMEOUT`: **5s**: Timeout to wait for PROXY protocol header (set to 0 to have no timeout).
-- `PROXY_PROTOCOL_ACCEPT_UNKNOWN`: **false**: Accept PROXY protocol headers with Unknown type.
+- `PROXY_PROTOCOL_HEADER_TIMEOUT`: **5s**: Timeout to wait for PROXY protocol header after a connection from the proxy has been opened (set to 0 to have no timeout).
+- `PROXY_PROTOCOL_ACCEPT_UNKNOWN`: **false**: Accept PROXY protocol headers with Unknown protocol type.
 - `DOMAIN`: **localhost**: Domain name of this server.
 - `ROOT_URL`: **%(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/**:
   Overwrite the automatically generated public URL.
