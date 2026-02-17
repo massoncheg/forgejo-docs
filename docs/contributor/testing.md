@@ -149,9 +149,14 @@ It will create, in the source directory:
 
 ### In the Forgejo repository
 
-When a [pull request](https://codeberg.org/forgejo/forgejo/pulls) is opened,
+When a [pull request](https://codeberg.org/forgejo/forgejo/pulls) (PR) is opened,
 it will run workflows found in the [.forgejo/workflows](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows)
 directory.
+
+A number of checks carried out by these jobs need to pass before a PR can be
+merged. The main part of these checks can be run locally by calling `make
+pr-go`. It is strongly recommended to do so before opening a PR, and the PR
+template reminds about it.
 
 ### In the end-to-end repository
 
