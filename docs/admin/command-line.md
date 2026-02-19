@@ -122,6 +122,7 @@ OPTIONS:
    --keep-labels              do not affect the labels when updating an existing runner
    --name string              name of the runner (default runner) (default: "runner")
    --version string           version of the runner (not required since v1.21)
+   --ephemeral                instruct Forgejo to permanently unregister this runner after it has run one job
 ```
 
 ### forgejo-cli f3
