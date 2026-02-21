@@ -10,13 +10,13 @@ jobs:
     runs-on: docker
     steps:
       - name: Checkout next
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: next
           path: next
 
       - name: Checkout v11.0
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: v11.0
           path: v11.0
