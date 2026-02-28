@@ -24,7 +24,7 @@ jobs:
           pnpm run format:prettier
           git diff --exit-code
       - name: run typos
-        uses: https://data.forgejo.org/crate-ci/typos@v1.43.5
+        uses: https://data.forgejo.org/crate-ci/typos@v1.44.0
         with:
           write_changes: true
       - name: check typos result
