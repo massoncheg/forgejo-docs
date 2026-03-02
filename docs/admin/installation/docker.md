@@ -264,7 +264,6 @@ services:
     volumes:
 -      - ./forgejo:/data
 +      - ./forgejo:/var/lib/gitea
-+      - ./conf:/etc/gitea
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
@@ -306,12 +305,6 @@ networks:
 +      type: none
 +      o: bind
 +      device: ./forgejo
-+  forgejo-config:
-+    driver: local
-+    driver_opts:
-+      type: none
-+      o: bind
-+      device: ./conf
 +  postgres-data:
 +    driver: local
 +    driver_opts:
@@ -339,7 +332,6 @@ services:
 -      - ./forgejo:/var/lib/gitea
 +      - forgejo-data:/var/lib/gitea
 -      - ./conf:/etc/gitea
-+      - forgejo-config:/etc/gitea
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
@@ -437,7 +429,6 @@ services:
     volumes:
 -      - ./forgejo:/data
 +      - /mnt/repositories/data:/var/lib/gitea
-+      - /mnt/repositories/conf:/etc/gitea
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "3000:3000"
