@@ -2,7 +2,7 @@ name: Links
 
 on:
   schedule:
-    - cron: '0 18 * * *'
+    - cron: '30 5 * * *'
   workflow_dispatch:
 
 jobs:
@@ -23,8 +23,8 @@ jobs:
 
       - name: Install lychee
         run: |
-          curl -sL -o lychee.tar.gz "https://github.com/lycheeverse/lychee/releases/download/lychee-v0.22.0/lychee-x86_64-unknown-linux-gnu.tar.gz"
-          echo d004215a789db155779d3263e6e18ad424879b18eeddb00745efb8d9b2bd8891 lychee.tar.gz | sha256sum -c && tar -xzf lychee.tar.gz
+          curl -sL -o lychee.tar.gz "https://github.com/lycheeverse/lychee/releases/download/lychee-v0.23.0/lychee-x86_64-unknown-linux-gnu.tar.gz"
+          echo 1fcb6ccf10d04c22b8c5873c5b9cb7be32ee7423e12169d6f1a79a6f1962ef81 lychee.tar.gz | sha256sum -c && tar -xzf lychee.tar.gz lychee
 
       - name: Check links
         id: lychee
@@ -32,7 +32,7 @@ jobs:
         continue-on-error: true
 
       - name: Postprocess
-        run: sed -E "s+(### Errors in )(.*)+\1[\2](https://codeberg.org/forgejo/docs/src/branch/\2)+" -i ./report.md
+        run: sed -E "s+(### (Errors|Redirects) in )(.*)+\1[\3](https://codeberg.org/forgejo/docs/src/branch/\3)+" -i ./report.md
 
       - name: Update issue
         uses: https://data.forgejo.org/peter-evans/create-issue-from-file@v6.0.0

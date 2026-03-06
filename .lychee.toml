@@ -6,10 +6,18 @@ scheme = ["https", "http"]
 skip_missing = false
 include_verbatim = false
 exclude = [
-    'https://invisible.forgejo.org/forgejo/runner',
-    'https://code.forgejo.org/api/v1',
-    'https://codeberg.org/forgejo/forgejo/vX.Y/forgejo',
-    'https://dash\.cloudflare\.com/\?to\=/\:account/turnstile',
-    'https://img.shields.io/badge/%7B%7B.label%7D%7D-%7B%7B.text%7D%7D-%7B%7B.color%7D%7D',
+    '^https://code\.forgejo\.org/api/v1',
+    '^https://codeberg\.org/forgejo/forgejo/vX\.Y/forgejo',
+    '^https://dash\.cloudflare\.com/\?to\=/\:account/turnstile',
+    '^https://img\.shields\.io/badge/%7B%7B.label%7D%7D-%7B%7B.text%7D%7D-%7B%7B.color%7D%7D',
+    # Exclude some known redirects
+    '^https://(code|data)\.forgejo\.org/?$',
+    '^https://invisible\.forgejo\.org',
+    '^https://code.\forgejo\.org/[^/]+(/[^/]+)?/settings',
+    '^https://codeberg\.org/[^/]+(/[^/]+)?/settings',
+    '^https://(dev|try)\.next\.forgejo\.org/?$',
+    '^https://(docs\.)?weblate\.org/?$',
+    '^https://nodejs\.org/?$',
 ]
 exclude_all_private = true
+verbose = "info"
