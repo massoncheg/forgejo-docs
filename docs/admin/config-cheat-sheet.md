@@ -97,6 +97,7 @@ In addition, there is _`StaticRootPath`_, which can be set as a built-in at buil
 - `PREFIX_ARCHIVE_FILES`: **true**: Prefix archive files by placing them in a directory named after the repository.
 - `DISABLE_MIGRATIONS`: **false**: Disable migrating feature.
 - `DISABLE_STARS`: **false**: Disable stars feature.
+- `DISABLE_FORKS`: **false**: Disable repository forking.
 - `DEFAULT_BRANCH`: **main**: Default branch name for all new repositories.
 - `ALLOW_ADOPTION_OF_UNADOPTED_REPOSITORIES`: **false**: Allow non-admin users to adopt unadopted repositories.
 - `ALLOW_DELETION_OF_UNADOPTED_REPOSITORIES`: **false**: Allow non-admin users to delete unadopted repositories.
