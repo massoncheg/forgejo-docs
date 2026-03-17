@@ -7,7 +7,7 @@ Forgejo relies on hundreds of Free Software components and they all need to be u
 
 ## Releases
 
-Software referenced by a release (even if such a release is the hash of a commit). They are listed in the [dependency dashboard](https://codeberg.org/forgejo/forgejo/issues/2779) which is updated by [renovate](https://github.com/renovatebot/renovate) from [the renovate.json configuration file](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/renovate.json).
+Software referenced by a release (even if such a release is the hash of a commit). They are listed in the [dependency dashboard](https://codeberg.org/forgejo/forgejo/issues/2779) which is updated by [renovate](https://github.com/renovatebot/renovate) from [the renovate.json configuration file](https://codeberg.org/forgejo/renovate-config/src/branch/main/renovate.json).
 
 ### Decision to upgrade
 
@@ -54,7 +54,7 @@ Pull [requests are opened](https://codeberg.org/forgejo/forgejo/pulls?poster=165
 - If the upgrade is needed, user visible changes must be included in the draft release notes for the upcoming release. See [this upgrade for an example](https://codeberg.org/forgejo/forgejo/pulls/3724/files).
 - Security fix and important bug fixes are backported to the stable releases.
 
-Note that renovate will keep a few (see `prConcurrentLimit` in [renovate.json](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/renovate.json)) pull request open at any given time. If no decision is made, newer upgrades will accumulate in the backlog visible in the [dashboard](https://codeberg.org/forgejo/forgejo/issues/2779).
+Note that renovate will keep a few (see `prConcurrentLimit` in [renovate.json](https://codeberg.org/forgejo/renovate-config/src/branch/main/renovate.json)) pull request open at any given time. If no decision is made, newer upgrades will accumulate in the backlog visible in the [dashboard](https://codeberg.org/forgejo/forgejo/issues/2779).
 
 The [release team](https://codeberg.org/forgejo/governance/src/branch/main/TEAMS.md#releases) looks after the pull requests, to the extent that they can be tested automatically. If manual testing is required (because there is no test coverage for the part of the code that would be impacted by an upgrade), a review will be requested from the people who have the required expertise to either improve the test coverage or come up with a manual test procedure to be repeated.
 
@@ -90,14 +90,14 @@ There is no uniformity in how software is released and they call for different s
 
 - **automerge CI dependencies**.
 
-  The dependencies that are exclusively used in the CI and demonstrated to work as expected when it passes can be merged automatically. They are listed in [renovate.json](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/renovate.json)) in the `Automerge some packages when CI succeeds` stanza as follows.
+  The dependencies that are exclusively used in the CI and demonstrated to work as expected when it passes can be merged automatically. They are listed in [renovate.json](https://codeberg.org/forgejo/renovate-config/src/branch/main/renovate.json)) in the `Automerge some packages when CI succeeds` stanza as follows.
   - **extends:** if the software is included in a known renovate package preset (e.g. ["packages:linters"](https://docs.renovatebot.com/presets-packages/#packageslinters)). Figuring out if that is the case requires looking at the output of a renovate run and analyzing the debug logs.
   - **matchDepNames:** to explicitly list the dependency (e.g. `markdownlint-cli`).
   - **matchPackagePrefixes:** if a range of CI related dependency happen to share the same prefix (e.g. `@playwright/`)
 
 - **automerge patch releases**.
 
-  When a software is known to be good at publishing quality patch releases (in the [semver](https://semver.org/spec/v2.0.0.html) sense), the proposed upgrades can be merged automatically. This can be done in a way similar to `vue` in [renovate.json](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/renovate.json)).
+  When a software is known to be good at publishing quality patch releases (in the [semver](https://semver.org/spec/v2.0.0.html) sense), the proposed upgrades can be merged automatically. This can be done in a way similar to `vue` in [renovate.json](https://codeberg.org/forgejo/renovate-config/src/branch/main/renovate.json)).
 
   ```json
   {
