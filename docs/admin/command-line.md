@@ -50,6 +50,8 @@ GLOBAL OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
+   --version, -v                    print the version
 ```
 
 ## forgejo-cli
@@ -64,6 +66,9 @@ USAGE:
 COMMANDS:
    actions  Commands for managing Forgejo Actions
    f3       F3
+
+OPTIONS:
+   --help, -h  show help
 ```
 
 ### forgejo-cli actions
@@ -79,6 +84,9 @@ COMMANDS:
    generate-runner-token  Generate a new token for a runner to use to register with the server
    generate-secret        Generate a secret suitable for input to the register subcommand
    register               Idempotent registration of a runner using a shared secret
+
+OPTIONS:
+   --help, -h  show help
 ```
 
 ### forgejo-cli actions generate-runner-token
@@ -88,10 +96,16 @@ NAME:
    forgejo forgejo-cli actions generate-runner-token - Generate a new token for a runner to use to register with the server
 
 USAGE:
-   forgejo forgejo-cli actions generate-runner-token
+   forgejo forgejo-cli actions generate-runner-token [options]
 
 OPTIONS:
    --scope string, -s string  {owner}[/{repo}] - leave empty for a global runner
+   --help, -h                 show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### forgejo-cli actions generate-secret
@@ -101,7 +115,15 @@ NAME:
    forgejo forgejo-cli actions generate-secret - Generate a secret suitable for input to the register subcommand
 
 USAGE:
-   forgejo forgejo-cli actions generate-secret
+   forgejo forgejo-cli actions generate-secret [options]
+
+OPTIONS:
+   --help, -h  show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### forgejo-cli actions register
@@ -111,7 +133,7 @@ NAME:
    forgejo forgejo-cli actions register - Idempotent registration of a runner using a shared secret
 
 USAGE:
-   forgejo forgejo-cli actions register
+   forgejo forgejo-cli actions register [options]
 
 OPTIONS:
    --secret string            the secret the runner will use to connect as a 40 character hexadecimal string
@@ -123,6 +145,12 @@ OPTIONS:
    --name string              name of the runner (default runner) (default: "runner")
    --version string           version of the runner (not required since v1.21)
    --ephemeral                instruct Forgejo to permanently unregister this runner after it has run one job
+   --help, -h                 show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### forgejo-cli f3
@@ -134,10 +162,11 @@ NAME:
 USAGE:
    forgejo forgejo-cli f3 [command [command options]]
 
-GLOBAL OPTIONS:
-   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
-   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
-   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+COMMANDS:
+   mirror  Mirror
+
+OPTIONS:
+   --help, -h  show help
 ```
 
 ## web
@@ -147,7 +176,7 @@ NAME:
    forgejo web - Start the Forgejo web server
 
 USAGE:
-   forgejo web
+   forgejo web [options]
 
 DESCRIPTION:
    The Forgejo web server is the only thing you need to run,
@@ -163,6 +192,12 @@ OPTIONS:
    --pid string, -P string          Custom pid file path (default: "/run/gitea.pid")
    --quiet, -q                      Only display Fatal logging errors until logging is set-up
    --verbose                        Set initial logging to TRACE level until logging is properly set-up
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## dump
@@ -172,7 +207,7 @@ NAME:
    forgejo dump - Dump Forgejo files and database
 
 USAGE:
-   forgejo dump
+   forgejo dump [options]
 
 DESCRIPTION:
    Dump compresses all related files and database into zip file.
@@ -197,6 +232,12 @@ OPTIONS:
    --skip-index                     Skip bleve index data
    --skip-repo-archives             Skip repository archives
    --type value                     Dump output format: zip, tar, tar.sz, tar.gz, tar.xz, tar.bz2, tar.br, tar.lz4, tar.zst (default: zip)
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## admin
@@ -220,6 +261,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
 ```
 
 ### admin user
@@ -245,6 +287,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
 ```
 
 ### admin user create
@@ -254,7 +297,7 @@ NAME:
    forgejo admin user create - Create a new user in database
 
 USAGE:
-   forgejo admin user create
+   forgejo admin user create [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -274,6 +317,12 @@ OPTIONS:
    --access-token-scopes string     Scopes of the generated access token, comma separated. Examples: "all", "public-only,read:issue", "write:repository,write:user" (default: "all")
    --restricted                     Make a restricted user account
    --fullname string                The full, human-readable name of the user
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin user list
@@ -283,7 +332,7 @@ NAME:
    forgejo admin user list - List users
 
 USAGE:
-   forgejo admin user list
+   forgejo admin user list [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -291,6 +340,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --admin                          List only admin users
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin user change-password
@@ -300,7 +355,7 @@ NAME:
    forgejo admin user change-password - Change a user's password
 
 USAGE:
-   forgejo admin user change-password
+   forgejo admin user change-password [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -310,6 +365,12 @@ OPTIONS:
    --username string, -u string     The user to change password for
    --password string, -p string     New password to set for user
    --must-change-password           User must change password
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin user delete
@@ -319,7 +380,7 @@ NAME:
    forgejo admin user delete - Delete specific user by id, name or email
 
 USAGE:
-   forgejo admin user delete
+   forgejo admin user delete [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -330,6 +391,12 @@ OPTIONS:
    --username string, -u string     Username of the user to delete
    --email string, -e string        Email of the user to delete
    --purge                          Purge user, all their repositories, organizations and comments
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin user generate-access-token
@@ -339,7 +406,7 @@ NAME:
    forgejo admin user generate-access-token - Generate an access token for a specific user
 
 USAGE:
-   forgejo admin user generate-access-token
+   forgejo admin user generate-access-token [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -350,6 +417,12 @@ OPTIONS:
    --token-name string, -t string   Token name (default: "gitea-admin")
    --raw                            Display only the token value
    --scopes string                  Comma separated list of scopes to apply to access token, examples: "all", "public-only,read:issue", "write:repository,write:user" (default: "all")
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin user must-change-password
@@ -359,7 +432,7 @@ NAME:
    forgejo admin user must-change-password - Set the must change password flag for the provided users or all users
 
 USAGE:
-   forgejo admin user must-change-password
+   forgejo admin user must-change-password [options]
 
 OPTIONS:
    --help, -h                                                   show help
@@ -369,6 +442,12 @@ OPTIONS:
    --all, -A                                                    All users must change password, except those explicitly excluded with --exclude
    --exclude string, -e string [ --exclude string, -e string ]  Do not change the must-change-password flag for these users
    --unset                                                      Instead of setting the must-change-password flag, unset it
+   --help, -h                                                   show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin user reset-mfa
@@ -378,7 +457,7 @@ NAME:
    forgejo admin user reset-mfa - Remove all two-factor authentication configurations for a user
 
 USAGE:
-   forgejo admin user reset-mfa
+   forgejo admin user reset-mfa [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -386,6 +465,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --username string, -u string     The user to update
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin repo-sync-releases
@@ -395,10 +480,16 @@ NAME:
    forgejo admin repo-sync-releases - Synchronize repository releases with tags
 
 USAGE:
-   forgejo admin repo-sync-releases
+   forgejo admin repo-sync-releases [options]
 
 OPTIONS:
    --help, -h                       show help
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
@@ -422,6 +513,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
 ```
 
 ### admin auth
@@ -452,6 +544,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
 ```
 
 ### admin auth add-oauth
@@ -461,7 +554,7 @@ NAME:
    forgejo admin auth add-oauth - Add new Oauth authentication source
 
 USAGE:
-   forgejo admin auth add-oauth
+   forgejo admin auth add-oauth [options]
 
 OPTIONS:
    --help, -h                           show help
@@ -494,6 +587,12 @@ OPTIONS:
    --quota-group-claim-name string      Claim name providing quota group names for this source
    --quota-group-map string             JSON mapping between groups and quota groups
    --quota-group-map-removal            Activate automatic quota group removal depending on groups
+   --help, -h                           show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth update-oauth
@@ -503,7 +602,7 @@ NAME:
    forgejo admin auth update-oauth - Update existing Oauth authentication source
 
 USAGE:
-   forgejo admin auth update-oauth
+   forgejo admin auth update-oauth [options]
 
 OPTIONS:
    --help, -h                           show help
@@ -537,6 +636,12 @@ OPTIONS:
    --quota-group-claim-name string      Claim name providing quota group names for this source
    --quota-group-map string             JSON mapping between groups and quota groups
    --quota-group-map-removal            Activate automatic quota group removal depending on groups
+   --help, -h                           show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth add-ldap
@@ -546,7 +651,7 @@ NAME:
    forgejo admin auth add-ldap - Add new LDAP (via Bind DN) authentication source
 
 USAGE:
-   forgejo admin auth add-ldap
+   forgejo admin auth add-ldap [options]
 
 OPTIONS:
    --help, -h                         show help
@@ -578,6 +683,12 @@ OPTIONS:
    --synchronize-users                Enable user synchronization.
    --disable-synchronize-users        Disable user synchronization.
    --page-size uint                   Search page size. (default: 0)
+   --help, -h                         show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth update-ldap
@@ -587,7 +698,7 @@ NAME:
    forgejo admin auth update-ldap - Update existing LDAP (via Bind DN) authentication source
 
 USAGE:
-   forgejo admin auth update-ldap
+   forgejo admin auth update-ldap [options]
 
 OPTIONS:
    --help, -h                         show help
@@ -620,6 +731,12 @@ OPTIONS:
    --synchronize-users                Enable user synchronization.
    --disable-synchronize-users        Disable user synchronization.
    --page-size uint                   Search page size. (default: 0)
+   --help, -h                         show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth add-ldap-simple
@@ -629,7 +746,7 @@ NAME:
    forgejo admin auth add-ldap-simple - Add new LDAP (simple auth) authentication source
 
 USAGE:
-   forgejo admin auth add-ldap-simple
+   forgejo admin auth add-ldap-simple [options]
 
 OPTIONS:
    --help, -h                         show help
@@ -656,6 +773,12 @@ OPTIONS:
    --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source
    --avatar-attribute string          The attribute of the user’s LDAP record containing the user’s avatar.
    --user-dn string                   The user's DN.
+   --help, -h                         show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth update-ldap-simple
@@ -665,7 +788,7 @@ NAME:
    forgejo admin auth update-ldap-simple - Update existing LDAP (simple auth) authentication source
 
 USAGE:
-   forgejo admin auth update-ldap-simple
+   forgejo admin auth update-ldap-simple [options]
 
 OPTIONS:
    --help, -h                         show help
@@ -693,6 +816,12 @@ OPTIONS:
    --skip-local-2fa                   Set to true to skip local 2fa for users authenticated by this source
    --avatar-attribute string          The attribute of the user’s LDAP record containing the user’s avatar.
    --user-dn string                   The user's DN.
+   --help, -h                         show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth add-pam
@@ -702,7 +831,7 @@ NAME:
    forgejo admin auth add-pam - Add new PAM authentication source
 
 USAGE:
-   forgejo admin auth add-pam
+   forgejo admin auth add-pam [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -714,6 +843,12 @@ OPTIONS:
    --email-domain string            PAM email domain
    --skip-local-2fa                 Skip 2FA to log on.
    --active                         This Authentication Source is Activated.
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth update-pam
@@ -723,7 +858,7 @@ NAME:
    forgejo admin auth update-pam - Update existing PAM authentication source
 
 USAGE:
-   forgejo admin auth update-pam
+   forgejo admin auth update-pam [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -736,6 +871,12 @@ OPTIONS:
    --email-domain string            PAM email domain
    --skip-local-2fa                 Skip 2FA to log on.
    --active                         This Authentication Source is Activated.
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth add-smtp
@@ -745,7 +886,7 @@ NAME:
    forgejo admin auth add-smtp - Add new SMTP authentication source
 
 USAGE:
-   forgejo admin auth add-smtp
+   forgejo admin auth add-smtp [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -763,6 +904,12 @@ OPTIONS:
    --allowed-domains string         Leave empty to allow all domains. Separate multiple domains with a comma (',')
    --skip-local-2fa                 Skip 2FA to log on.
    --active                         This Authentication Source is Activated.
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth update-smtp
@@ -772,7 +919,7 @@ NAME:
    forgejo admin auth update-smtp - Update existing SMTP authentication source
 
 USAGE:
-   forgejo admin auth update-smtp
+   forgejo admin auth update-smtp [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -791,6 +938,12 @@ OPTIONS:
    --allowed-domains string         Leave empty to allow all domains. Separate multiple domains with a comma (',')
    --skip-local-2fa                 Skip 2FA to log on.
    --active                         This Authentication Source is Activated.
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth list
@@ -800,7 +953,7 @@ NAME:
    forgejo admin auth list - List auth sources
 
 USAGE:
-   forgejo admin auth list
+   forgejo admin auth list [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -812,6 +965,12 @@ OPTIONS:
    --padding int                    padding added to a cell before computing its width (default: 1)
    --pad-char string                ASCII char used for padding if padchar == '\\t', the Writer will assume that the width of a '\\t' in the formatted output is tabwidth, and cells are left-aligned independent of align_left (for correct-looking results, tabwidth must correspond to the tab width in the viewer displaying the result) (default: "\t")
    --vertical-bars                  Set to true to print vertical bars between columns
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin auth delete
@@ -821,7 +980,7 @@ NAME:
    forgejo admin auth delete - Delete specific auth source
 
 USAGE:
-   forgejo admin auth delete
+   forgejo admin auth delete [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -829,6 +988,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --id int                         ID of authentication source (default: 0)
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### admin sendmail
@@ -838,7 +1003,7 @@ NAME:
    forgejo admin sendmail - Send a message to all users
 
 USAGE:
-   forgejo admin sendmail
+   forgejo admin sendmail [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -848,6 +1013,12 @@ OPTIONS:
    --title string                   a title of a message
    --content string                 a content of a message
    --force, -f                      A flag to bypass a confirmation step
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## migrate
@@ -857,13 +1028,19 @@ NAME:
    forgejo migrate - Migrate the database
 
 USAGE:
-   forgejo migrate
+   forgejo migrate [options]
 
 DESCRIPTION:
    This is a command for migrating the database, so that you can run 'forgejo admin user create' before starting the server.
 
 OPTIONS:
    --help, -h                       show help
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
@@ -876,7 +1053,7 @@ NAME:
    forgejo keys - (internal) Should only be called by SSH server
 
 USAGE:
-   forgejo keys
+   forgejo keys [options]
 
 DESCRIPTION:
    Queries the Forgejo database to get the authorized command for a given ssh key fingerprint
@@ -890,6 +1067,12 @@ OPTIONS:
    --username string, -u string     Username trying to log in by SSH
    --type string, -t string         Type of the SSH key provided to the SSH Server (requires content to be provided too)
    --content string, -k string      Base64 encoded content of the SSH key provided to the SSH Server (requires type to be provided too)
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## doctor
@@ -916,6 +1099,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
 ```
 
 ### doctor check
@@ -925,7 +1109,7 @@ NAME:
    forgejo doctor check - Diagnose and optionally fix problems
 
 USAGE:
-   forgejo doctor check
+   forgejo doctor check [options]
 
 DESCRIPTION:
    A command to diagnose problems with the current Forgejo instance according to the given configuration. Some problems can optionally be fixed by modifying the database or data storage.
@@ -942,6 +1126,12 @@ OPTIONS:
    --fix                            Automatically fix what we can
    --log-file string                Name of the log file (no verbose log output by default). Set to "-" to output to stdout
    --color, -H                      Use color for outputted information
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### doctor recreate-table
@@ -951,7 +1141,7 @@ NAME:
    forgejo doctor recreate-table - Recreate tables from XORM definitions and copy the data.
 
 USAGE:
-   forgejo doctor recreate-table [TABLE]... : (TABLEs to recreate - leave blank for all)
+   forgejo doctor recreate-table [options] [TABLE]... : (TABLEs to recreate - leave blank for all)
 
 DESCRIPTION:
    The database definitions Forgejo uses change across versions, sometimes changing default values and leaving old unused columns.
@@ -966,6 +1156,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --debug                          Print SQL commands sent
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### doctor convert
@@ -975,13 +1171,19 @@ NAME:
    forgejo doctor convert - Convert the database
 
 USAGE:
-   forgejo doctor convert
+   forgejo doctor convert [options]
 
 DESCRIPTION:
    A command to convert an existing MySQL database from utf8 to utf8mb4
 
 OPTIONS:
    --help, -h                       show help
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
@@ -994,10 +1196,16 @@ NAME:
    forgejo doctor avatar-strip-exif - Strip EXIF metadata from all images in the avatar storage
 
 USAGE:
-   forgejo doctor avatar-strip-exif
+   forgejo doctor avatar-strip-exif [options]
 
 OPTIONS:
    --help, -h                       show help
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
@@ -1010,7 +1218,7 @@ NAME:
    forgejo doctor cleanup-commit-status - Cleanup extra records in commit_status table
 
 USAGE:
-   forgejo doctor cleanup-commit-status
+   forgejo doctor cleanup-commit-status [options]
 
 DESCRIPTION:
    Forgejo suffered from a bug which caused the creation of more entries in the
@@ -1038,6 +1246,12 @@ OPTIONS:
    --dry-run                        Report statistics from the operation but do not modify the database
    --buffer-size int                Record count per query while iterating records; larger values are typically faster but use more memory (default: 100000)
    --delete-chunk-size int          Number of records to delete per DELETE query (default: 1000)
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## manager
@@ -1065,6 +1279,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
 ```
 
 ### manager shutdown
@@ -1074,7 +1289,7 @@ NAME:
    forgejo manager shutdown - Gracefully shutdown the running process
 
 USAGE:
-   forgejo manager shutdown
+   forgejo manager shutdown [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1082,6 +1297,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --debug
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager restart
@@ -1091,7 +1312,7 @@ NAME:
    forgejo manager restart - Gracefully restart the running process - (not implemented for windows servers)
 
 USAGE:
-   forgejo manager restart
+   forgejo manager restart [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1099,6 +1320,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --debug
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager reload-templates
@@ -1108,7 +1335,7 @@ NAME:
    forgejo manager reload-templates - Reload template files in the running process
 
 USAGE:
-   forgejo manager reload-templates
+   forgejo manager reload-templates [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1116,6 +1343,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --debug
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager flush-queues
@@ -1125,7 +1358,7 @@ NAME:
    forgejo manager flush-queues - Flush queues in the running process
 
 USAGE:
-   forgejo manager flush-queues
+   forgejo manager flush-queues [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1135,6 +1368,12 @@ OPTIONS:
    --timeout duration               Timeout for the flushing process (default: 1m0s)
    --non-blocking                   Set to true to not wait for flush to complete before returning
    --debug
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager logging
@@ -1159,6 +1398,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
 ```
 
 ### manager logging pause
@@ -1168,7 +1408,7 @@ NAME:
    forgejo manager logging pause - Pause logging (Forgejo will buffer logs up to a certain point and will drop them after that point)
 
 USAGE:
-   forgejo manager logging pause
+   forgejo manager logging pause [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1176,6 +1416,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --debug
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager logging resume
@@ -1185,7 +1431,7 @@ NAME:
    forgejo manager logging resume - Resume logging
 
 USAGE:
-   forgejo manager logging resume
+   forgejo manager logging resume [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1193,6 +1439,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --debug
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager logging release-and-reopen
@@ -1202,7 +1454,7 @@ NAME:
    forgejo manager logging release-and-reopen - Cause Forgejo to release and re-open files used for logging
 
 USAGE:
-   forgejo manager logging release-and-reopen
+   forgejo manager logging release-and-reopen [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1210,6 +1462,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --debug
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager logging remove
@@ -1219,7 +1477,7 @@ NAME:
    forgejo manager logging remove - Remove a logger
 
 USAGE:
-   forgejo manager logging remove [name] Name of logger to remove
+   forgejo manager logging remove [options] [name] Name of logger to remove
 
 OPTIONS:
    --help, -h                       show help
@@ -1228,6 +1486,12 @@ OPTIONS:
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --debug
    --logger string                  Logger name - will default to "default"
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager logging add
@@ -1248,6 +1512,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
 ```
 
 ### manager logging add file
@@ -1257,7 +1522,7 @@ NAME:
    forgejo manager logging add file - Add a file logger
 
 USAGE:
-   forgejo manager logging add file
+   forgejo manager logging add file [options]
 
 OPTIONS:
    --help, -h                            show help
@@ -1281,6 +1546,12 @@ OPTIONS:
    --max-days int, -D int                Maximum number of daily logs to keep (default: 0)
    --compress, -z                        Compress rotated logs
    --compression-level int, -Z int       Compression level to use (default: 0)
+   --help, -h                            show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager logging add conn
@@ -1290,7 +1561,7 @@ NAME:
    forgejo manager logging add conn - Add a net conn logger
 
 USAGE:
-   forgejo manager logging add conn
+   forgejo manager logging add conn [options]
 
 OPTIONS:
    --help, -h                            show help
@@ -1311,6 +1582,12 @@ OPTIONS:
    --reconnect, -r                       Reconnect to host when connection is dropped
    --protocol string, -P string          Set protocol to use: tcp, unix, or udp (defaults to tcp)
    --address string, -a string           Host address and port to connect to (defaults to :7020)
+   --help, -h                            show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager logging log-sql
@@ -1320,7 +1597,7 @@ NAME:
    forgejo manager logging log-sql - Set LogSQL
 
 USAGE:
-   forgejo manager logging log-sql
+   forgejo manager logging log-sql [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1329,6 +1606,12 @@ OPTIONS:
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --debug
    --off                            Switch off SQL logging
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### manager processes
@@ -1338,7 +1621,7 @@ NAME:
    forgejo manager processes - Display running processes within the current process
 
 USAGE:
-   forgejo manager processes
+   forgejo manager processes [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1351,6 +1634,12 @@ OPTIONS:
    --stacktraces                    Show stacktraces
    --json                           Output as json
    --cancel string                  Process PID to cancel. (Only available for non-system processes.)
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## embedded
@@ -1375,6 +1664,7 @@ OPTIONS:
    --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
+   --help, -h                       show help
 ```
 
 ### embedded list
@@ -1384,7 +1674,7 @@ NAME:
    forgejo embedded list - List files matching the given pattern
 
 USAGE:
-   forgejo embedded list
+   forgejo embedded list [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1392,6 +1682,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --include-vendored, --vendor     Include files under public/vendor as well
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### embedded view
@@ -1401,7 +1697,7 @@ NAME:
    forgejo embedded view - View a file matching the given pattern
 
 USAGE:
-   forgejo embedded view
+   forgejo embedded view [options]
 
 OPTIONS:
    --help, -h                       show help
@@ -1409,6 +1705,12 @@ OPTIONS:
    --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
    --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
    --include-vendored, --vendor     Include files under public/vendor as well
+   --help, -h                       show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ### embedded extract
@@ -1418,7 +1720,7 @@ NAME:
    forgejo embedded extract - Extract resources
 
 USAGE:
-   forgejo embedded extract
+   forgejo embedded extract [options]
 
 OPTIONS:
    --help, -h                               show help
@@ -1430,6 +1732,12 @@ OPTIONS:
    --rename                                 Rename files as {name}.bak if they already exist (overwrites previous .bak)
    --custom                                 Extract to the 'custom' directory as per app.ini
    --destination string, --dest-dir string  Extract to the specified directory
+   --help, -h                               show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## migrate-storage
@@ -1439,7 +1747,7 @@ NAME:
    forgejo migrate-storage - Migrate the storage
 
 USAGE:
-   forgejo migrate-storage
+   forgejo migrate-storage [options]
 
 DESCRIPTION:
    Copies stored files from storage configured in app.ini to parameter-configured storage
@@ -1461,6 +1769,12 @@ OPTIONS:
    --minio-use-ssl                    Enable SSL for minio
    --minio-insecure-skip-verify       Skip SSL verification
    --minio-checksum-algorithm string  Minio checksum algorithm (default/md5)
+   --help, -h                         show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## dump-repo
@@ -1470,7 +1784,7 @@ NAME:
    forgejo dump-repo - Dump the repository from git/github/gitea/gitlab
 
 USAGE:
-   forgejo dump-repo
+   forgejo dump-repo [options]
 
 DESCRIPTION:
    This is a command for dumping the repository data.
@@ -1490,6 +1804,12 @@ OPTIONS:
    --repo_name string               The data will be stored on a directory with repository name if not empty
    --units string                   Which items will be migrated, one or more units should be separated as comma.
       wiki, issues, labels, releases, release_assets, milestones, pull_requests, comments are allowed. Empty means all units.
+   --help, -h  show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## restore-repo
@@ -1499,7 +1819,7 @@ NAME:
    forgejo restore-repo - Restore the repository from disk
 
 USAGE:
-   forgejo restore-repo
+   forgejo restore-repo [options]
 
 DESCRIPTION:
    This is a command for restoring the repository data.
@@ -1515,6 +1835,12 @@ OPTIONS:
    --units string                   Which items will be restored, one or more units should be separated as comma.
       wiki, issues, labels, releases, release_assets, milestones, pull_requests, comments are allowed. Empty means all units.
    --validation  Sanity check the content of the files before trying to load them
+   --help, -h    show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## cert
@@ -1524,7 +1850,7 @@ NAME:
    forgejo cert - Generate self-signed certificate
 
 USAGE:
-   forgejo cert
+   forgejo cert [options]
 
 DESCRIPTION:
    Generate a self-signed X.509 certificate for a TLS server.
@@ -1537,6 +1863,12 @@ OPTIONS:
    --start-date string   Creation date formatted as Jan 1 15:04:05 2011
    --duration duration   Duration that certificate is valid for (default: 8760h0m0s)
    --ca                  whether this cert should be its own Certificate Authority
+   --help, -h            show help
+
+GLOBAL OPTIONS:
+   --custom-path string, -C string  Set custom path (defaults to '{WorkPath}/custom')
+   --config string, -c string       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path string, -w string    Set Forgejo's working path (defaults to the directory of the Forgejo binary)
 ```
 
 ## generate secret
@@ -1552,4 +1884,7 @@ COMMANDS:
    INTERNAL_TOKEN              Generate a new INTERNAL_TOKEN
    JWT_SECRET, LFS_JWT_SECRET  Generate a new JWT_SECRET
    SECRET_KEY                  Generate a new SECRET_KEY
+
+OPTIONS:
+   --help, -h  show help
 ```
