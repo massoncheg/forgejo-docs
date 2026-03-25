@@ -66,17 +66,18 @@ services:
     volumes:
       - ./data:/data
     restart: 'unless-stopped'
-    command: 'forgejo-runner daemon --config config.yml'
+    command: 'forgejo-runner daemon --config runner-config.yml'
 ```
 
 Generate the default configuration file for `Forgejo Runner`, and store it in the `data` directory created previously:
 
 ```shell
-$ docker run --rm data.forgejo.org/forgejo/runner:12 forgejo-runner generate-config > data/config.yml
+$ docker run --rm data.forgejo.org/forgejo/runner:12 \
+  forgejo-runner generate-config > data/runner-config.yml
 ```
 
 `Forgejo Runner` needs to be configured and registered with Forgejo before it can be started successfully. [Configure
-`Forgejo Runner`](../../configuration/#initial-configuration), editing `data/config.yml` file as you proceed.
+`Forgejo Runner`](../../configuration/#initial-configuration), editing `data/runner-config.yml` file as you proceed.
 
 Once the configuration is complete, you can start the runner by executing `docker compose up -d`.
 

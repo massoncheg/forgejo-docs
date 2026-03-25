@@ -200,8 +200,8 @@ curl -s -o /dev/null http://ipv6.google.com
 [ipv6.yml/ipv6] 🏁  Job succeeded
 ```
 
-Finally, if this test was successful, enable IPv6 in the `config.yml` file of the `Forgejo runner` daemon and restart
-the daemon:
+Finally, if this test was successful, enable IPv6 in the `runner-config.yml` file of the `Forgejo runner` daemon and
+restart the daemon:
 
 ```yaml
 container:

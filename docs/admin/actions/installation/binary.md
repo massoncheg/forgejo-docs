@@ -128,11 +128,12 @@ There are no requirements for jobs that run directly on the host.
 Generate the default configuration file for `Forgejo Runner`, and store it in a `/home/runner`:
 
 ```shell
-$ forgejo-runner generate-config > /home/runner/config.yml
+$ forgejo-runner generate-config > /home/runner/runner-config.yml
 ```
 
 `Forgejo Runner` needs to be configured and registered with Forgejo before it can be started successfully. [Configure
-`Forgejo Runner`](../../configuration/#initial-configuration), editing `/home/runner/config.yml` file as you proceed.
+`Forgejo Runner`](../../configuration/#initial-configuration), editing `/home/runner/runner-config.yml` file as you
+proceed.
 
 > **NOTE**: `Forgejo Runner` requires the configuration file to be explicitly specified with the `-c` command-line
 > option. There is no default configuration file location.
@@ -147,7 +148,7 @@ $ whoami
 runner
 $ pwd
 /home/runner
-$ forgejo-runner daemon -c config.yml
+$ forgejo-runner daemon -c runner-config.yml
 INFO[2024-09-14T19:19:14+02:00] Starting runner daemon
 ```
 
