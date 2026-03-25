@@ -3,9 +3,36 @@ title: 'Forgejo Actions administrator guide'
 license: 'CC-BY-SA-4.0'
 ---
 
-`Forgejo Actions` provides continuous integration driven from the files found in the `.forgejo/workflows` directory of a repository. Note that `Forgejo` does not run the jobs, it relies on the [`Forgejo Runner`](#forgejo-runner) to do so. It needs to be installed separately.
+`Forgejo Actions` provides continuous integration driven from the files found in the `.forgejo/workflows` directory of a
+repository. Note that `Forgejo` does not run the jobs, it relies on the [`Forgejo Runner`](#forgejo-runner) to do so.
 
-## Settings
+## Forgejo Runner
+
+The `Forgejo Runner` is a program that fetches workflows to run from a Forgejo instance and executes them. It is
+installed and configured separately from Forgejo.
+
+To get started with `Forgejo Runner`:
+
+1. Install `Forgejo Runner`
+   - using a [binary installation](./installation/binary/), or
+   - using a [Docker container](./installation/docker/), or
+   - using [Linux distribution packaged binaries](./installation/packaging/).
+2. [Register `Forgejo Runner`](./registration/) to connect it to Forgejo,
+3. [Configure `Forgejo Runner`](./configuration/) to define what jobs it executes and how it operates.
+   - [Choosing labels](./configuration/#choosing-labels) for the runner is the minimum required configuration.
+
+A single `Forgejo Runner` can be connected to multiple Forgejo instances, or different users, organizations, or
+repositories within a single instance. Multiple `Forgejo Runner` installations can be connected to a single Forgejo
+instance to distribute jobs over a cluster of available compute resources.
+
+`Forgejo Runner` performs remote code execution. That poses significant security threats for the host and network that
+it operates upon. [Securing Forgejo Actions Deployments](./security/) walks through the security considerations and
+choices that an administrator should be aware of.
+
+To build container images in workflows or run actions that use Docker, [additional configuration](./docker-access/) is
+required.
+
+## Forgejo Settings
 
 ### Enabling/Disabling
 
@@ -82,89 +109,6 @@ The `admin/monitor/cron` administration web interface can be used to
 manually trigger the `Cleanup actions expired logs and artifacts` task
 instead of waiting for the scheduled task to happen.
 
-## Forgejo Runner
-
-The `Forgejo Runner` is a daemon that fetches workflows to run from a Forgejo instance and executes them. It sends back the output from the workflows, as well as the final result of the run.
-
-Installation and setup instructions can be found in the [Forgejo Runner installation guide](./runner-installation/).
-
-## Choosing labels
-
-Runner labels are used by workflows to define what type of environment they need to be executed in. Each runner declares a set of labels, and the `Forgejo` server will send it tasks accordingly. For example, a workflow with:
-
-```yaml
-runs-on: docker
-```
-
-will be run on a runner which has declared a `docker` label.
-
-A label has the following structure:
-
-```
-<label-name>:<label-type>://<default-image>
-```
-
-The `label name` is a unique string that identifies the label. It is the part that is specified in the `runs-on` field of workflows to choose which runners the workflow can be executed on.
-
-The `label type` determines what containerization system will be used to run the workflow. There are three options:
-
-### Docker or Podman
-
-If a label specifies `docker` as its `label type`, the rest of it is interpreted as the default container image to use if no other is specified. The runner will execute all the steps, as root, within a container created from that image.
-
-The default container container image can be overridden by a workflow:
-
-```yaml
-runs-on: docker
-container:
-  image: alpine:3.20
-```
-
-See the user documentation for `jobs.<job_id>.container` for more information.
-
-Label examples:
-
-- `node20:docker://node:20-bookworm` == `node20:docker://docker.io/node:20-bookworm` defines `node20` to be the `node:20-bookworm` image from hub.docker.com.
-- `docker:docker://data.forgejo.org/oci/alpine:3.20` defines `docker` to be the `alpine:3.20` image from https://data.forgejo.org/oci/-/packages/container/alpine/3.20.
-
-### LXC
-
-If a label specifies `lxc` as its `label type`, the rest of it is interpreted as `template[:release[:lxc-helper config]]` where:
-
-- `template[:release]` is the [template and release](https://images.linuxcontainers.org/) to use.
-- `lxc-helper config` is the value of the [--config option of lxc-helper](https://code.forgejo.org/forgejo/lxc-helpers/) used when creating a container.
-
-The runner will execute all the steps, as root, within a [LXC container](https://linuxcontainers.org/) created from that template and release. The default template is `debian` and the default release is `bullseye`.
-
-[nodejs](https://nodejs.org/en/download/) version 20 is installed.
-
-Label examples:
-
-- `bookworm:lxc://debian:bookworm:lxc docker` defines `bookworm` to be an LXC container running Debian GNU/Linux bookworm. It has the necessary capabilities to run a nested LXC container and a Docker engine.
-- `bookworm:lxc://debian:bookworm` defines `bookworm` to be an LXC container running Debian GNU/Linux bookworm. It has the necessary capabilities to run a nested LXC container, KVM virtual machines and a Docker engine.
-
-### Host
-
-If a label specifies `host` as its `label type`, the runner will execute all the steps in a shell forked from the runner, directly on the host.
-
-> **Warning:** There is no isolation at all and a single job can permanently destroy the host.
-
-Label example:
-
-- `self-hosted:host` defines `self-hosted` to be a shell.
-
-### Special labels
-
-Runner labels can also be used to define other special features a runner has. For example, you could use `gpu:docker://node:20-bullseye` to define a runner that has a GPU installed. Workflows which need a GPU could then specify `runs-on: gpu` to be executed on this runner.
-
-### Mimicking GitHub runners
-
-To mimic the GitHub runners, the `runs-on` field can be set to `ubuntu-22.04:docker://node:20-bullseye` for instance.
-With this, the Forgejo runner will respond to `runs-on: ubuntu-22.04` and will use the `node:20-bullseye` image from hub.docker.com.
-This image is quite capable of running many of the workflows that are designed for the GitHub runners.
-For a slightly bigger image, use `ghcr.io/catthehacker/ubuntu:act-22.04` instead of `node:20-bullseye` which should be compatible with most actions while remaining relatively small.
-There exist larger images used that can go up to 20GB compressed with more software installed if needed.
-
 ## Other runners
 
-It is possible to use [other runners](https://codeberg.org/forgejo-contrib/delightful-forgejo#user-content-forgejo-actions-runners) instead of `Forgejo runner`. As long as they can connect to a `Forgejo` instance using the [same protocol](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/routers/api/actions), they will be given tasks to run.
+It is possible to use [other runners](https://codeberg.org/forgejo-contrib/delightful-forgejo#user-content-forgejo-actions-runners) instead of `Forgejo Runner`. As long as they can connect to a Forgejo instance using the [same protocol](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/routers/api/actions), they will be given tasks to run.
