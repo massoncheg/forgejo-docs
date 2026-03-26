@@ -46,6 +46,7 @@ server {
     listen [::]:80; # Listen on IPv6 port 80
 
     server_name git.example.com; # Change this to the server domain name.
+    merge_slashes off; # Required to handle URL-encoded slashes
 
     location / {
         proxy_pass http://127.0.0.1:3000; # Port 3000 is the default Forgejo port
@@ -74,11 +75,10 @@ server {
     listen [::]:80; # Listen on IPv6 port 80
 
     server_name example.com; # Change this to the server domain name.
+    merge_slashes off; # Required to handle URL-encoded slashes
 
     location /code/ { # Replace /code here with your subpath
-        rewrite ^ $request_uri;
-        rewrite ^/code(/.*) $1 break;
-        proxy_pass http://127.0.0.1:3000$uri;
+        proxy_pass http://127.0.0.1:3000/;
 
         proxy_set_header Connection $http_connection;
         proxy_set_header Upgrade $http_upgrade;
