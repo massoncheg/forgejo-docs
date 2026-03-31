@@ -19,5 +19,8 @@ exclude = [
     '^https://(docs\.)?weblate\.org/?$',
     '^https://nodejs\.org/?$',
 ]
+exclude_path = [
+    'v(.*)/contributor/',
+]
 exclude_all_private = true
 verbose = "info"

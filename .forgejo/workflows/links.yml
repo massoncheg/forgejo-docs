@@ -15,11 +15,11 @@ jobs:
           ref: next
           path: next
 
-      - name: Checkout v11.0
+      - name: Checkout LTS (v15.0)
         uses: actions/checkout@v6
         with:
-          ref: v11.0
-          path: v11.0
+          ref: v15.0
+          path: v15.0
 
       - name: Install lychee
         run: |
@@ -28,7 +28,7 @@ jobs:
 
       - name: Check links
         id: lychee
-        run: ./lychee --config next/.lychee.toml next/docs v11.0/docs
+        run: ./lychee --config next/.lychee.toml next/docs v15.0/docs
         continue-on-error: true
 
       - name: Postprocess
