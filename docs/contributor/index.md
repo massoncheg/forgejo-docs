@@ -13,10 +13,10 @@ We encourage you to [read our warm welcome first](./welcome/), then get involved
   - [General discussions related to Forgejo (tips & tricks, news, ideas, questions)](./discussions/)
   - [Governance](./governance/)
   - [Sustainability and funding repository](https://codeberg.org/forgejo/sustainability)
-- For translators
-  - [Localization](./localization/)
-  - [Base localization](./localization-english/)
-  - [Localization admin duties](./localization-admin/)
+- Translations
+  - [Localization](./localization/) - for translators
+  - [English strings](./localization/english/) - for developers or people improving strings
+  - [Weblate admin duties](./localization/admin/) - for Forgejo contributors
 - For UI/UX designers and user researchers
   - [Design repository](https://codeberg.org/forgejo/design/)
   - [User Research repository](https://codeberg.org/forgejo/user-research/)

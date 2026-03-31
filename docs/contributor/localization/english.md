@@ -1,5 +1,5 @@
 ---
-title: Base localization
+title: English base localization
 license: 'CC-BY-SA-4.0'
 ---
 
@@ -12,7 +12,7 @@ English localization strings are stored in two locations:
 - `options/locale_next/locale_en-US.json` - preferred
 - `options/locale/locale_en-US.ini` - legacy, doesn't support culture-specific plurals
 
-Strings are [translated](../localization) on Weblate and string management is partially done by it.
+Strings are [translated](../) on Weblate and string management is partially done by it.
 
 New strings, deletion and minor edits of English strings is to be submitted in pull requests as is. All edits are considered minor unless they include changes to handling of placeholders (`%s`, `%[n]s`, `%d`, `%[n]d`).
 
