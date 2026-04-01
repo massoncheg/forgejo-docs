@@ -14,6 +14,11 @@ edn = "edn"
 # ./docs/admin/runner-installation.md https://passt.top/passt/about/
 passt = "passt"
 
+# genuine typos:
+
+# ./docs/admin/setup/reverse-proxy.md
+haprox = "haproxy"
+
 [default]
 extend-ignore-identifiers-re = [
 	# ./docs/admin/config-cheat-sheet.md

@@ -314,7 +314,7 @@ you include these lines in the `global` section of your haproxy configuration
 global
   chroot  /var/lib/haproxy
   user    haproxy
-  group   haprox
+  group   haproxy
   ...
 ```
 
