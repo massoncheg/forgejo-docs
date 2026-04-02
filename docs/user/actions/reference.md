@@ -730,8 +730,6 @@ jobs:
     image: debian:bookworm
   ```
 
-> **Note:** The `env` context cannot be used in expressions to construct the image name. For instance `image: ${{ env.MYVARIABLE }}` is not allowed.
-
 ### `jobs.<job_id>.container.env`
 
 Set environment variables in the container.
