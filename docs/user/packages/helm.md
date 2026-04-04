@@ -35,7 +35,7 @@ helm cm-push ./{chart_file}.tgz {repo}
 
 ## Install a package
 
-To install a Helm char from the registry, execute the following command:
+To install a Helm chart from the registry, execute the following command:
 
 ```shell
 helm repo add  --username {username} --password {password} {repo} https://forgejo.example.com/api/packages/{owner}/helm
