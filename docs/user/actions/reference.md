@@ -166,7 +166,29 @@ on:
     - cron: '30 5,17 * * *'
 ```
 
-[Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-cron/.forgejo/workflows/test.yml).
+[Check out the full example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-cron/.forgejo/workflows/test.yml).
+
+By default, schedules are interpreted as UTC. The workflow in the example would be run each day at 05:30 and 17:30 UTC.
+
+Optionally, a different time zone can be specified by supplying an [ID of an IANA time zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones):
+
+```yaml
+on:
+  schedule:
+    - cron: '30 5,17 * * *'
+      timezone: Europe/Berlin
+```
+
+This workflow would run each day year-round at 05:30 (04:30 UTC from November through March; 03:30 UTC from April
+through October) and 17:30 (16:30 UTC or 15:30 UTC) in Berlin's local time.
+
+> **CAUTION:** It is recommended not to schedule workflows during the time of day when daylight saving time changes
+> occur. Workflows that are scheduled to run when the clock jumps forward **are skipped**. When the clock moves backward,
+> workflows **run twice**.
+
+Forgejo behaves differently than GitHub during daylight saving time changes for historical reasons. Forgejo supported
+specifying time zones before GitHub did, although using a different syntax, and chose a different approach for dealing
+with DST changes.
 
 ### `on.workflow_call`
 
