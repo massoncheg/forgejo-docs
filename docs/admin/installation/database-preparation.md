@@ -9,8 +9,8 @@ You need a database to use Forgejo. The easiest option is SQLite which managed f
 Forgejo supports:
 
 - MariaDB (>=10.6), using the InnoDB storage engine
-- MySQL (>=8.0), using the InnoDB storage engine
-- PostgreSQL (>=13)
+- MySQL (>=8.4), using the InnoDB storage engine
+- PostgreSQL (>=14)
 - SQLite3
 
 This page will guide into preparing the database. Also take a look at the [database section of the config cheat sheet](https://forgejo.org/docs/latest/admin/config-cheat-sheet/#database-database) for a detailed list of options in Forgejo.
