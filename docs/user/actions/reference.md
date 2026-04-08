@@ -812,6 +812,7 @@ service runs. For instance:
 services:
   pgsql:
     image: postgres:15
+    env:
       POSTGRES_DB: test
       POSTGRES_PASSWORD: postgres
 steps:
