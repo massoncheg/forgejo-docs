@@ -46,12 +46,18 @@ The repository now gets mirrored periodically to the remote repository. You can 
 
 To set up a mirror from Forgejo to GitHub, you need to follow these steps:
 
-1. Create a [GitHub personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with the _public_repo_ box checked. Also check the **workflow** checkbox in case your repo uses GitHub Actions for continuous integration.
-2. Create a repository with that name on GitHub. Unlike Forgejo, GitHub does not support creating repositories by pushing to the remote. You can also use an existing remote repo if it has the same commit history as your Forgejo repo.
-3. In the settings of your Forgejo repo, fill in the **Git Remote Repository URL**: `https://github.com/<your_github_group>/<your_github_project>.git`.
-4. Fill in the **Authorization** fields with your GitHub username and the personal access token as **Password**.
-5. (Optional, available on Forgejo 1.18+) Select `Sync when new commits are pushed` so that the mirror will be updated as soon as there are changes. You can also disable the periodic sync if you like.
-6. Select **Add Push Mirror** to save the configuration.
+1. Create a repository on GitHub using any name you wish (the name does not have to match the name of the Forgejo repository). Unlike Forgejo, GitHub does not support creating repositories by pushing to the remote. You can also use an existing remote repo if it has the same commit history as your Forgejo repo.
+2. Create a [GitHub fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token). While creating the token:
+   1. In the **Repository access** section click the **Only select repositories** radio button.
+   2. Click the **Select repositories** button, type the name of the repository you created, and click the checkbox next to its name to select it, then close the **Select repositories** drop-down list.
+   3. In the **Permissions** box, click **Repositories** and then click the **Add permissions** button.
+   4. Click the checkbox next to **Content** in the **Select repository permissions** drop-down list.
+   5. If the repository contains (or could contain in the future) Actions workflows in the `.github/workflows` directory, click the checkbox next to **Workflows** in the **Select repository permissions** drop-down list.
+3. Click the **Generate token** button, then copy and save the generated token.
+4. In the settings of your Forgejo repo, fill in the **Git Remote Repository URL**: `https://github.com/<your_github_group>/<your_github_project>.git`.
+5. Fill in the **Authorization** fields with your GitHub username and the personal access token as **Password**.
+6. (Optional) Select `Sync when new commits are pushed` so that the mirror will be updated as soon as there are changes. You can also disable the periodic sync if you like.
+7. Select **Add Push Mirror** to save the configuration.
 
 The repository pushes shortly thereafter. To force a push, select the **Synchronize Now** button.
 
