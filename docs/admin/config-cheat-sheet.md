@@ -1378,7 +1378,7 @@ The available subjects for the quota feature are:
     - `size:assets:attachments:releases`: Size of all attachments attached to releases. This does _not_ include automatically generated archives.
   - `size:assets:artifacts`: Size of all Action artifacts.
   - `size:assets:packages:all`: Size of all Packages.
-- `size:wiki`: Wiki size.
+  - `size:assets:wiki`: Wiki size.
 
 ## Proxy (`proxy`)
 
