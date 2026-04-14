@@ -14,17 +14,76 @@ English localization strings are stored in two locations:
 
 Strings are [translated](../) on Weblate and string management is partially done by it.
 
-New strings, deletion and minor edits of English strings is to be submitted in pull requests as is. All edits are considered minor unless they include changes to handling of placeholders (`%s`, `%[n]s`, `%d`, `%[n]d`).
+### Additions, deletions and minor edits
+
+Addition of new strings, deletion of obsolete strings and minor changes should be be submitted in pull requests as is. Edits are considered minor unless they include changes to handling of placeholders (`%s`, `%[n]s`, `%d`, `%[n]d`).
+
+```diff
++ "new-string": "Hello, world!",
+//
+- "obsolete-string": "This string is no longer used",
+//
+- "edited-string": "Remove this runner",
++ "edited-string": "Remove runner",
+```
 
 When a new string is added, it must be double-checked that it's key is unique and is not present in transitions already.
 
-Changes to non-base files are intended to only be done on Weblate and not by pull requests to avoid merge conflicts with Weblate PR and to not waste CI time.
+```json
+"repo.pulls.poster_trust_deny": "Deny",
+// <1000 other lines>
+"repo.pulls.poster_trust_deny": "Deny access", // Oh, no!
+```
+
+Changes to non-base files (translations) are should only be done on Weblate and not via individual pull requests to
+
+- prevent merge conflicts with Weblate
+- not bypass of reviews on Weblate, where translation reviers know better than code reviewers
+- avoid wasting CI time and cluttering PR review queue
 
 When a UI change renders some string unused, it must be deleted.
 
-Unused strings should only be deleted in base language. The string will disappear from all translations automatically after the PR is merged. Removal of invisible obsolete translated strings is either done by Weblate or sometimes manually.
+Unused strings should only be deleted in base language. They will disappear from Weblate automatically after the PR is merged. Removal of orphaned translations from the files is done by Weblate for JSON and manually by the Localization team admins for INI components.
 
-When a string key needs to be changed, it must be mass-changed for all languages into which the string has already been translated, so that existing translations aren't lost. This includes merging the Weblate PR first and then re-applying the rename to avoid race conditions with changes from Weblate. It is a complicated process, so renaming keys is generally not recommended unless there's a good reason.
+### Incompatible edits
+
+String placeholders cannot be changed as is.
+
+```json
+// This change to base locale
+- "initial-key": "Remove this runner?",
++ "initial-key": "Remove runner %s?",
+// Breaks string rendering in all other locales
+"initial-key": "Изтриване на изпълнител?",
+```
+
+If there's an intention to preserve existing translations, a migration can be prepared in coordination with the Localization team admins:
+
+- preform the change in all locales - likely to conflict with Weblate, making it a rather complicated way
+- prepare replacement that can be executed in Weblate UI if the change is possible to automate by text replacement
+
+  For example, this change can be performed for all strings in Weblate UI avoiding conflicts with parameters:
+  - filter: `initial-key`
+  - search for: `%s`
+  - replacement string: `%[1]s`
+
+  ```diff
+  - "initial-key": "Remove %s?",
+  + "initial-key": "Remove %[1]s?",
+  ```
+
+If it is deemed fine to replace the string, the key needs to be changed:
+
+```diff
+- "initial-key": "Remove this runner?",
++ "updated-key": "Remove %[1]s?",
+```
+
+This is the easiest option for those working on the UI changes, but the translators will have to re-do their work.
+
+### Refactoring keys
+
+Sometime string keys are named poorly and need to be changed. In such cases they need to be mass-changed for all languages into which the strings have already been translated, so that the existing translations aren't lost. This includes merging the Weblate PR first and then re-applying the rename to avoid race conditions with changes from Weblate. It is a complicated process, so renaming keys is generally not recommended unless there's a good reason.
 
 ## Localization style
 
