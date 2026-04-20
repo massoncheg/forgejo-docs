@@ -51,10 +51,12 @@ Go version because it goes EOL.
 
 ## Automated experimental releases
 
-The Forgejo development and stable branches are [pushed daily to the
-forgejo-integration](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows/mirror.yml).
+The Forgejo development and stable branches are [pushed daily to the `forgejo-integration`
+repository](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows/mirror.yml)
+([latest workflow runs](https://codeberg.org/forgejo/forgejo/actions?workflow=mirror.yml)).
 It triggers the [release build
 workflow](https://codeberg.org/forgejo/forgejo/src/branch/forgejo/.forgejo/workflows/build-release.yml)
+([latest runs](https://codeberg.org/forgejo-integration/forgejo/actions?workflow=build-release.yml))
 which creates a new release for each updated branch, based on their latest commit:
 
 - the `forgejo` branch creates the `X.Y-test` release where `X.Y` is based on the most recent tag. For instance:
