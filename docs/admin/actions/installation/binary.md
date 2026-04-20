@@ -47,7 +47,7 @@ $ useradd --create-home runner
 ```
 
 If the runner will be using Docker (or rootful Podman through the Docker shim), ensure the `runner` user has access to
-the docker/podman socket. If you are using Docker, run:
+the docker/podman socket. If you are using Docker, run the following command to grant access to the docker socket:
 
 ```shell
 $ usermod -aG docker runner
