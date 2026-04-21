@@ -55,7 +55,7 @@ curl -X PUT --user {username}:{password} \
 | `scope`     | The package scope.                                                                                                                           |
 | `name`      | The package name.                                                                                                                            |
 | `version`   | The package version.                                                                                                                         |
-| `metadata`  | (Optional) The metadata of the package. JSON encoded subset of https://schema.org/SoftwareSourceCode                                         |
+| `metadata`  | (Optional) The JSON-encoded metadata of the package, see [Swift documentation][]                                                             |
 
 You cannot publish a package if a package of the same name and version already exists. You must delete the existing package first.
 
@@ -88,3 +88,5 @@ Afterwards execute the following command to install it:
 ```shell
 swift package resolve
 ```
+
+[Swift documentation]: https://docs.swift.org/swiftpm/documentation/packagemanagerdocs/registryserverspecification/#PackageRelease-type
