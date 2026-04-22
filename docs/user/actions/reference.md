@@ -735,6 +735,8 @@ jobs:
 - **Docker or Podman:**
   If the default image is unsuitable, a job can specify an alternate container image with `container:`, [as shown in this example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-container/.forgejo/workflows/test.yml). For instance the following will ensure the job is run using [Alpine 3.20](https://hub.docker.com/_/alpine/tags?name=3.20).
 
+  > **CAUTION:** When starting a container, Forgejo Runner does the equivalent of `docker run <image>`. That means that container images, once downloaded, are **never updated**.
+
   > **Note:** Many `Actions` require node to run. Using a custom container image that does not contain node may cause these actions to break.
 
   ```yaml
@@ -742,6 +744,8 @@ jobs:
   container:
     image: alpine:3.20
   ```
+
+  It is generally recommended to pin image versions instead of relying on tags, for example, `debian:docker://node@sha256:sha256:91447bc57243b852a21e0ff3553f531f0d4b66257a564b106c79d9e00f3aa14e` instead of `debian:docker://node:lts`. That is a prerequisite for reproducible jobs.
 
 - **LXC:**
   If the default [template and release](https://images.linuxcontainers.org/) specified by the runner are unsuitable, a job can specify an alternate template and release as follows.

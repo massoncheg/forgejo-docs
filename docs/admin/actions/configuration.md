@@ -18,13 +18,12 @@ runner should execute. For example:
 runner:
   # ... other runner options ...
   labels:
-    - ubuntu-22.04:docker://ghcr.io/catthehacker/ubuntu:act-22.04
+    - debian:docker://docker.io/library/node:lts
     - ubuntu-latest:docker://ghcr.io/catthehacker/ubuntu:act-22.04
 # ... the rest of the config file ...
 ```
 
-This would cause a job with `runs-on: ubuntu-latest` to run on this `Forgejo Runner`, within the docker image
-`ghcr.io/catthehacker/ubuntu:act-22.04`.
+This would cause a job with `runs-on: debian` to run on this `Forgejo Runner` within the docker image `docker://docker.io/library/node:lts`.
 
 A label has the following structure:
 
@@ -43,6 +42,8 @@ The `label type` determines what containerization system will be used to run the
 
 ### Docker or Podman
 
+**CAUTION:** When starting a container, Forgejo Runner does the equivalent of `docker run <image>`. That means that container images, once downloaded, are **never updated**.
+
 If a label specifies `docker` as its `label type`, the rest of it is interpreted as the default container image to use.
 The runner will execute all the steps, as root, within a container created from that image.
 
@@ -54,13 +55,14 @@ Label examples:
 - `docker:docker://data.forgejo.org/oci/alpine:3.20` defines `docker` to be the `alpine:3.20` image from
   https://data.forgejo.org/oci/-/packages/container/alpine/3.20.
 
-To mimic GitHub runners, the a label such as `ubuntu-22.04:docker://node:20-bullseye` can be used. With this, the
-Forgejo runner will respond to `runs-on: ubuntu-22.04` and will use the `node:20-bullseye` image from hub.docker.com.
-This image is quite capable of running many of the workflows that are designed for the GitHub runners, but not all of
-the same tools will be available as GitHub provides. A bigger image `ghcr.io/catthehacker/ubuntu:act-22.04` instead of
-`node:20-bullseye` which should be compatible with most actions while remaining relatively small.
+It is generally recommended to pin image versions instead of relying on tags, for example, `debian:docker://node@sha256:sha256:91447bc57243b852a21e0ff3553f531f0d4b66257a564b106c79d9e00f3aa14e` instead of `debian:docker://node:lts`. That is a prerequisite for reproducible jobs.
 
-Many common actions (eg. `uses: actions/checkout@v6`) require Node.js in the image.
+To mimic GitHub runners, a label such as `ubuntu-latest:docker://node:lts` can be used. With this, the
+Forgejo runner will respond to `runs-on: ubuntu-latest` and will use the `node:lts` image from hub.docker.com.
+This image is quite capable of running many of the workflows that are designed for the GitHub runners, but not all
+the same tools will be available as GitHub provides.
+
+Many common actions (for example, `uses: actions/checkout@v6`) require Node.js in the image.
 
 The container image specified in the label can be overridden by a workflow by using
 [`jobs.<job_id>.container`](../../../user/actions/reference/#jobsjob_idcontainerimage).
