@@ -784,7 +784,7 @@ container:
 
 Set the volumes for the container to use, as if provided with the `--volume` argument of the `docker run` command.
 
-> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../../admin/actions/runner-installation/#configuration) for more information.
+> **NOTE:** the `--volume` option is restricted to a list of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../../admin/actions/runner-installation/#configuration) for more information.
 
 > **NOTE:** ignored if `jobs.<job_id>.runs-on` is an LXC container.
 
@@ -799,7 +799,7 @@ A string of the following additional options, as documented [docker run](https:/
 - `--hostname` (except for Forgejo runner 6.0.x and 6.1.x)
 - `--memory` (requires runner 11.2.0 or greater)
 
-> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../../admin/actions/) for more information.
+> **NOTE:** the `--volume` option is restricted to a list of volumes configured in the runner executing the task. See the [Forgejo Actions administrator guide](../../../admin/actions/) for more information.
 
 > **NOTE:** the value of `--memory` cannot be higher than the value set in the runner configuration file in `[container].options`, if any.
 
@@ -825,27 +825,52 @@ steps:
 
 [Check out the example](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/test.yml)
 
-The following values are the same as [service container syntax](../advanced-features/#services).
+### `jobs.<job_id>.services.<service_name>.cmd`
 
-### `jobs.<job_id>.services.image`
+A list of command and arguments, equivalent to [[COMMAND] [ARG...]](https://docs.docker.com/engine/reference/commandline/run/).
 
-See also `jobs.<job_id>.container.image`
+### `jobs.<job_id>.services.<service_name>.credentials`
 
-### `jobs.<job_id>.services.credentials`
+#### `jobs.<job_id>.services.<service_name>.credentials.username`
 
-See also `jobs.<job_id>.container.credentials`
+The username to authenticate with the registry where the image is located.
 
-### `jobs.<job_id>.services.env`
+#### `jobs.<job_id>.services.<service_name>.credentials.password`
 
-See also `jobs.<job_id>.container.env`
+The password or access token to authenticate with the registry where the image is located.
 
-### `jobs.<job_id>.services.volumes`
+### `jobs.<job_id>.services.<service_name>.env`
 
-See also `jobs.<job_id>.container.volumes`
+Key/value pairs injected in the environment when running the container, equivalent to [`--env`](https://docs.docker.com/engine/reference/commandline/run/).
 
-### `jobs.<job_id>.services.options`
+### `jobs.<job_id>.services.<service_name>.image`
 
-See [`services.<service_name>.options`](../advanced-features/#servicesservice_nameoptions)
+The location of the container image to run.
+
+### `jobs.<job_id>.services.<service_name>.options`
+
+A string of the following additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/).
+
+- `--volume`
+- `--tmpfs`
+- `--hostname`
+- `--memory` (requires runner 11.2.0 or greater)
+- `--health-cmd`
+- `--health-interval`
+- `--health-retries`
+- `--health-timeout`
+- `--health-start-period`
+- `--no-healthcheck`
+
+> **NOTE:** the `--volume` option is restricted to a list of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../../admin/actions/runner-installation/#configuration) for more information.
+
+> **NOTE:** the value of `--memory` cannot be higher than the value set in the runner configuration file in `[container].options`, if any.
+
+### `jobs.<job_id>.services.<service_name>.volumes`
+
+Set the volumes for the container to use, as if provided with the `--volume` argument of the `docker run` command.
+
+> **NOTE:** the option is restricted to a list of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../../admin/actions/runner-installation/#configuration) for more information.
 
 ### `jobs.<job_id>.steps`
 

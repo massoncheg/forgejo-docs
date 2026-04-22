@@ -72,7 +72,7 @@ See also the [set of examples](https://code.forgejo.org/forgejo/end-to-end/src/b
 
 ## Services
 
-PostgreSQL, MariaDB and other services can be run from container images with something similar to the following. See also the [set of examples](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/).
+Services like databases can be started from container images and are then available to all steps in a particular job:
 
 ```yaml
 job:
@@ -95,43 +95,4 @@ The IP address of `pgsql` is on the same [network](https://docs.docker.com/engin
 
 > **NOTE:** services require [`[container].network`](../../../admin/actions/runner-installation/#configuration) to be empty so that a new network can be temporarily created to connect the container running the workflow with the services.
 
-### services.<service_name>.image
-
-The location of the container image to run.
-
-### services.<service_name>.env
-
-Key/value pairs injected in the environment when running the container, equivalent to [--env](https://docs.docker.com/engine/reference/commandline/run/).
-
-### services.<service_name>.cmd
-
-A list of command and arguments, equivalent to [[COMMAND] [ARG...]](https://docs.docker.com/engine/reference/commandline/run/).
-
-### services.<service_name>.options
-
-A string of the following additional options, as documented [docker run](https://docs.docker.com/engine/reference/commandline/run/).
-
-- `--volume`
-- `--tmpfs`
-- `--hostname`
-- `--memory` (requires runner 11.2.0 or greater)
-- `--health-cmd`
-- `--health-interval`
-- `--health-retries`
-- `--health-timeout`
-- `--health-start-period`
-- `--no-healthcheck`
-
-> **NOTE:** the `--volume` option is restricted to a allowlist of volumes configured in the runner executing the task. See the [Forgejo runner installation guide](../../../admin/actions/runner-installation/#configuration) for more information.
-
-> **NOTE:** the value of `--memory` cannot be higher than the value set in the runner configuration file in `[container].options`, if any.
-
-### services.<service_name>.credentials
-
-#### services.<service_name>.credentials.username
-
-The username to authenticate with the registry where the image is located.
-
-#### services.<service_name>.credentials.password
-
-The password or access token to authenticate with the registry where the image is located.
+See the [reference](../reference/) for the list of supported options. There are also a number of [examples that illustrate the configuration and usage of services](https://code.forgejo.org/forgejo/end-to-end/src/branch/main/actions/example-service/.forgejo/workflows/).
